@@ -35,6 +35,8 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 - 2026-09-14 — Regime de governo V2: modos Arquitecto/Thread, estado e rejeições em espelho, threads estanques. Ver `FLUXO-DE-PROJECTO.md`.
 - 2026-09-14 — V1 completo e DIY temporário passam a arqueologia. Não são planos vigentes.
 - 2026-09-14 — Notion é camada de estruturação e publicação; decisões nascem no repositório.
+- 2026-09-14 — **Execução no terreno: zero.** Confirmado pelo David. Nada foi construído, demolido ou plantado, nem do plano V1 nem do DIY. O quintal está como em Fevereiro de 2026. Sem custo afundado, sem obra a corrigir.
+- 2026-09-14 — Avança-se para **V2**, por ter surgido uma oportunidade vantajosa. Natureza por explicar — ver T002.
 
 **Em aberto**
 - O que é Jardim V2. Âmbito, ambição, orçamento, prazo.

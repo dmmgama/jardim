@@ -63,8 +63,8 @@ Depois disso, por ordem sugerida:
 
 ## Cuidado com
 
-**A pergunta que ficou sem resposta.** Perguntei três vezes o que foi executado do plano DIY — relva artificial, muros pintados, plantas nos canteiros — e não obtive resposta. Assume-se **zero execução** até prova em contrário, mas isto não está confirmado. Se alguma coisa foi feita, o ponto de partida de T001 e de V2 muda, e há custo afundado por contabilizar.
+**O padrão a não repetir.** V1 parou por depender de três terceiros e de um encadeamento rígido. O DIY foi o recuo perante isso e **também não arrancou — zero execução, confirmado pelo David em 2026-09-14**. Logo, baixar a ambição já foi tentado e não resolveu. V2 tem de resolver dependência e sequência, não apenas tamanho. Se a sessão de V2 produzir um quinto plano sem tocar nisto, o Arquitecto deve dizê-lo.
 
-**O padrão a não repetir.** V1 parou por depender de três terceiros e de um encadeamento rígido. O DIY foi o recuo perante isso e também não arrancou — logo, baixar a ambição já foi tentado e não resolveu. V2 tem de resolver dependência e sequência, não apenas tamanho. Se a sessão de V2 produzir um quinto plano sem tocar nisto, o Arquitecto deve dizê-lo.
+**Não há custo afundado nem obra a demolir.** O quintal está exactamente como em Fevereiro de 2026: betonilha degradada, quatro canteiros, hot tub sobre paletes. V2 arranca de folha limpa — é a única vantagem herdada dos seis meses parados.
 
 **A palmeira.** É o princípio 1 do projecto e o elemento de maior risco do quintal. O único material sobre a manter viva — risco *Rhynchophorus ferrugineus*, protocolo 50–400 €/ano — está no Notion e nunca entrou no repositório.

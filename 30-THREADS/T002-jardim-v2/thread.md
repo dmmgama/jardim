@@ -63,7 +63,11 @@ Quatro planos, nenhum executado, zero obra no terreno:
 | DIY temporário | Mai–Jul 2026 | ~500 € declarado / 675–1.048 € real | Janela Mai–Set 2026 expirou sem balanço. |
 | Dossier palmeira | Mai 2026 | 300–600 € + 50–400 €/ano | Nunca integrado. Material de T001. |
 
+**Execução no terreno: zero.** Confirmado pelo David em 2026-09-14. Nem V1 nem DIY produziram obra. O quintal está como em Fevereiro de 2026 — betonilha degradada, quatro canteiros, hot tub sobre paletes. **Não há custo afundado nem trabalho a corrigir:** V2 arranca de folha limpa.
+
 **A leitura do Arquitecto:** V1 não parou por ser ambicioso demais; parou porque nada podia acontecer antes da demolição, e a demolição dependia de terceiros não controlados. O DIY foi o recuo correcto perante isso, mas foi desenhado ao lado do plano grande, não dentro dele — daí o conflito dos canteiros. **Baixar a ambição já foi tentado e também não arrancou.** V2 tem de resolver o problema de dependência e de sequência, não apenas o de tamanho.
+
+**O que se sabe de V2 até agora:** surgiu uma **oportunidade vantajosa**, ainda por explicar. É o que motiva avançar agora e não em Maio. A natureza dessa vantagem é o primeiro input necessário — e provavelmente a chave do faseamento, porque uma oportunidade tem janela.
 
 ---
 
@@ -79,14 +83,14 @@ Quatro planos, nenhum executado, zero obra no terreno:
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
 **Última sessão:** —
-**Estado:** Por arrancar. Mandato escrito, contexto herdado compilado. **A oportunidade nova ainda não foi explicada pelo David** — é o primeiro input necessário.
+**Estado:** Por arrancar. Mandato escrito, contexto herdado compilado, execução no terreno confirmada a zero. **A oportunidade vantajosa ainda não foi explicada pelo David** — é o primeiro input necessário.
 
 ---
 
 ## HANDOFF  *(para a próxima sessão desta thread)*
 
-**Próximo passo:** Pedir ao David que explique a oportunidade — Jardim V2. Ouvir primeiro, estruturar depois.
+**Próximo passo:** Pedir ao David que explique a oportunidade vantajosa. Ouvir primeiro, estruturar depois. Perceber em particular **se tem janela temporal** — uma oportunidade que expira condiciona todo o faseamento.
 
-**À espera de:** o David explicar V2.
+**À espera de:** o David explicar a oportunidade.
 
 **Cuidado com:** não assumir que V2 é uma variante de V1. Pode ser outra coisa. Ouvir antes de enquadrar. E consultar `REJEICOES.md` antes de propor o que já morreu.
