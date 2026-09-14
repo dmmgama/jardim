@@ -37,6 +37,7 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 - 2026-09-14 — Notion é camada de estruturação e publicação; decisões nascem no repositório.
 - 2026-09-14 — **Execução no terreno: zero.** Confirmado pelo David. Nada foi construído, demolido ou plantado, nem do plano V1 nem do DIY. O quintal está como em Fevereiro de 2026. Sem custo afundado, sem obra a corrigir.
 - 2026-09-14 — Avança-se para **V2**, por ter surgido uma oportunidade vantajosa. Natureza por explicar — ver T002.
+- 2026-09-14 — **Sequência de trabalho fixada:** primeiro a base factual do espaço (T001, etapa 1), só depois o debate de V2 (T002). Sem entendimento partilhado do cenário não há debate possível.
 
 **Em aberto**
 - O que é Jardim V2. Âmbito, ambição, orçamento, prazo.

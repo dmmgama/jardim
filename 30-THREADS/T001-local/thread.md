@@ -38,11 +38,17 @@ Se, ao trabalhar, surgir ideia de projecto: vai para `INBOX.md` da raiz, não pa
 
 **Entrega esperada**
 
-Documentos factuais em `10-LOCAL/`, entregues **incrementalmente por tema** via `entregue/`. Cada entrega é autónoma e utilizável sozinha.
+Documentos factuais em `10-LOCAL/`, via `entregue/`, em duas etapas:
+
+**Etapa 1 — o cenário completo *(prioritária e bloqueante)*.** Um retrato do jardim inteiro, suficiente para que qualquer agente ou pessoa que o leia tenha o mesmo entendimento do espaço sem ter assistido a nenhuma sessão. Cobertura de todo o quintal, mesmo que a profundidade varie. É explicitamente aceitável — e desejável — que diga **o que não se sabe**: um buraco identificado vale mais do que um preenchimento plausível.
+
+> **T002 está bloqueada até esta etapa entregar.** Não há debate possível sobre o que fazer ao espaço enquanto não houver acordo sobre o que o espaço é.
+
+**Etapa 2 — aprofundamento por tema *(ongoing)*.** Depois da etapa 1, a thread passa a alimentar o Local por partes, conforme o projecto pedir profundidade.
 
 Regra de escrita: **facto e fonte**. Cada afirmação diz de onde vem — medição directa, planta, foto, documento, ou observação do David. O que for estimativa ou inferência é marcado como tal. O que for desconhecido fica escrito como desconhecido, não se preenche com plausível.
 
-**Tipo:** `ONGOING` — não fecha. Alimenta-se por partes ao longo do projecto.
+**Tipo:** `ONGOING` com **primeira entrega fechada e bloqueante**.
 
 ---
 
@@ -58,26 +64,50 @@ Regra de escrita: **facto e fonte**. Cada afirmação diz de onde vem — mediç
 
 ---
 
-## PRIORIDADES DE ARRANQUE
+## PRIORIDADES DE ARRANQUE  *(etapa 1)*
 
-1. **Recuperar o dossier da palmeira do Notion.** É o material técnico mais sério que existe e está fora do repositório. A palmeira é o elemento de maior valor e maior risco do quintal.
-2. **Resolver a divergência de cota** casa→jardim: 1,60 m vs 1,70 m.
-3. **Depurar a planta V1**: separar o que é medição do que é decisão.
-4. **Identificar os buracos**: o que não se sabe sobre o espaço e teria de ser medido ou observado.
+1. **Varrer todas as fontes** — planta V1, fotos, Notion, arqueologia. Recolher tudo o que é afirmação factual sobre o espaço, com a origem de cada uma.
+2. **Recuperar o dossier da palmeira do Notion.** É o material técnico mais sério que existe e está fora do repositório. A palmeira é o elemento de maior valor e maior risco do quintal.
+3. **Separar facto de decisão.** A planta V1 mistura os dois ("canteiro central: ELIMINAR" não é um facto sobre o espaço). Fica só o que descreve, não o que prescreve.
+4. **Resolver contradições, ou registá-las como abertas.** Começando pela cota casa→jardim: 1,60 m vs 1,70 m.
+5. **Inventariar os buracos.** O que não se sabe e teria de ser medido, fotografado ou observado. Esta lista é entregável: é ela que diz ao David o que tem de ir ver ao quintal.
+6. **Produzir o cenário completo** e entregá-lo.
+
+### Mínimo de cobertura da etapa 1
+
+Nenhum destes pontos pode ficar por abordar — ainda que a resposta seja "desconhecido":
+
+- Geometria e cotas · limites e nomenclatura
+- Superfície actual e seu estado
+- Muros: os quatro, incluindo o muro de suporte sul
+- Fachada norte e escadas
+- Canteiros existentes
+- Árvores: espécie, porte, posição, estado
+- Exposição solar por estação · sombras
+- Água, electricidade, drenagem, esgoto — o que existe e onde
+- Envolvente: o que confina, quem vê, o que se vê
+- Condicionantes: condomínio, acessos, ruído
 
 ---
 
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
 **Última sessão:** —
-**Estado:** Por arrancar. Pasta criada, mandato escrito, matéria-prima colocada em `research/`. `10-LOCAL/` está vazia.
+**Estado:** Por arrancar, **etapa 1**. Pasta criada, mandato escrito, matéria-prima em `research/`. `10-LOCAL/` vazia.
+
+**Prioridade máxima do projecto:** T002 (Jardim V2) está bloqueada até esta etapa entregar.
 
 ---
 
 ## HANDOFF  *(para a próxima sessão desta thread)*
 
-**Próximo passo:** Ler `research/Planta_e_Espaco_Fisico.md` e o Notion. Produzir o índice de temas do Local e assinalar, tema a tema, o que é facto sólido, o que é divergente e o que falta.
+**Próximo passo:** Executar a etapa 1. Varrer as fontes, separar facto de decisão, produzir o cenário completo do jardim e a lista de buracos.
 
-**À espera de:** nada.
+**À espera de:** nada. O David é fonte para o que não está documentado — perguntar durante a sessão.
 
-**Cuidado com:** não copiar a planta V1 para `10-LOCAL/`. Ela mistura medição com decisão — é preciso separar. E não preencher lacunas com o que é plausível: o que não se sabe fica escrito como desconhecido.
+**Cuidado com:**
+
+- **Não copiar a planta V1 para `10-LOCAL/`.** Mistura medição com decisão. "Canteiro central: ELIMINAR" não é um facto sobre o espaço.
+- **Não preencher lacunas com o plausível.** Um "desconhecido" escrito vale mais do que um número inventado — foi assim que nasceram as duas cotas em conflito.
+- **Não deslizar para projecto.** Ideia de transformação vai para `INBOX.md` da raiz, não para aqui.
+- **Não confundir profundidade com cobertura.** A etapa 1 precisa de cobrir o jardim todo; aprofundar é a etapa 2.

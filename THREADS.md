@@ -35,11 +35,12 @@ summary: |
 | | |
 |---|---|
 | **Pasta** | `30-THREADS/T001-local/` |
-| **Estado** | `ONGOING` |
+| **Estado** | `ONGOING` · **etapa 1 em curso** |
 | **Aberta** | 2026-09-14 |
 | **Mandato** | Produzir e manter a descrição factual inequívoca do espaço existente. |
-| **Entrega** | Incremental, por tema, para `10-LOCAL/`. Não fecha. |
+| **Entrega** | **Etapa 1:** cenário completo do jardim (bloqueante). **Etapa 2:** aprofundamento por tema, ongoing. |
 | **Sessões** | 0 |
+| **Prioridade** | **Máxima.** T002 está bloqueada até a etapa 1 entregar. |
 
 ---
 
@@ -48,11 +49,13 @@ summary: |
 | | |
 |---|---|
 | **Pasta** | `30-THREADS/T002-jardim-v2/` |
-| **Estado** | `ACTIVA` |
+| **Estado** | `À ESPERA` — bloqueada por T001 |
 | **Aberta** | 2026-09-14 |
 | **Mandato** | Debater e definir o que é o Jardim V2: âmbito, ambição, princípios, orçamento, faseamento. |
 | **Entrega** | Definição de V2 em `entregue/`, para consolidar em `ESTADO.md` e `20-PLANO/`. |
 | **Sessões** | 0 |
+| **Bloqueio** | Aguarda a etapa 1 de T001. Sem base factual partilhada não há debate possível — foi assim que nasceram quatro planos com cotas diferentes. |
+| **Nota** | Motivada por uma oportunidade vantajosa, ainda por explicar. Se tiver janela temporal curta, o David pode levantar o bloqueio. |
 
 ---
 

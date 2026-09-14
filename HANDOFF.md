@@ -37,7 +37,7 @@ Registado em `ESTADO.md` §00. Descartes registados em `REJEICOES.md`.
 
 | | |
 |---|---|
-| **Threads activas** | T001 (ongoing, por arrancar) · T002 (activa, por arrancar) |
+| **Threads activas** | T001 (etapa 1, por arrancar — **prioridade máxima**) · T002 (à espera, bloqueada por T001) |
 | **Pedidos pendentes** | nenhum |
 | **Obra no terreno** | nenhuma |
 | **Inbox** | 15 entradas por processar |
@@ -52,12 +52,16 @@ Registado em `ESTADO.md` §00. Descartes registados em `REJEICOES.md`.
 
 ## Próximo passo
 
-**Sessão seguinte: debater tickets.** Foi o que o David definiu no fim desta sessão.
+**Sessão seguinte: T001, etapa 1 — o cenário completo do jardim.** Definido pelo David no fim desta sessão:
 
-Depois disso, por ordem sugerida:
-1. Arrancar **T002** — o David tem de explicar a oportunidade "Jardim V2". Nada em V2 avança antes disso.
-2. Arrancar **T001** — recuperar o dossier da palmeira do Notion e resolver a divergência de cota.
-3. Processar o inbox.
+> "garantir que os agentes têm entendimento certo do cenário do jardim todo. sem isso não há nada que se possa debater."
+
+Isto inverte a ordem que o Arquitecto tinha sugerido, e com razão: debater V2 sobre uma base factual contaminada reproduziria o erro que gerou quatro planos com cotas diferentes.
+
+Depois disso:
+1. **T002** — o David explica a oportunidade vantajosa. Desbloqueia com a entrega da etapa 1 de T001.
+2. Tickets.
+3. Processar o inbox — Notion Hub, PDFs, contradições.
 
 ---
 
