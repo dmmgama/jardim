@@ -74,3 +74,84 @@ A condição do bloqueio era a entrega da etapa 1. Deixou de se verificar.
 **Estado da thread:** `ONGOING`. **Não proponho fecho** — a etapa 2 é alimentação por partes.
 A prioridade da etapa 2 está no handoff de `thread.md`; os três primeiros passos custam menos de 10 €
 e uma tarde.
+
+---
+
+### 2026-09-16 — ARQUITECTO → THREAD
+**Etapa 1 absorvida. As três decisões, respondidas.**
+
+Entrega aceite. O trabalho está bem feito: as correcções de facto — sobretudo a drenagem — valem
+mais do que o dossier inteiro, porque anularam uma premissa que estava a contaminar três relatórios.
+
+---
+
+**DECISÃO 1 — o dossier fica onde está.** ❌ não migra para `10-LOCAL/`
+
+`DOSSIER-LOCAL.md` é declarado **documento canónico do Local** em `ESTADO.md` §01, no lugar onde
+está. Partir 25 ligações a ~50 imagens não compra nada. `10-LOCAL/` fica como pasta de apontamento,
+não de cópia.
+
+**Absorver ≠ mover.** A entrega passa a canon por estar declarada no `ESTADO.md`, não por mudar de
+pasta. Registado em `REJEICOES.md` §01 para não se voltar a discutir.
+
+**Consequência para ti:** continuas a ser dona do ficheiro. Escreve nele à vontade — é o teu
+território e é canon ao mesmo tempo.
+
+---
+
+**DECISÃO 2 — rebaixamento do muro SW: vai para a T002, não se decide aqui.**
+
+Fizeste bem em não avaliar. A hipótese entra no mandato da T002 como matéria de debate, com as
+reservas todas listadas — incluindo a que só tu ligaste, que a intervenção e o ponto de drenagem
+estão no mesmo sítio.
+
+**O que preciso de ti:** a fronteira **suporte/guarda** do muro SW e o processo de obra no Arquivo
+Municipal. Sem esses dois, a hipótese não é decidível — é conversa. Ficam como bloqueantes da etapa 2
+em `THREADS.md`.
+
+---
+
+**DECISÃO 3 — bloqueio da T002 levantado.** ✅
+
+T002 passa a `ACTIVA` e é agora a thread de trabalho activo. Mandato reescrito: debater soluções e
+chegar a opções viáveis, contra cinco filtros — drenagem, sol, clima, custo, gosto do David.
+
+---
+
+**Matéria registada, como pediste:**
+
+| Onde | O quê |
+|---|---|
+| `ESTADO.md` §01 | Muros a 2,50 m · drenagem existe e funciona · azimute 65°/245° e geometria solar · Z5 é sombra |
+| `ESTADO.md` §11 *(nova)* | Modelo e simulação — T003 ratificada, mandato confirmado sem alteração |
+| `REJEICOES.md` §01 | Absorção pela palmeira · `corte predio.jpg` como fonte · «água estagnada» · migração para `10-LOCAL/` |
+| `REJEICOES.md` §11 *(nova)* | Via Google 3D · valores copiados sem `origem:` |
+
+**O que ficou de fora, deliberadamente:** as rejeições vegetais (relva, espécies, floração de Verão).
+Não são factos do Local — são conclusões de projecto, e o sítio delas é o debate da T002. Estão no
+`INBOX.md` e a T002 vai lá buscá-las. Se as registasse agora em `REJEICOES.md`, estaria a fechar por
+despacho decisões que ainda não foram debatidas.
+
+---
+
+**O teu estado: `ONGOING`.** Não em pausa, não fechada.
+
+Não és a thread de trabalho activo, mas és a thread de **consulta permanente** — a T002 vai ler o teu
+dossier o tempo todo, e a T003 vai pedir-te parâmetros. Abre-se sessão tua quando houver medições
+para absorver ou quando a T002 pedir um facto que não está lá.
+
+**A tua prioridade, por esta ordem** (está em `THREADS.md`):
+
+1. Para onde descarrega o dreno — corante traçador, < 10 €, uma tarde
+2. Teste de percolação — 0 €, meio-dia
+3. Arquivo Municipal — **condiciona a T002 directamente**
+4. Cota até onde o muro SW retém terras — mesma ida ao terreno
+
+Os quatro juntos custam menos de 10 € e desbloqueiam a decisão mais cara do projecto.
+
+---
+
+**Uma observação, para o registo.** O achado de que não existe protocolo estabelecido para
+caracterizar um jardim doméstico — nem em Portugal nem na Europa — não é trivial. Se a regra «facto e
+fonte, buraco declarado» aguentar até ao fim deste projecto, o método vale mais do que o jardim.
+Mantém-na.

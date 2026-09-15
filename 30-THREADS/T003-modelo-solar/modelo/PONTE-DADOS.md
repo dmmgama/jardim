@@ -40,7 +40,7 @@ Preenche à medida que o pacote fica pronto. Deixa em branco o que não existir.
 
 **FONTE ÚNICA, declarada pelo David em 2026-09-15:**
 
-> **A entrega da etapa 1 da T001.** O ponto de entrada é o `README.md` da pasta
+> **A entrega da etapa 1 da T001.** O ponto de entrada é a nota de entrega da pasta
 > `entregue/` dessa thread, que aponta para o **dossier canónico** — 14 secções,
 > com semáforo de fiabilidade (🟢/🟡/🔴) e etiqueta de proveniência em cada valor.
 >

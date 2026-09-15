@@ -13,7 +13,7 @@ summary: |
 > **Regra G4:** espelho de `ESTADO.md` — os mesmos temas, nos dois.
 > **Regra O9:** o Agente consulta este ficheiro antes de propor uma opção, e assinala se já foi rejeitada.
 
-**Última actualização:** 2026-09-14
+**Última actualização:** 2026-09-16
 
 ---
 
@@ -41,6 +41,10 @@ Uma rejeição registada tem três partes: **o quê**, **quando**, **porquê**. 
 | Opção rejeitada | Data | Motivo |
 |---|---|---|
 | Promover `Planta_e_Espaco_Fisico.md` directamente a Local | 2026-09-14 | Documento contaminado por decisões de V1 (canteiros a demolir) e com divergência de cota por resolver. Entra como matéria-prima de T001, não como facto. |
+| **Absorção da água da chuva pela palmeira** como explicação do escoamento | 2026-09-16 | Um volume de terra tem capacidade finita. Se fosse absorção, saturaria nas chuvadas intensas e prolongadas — que é exactamente quando **não** satura. A água sair sempre implica saída canalizada. Ver `ESTADO.md` §01. |
+| **`corte predio.jpg` como fonte de levantamento** | 2026-09-16 | É corte de *proposta de reabilitação e ampliação*, não levantamento do existente. Foi anotado pelo proprietário e as cotas do jardim já concordam com a observação. As cotas do edifício (15,50 m) continuam aceites por verificação de escala, **não por medição**. |
+| **«Água estagnada, sem escoamento aparente»** como facto do Local | 2026-09-16 | Erro de facto, retirado. Era conclusão tirada de uma fotografia: não se via para onde a água ia, e isso foi lido como não ir a lado nenhum. O quintal escoa. Três relatórios da T001 foram escritos sobre esta premissa errada e já corrigidos. |
+| **Migrar o dossier do Local para `10-LOCAL/`** | 2026-09-16 | Partiria 25 ligações a ~50 imagens de caminho relativo, sem ganho. O dossier fica em `Docs-David-Local/` e é declarado canónico no `ESTADO.md`. Absorver ≠ mover. |
 
 ---
 
@@ -119,3 +123,12 @@ Uma rejeição registada tem três partes: **o quê**, **quando**, **porquê**. 
 | Opção rejeitada | Data | Motivo |
 |---|---|---|
 | Encadeamento rígido F1→F6 onde nada acontece antes da demolição | 2026-09-14 | Dependência de três terceiros não controlados. Bloqueou o projecto durante seis meses. |
+
+---
+
+## 11. Modelo e simulação
+
+| Opção rejeitada | Data | Motivo |
+|---|---|---|
+| **Via Google 3D (Photorealistic 3D Tiles) para o modelo** | 2026-09-16 | Duas razões independentes, qualquer uma bastante: (a) a malha fotogramétrica **não resolve muros de 0,18 × 2,50 m** em sombra permanente sob uma fachada de 15,50 m — e os muros são o problema todo, porque 3,00 → 2,50 m duplicou o sol de Dezembro; (b) os 3D Tiles estão **indisponíveis** para facturação EEE criada após 2025-07-08. Relatório em `T001-local/research/Jardim_Software_Modelacao_Solar.md`. |
+| **Valores copiados entre threads sem `origem:` declarada** | 2026-09-15 | Decisão do David. Um valor copiado fica errado no momento em que a fonte é corrigida, e ninguém repara. A T003 declara o que precisa; a origem de cada dado é indicada pelo David e registada. Sem `origem`, o parâmetro não existe. |

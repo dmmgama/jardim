@@ -130,11 +130,6 @@ descrever o que foi entregue no momento em que o foi.
 
 **T15.** **DEVES** numerar os pressupostos (P1, P2, …) quando avançares sob ambiguidade não-bloqueante.
 
-**T16.** **DEVES** distinguir sempre facto de interpretação no que escreveres.
-
-**T17.** **NÃO PODES** sugerir ao David que consulte um profissional em engenharia de estruturas.
-
-
 ---
 
 ## 7. Registo de alterações ao protocolo

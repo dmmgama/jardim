@@ -30,10 +30,10 @@ summary: |
 
 ## Pendentes
 
-- [ ] 2026-09-15 | T001 | Etapa 1 entregue — absorver dossier em `10-LOCAL/`, avaliar hipótese de rebaixamento do muro SW, levantar bloqueio da T002
+*(nenhum)*
 
 ---
 
 ## Respondidos
 
-*(nenhum)*
+- [x] 2026-09-15 | T001 | Etapa 1 entregue — absorver dossier, avaliar hipótese de rebaixamento do muro SW, levantar bloqueio da T002  → **[RESPONDIDO 2026-09-16]** Dossier declarado canónico onde está (não migra). Muro SW vai para debate na T002. Bloqueio da T002 levantado.
