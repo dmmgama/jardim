@@ -12,7 +12,7 @@ summary: |
 > **Regra G10:** só o Arquitecto fecha uma thread. A thread propõe o fecho pelo canal de mensagens.
 > **Regra G11:** o mandato é escrito em `thread.md` no momento da criação.
 
-**Última actualização:** 2026-09-14
+**Última actualização:** 2026-09-15
 
 ---
 
@@ -56,6 +56,20 @@ summary: |
 | **Sessões** | 0 |
 | **Bloqueio** | Aguarda a etapa 1 de T001. Sem base factual partilhada não há debate possível — foi assim que nasceram quatro planos com cotas diferentes. |
 | **Nota** | Motivada por uma oportunidade vantajosa, ainda por explicar. Se tiver janela temporal curta, o David pode levantar o bloqueio. |
+
+---
+
+### T003 — Modelo solar
+
+| | |
+|---|---|
+| **Pasta** | `30-THREADS/T003-modelo-solar/` |
+| **Estado** | `ACTIVA` · pacote de arranque pronto, por montar |
+| **Aberta** | 2026-09-15 |
+| **Mandato** | Construir e manter um modelo digital paramétrico do quintal que permita testar posições de árvores e ver o efeito no sombreamento. |
+| **Entrega** | Modelo funcional em `modelo/` + tabelas de exposição por cenário em `entregue/`. `ONGOING`. |
+| **Sessões** | 0 |
+| **Nota** | **Criada pela sessão T001 de 2026-09-15, com autorização expressa do David para derrogar G9.** A ratificar pelo Arquitecto — ver `INBOX.md`. |
 
 ---
 

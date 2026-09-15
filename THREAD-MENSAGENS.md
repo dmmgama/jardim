@@ -30,7 +30,7 @@ summary: |
 
 ## Pendentes
 
-*(nenhum)*
+- [ ] 2026-09-15 | T001 | Etapa 1 entregue — absorver dossier em `10-LOCAL/`, avaliar hipótese de rebaixamento do muro SW, levantar bloqueio da T002
 
 ---
 

@@ -1,0 +1,441 @@
+# =============================================================================
+# CONTRATO DE DADOS — T003 Modelo solar paramétrico
+# =============================================================================
+# ESTE FICHEIRO NÃO CONTÉM DADOS. Declara o que o modelo PRECISA.
+#
+# Regra da thread: a T003 não copia valores de outras threads nem escreve
+# caminhos de ficheiros. Declara requisitos; o David indica a origem.
+#
+# COMO SE USA
+#   1. A sessão T003 lê este ficheiro e vê o que falta.
+#   2. Pergunta ao David, campo a campo, onde está cada dado.
+#   3. O David responde com o ficheiro ou o valor.
+#   4. A sessão preenche `parametros-activos.yaml` (esse sim, com valores),
+#      registando em `origem:` o que o David disse.
+#   5. Este ficheiro fica intacto, como especificação.
+#
+# CAMPOS DE CADA REQUISITO
+#   necessidade:  bloqueante | importante | opcional
+#   para_que:     o que deixa de ser possível calcular sem isto
+#   unidade:      em que unidade o modelo espera o valor
+#   origem:       PEDIR AO DAVID — nunca preenchido por dedução
+#   sensibilidade: o que acontece ao resultado se o valor estiver errado
+# =============================================================================
+
+meta:
+  thread: T003
+  criado: 2026-09-15
+  principio: >
+    Nenhum valor geométrico ou de exposição vive no código. Tudo se lê de
+    `parametros-activos.yaml`, que é preenchido a partir de fontes que o
+    David indica. Se um dado não tem origem declarada, o modelo não corre
+    com ele — assinala-o como ausente e diz o que fica em falta.
+
+# =============================================================================
+# 1. LOCALIZAÇÃO — para cálculo de posição solar
+# =============================================================================
+localizacao:
+  latitude:
+    necessidade: bloqueante
+    unidade: graus decimais (N positivo)
+    para_que: Posição do Sol. Sem isto não há cálculo nenhum.
+    origem: PEDIR AO DAVID
+  longitude:
+    necessidade: bloqueante
+    unidade: graus decimais (E positivo, W negativo)
+    para_que: Posição do Sol.
+    origem: PEDIR AO DAVID
+  altitude:
+    necessidade: opcional
+    unidade: m
+    para_que: Refracção atmosférica. Efeito desprezável a esta escala.
+    origem: PEDIR AO DAVID
+  fuso_horario:
+    necessidade: bloqueante
+    unidade: identificador IANA (ex. Europe/Lisbon)
+    para_que: >
+      Converter hora solar em hora local. ERRO CLÁSSICO: hora de verão.
+      Uma hora de desvio dá sombras completamente erradas.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 2. SISTEMA DE COORDENADAS E ORIENTAÇÃO
+# =============================================================================
+# O modelo precisa de saber como o rectângulo do quintal se orienta no mundo.
+# Sem azimute correcto, a geometria está certa e as sombras estão erradas.
+# =============================================================================
+orientacao:
+  convencao_eixos:
+    necessidade: bloqueante
+    para_que: >
+      Definir o que é X e o que é Y, e de onde crescem. Todo o resto do
+      contrato depende desta convenção. A T001 tem nomenclatura normativa
+      estabelecida — usar essa, não inventar outra.
+    origem: PEDIR AO DAVID
+  azimute_eixo_x:
+    necessidade: bloqueante
+    unidade: graus (0=N, 90=E, 180=S, 270=W)
+    para_que: Rodar o modelo para o norte verdadeiro.
+    sensibilidade: >
+      ALTA. Erro de 10° desloca as horas de sol de forma sistemática.
+    origem: PEDIR AO DAVID
+  designacao_dos_limites:
+    necessidade: importante
+    para_que: >
+      Nomear cada muro de forma inequívoca nos outputs, para que as tabelas
+      do modelo se possam confrontar com os documentos da T001.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 3. GEOMETRIA DO RECINTO
+# =============================================================================
+recinto:
+  dimensao_maior_interior:
+    necessidade: bloqueante
+    unidade: m
+    para_que: Extensão do plano de cálculo.
+    origem: PEDIR AO DAVID
+  dimensao_menor_interior:
+    necessidade: bloqueante
+    unidade: m
+    para_que: >
+      Largura entre muros. É o parâmetro que determina se a sombra de um muro
+      atravessa o recinto todo no Inverno.
+    sensibilidade: ALTA no Inverno, baixa no Verão.
+    origem: PEDIR AO DAVID
+  espessura_dos_muros:
+    necessidade: opcional
+    unidade: m
+    para_que: Só para desenho. Não afecta o cálculo de sombras.
+    origem: PEDIR AO DAVID
+  forma:
+    necessidade: importante
+    para_que: >
+      Confirmar que é rectângulo. Se houver reentrâncias, recortes ou
+      desalinhamentos, o modelo tem de os representar.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 4. OBSTÁCULOS VERTICAIS  ← O PARÂMETRO MAIS SENSÍVEL DO MODELO
+# =============================================================================
+# Para CADA limite do recinto, e para cada obstáculo exterior relevante.
+# =============================================================================
+obstaculos:
+  por_cada_limite:
+    altura_acima_do_solo_do_jardim:
+      necessidade: bloqueante
+      unidade: m
+      medida_desde: o solo do jardim, não o solo exterior nem a cota da rua
+      para_que: Projecção de sombra. É o input dominante.
+      sensibilidade: >
+        A MAIS ALTA DE TODO O MODELO. Há registo de que uma variação de 0,50 m
+        na altura dos muros DUPLICOU a média de sol de Dezembro.
+        >>> Enquanto este valor for estimado, correr SEMPRE em cenários. <<<
+      origem: PEDIR AO DAVID
+    conflito_de_fontes:
+      necessidade: bloqueante
+      para_que: >
+        Saber se o valor é medido ou estimado, e se há fontes divergentes.
+        HÁ NOTÍCIA DE CONFLITO NÃO RESOLVIDO neste parâmetro, e de material
+        gráfico produzido com valores diferentes entre si.
+        A sessão T003 DEVE perguntar explicitamente qual é o valor vigente
+        e se já foi medido no local.
+      origem: PEDIR AO DAVID
+  edificio_adjacente:
+    altura_total:
+      necessidade: bloqueante
+      unidade: m
+      para_que: >
+        Se houver edifício confinante, é provavelmente o obstáculo dominante
+        e determina a hora da primeira luz.
+      origem: PEDIR AO DAVID
+    posicao_e_orientacao:
+      necessidade: bloqueante
+      para_que: De que lado está, e que face dá para o quintal.
+      origem: PEDIR AO DAVID
+  elementos_em_consola:
+    necessidade: importante
+    para_que: >
+      Varandas, palas, alpendres projectam sombra própria que a altura do muro
+      não capta. Precisa de profundidade, cota inferior e extensão.
+    origem: PEDIR AO DAVID
+  envolvente_exterior:
+    necessidade: importante
+    para_que: >
+      O que existe para além dos limites: construções, taludes, terreno que
+      sobe ou desce. Um horizonte livre num quadrante muda o resultado nesse
+      quadrante.
+    origem: PEDIR AO DAVID
+  perfil_de_horizonte:
+    necessidade: opcional
+    unidade: graus de elevação por azimute
+    para_que: >
+      Obstruções distantes. Normalmente irrelevante num recinto fechado,
+      onde os muros próximos dominam.
+    origem: PEDIR AO DAVID
+
+  # ---------------------------------------------------------------------------
+  # LIMITES COM HORIZONTE LIVRE — obstáculo rebaixável
+  # ---------------------------------------------------------------------------
+  # Um limite sem nada construído do lado de fora é um caso especial: a sua
+  # altura deixa de ser um dado do local e passa a ser uma VARIÁVEL DE PROJECTO.
+  # Se parte dele puder ser rebaixada ou substituída por elemento vazado,
+  # o modelo tem de a tratar como cenário, não como constante.
+  # ---------------------------------------------------------------------------
+  limites_com_horizonte_livre:
+    necessidade: bloqueante
+    para_que: >
+      Identificar quais limites NÃO têm construção do lado de fora. Nesses, a
+      altura é rebaixável e abre-se um eixo de cenários que pode valer mais
+      que qualquer escolha de planta.
+    origem: PEDIR AO DAVID
+    perguntar_por_cada_um:
+      - Há construção, talude ou vegetação alta do lado de fora?
+      - O terreno do lado de fora sobe, desce, ou está ao mesmo nível?
+      - Há privacidade, ruído ou segurança a considerar? (não é dado do modelo, mas condiciona o cenário)
+
+  funcao_estrutural_por_cota:
+    necessidade: bloqueante
+    para_que: >
+      **DISTINÇÃO CRÍTICA.** Num muro que retém terras, só a parte abaixo do
+      nível das terras retidas tem função de suporte. A parte acima é GUARDA
+      — e essa pode, em princípio, ser rebaixada sem tocar na estrutura.
+      O modelo precisa de saber onde está essa fronteira, porque é ela que
+      define quanto se pode rebaixar.
+    perguntar:
+      - A que cota, acima do solo do jardim, termina a parte que retém terras?
+      - Que altura sobra acima disso, e é só guarda?
+      - Essa distinção está medida, ou é leitura por observação?
+    sensibilidade: >
+      Se a fronteira estiver mal identificada, um cenário de rebaixamento
+      corta estrutura em vez de guarda. O modelo não decide isto — reporta
+      o ganho de sol por cota e assinala a incerteza.
+    fora_de_ambito: >
+      Se o rebaixamento é ou não admissível — estrutural, legal, condomínio,
+      privacidade — NÃO é matéria desta thread. O modelo quantifica o ganho
+      de luz; a decisão é do Arquitecto.
+    origem: PEDIR AO DAVID
+
+  cenarios_de_rebaixamento:
+    necessidade: importante
+    unidade: m de altura remanescente, ou m de altura removida
+    para_que: >
+      Quantificar quanto sol se ganha por cada incremento de rebaixamento,
+      por zona e por estação. É o cenário de maior potencial do modelo:
+      num recinto estreito e fundo, a altura dos limites domina o Inverno.
+    perguntar:
+      - Que alturas remanescentes interessa ensaiar?
+      - Que extensão do limite, e em que trecho? (rebaixar tudo ou só um vão)
+      - O elemento que substitui é vazado (gradeamento, rede, ripado) ou opaco?
+    modelacao:
+      elemento_vazado: >
+        Um gradeamento ou ripado não é obstáculo sólido: tem transmissividade
+        própria, função da relação cheio/vazio. Pedir ao David qual o tipo,
+        ou modelar como intervalo.
+      trecho_parcial: >
+        Rebaixar só um vão cria uma janela de luz que se move com o Sol.
+        O modelo tem de representar a extensão real, não o limite todo.
+    o_que_reportar: >
+      Ganho em horas de sol directo, por zona, em Dezembro / equinócio / Junho,
+      para cada cenário. E — importante — **com e sem a vegetação existente no
+      caminho**: se houver copa entre o limite rebaixado e a zona a beneficiar,
+      o ganho real pode ser muito inferior ao geométrico.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 5. VEGETAÇÃO EXISTENTE — objectos que sombreiam e que se podem mover
+# =============================================================================
+# Para CADA exemplar. Esta secção é o coração do mandato: testar posições.
+# =============================================================================
+vegetacao_existente:
+  por_cada_exemplar:
+    identificacao:
+      necessidade: importante
+      para_que: Nomear nos outputs.
+      origem: PEDIR AO DAVID
+    posicao_no_plano:
+      necessidade: bloqueante
+      unidade: coordenadas na convenção declarada em (2)
+      para_que: Onde está o tronco.
+      origem: PEDIR AO DAVID
+    altura_total:
+      necessidade: bloqueante
+      unidade: m
+      para_que: Extensão da sombra.
+      origem: PEDIR AO DAVID
+    altura_da_base_da_copa:
+      necessidade: importante
+      unidade: m
+      para_que: >
+        Copa alta deixa passar sol rasante por baixo; copa baixa não.
+        Distingue árvore de arbusto no comportamento de sombra.
+      origem: PEDIR AO DAVID
+    raio_ou_diametro_da_copa:
+      necessidade: bloqueante
+      unidade: m
+      para_que: Largura da sombra.
+      origem: PEDIR AO DAVID
+    forma_da_copa:
+      necessidade: importante
+      unidade: primitiva geométrica (elipsóide, hemisfério, cone, cilindro)
+      para_que: >
+        Aproximação para o cálculo. Não é preciso geometria de folhas —
+        é preciso o envelope.
+      origem: PEDIR AO DAVID
+    folha_persistente_ou_caduca:
+      necessidade: bloqueante
+      para_que: >
+        DETERMINA SE SÃO PRECISAS DUAS SIMULAÇÕES. Uma caduca tem
+        transmissividade radicalmente diferente entre estações, e as
+        ferramentas tratam transmissividade como parâmetro único.
+      origem: PEDIR AO DAVID
+    periodo_de_folha:
+      necessidade: importante
+      unidade: meses (início e fim)
+      para_que: Saber em que datas aplicar cada transmissividade.
+      origem: PEDIR AO DAVID
+    transmissividade_por_estacao:
+      necessidade: importante
+      unidade: fracção 0–1 (0 = opaca, 1 = sem copa)
+      para_que: >
+        Quanta luz passa pela copa. Sem isto a copa é um obstáculo sólido,
+        o que sobrestima a sombra.
+      origem: PEDIR AO DAVID — se não houver valor, pedir autorização para estimar
+    permanece_ou_pode_mover:
+      necessidade: bloqueante
+      para_que: >
+        Separar o que é fixo do que se pode reposicionar em cenário.
+        Se há exemplares que o projecto obriga a manter, o modelo tem de
+        os tratar como fixos.
+      origem: PEDIR AO DAVID
+    estado_de_medicao:
+      necessidade: bloqueante
+      para_que: >
+        Saber quais dimensões são medidas e quais estimadas. HÁ NOTÍCIA de
+        exemplares cujas dimensões nunca foram medidas — o modelo tem de
+        correr esses em intervalo, não em valor único.
+      origem: PEDIR AO DAVID
+
+# =============================================================================
+# 6. VEGETAÇÃO HIPOTÉTICA — o que se quer testar
+# =============================================================================
+vegetacao_hipotetica:
+  necessidade: importante
+  para_que: >
+    É o objectivo da thread. Mesma estrutura de (5), mas com posição variável.
+    A sessão T003 deve perguntar QUE cenários interessa testar, em vez de
+    inventar posições.
+  perguntar:
+    - Que porte de árvore ou arbusto se pretende ensaiar
+    - Em que zonas faz sentido experimentar, e em que zonas está excluído
+    - Se há restrições de posição de outra natureza (estrutural, radicular, de projecto)
+  origem: PEDIR AO DAVID
+
+# =============================================================================
+# 7. ZONAS DE ANÁLISE — onde se reporta o resultado
+# =============================================================================
+zonas:
+  definicao:
+    necessidade: bloqueante
+    para_que: >
+      Agregar o resultado em zonas legíveis em vez de uma grelha de píxeis.
+      A T001 tem zonas estabelecidas — usar essas, para os números serem
+      comparáveis com o que já está documentado.
+    origem: PEDIR AO DAVID
+  resolucao_da_grelha:
+    necessidade: importante
+    unidade: m
+    para_que: >
+      Passo de cálculo. Num recinto pequeno pode ser fino sem custo
+      computacional relevante.
+    origem: decisão de método da T003, não dado do David
+  valores_de_referencia_existentes:
+    necessidade: importante
+    para_que: >
+      VALIDAÇÃO. Se já existe uma tabela de horas de sol por zona calculada
+      por outra via, o modelo novo deve reproduzi-la aproximadamente.
+      Divergência grande = erro de montagem, e é assim que se descobre.
+      ATENÇÃO: perguntar se esses valores incluem ou excluem a vegetação.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 8. VALIDAÇÃO EMPÍRICA — o teste que não custa nada
+# =============================================================================
+validacao:
+  fotografias_datadas:
+    necessidade: bloqueante
+    para_que: >
+      Confrontar o modelo com o terreno. Cada fotografia com EXIF dá data,
+      hora e um padrão de sombra observável. O modelo calcula a posição do
+      Sol nessa data e hora e prevê o padrão; compara-se com a foto.
+    o_que_e_preciso_saber:
+      - Quantas fotografias com data e hora fiáveis existem
+      - Se cobrem geometrias de sombra DIFERENTES entre si (o que torna o teste forte)
+      - De onde foi tirada cada uma, e para onde aponta
+    porque_importa: >
+      Duas fotografias com sombras opostas — uma com um lado iluminado e
+      outra com o mesmo lado em sombra — validam a geometria do modelo sem
+      ser preciso medir nada. É o melhor retorno de toda a thread.
+    origem: PEDIR AO DAVID
+  medicoes_instrumentais:
+    necessidade: opcional
+    para_que: >
+      Se existirem leituras de luz medidas no local, calibram o modelo em
+      valor absoluto, não só em geometria.
+    origem: PEDIR AO DAVID
+
+# =============================================================================
+# 9. GRANDEZA DE SAÍDA — o que o modelo tem de produzir
+# =============================================================================
+# Isto não é dado do David: é a especificação do output. Mas a escolha
+# depende da pergunta a que se quer responder, e essa é do David.
+# =============================================================================
+saida:
+  horas_de_sol_directo:
+    obtem_se_com: qualquer via, incluindo geometria pura
+    serve_para: Escolher plantas por categoria de exposição, comparar posições de árvores
+    nota: >
+      É a métrica que o mandato desta thread precisa. Suficiente para
+      decidir onde pôr uma árvore.
+  irradiancia_ou_irradiacao:
+    obtem_se_com: motor radiométrico (Radiance, SEBE) ou modelo de céu
+    unidade: W/m² ou kWh/m²
+    serve_para: Quantificar energia recebida, incluindo difusa e refletida
+  dli_mol_por_m2_por_dia:
+    obtem_se_com: >
+      NENHUMA FERRAMENTA PRODUZ DIRECTAMENTE. Converte-se de irradiância por
+      um factor espectral aplicado à mão, que carrega incerteza própria da
+      ordem de ±10–15%.
+    serve_para: Comparar com limiares publicados de espécies
+    aviso: >
+      Se a decisão depender de um limiar e o resultado cair perto dele, a
+      simulação não decide — só medição com sensor PAR decide.
+  perguntar_ao_david:
+    - Qual a pergunta concreta a responder primeiro
+    - Se basta horas de sol, ou se é preciso valor radiométrico
+    - Se há limiares numéricos a comparar, e quais
+
+# =============================================================================
+# 10. DADOS QUE NÃO SÃO PARA ESTA THREAD
+# =============================================================================
+# Registado para a sessão T003 não os ir buscar por iniciativa própria.
+# =============================================================================
+fora_de_ambito:
+  - Escolha de espécies a plantar
+  - Desenho de layout, composição, estética
+  - Drenagem, estrutura, cargas, orçamento
+  - Iluminação artificial e arte
+  nota: >
+    O modelo pode vir a SERVIR estas matérias. Não as decide, e não precisa
+    dos seus dados para cumprir o mandato. Se a sessão T003 sentir que precisa,
+    é sinal de que está a sair do âmbito — escrever ao Arquitecto em vez de
+    avançar.
+
+# =============================================================================
+# 11. REGRA DE OURO
+# =============================================================================
+regra_de_ouro: >
+  Nenhum valor entra no modelo sem origem declarada pelo David.
+  Se um dado faltar, o modelo corre sem ele e DIZ o que ficou em falta e
+  que conclusões deixam de ser possíveis. Nunca preencher com plausível:
+  um "desconhecido" escrito vale mais do que um número inventado.

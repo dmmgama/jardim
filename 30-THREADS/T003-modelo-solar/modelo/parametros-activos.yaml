@@ -1,0 +1,58 @@
+# =============================================================================
+# PARÂMETROS ACTIVOS — T003
+# =============================================================================
+# VAZIO POR DESENHO. Preenche-se em sessão, com o David.
+#
+# Para cada campo, ver `contrato-de-dados.yaml`, que declara o que é
+# necessário e para quê. Este ficheiro é onde os valores entram — e cada
+# valor leva a sua origem.
+#
+# ESTRUTURA DE CADA ENTRADA:
+#
+#   nome_do_parametro:
+#     valor: <o valor>
+#     unidade: <unidade>
+#     origem: <o que o David disse: ficheiro, medição, observação>
+#     estado: medido | estimado | em-conflito
+#     incerteza: <margem, se aplicável>
+#     cenarios: [<v1>, <v2>]   # se em conflito, correr ambos
+#
+# REGRA: sem `origem`, o parâmetro não existe. O modelo assinala-o como
+# ausente em vez de assumir um valor.
+# =============================================================================
+
+meta:
+  thread: T003
+  preenchido_em: null          # data da sessão que preencheu
+  fonte_declarada_por: David
+
+# --- 1. LOCALIZAÇÃO ----------------------------------------------------------
+localizacao: {}
+
+# --- 2. ORIENTAÇÃO -----------------------------------------------------------
+orientacao: {}
+
+# --- 3. RECINTO --------------------------------------------------------------
+recinto: {}
+
+# --- 4. OBSTÁCULOS -----------------------------------------------------------
+obstaculos: {}
+
+# --- 5. VEGETAÇÃO EXISTENTE --------------------------------------------------
+vegetacao_existente: []
+
+# --- 6. VEGETAÇÃO HIPOTÉTICA -------------------------------------------------
+vegetacao_hipotetica: []
+
+# --- 7. ZONAS ----------------------------------------------------------------
+zonas: []
+
+# --- 8. VALIDAÇÃO ------------------------------------------------------------
+validacao: {}
+
+# --- 9. SAÍDA PRETENDIDA -----------------------------------------------------
+saida: {}
+
+# --- REGISTO DE LACUNAS ------------------------------------------------------
+# A sessão escreve aqui o que pediu e não obteve, para não se perder.
+lacunas: []

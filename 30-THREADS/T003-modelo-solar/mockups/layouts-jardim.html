@@ -1,0 +1,1660 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jardim Alcântara — 11 layouts</title>
+<style>
+:root{
+  color-scheme: light dark;
+  --bg:#f6f5f2; --bg-elev:#ffffff; --bg-sunk:#eceae4;
+  --ink:#1b1a17; --ink-2:#4a473f; --ink-3:#7a766c;
+  --line:#d8d4c9; --line-2:#bdb8aa;
+  --accent:#4a5f3a; --accent-soft:#e8ece2;
+  --warn:#8a5a10; --warn-soft:#f6ecd8;
+  --stop:#8c3a2c; --stop-soft:#f7e6e2;
+  --sv-paper:#fbfaf7;
+  --sv-wall:#4a463d; --sv-wall-face:#2f2c26; --sv-wall-ret:#7a3f2e;
+  --sv-line:#9c968a; --sv-dim:#6e6a60; --sv-label:#3a3730;
+  --sv-conc:#dcd8cf; --sv-conc-bad:#d3ccbf;
+  --sv-calc:#e8e4da; --sv-calc-dark:#5d5a52;
+  --sv-gravel:#e2dccb; --sv-deck:#c9a978; --sv-stone:#cfcbc2;
+  --sv-bed:#a9bd93; --sv-bed-2:#8fae7c; --sv-shade:#7d9a78;
+  --sv-water:#a8c4cf; --sv-mulch:#bfa583;
+  --sv-evergreen:#7fae6a; --sv-dormant:#c9b07a;
+  --sv-palm:#3d6b4a; --sv-decid:#7fa06b; --sv-cit:#5d8a52;
+  --r:10px;
+  --sp1:4px; --sp2:8px; --sp3:12px; --sp4:16px; --sp6:24px; --sp8:32px; --sp12:48px;
+  --fs-xs:.75rem; --fs-sm:.8125rem; --fs-b:.9375rem; --fs-lg:1.0625rem;
+  --fs-xl:1.25rem; --fs-2xl:1.5rem; --fs-3xl:1.9rem;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15161a; --bg-elev:#1d1f24; --bg-sunk:#101114;
+    --ink:#eceae6; --ink-2:#c0bdb6; --ink-3:#8e8b84;
+    --line:#32353c; --line-2:#474b53;
+    --accent:#9dbd86; --accent-soft:#232a20;
+    --warn:#e0b060; --warn-soft:#2c2417;
+    --stop:#e78b78; --stop-soft:#2e1c18;
+    --sv-paper:#1a1c20;
+    --sv-wall:#8b867a; --sv-wall-face:#b3ada0; --sv-wall-ret:#c57f66;
+    --sv-line:#5d5f66; --sv-dim:#a09c93; --sv-label:#d6d3cc;
+    --sv-conc:#33363c; --sv-conc-bad:#3b3d41;
+    --sv-calc:#3a3d43; --sv-calc-dark:#8e8a80;
+    --sv-gravel:#3c3a33; --sv-deck:#5c4a30; --sv-stone:#3f4247;
+    --sv-bed:#39502f; --sv-bed-2:#2d4226; --sv-shade:#2a3c2e;
+    --sv-water:#23414c; --sv-mulch:#453524;
+    --sv-evergreen:#4a7a3c; --sv-dormant:#6e5c33;
+    --sv-palm:#6fae80; --sv-decid:#89aa72; --sv-cit:#79ae68;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15161a; --bg-elev:#1d1f24; --bg-sunk:#101114;
+  --ink:#eceae6; --ink-2:#c0bdb6; --ink-3:#8e8b84;
+  --line:#32353c; --line-2:#474b53;
+  --accent:#9dbd86; --accent-soft:#232a20;
+  --warn:#e0b060; --warn-soft:#2c2417;
+  --stop:#e78b78; --stop-soft:#2e1c18;
+  --sv-paper:#1a1c20;
+  --sv-wall:#8b867a; --sv-wall-face:#b3ada0; --sv-wall-ret:#c57f66;
+  --sv-line:#5d5f66; --sv-dim:#a09c93; --sv-label:#d6d3cc;
+  --sv-conc:#33363c; --sv-conc-bad:#3b3d41;
+  --sv-calc:#3a3d43; --sv-calc-dark:#8e8a80;
+  --sv-gravel:#3c3a33; --sv-deck:#5c4a30; --sv-stone:#3f4247;
+  --sv-bed:#39502f; --sv-bed-2:#2d4226; --sv-shade:#2a3c2e;
+  --sv-water:#23414c; --sv-mulch:#453524;
+  --sv-evergreen:#4a7a3c; --sv-dormant:#6e5c33;
+  --sv-palm:#6fae80; --sv-decid:#89aa72; --sv-cit:#79ae68;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:var(--fs-b)/1.55 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:var(--sp4);padding-block:var(--sp6) var(--sp12)}
+@media (min-width:900px){ .wrap{padding-inline:var(--sp8)} }
+h1,h2,h3,h4{line-height:1.2;margin:0 0 var(--sp3);font-weight:650;letter-spacing:-.01em}
+h1{font-size:var(--fs-3xl)}
+h2{font-size:var(--fs-2xl);margin-top:var(--sp12)}
+h3{font-size:var(--fs-xl)}
+h4{font-size:var(--fs-b);text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:650;margin-bottom:var(--sp1)}
+p{margin:0 0 var(--sp3)}
+a{color:var(--accent)}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+header.top{border-bottom:1px solid var(--line);padding-bottom:var(--sp6);margin-bottom:var(--sp6)}
+.sub{color:var(--ink-2);font-size:var(--fs-lg);margin-top:calc(-1*var(--sp1))}
+.disclaimer{background:var(--warn-soft);border:1px solid var(--line-2);border-left:4px solid var(--warn);
+  border-radius:var(--r);padding:var(--sp3) var(--sp4);margin:var(--sp4) 0;font-size:var(--fs-sm);color:var(--ink-2)}
+.disclaimer strong{color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--sp2);margin-top:var(--sp4);list-style:none;padding:0}
+.facts li{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);padding:var(--sp3)}
+.facts b{display:block;font-size:var(--fs-lg);font-variant-numeric:tabular-nums}
+.facts span{display:block;font-size:var(--fs-xs);color:var(--ink-3);line-height:1.3;margin-top:2px}
+nav.toc{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);padding:var(--sp4);margin:var(--sp6) 0}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--sp1) var(--sp4)}
+nav.toc li{border-bottom:1px dotted var(--line);padding:3px 0;font-size:var(--fs-sm)}
+nav.toc a{text-decoration:none;color:var(--ink)}
+nav.toc a:hover{text-decoration:underline}
+nav.toc .n{display:inline-block;min-width:2.1em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.panel{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);padding:var(--sp4);margin-bottom:var(--sp4)}
+.panel h3{margin-top:0}
+.grid2{display:grid;gap:var(--sp4)}
+@media (min-width:820px){ .grid2{grid-template-columns:1fr 1fr} }
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:var(--sp3) 0}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-sm);min-width:480px}
+th,td{text-align:left;padding:var(--sp2) var(--sp3);border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.05em;color:var(--ink-3);font-weight:650;white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:hover{background:var(--bg-sunk)}
+caption{caption-side:bottom;text-align:left;font-size:var(--fs-xs);color:var(--ink-3);padding-top:var(--sp2)}
+#cmp{min-width:1000px}
+.zchip{display:inline-block;font-weight:700;font-size:var(--fs-xs);padding:1px 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent);border:1px solid var(--line-2);font-variant-numeric:tabular-nums}
+ul.tight{margin:0 0 var(--sp3);padding-left:1.15em}
+ul.tight li{margin-bottom:var(--sp1)}
+.callout{border:1px solid var(--line-2);border-left:4px solid var(--stop);background:var(--stop-soft);border-radius:var(--r);padding:var(--sp3) var(--sp4);margin:var(--sp3) 0;font-size:var(--fs-sm)}
+.callout h4{color:var(--stop)}
+.callout.ok{border-left-color:var(--accent);background:var(--accent-soft)}
+.callout.ok h4{color:var(--accent)}
+.callout.warn{border-left-color:var(--warn);background:var(--warn-soft)}
+.callout.warn h4{color:var(--warn)}
+.card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);padding:var(--sp4);margin-bottom:var(--sp8);scroll-margin-top:var(--sp4)}
+@media (min-width:700px){ .card{padding:var(--sp6)} }
+.card.current{border-color:var(--line-2);background:var(--bg-sunk)}
+.card-head{border-bottom:1px solid var(--line);padding-bottom:var(--sp3);margin-bottom:var(--sp4)}
+.card-head .idx{font-size:var(--fs-xs);letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.card-head h3{margin:2px 0 var(--sp1)}
+.card-head .intent{color:var(--ink-2);font-size:var(--fs-b);margin:0;font-style:italic}
+.badges{display:flex;flex-wrap:wrap;gap:var(--sp2);margin-top:var(--sp3)}
+.badge{font-size:var(--fs-xs);border:1px solid var(--line-2);border-radius:20px;padding:2px 9px;color:var(--ink-2);background:var(--bg-sunk);white-space:nowrap}
+.badge b{color:var(--ink);font-weight:650}
+.badge.p{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.badge.pav{background:var(--warn-soft);color:var(--warn);border-color:var(--warn)}
+.card-body{display:grid;gap:var(--sp6)}
+@media (min-width:1000px){ .card-body{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)} }
+.drawing{min-width:0}
+.svgbox{overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--sv-paper);border:1px solid var(--line);border-radius:8px;padding:var(--sp2)}
+.svgbox svg{display:block;width:100%;height:auto;min-width:470px}
+.legend{display:flex;flex-wrap:wrap;gap:var(--sp1) var(--sp3);margin-top:var(--sp3);font-size:var(--fs-xs);color:var(--ink-2);list-style:none;padding:0}
+.legend li{display:flex;align-items:center;gap:5px}
+.sw{width:13px;height:13px;border-radius:3px;border:1px solid var(--line-2);flex:0 0 auto}
+.seasons{display:flex;flex-wrap:wrap;gap:var(--sp3);margin-top:var(--sp3);padding:var(--sp3);border:1px solid var(--line);border-radius:8px;background:var(--bg-sunk)}
+.season{display:flex;align-items:center;gap:var(--sp2);font-size:var(--fs-xs)}
+.season .pair{display:flex;border:1px solid var(--line-2);border-radius:4px;overflow:hidden;flex:0 0 auto}
+.season .pair i{display:block;width:26px;height:22px}
+.season .pair i::after{content:attr(data-m);display:block;font-size:8px;text-align:center;line-height:22px;color:#00000099;font-style:normal;font-weight:700}
+.specs{min-width:0;font-size:var(--fs-sm)}
+.specs dl{margin:0}
+.specs dt{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:700;margin-top:var(--sp3)}
+.specs dt:first-child{margin-top:0}
+.specs dd{margin:2px 0 0}
+.specs .split{display:grid;gap:var(--sp3);margin-top:var(--sp4)}
+@media (min-width:560px){ .specs .split{grid-template-columns:1fr 1fr} }
+.gain,.loss{border:1px solid var(--line);border-radius:8px;padding:var(--sp3);background:var(--bg-sunk)}
+.gain h4{color:var(--accent)}
+.loss h4{color:var(--warn)}
+.risk{margin-top:var(--sp3);border:1px solid var(--line-2);border-left:4px solid var(--stop);background:var(--stop-soft);border-radius:8px;padding:var(--sp3)}
+.risk h4{color:var(--stop)}
+.note-lodao{margin-top:var(--sp4);border:1px solid var(--line-2);border-left:4px solid var(--warn);background:var(--warn-soft);border-radius:8px;padding:var(--sp3);font-size:var(--fs-xs);line-height:1.5}
+.note-lodao strong{color:var(--ink)}
+.totop{display:inline-block;font-size:var(--fs-xs);color:var(--ink-3);text-decoration:none;margin-top:var(--sp3)}
+.totop:hover{color:var(--accent);text-decoration:underline}
+footer{border-top:1px solid var(--line);margin-top:var(--sp12);padding-top:var(--sp4);font-size:var(--fs-xs);color:var(--ink-3)}
+svg text{font-family:ui-sans-serif,system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+.z-lbl{font-size:11px;font-weight:700;fill:var(--sv-label);opacity:.5}
+.dim{font-size:10px;fill:var(--sv-dim);font-variant-numeric:tabular-nums}
+.lbl{font-size:11px;fill:var(--sv-label);font-weight:600}
+.lbl-s{font-size:9.5px;fill:var(--sv-label)}
+.sp{font-size:9px;fill:var(--sv-label);font-style:italic;font-weight:600}
+.wall-lbl{font-size:9.5px;fill:var(--sv-dim);font-weight:700;letter-spacing:.06em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top" id="topo">
+  <h1>Jardim Alcântara — 11 layouts</h1>
+  <p class="sub">Quintal urbano de 75,1 m², Calçada da Boa Hora, Alcântara. Estado actual mais dez propostas, à mesma escala.</p>
+  <div class="disclaimer">
+    <strong>Mockups exploratórios.</strong> Não é documento oficial do projecto nem plano de execução.
+    Geometria à escala; plantação e materiais são hipóteses a discutir.
+  </div>
+  <ul class="facts">
+    <li><b>75,1 m²</b><span>área interior</span></li>
+    <li><b>13,00 × 5,78 m</b><span>rectângulo fechado</span></li>
+    <li><b>≤ 2,50 m</b><span>muros de meação e de suporte</span></li>
+    <li><b>15,50 m</b><span>fachada NE (único obstáculo alto)</span></li>
+    <li><b>1,1 h</b><span>sol médio em Dezembro</span></li>
+    <li><b>4,3 h</b><span>sol médio no equinócio</span></li>
+    <li><b>13:04</b><span>primeira luz a 21 Jun</span></li>
+    <li><b>0 h</b><span>sol de manhã, em qualquer estação</span></li>
+  </ul>
+</header>
+
+<nav class="toc" aria-label="Índice">
+  <h4 style="margin-bottom:var(--sp3)">Índice</h4>
+  <ol>
+    <li><a href="#contexto"><span class="n">—</span>Contexto: zonas, constrangimentos, impossibilidades</a></li>
+    <li><a href="#relvas"><span class="n">—</span>As «relvas» possíveis — o equívoco desfeito</a></li>
+    <li><a href="#pavimentos"><span class="n">—</span>Famílias de pavimento</a></li>
+    <li><a href="#L0"><span class="n">#0</span>Estado actual</a></li>
+    <li><a href="#L1"><span class="n">#1</span>Intervenção mínima — betonilha remendada</a></li>
+    <li><a href="#L2"><span class="n">#2</span>Calçada de cubo simples</a></li>
+    <li><a href="#L3"><span class="n">#3</span>Sub-bosque com passadeira e mulch</a></li>
+    <li><a href="#L4"><span class="n">#4</span>Deck split-level sobre vão técnico</a></li>
+    <li><a href="#L5"><span class="n">#5</span>Três salas, três pavimentos</a></li>
+    <li><a href="#L6"><span class="n">#6</span>Calçada de padrão a duas cores</a></li>
+    <li><a href="#L7"><span class="n">#7</span>Jardim vertical sobre saibro</a></li>
+    <li><a href="#L8"><span class="n">#8</span>Deck, água e sombra</a></li>
+    <li><a href="#L9"><span class="n">#9</span>Tapete verde — Zoysia e Dichondra</a></li>
+    <li><a href="#L10"><span class="n">#10</span>Pavê drenante, baixíssima manutenção</a></li>
+    <li><a href="#comparativa"><span class="n">—</span>Tabela comparativa dos 11</a></li>
+  </ol>
+</nav>
+<section id="contexto">
+<h2>Contexto — as regras antes das opções</h2>
+<p>Este quintal não é difícil por falta de espaço. É difícil porque tem <strong>dois filtros contraditórios</strong>:
+sol de tarde forte no Verão, que pede plantas mediterrânicas duras, e encharcamento com Inverno muito escuro, que mata
+essas mesmas plantas por <em>Phytophthora</em>. Tudo o que segue deriva daí.</p>
+
+<div class="panel">
+  <h3>As 5 zonas de sol</h3>
+  <p style="font-size:var(--fs-sm);color:var(--ink-2)">Horas de sol directo, já corrigidas pela sombra da vegetação existente.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Zona</th><th>Onde</th><th class="num">X (m)</th>
+        <th class="num">21 Dez</th><th class="num">Equinócio</th><th class="num">21 Jun</th><th>Categoria</th></tr></thead>
+      <tbody>
+        <tr><td><span class="zchip">Z1</span></td><td>Junto à fachada</td><td class="num">0 – 2,5</td><td class="num">1,7 h</td><td class="num">5,0 h</td><td class="num">5,2 h</td><td>Meia-sombra</td></tr>
+        <tr><td><span class="zchip">Z2</span></td><td>Plataforma central</td><td class="num">2,5 – 6,7</td><td class="num">1,5 h</td><td class="num">5,2 h</td><td class="num">5,9 h</td><td><strong>A zona mais fiável</strong></td></tr>
+        <tr><td><span class="zchip">Z3</span></td><td>Canteiro da citrinheira</td><td class="num">6,7 – 10,4</td><td class="num">0,2 h</td><td class="num">4,0 h</td><td class="num">5,5–6,5 h</td><td>Sol de Verão, sombra de Inverno</td></tr>
+        <tr><td><span class="zchip">Z4</span></td><td>Canteiro linear SE</td><td class="num">junto muro SE</td><td class="num">0,0 h</td><td class="num">1,3 h</td><td class="num">4,6 h</td><td><strong>Sombra</strong></td></tr>
+        <tr><td><span class="zchip">Z5</span></td><td>Zona SW / palmeira</td><td class="num">10,4 – 13</td><td class="num">0,0 h</td><td class="num">1,0–1,5 h</td><td class="num">2,5–3,0 h</td><td><strong>Sombra</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="panel">
+    <h3>Três características do sol que condicionam tudo</h3>
+    <ol class="tight">
+      <li><strong>Não há sol de manhã em nenhuma estação.</strong> A fachada de 15,50 m a NE bloqueia tudo.
+        Primeira luz: 21 Dez <b>10:36</b> · 21 Mar <b>11:28</b> · 21 Jun <b>13:04</b> · 11 Set <b>12:24</b>.
+        Todo o sol vem da tarde ao poente. Nenhum pequeno-almoço ao sol, nunca.</li>
+      <li><strong>Recinto fechado, ar estagnado.</strong> Muros nos quatro lados, sem vento atravessante.
+        Risco elevado de fungos e de pragas de ambiente abrigado — cochonilha, aranhiço.
+        Plantação densa agrava; espaçamento e folha rija atenuam. <strong>É também a razão pela qual qualquer deck
+        tem de ser ventilado por desenho, não por acaso.</strong></li>
+      <li><strong>Inverno muito escuro.</strong> Dez–Jan, nenhuma zona atinge 2 h de sol. Média de <b>1,1 h</b>.</li>
+    </ol>
+  </div>
+  <div class="panel">
+    <h3>Vegetação existente — as árvores mantêm-se</h3>
+    <ul class="tight">
+      <li><strong>Palmeira <em>Phoenix canariensis</em></strong> · X≈11,6 · Y≈3,0 — <strong>protagonista absoluta</strong>.
+        Copa transborda sobre Z3. Raiz fibrosa e não agressiva, segura junto a estruturas,
+        <strong>mas compete por água à superfície em todo o raio da copa</strong>: tudo o que se plantar em Z5
+        e no extremo de Z3 cresce mais devagar.</li>
+      <li><strong>Lodão-bastardo <em>Celtis australis</em></strong> · X≈2,6 · Y≈0,4 — folha <strong>caduca</strong>, ≈5 m.
+        Copa transborda para lá do muro NW. Sombreia a metade NW <strong>só de Abril a Novembro</strong> —
+        despido em Dez-Jan, precisamente quando o sol falta.</li>
+      <li><strong>Citrinheira</strong> · X≈8,5 · Y≈3,2 — espécie a confirmar. Decisão anterior: transplantar para vaso.</li>
+    </ul>
+    <p style="margin:0;font-size:var(--fs-sm);color:var(--ink-2)">
+      Layouts <strong>#1–#5</strong>: as três árvores mantidas.
+      Layouts <strong>#6–#10</strong>: palmeira e citrinheira mantidas, lodão removido.</p>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>Constrangimentos que todos os layouts respeitam</h3>
+
+  <h4 style="margin-top:0">1 · Carga sobre o muro de suporte (Z5, X 10,4–13)</h4>
+  <p style="font-size:var(--fs-sm);margin-bottom:var(--sp2)">O muro SW retém o próprio jardim. O terreno desce 7–8 m do lado de fora.
+  ≈95 anos, fundação não confirmada.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Solução</th><th class="num">Carga</th></tr></thead>
+      <tbody>
+        <tr><td>Terra vegetal saturada, camada de 40 cm</td><td class="num"><strong>~700 kg/m²</strong></td></tr>
+        <tr><td>Idem, 60 cm</td><td class="num"><strong>~1050 kg/m²</strong></td></tr>
+        <tr><td>Substrato mineral leve (300–500 kg/m³), 40 cm</td><td class="num">~160 kg/m²</td></tr>
+        <tr><td>Vaso de 50 cm Ø em terra vegetal</td><td class="num">~100 kg</td></tr>
+        <tr><td>Idem em substrato leve</td><td class="num">~24 kg</td></tr>
+        <tr><td>Depósito de água de 500 L</td><td class="num">500 kg num ponto</td></tr>
+        <tr><td>Calçada: leito de areia 5 cm + cubo 6 cm</td><td class="num">~190 kg/m²</td></tr>
+        <tr><td>Gravilha 8 cm sobre geotêxtil</td><td class="num">~130 kg/m²</td></tr>
+        <tr><td>Betonilha armada 10 cm</td><td class="num">~240 kg/m²</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:var(--fs-sm)"><strong>Em Z5:</strong> sem árvore nova, sem canteiro elevado em terra vegetal,
+  sem depósito de água. Plantação em covacho, vasos ≤40 cm Ø, substratos leves.
+  <strong>Nota de pavimento:</strong> a calçada em leito de areia (~190 kg/m²) pesa menos que betonilha armada (~240 kg/m²)
+  e muito menos que qualquer camada de terra vegetal — em Z5 isto é um argumento a favor, não contra.</p>
+
+  <div class="callout warn">
+    <h4>2 · Drenagem — o problema activo</h4>
+    <p style="margin:0">Há <strong>água estagnada em lençol após chuva, sem escoamento aparente</strong> — fotografado a
+    9 Fev 2026, zona central. É um facto observado, não hipótese.
+    Qualquer layout que demola a betonilha precisa de <strong>drenagem positiva com pendente para NE</strong>
+    e ligação ao ramal de pluviais do edifício. <strong>Nada descarrega para SW</strong> (tardoz do muro de suporte).
+    <strong>A sondagem precede a demolição:</strong> demolir e só depois descobrir que não há ponto de descarga
+    deixa terra nua que encharca — pior que hoje.</p>
+  </div>
+
+  <h4 style="margin-top:var(--sp4)">3 · Profundidade de solo desconhecida</h4>
+  <p style="font-size:var(--fs-sm)">O que está sob a betonilha — espessura, sub-base, laje, terra natural, entulho —
+  <strong>só se sabe por sondagem, ainda não feita</strong>. Cada layout declara o cenário mínimo que exige:</p>
+  <ul class="tight" style="font-size:var(--fs-sm)">
+    <li><strong>P1</strong> — vaso ou contentor, sem obra de solo</li>
+    <li><strong>P2</strong> — 20–30 cm de solo aproveitável</li>
+    <li><strong>P3</strong> — 40–60 cm</li>
+    <li><strong>P4</strong> — mais de 60 cm / solo natural</li>
+  </ul>
+
+  <h4 style="margin-top:var(--sp4)">4 · O muro SE está degradado</h4>
+  <p style="font-size:var(--fs-sm)">Escorrências verticais, colonização biológica, reboco destacado.
+  Trepadeiras auto-aderentes — <em>Hedera</em>, <em>Parthenocissus</em>, <em>Ficus pumila</em> —
+  <strong>exploram defeitos de reboco e retêm humidade</strong>. Num muro já degradado é um facto técnico a assinalar,
+  não uma proibição. Alternativa: trepadeira de gavinha em treliça afastada 5–8 cm do pano.</p>
+
+  <div class="callout">
+    <h4>5 · Três impossibilidades</h4>
+    <ul class="tight" style="margin-bottom:0">
+      <li><strong>Superfície verde pisável em Z4 e Z5: zero candidatos.</strong> Hera de pisabilidade baixa,
+        <em>Liriope</em> nula, musgo nulo. Se for requisito naquelas zonas, <strong>é material inerte</strong>.</li>
+      <li><strong>Floração abundante e contínua de Verão:</strong> exige luz que só Z2 e Z3 têm, meio ano e só de tarde.
+        O quintal favorece estruturalmente <strong>folhagem, textura e porte</strong>, e <strong>floração de Inverno</strong>.</li>
+      <li><strong>Relvado de gramíneas convencional</strong> — ver a secção seguinte, que desfaz o equívoco.</li>
+    </ul>
+  </div>
+
+  <h4 style="margin-top:var(--sp4)">6 · Espécies excluídas por lei</h4>
+  <p style="font-size:var(--fs-sm);margin-bottom:0">DL 92/2019, Lista Nacional de Espécies Invasoras.
+  Nenhum layout usa: <em>Soleirolia soleirolii</em>, <em>Vinca major</em>, <em>Tradescantia fluminensis</em>,
+  <em>Lantana</em>, <em>Aptenia</em>, <em>Carpobrotus</em>, <em>Lonicera japonica</em>, <em>Cortaderia</em>,
+  <em>Agave americana</em>, <em>Zantedeschia aethiopica</em>, <em>Hydrangea macrophylla</em>,
+  <em>Acacia</em> spp., <em>Pittosporum undulatum</em>.
+  <em>Vinca difformis</em> (nativa ibérica) é a alternativa legal à <em>V. major</em>.</p>
+</div>
+</section>
+
+<!-- ============ AS RELVAS POSSÍVEIS ============ -->
+<section id="relvas">
+<h2>As «relvas» possíveis — o equívoco desfeito</h2>
+
+<div class="callout">
+  <h4>Não existe relva de gramíneas viável neste quintal, em nenhuma estação</h4>
+  <p style="margin:0">Limiares publicados: <em>Cynodon</em> 8 h/dia · <em>Zoysia japonica / matrella</em> 6 h ·
+  <em>Festuca arundinacea</em> 4–6 h · fescas finas 3–4 h · <strong>abaixo de 3 h nenhuma gramínea se mantém a longo prazo</strong>.
+  O quintal dá 4,3 h de média no equinócio e <strong>1,1 h em Dezembro</strong>, todo concentrado da tarde ao poente.
+  O jardim vizinho a NW tem relva natural há muito tempo — mas é outro recinto, com outra exposição.</p>
+</div>
+
+<div class="panel">
+  <h3>A distinção correcta não é «Inverno vs Verão»</h3>
+  <p>É <strong>quem fica verde todo o ano</strong> versus <strong>quem entra em dormência</strong>.
+  Uma gramínea C4 não morre no Inverno: fica cor de palha e para de crescer. Isso, aqui, é uma vantagem —
+  elimina a exigência de luz exactamente nos meses de 1,1 h, e corta o risco fúngico na estação húmida.</p>
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Solução</th><th>Estação verde</th><th>Zonas viáveis</th><th>Pisabilidade</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td><strong><em>Dichondra repens</em></strong></td><td><strong>Verde todo o ano</strong></td><td>Z1, Z2, Z3</td><td>Boa, macia</td>
+          <td>Folha reniforme, não linear. A 2 m lê-se como relva fina; a 50 cm, não. Tolera sombra real. Quase sem corte.</td></tr>
+        <tr><td><strong><em>Zoysia tenuifolia</em></strong></td><td><strong>Verde Abr–Out; cor de palha 4–5 meses (Nov–Mar)</strong></td><td>Z1, Z2 (limite)</td><td>Excelente, tapete almofadado</td>
+          <td>É gramínea C4, mas com o limiar de DLI mais baixo que existe: <strong>6,7 mol/m²/dia no Inverno contra 10,0 no Verão</strong>.
+          A dormência invernal <strong>é uma vantagem aqui</strong>.</td></tr>
+        <tr><td><em>Trifolium repens</em> nano / microtrevo</td><td>Verde quase todo o ano</td><td>Z1, Z2</td><td>Boa</td>
+          <td>Fixa azoto. Floração atrai abelhas — facto a assinalar, sobretudo com crianças ou mesa de refeições por perto.</td></tr>
+        <tr><td><em>Phyla nodiflora</em></td><td>Verde Abr–Nov</td><td>Z2, Z3</td><td>Boa</td>
+          <td><strong>Comportamento expansivo documentado no Mediterrâneo.</strong> Legal, mas assinala-se.</td></tr>
+        <tr><td><em>Achillea crithmifolia</em>, <em>Thymus</em>, <em>Sedum</em></td><td>Verde todo o ano</td><td>Z2 só</td><td>Média</td>
+          <td>Exigem mais sol que o quintal dá com folga. Viáveis apenas em junta de lajeado, não em tapete.</td></tr>
+        <tr><td><em>Hedera</em> de folha pequena</td><td>Verde todo o ano</td><td>Z1–Z5</td><td><strong>Baixa</strong></td>
+          <td>Cobre onde nada cobre, mas não se pisa com frequência.</td></tr>
+        <tr><td><em>Liriope</em>, <em>Ophiopogon</em>, musgo</td><td>Verde todo o ano</td><td>Z4, Z5</td><td><strong>Nula</strong></td>
+          <td>Não se pisa. São cobertura visual.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4 style="margin-top:var(--sp4)">As três combinações que os layouts exploram</h4>
+  <ol class="tight">
+    <li><strong><em>Zoysia tenuifolia</em> em Z1–Z2 + <em>Dichondra</em> nas margens sombrias.</strong>
+      Tapete pisável de Abril a Outubro, com 4–5 meses de palha; a <em>Dichondra</em> mantém verde no perímetro
+      para que Janeiro não seja inteiramente cor de palha. É o layout <strong>#9</strong>.</li>
+    <li><strong><em>Dichondra</em> em toda a área viável.</strong> Verde o ano inteiro, sem dormência,
+      mas não é «relva» no aspecto. Presente em <strong>#3</strong> e <strong>#5</strong>.</li>
+    <li><strong>Mosaico:</strong> <em>Zoysia</em> na zona de estar, <em>Dichondra</em> nas margens,
+      <em>Liriope</em> e fetos em Z4, material inerte em Z5. É o desenho de <strong>#9</strong>, e parcialmente de <strong>#4</strong>.</li>
+  </ol>
+
+  <div class="seasons">
+    <div class="season"><span class="pair"><i style="background:var(--sv-evergreen)" data-m="JUL"></i><i style="background:var(--sv-evergreen)" data-m="JAN"></i></span>
+      <span><strong><em>Dichondra</em></strong> — verde nos dois</span></div>
+    <div class="season"><span class="pair"><i style="background:var(--sv-evergreen)" data-m="JUL"></i><i style="background:var(--sv-dormant)" data-m="JAN"></i></span>
+      <span><strong><em>Zoysia tenuifolia</em></strong> — palha em Janeiro</span></div>
+  </div>
+  <p style="font-size:var(--fs-xs);color:var(--ink-3);margin:var(--sp2) 0 0">
+    Estas duas amostras repetem-se no cartão de cada layout que tenha cobertura verde pisável.</p>
+</div>
+</section>
+
+<!-- ============ PAVIMENTOS ============ -->
+<section id="pavimentos">
+<h2>Famílias de pavimento</h2>
+<p>O pavimento é aqui um eixo principal de decisão, não um acabamento. Resolve — ou não resolve — o problema
+da água estagnada, determina o peso sobre a coroa do muro de suporte, e decide se se pode abrir o chão
+para rega e iluminação cénica sem demolir.</p>
+
+<div class="panel">
+  <h3>Calçada portuguesa — layouts #2 e #6</h3>
+  <ul class="tight">
+    <li><strong>Assentamento:</strong> cubo de calcário (ou basalto) de 5×5 cm ou 6×6 cm, assentado à mão em
+      <strong>leito de areia de 4–6 cm sobre base compactada</strong>, juntas tomadas com areia ou saibro fino.</li>
+    <li><strong>Permeabilidade:</strong> as juntas em areia deixam passar água — <strong>é permeável</strong>,
+      ao contrário da betonilha. Favorável em qualquer caso, e coerente com o facto de o quintal já escoar bem.</li>
+    <li><strong>Peso:</strong> leito de areia mais cubo, ≈190 kg/m², pesa menos que betonilha armada (≈240 kg/m²).
+      Para a coroa do muro de suporte em Z5 isto é relevante e é a favor.</li>
+    <li><strong>Reparabilidade:</strong> levanta-se e reassenta-se por zonas, sem demolir. Permite abrir para rega e
+      para electricidade de iluminação cénica e voltar a fechar. <strong>Vantagem real num quintal onde a arte nocturna
+      e a iluminação estão previstas.</strong></li>
+    <li><strong>Mão-de-obra:</strong> ofício especializado (calceteiro), e escasso. É factor de custo <em>e</em> de prazo —
+      a mão-de-obra domina o orçamento, não o material.</li>
+    <li><strong>Dois tipos, tratados em layouts separados:</strong> <em>cubo simples</em> de uma só cor, em fiadas,
+      arco ou espinha (#2); e <em>calçada de padrão</em> a duas cores, branco e preto, geométrica ou figurativa (#6).</li>
+  </ul>
+  <div class="callout warn">
+    <h4>Conflito de composição a assinalar</h4>
+    <p style="margin:0">Num recinto de apenas 5,78 m de largura, o padrão a duas cores é visualmente <strong>muito</strong> forte
+    e compete com tudo o resto. O projecto tem arte UV prevista nos muros, território de um dos artistas:
+    <strong>chão de padrão forte mais muros pintados são duas superfícies a competir pela atenção.</strong>
+    É um facto de composição, não uma decisão — fica registado em #6 e em #2 vê-se a alternativa.</p>
+  </div>
+</div>
+
+<div class="panel">
+  <h3>Deck de madeira — layouts #4 e #8</h3>
+  <ul class="tight">
+    <li>Sobre rastreis, o que cria <strong>vão técnico por baixo</strong>: passagem de cabos e de tubos, e ventilação.</li>
+    <li><strong>Cuidado específico deste quintal:</strong> recinto fechado e ar estagnado. (A água escoa — ver nota de drenagem — mas o vão do deck tem de ventilar de qualquer modo.)
+      Deck sobre zona húmida e sem ventilação apodrece e torna-se criadouro.
+      <strong>Qualquer layout com deck tem de dizer como ventila o vão e como a água sai por baixo.</strong></li>
+    <li><strong>Madeira:</strong> cumaru e ipê duram 25+ anos mas custam e pedem oleado anual;
+      pinho tratado em autoclave é o mais barato e dura 10–15 anos em ambiente húmido, menos aqui;
+      WPC compósito não pede oleado, mas <strong>aquece muito mais ao sol de tarde</strong> —
+      madeira clara ao sol de Agosto fica cerca de 10–15 °C mais fresca ao toque que compósito escuro.</li>
+    <li><strong>Split-level:</strong> há 1,35 m de desnível da soleira ao solo. Um deck a meia cota junto à fachada em Z1
+      resolve a transição da escada, encurta-a, e ganha área de estar ao nível da casa. É o que #4 faz.</li>
+  </ul>
+</div>
+
+<div class="panel">
+  <h3>As outras famílias</h3>
+  <ul class="tight" style="margin-bottom:0">
+    <li><strong>Lajeado com juntas abertas</strong> (pedra, betão, cerâmico) — permeável nas juntas,
+      e <em>plantável</em> nas juntas com <em>Thymus</em> ou <em>Dichondra</em>. Layouts #5 e #9.</li>
+    <li><strong>Saibro estabilizado ou gravilha sobre geotêxtil</strong> — permeável, leve, barato;
+      solta pó e prende-se ao calçado. Layouts #7, #3 e nas zonas Z5 de quase todos.</li>
+    <li><strong>Pavê / blocos drenantes</strong> — permeabilidade máxima, estética utilitária. Layout #10.</li>
+    <li><strong>Betonilha nova com juntas de dilatação e pendente</strong> — o que devia ter sido feito.
+      Serve de baliza de comparação; nenhum layout a adopta como solução principal, porque é a única família
+      que não resolve nada que as outras não resolvam melhor.</li>
+    <li><strong>Passadeira de lajes soltas</strong> sobre cobertura vegetal ou mulch — mínima área impermeável. Layouts #3, #5, #9.</li>
+    <li><strong>Casca de pinheiro / mulch</strong> — só canteiro, não pisável. Layout #3.</li>
+    <li><strong>Manter a betonilha existente</strong>, remendada e pintada — layout #1, como baliza de custo mínimo.</li>
+  </ul>
+</div>
+
+<div class="callout ok">
+  <h4>Oportunidade de demolição</h4>
+  <p style="margin:0">Há mão-de-obra gratuita disponível para a demolição da betonilha, e a betonilha tem de sair
+  de qualquer forma. Isto altera a aritmética: o custo de demolir não pesa na comparação entre layouts —
+  o que pesa é o que se põe por cima, e se a sondagem permite.</p>
+</div>
+</section>
+
+<h2 id="layouts">Os 11 layouts</h2>
+<p style="color:var(--ink-2)">Todos os desenhos à mesma escala, 60 px/m, com padrão de preenchimento distinto por família de pavimento
+e espécies nomeadas nas manchas de plantação. Não há recomendação: dez opções com trade-offs explícitos. A escolha é do proprietário.</p>
+
+<div id="cards"></div>
+
+<section id="comparativa">
+<h2>Tabela comparativa dos 11</h2>
+<div class="tblwrap">
+  <table id="cmp">
+    <thead><tr>
+      <th>#</th><th>Layout</th><th>Família de pavimento</th>
+      <th class="num">Estar (m²)</th><th class="num">Verde (m²)</th><th class="num">Verde pisável (m²)</th>
+      <th>Verde em Janeiro?</th><th>Permeab.</th><th>P mín.</th><th>Custo</th><th>Manutenção</th>
+      <th>Mão-de-obra especializada</th><th>O que sacrifica</th>
+    </tr></thead>
+    <tbody></tbody>
+    <caption>«Verde» inclui canteiro, vasos e cobertura vegetal; «verde pisável» conta só a cobertura vegetal que se pode pisar.
+    Nenhum inclui a área de muro coberta por trepadeira, que é indicada no cartão de cada layout.
+    «Estar» é área livre e pisável para mobiliário e circulação.</caption>
+  </table>
+</div>
+</section>
+
+<footer>
+  <p>Jardim Alcântara · T003 — mockups de layout · 11 opções · 15 Set 2026.
+  Mockups exploratórios: não é documento oficial do projecto nem plano de execução.</p>
+  <p><a class="totop" href="#topo">↑ Voltar ao topo</a></p>
+</footer>
+
+</div>
+<script>
+"use strict";
+/* ============================================================
+   Geometria em metros, 60 px/m. Interior 13,00 (X) x 5,78 (Y).
+   X=0 face interior da fachada NE -> X=13,00 face interior do muro de suporte SW
+   Y=0 face interior do muro NW    -> Y=5,78  face interior do muro SE
+   ============================================================ */
+var S=60, W=13.00, H=5.78, T=0.18, MX=46, MY=42;
+var VBW = W*S + 2*T*S + 2*MX;
+var VBH = H*S + 2*T*S + 2*MY + 34;
+function x(m){ return MX + T*S + m*S; }
+function y(m){ return MY + T*S + m*S; }
+function n(v){ return Math.round(v*100)/100; }
+
+function paper(){
+  return '<rect x="'+x(0)+'" y="'+y(0)+'" width="'+(W*S)+'" height="'+(H*S)+'" fill="var(--sv-paper)"/>';
+}
+function walls(){
+  var o=[], tw=T*S;
+  o.push('<rect x="'+(x(0)-tw)+'" y="'+(y(0)-tw)+'" width="'+tw+'" height="'+(H*S+2*tw)+'" fill="var(--sv-wall-face)"/>');
+  o.push('<rect x="'+x(W)+'" y="'+(y(0)-tw)+'" width="'+tw+'" height="'+(H*S+2*tw)+'" fill="var(--sv-wall-ret)"/>');
+  o.push('<rect x="'+x(0)+'" y="'+(y(0)-tw)+'" width="'+(W*S)+'" height="'+tw+'" fill="var(--sv-wall)"/>');
+  o.push('<rect x="'+x(0)+'" y="'+y(H)+'" width="'+(W*S)+'" height="'+tw+'" fill="var(--sv-wall)"/>');
+  o.push('<rect x="'+x(0)+'" y="'+(y(H)+2)+'" width="'+(W*S)+'" height="'+(tw-4)+'" fill="none" stroke="var(--sv-paper)" stroke-width="1.4" stroke-dasharray="3 3" opacity=".8"/>');
+  o.push('<text class="wall-lbl" x="'+(x(0)-tw/2)+'" y="'+y(H/2)+'" text-anchor="middle" transform="rotate(-90 '+(x(0)-tw/2)+' '+y(H/2)+')">FACHADA NE · 15,50 m</text>');
+  o.push('<text class="wall-lbl" x="'+(x(W)+tw/2+1)+'" y="'+y(H/2)+'" text-anchor="middle" transform="rotate(-90 '+(x(W)+tw/2+1)+' '+y(H/2)+')">MURO SUPORTE SW</text>');
+  o.push('<text class="wall-lbl" x="'+x(6.6)+'" y="'+(y(0)-tw-4)+'" text-anchor="middle">MEAÇÃO NW · ≤2,50 m</text>');
+  o.push('<text class="wall-lbl" x="'+x(6.6)+'" y="'+(y(H)+tw+11)+'" text-anchor="middle">MEAÇÃO SE · ≤2,50 m · DEGRADADO</text>');
+  o.push('<g opacity=".38"><rect x="'+x(0)+'" y="'+y(1.1)+'" width="'+(1.1*S)+'" height="'+(2.2*S)+'" fill="none" stroke="var(--sv-line)" stroke-width="1" stroke-dasharray="4 3"/>'+
+    '<text class="lbl-s" x="'+x(0.12)+'" y="'+y(2.32)+'">varanda (consola)</text></g>');
+  return o.join('');
+}
+function stairs(steps,len){
+  steps=steps||7; len=len||2.49;
+  var o=[], xa=x(0), ya=y(4.57), yb=y(5.78);
+  o.push('<rect x="'+xa+'" y="'+ya+'" width="'+(len*S)+'" height="'+(1.21*S)+'" fill="var(--sv-stone)" stroke="var(--sv-line)" stroke-width="1"/>');
+  for(var i=1;i<steps;i++){ var xs=xa+(len*S)*(i/steps);
+    o.push('<line x1="'+xs+'" y1="'+ya+'" x2="'+xs+'" y2="'+yb+'" stroke="var(--sv-line)" stroke-width="1"/>'); }
+  o.push('<rect x="'+xa+'" y="'+(ya-7)+'" width="'+(len*S)+'" height="7" fill="var(--sv-wall)" opacity=".75"/>');
+  o.push('<text class="lbl-s" x="'+(xa+6)+'" y="'+(ya-11)+'">escada · '+steps+' deg. · +1,35 m · útil 1,21 m</text>');
+  return o.join('');
+}
+function dims(){
+  var o=[], yd=y(H)+T*S+24, xd=x(W)+T*S+22;
+  o.push('<g stroke="var(--sv-dim)" stroke-width="1">'+
+    '<line x1="'+x(0)+'" y1="'+yd+'" x2="'+x(W)+'" y2="'+yd+'"/>'+
+    '<line x1="'+x(0)+'" y1="'+(yd-4)+'" x2="'+x(0)+'" y2="'+(yd+4)+'"/>'+
+    '<line x1="'+x(W)+'" y1="'+(yd-4)+'" x2="'+x(W)+'" y2="'+(yd+4)+'"/></g>');
+  o.push('<text class="dim" x="'+x(W/2)+'" y="'+(yd-5)+'" text-anchor="middle">13,00 m</text>');
+  o.push('<g stroke="var(--sv-dim)" stroke-width="1">'+
+    '<line x1="'+xd+'" y1="'+y(0)+'" x2="'+xd+'" y2="'+y(H)+'"/>'+
+    '<line x1="'+(xd-4)+'" y1="'+y(0)+'" x2="'+(xd+4)+'" y2="'+y(0)+'"/>'+
+    '<line x1="'+(xd-4)+'" y1="'+y(H)+'" x2="'+(xd+4)+'" y2="'+y(H)+'"/></g>');
+  o.push('<text class="dim" x="'+(xd+4)+'" y="'+y(H/2)+'" text-anchor="middle" transform="rotate(-90 '+(xd+4)+' '+y(H/2)+')">5,78 m</text>');
+  var sx=x(0), sy=yd+22;
+  for(var i=0;i<5;i++) o.push('<rect x="'+(sx+i*S)+'" y="'+sy+'" width="'+S+'" height="6" fill="'+(i%2?'var(--sv-paper)':'var(--sv-dim)')+'" stroke="var(--sv-dim)" stroke-width=".8"/>');
+  o.push('<text class="dim" x="'+sx+'" y="'+(sy+17)+'">0</text>');
+  o.push('<text class="dim" x="'+(sx+S)+'" y="'+(sy+17)+'" text-anchor="middle">1</text>');
+  o.push('<text class="dim" x="'+(sx+5*S)+'" y="'+(sy+17)+'" text-anchor="middle">5 m</text>');
+  o.push('<text class="dim" x="'+(sx+5*S+30)+'" y="'+(sy+17)+'">escala gráfica · 60 px/m</text>');
+  return o.join('');
+}
+function compass(){
+  var cx=MX+26, cy=MY+26, r=19, o=[];
+  function dir(A){ return [Math.cos((A-240)*Math.PI/180), Math.cos((A-150)*Math.PI/180)]; }
+  var dN=dir(0);
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="var(--sv-paper)" stroke="var(--sv-line)" stroke-width="1"/>');
+  o.push('<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+dN[0]*(r-3))+'" y2="'+(cy+dN[1]*(r-3))+'" stroke="var(--sv-label)" stroke-width="2" marker-end="url(#arN)"/>');
+  o.push('<text class="lbl" x="'+(cx+dN[0]*(r+10))+'" y="'+(cy+dN[1]*(r+10)+4)+'" text-anchor="middle">N</text>');
+  o.push('<text class="lbl-s" x="'+(cx+r+8)+'" y="'+(cy+4)+'">SW 240°</text>');
+  o.push('<text class="lbl-s" x="'+cx+'" y="'+(cy+r+13)+'" text-anchor="middle">SE 150°</text>');
+  o.push('<text class="lbl-s" x="'+cx+'" y="'+(cy-r-7)+'" text-anchor="middle">NW 330°</text>');
+  o.push('<text class="lbl-s" x="'+(cx-r-6)+'" y="'+(cy+4)+'" text-anchor="end">NE 60°</text>');
+  return o.join('');
+}
+function zones(){
+  var o=[], zs=[['Z1',1.25],['Z2',4.6],['Z3',8.55],['Z5',11.7]];
+  for(var i=0;i<zs.length;i++) o.push('<text class="z-lbl" x="'+x(zs[i][1])+'" y="'+y(0.34)+'" text-anchor="middle">'+zs[i][0]+'</text>');
+  o.push('<text class="z-lbl" x="'+x(6.3)+'" y="'+y(5.66)+'" text-anchor="middle">Z4</text>');
+  return o.join('');
+}
+/* ---- árvores ---- */
+function palm(){
+  var cx=x(11.6), cy=y(3.0), r=2.5*S, o=['<g>'];
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="var(--sv-palm)" opacity=".15"/>');
+  for(var i=0;i<11;i++){ var a=i*(360/11)*Math.PI/180;
+    o.push('<path d="M '+cx+' '+cy+' Q '+(cx+Math.cos(a+0.28)*r*0.6)+' '+(cy+Math.sin(a+0.28)*r*0.6)+' '+(cx+Math.cos(a)*r)+' '+(cy+Math.sin(a)*r)+'" fill="none" stroke="var(--sv-palm)" stroke-width="2" opacity=".85"/>'); }
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="11" fill="var(--sv-palm)" opacity=".9"/>');
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="var(--sv-palm)" stroke-width="1.2" stroke-dasharray="5 4" opacity=".7"/>');
+  o.push('<text class="sp" x="'+cx+'" y="'+(cy+r+13)+'" text-anchor="middle" fill="var(--sv-palm)">Phoenix canariensis · mantida</text>');
+  o.push('</g>'); return o.join('');
+}
+function decid(present){
+  var cx=x(2.6), cy=y(0.4), r=2.0*S, o=['<g>'];
+  if(present){
+    o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="var(--sv-decid)" opacity=".12"/>');
+    o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="var(--sv-decid)" stroke-width="1.4" stroke-dasharray="9 5" opacity=".9"/>');
+    for(var i=0;i<8;i++){ var a=i*45*Math.PI/180;
+      o.push('<line x1="'+cx+'" y1="'+cy+'" x2="'+(cx+Math.cos(a)*r*0.9)+'" y2="'+(cy+Math.sin(a)*r*0.9)+'" stroke="var(--sv-decid)" stroke-width="1.1" opacity=".75"/>'); }
+    o.push('<circle cx="'+cx+'" cy="'+cy+'" r="8" fill="var(--sv-decid)" opacity=".9"/>');
+    o.push('<text class="sp" x="'+cx+'" y="'+(cy+r+14)+'" text-anchor="middle" fill="var(--sv-decid)">Celtis australis · CADUCO</text>');
+    o.push('<text class="lbl-s" x="'+cx+'" y="'+(cy+r+25)+'" text-anchor="middle" fill="var(--sv-decid)">copa nua Dez–Mar</text>');
+  }else{
+    o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="var(--sv-line)" stroke-width="1" stroke-dasharray="2 4" opacity=".6"/>');
+    o.push('<line x1="'+(cx-13)+'" y1="'+(cy-13)+'" x2="'+(cx+13)+'" y2="'+(cy+13)+'" stroke="var(--sv-line)" stroke-width="1.6"/>');
+    o.push('<line x1="'+(cx+13)+'" y1="'+(cy-13)+'" x2="'+(cx-13)+'" y2="'+(cy+13)+'" stroke="var(--sv-line)" stroke-width="1.6"/>');
+    o.push('<text class="lbl-s" x="'+cx+'" y="'+(cy+r+14)+'" text-anchor="middle" fill="var(--sv-dim)">lodão removido</text>');
+  }
+  o.push('</g>'); return o.join('');
+}
+function citrus(mx,my,inPot){
+  var cx=x(mx), cy=y(my), r=1.1*S, o=['<g>'];
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="var(--sv-cit)" opacity=".2"/>');
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="'+r+'" fill="none" stroke="var(--sv-cit)" stroke-width="1.3"/>');
+  o.push('<circle cx="'+cx+'" cy="'+cy+'" r="6" fill="var(--sv-cit)"/>');
+  if(inPot) o.push('<circle cx="'+cx+'" cy="'+cy+'" r="14" fill="none" stroke="var(--sv-cit)" stroke-width="2"/>');
+  o.push('<text class="sp" x="'+cx+'" y="'+(cy+r+12)+'" text-anchor="middle" fill="var(--sv-cit)">Citrus'+(inPot?' (vaso)':'')+'</text>');
+  o.push('</g>'); return o.join('');
+}
+/* ---- áreas e pavimentos ---- */
+function area(mx,my,mw,mh,fill,dash){
+  return '<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'" fill="'+fill+'" stroke="var(--sv-line)" stroke-width="1"'+(dash?' stroke-dasharray="4 3"':'')+'/>';
+}
+function txt(mx,my,s,cls,anchor,fill){
+  return '<text class="'+(cls||'lbl-s')+'" x="'+x(mx)+'" y="'+y(my)+'" text-anchor="'+(anchor||'middle')+'"'+(fill?' fill="'+fill+'"':'')+'>'+s+'</text>';
+}
+function vtxt(mx,my,s,cls,fill){
+  return '<text class="'+(cls||'lbl-s')+'" x="'+x(mx)+'" y="'+y(my)+'" text-anchor="middle" transform="rotate(-90 '+x(mx)+' '+y(my)+')"'+(fill?' fill="'+fill+'"':'')+'>'+s+'</text>';
+}
+/* calçada de cubo simples: fiadas em arco */
+var CLIP_N=0;
+function calcadaSimples(mx,my,mw,mh){
+  var cid='cp'+(++CLIP_N);
+  var o=[area(mx,my,mw,mh,'var(--sv-calc)')];
+  o.push('<clipPath id="'+cid+'"><rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'"/></clipPath>');
+  o.push('<g clip-path="url(#'+cid+')">');
+  for(var i=0;i<Math.ceil(mw/0.1)+2;i++){
+    var px=x(mx)+i*6;
+    o.push('<path d="M '+px+' '+y(my)+' Q '+(px+7)+' '+y(my+mh/2)+' '+px+' '+y(my+mh)+'" fill="none" stroke="var(--sv-calc-dark)" stroke-width=".7" opacity=".45"/>');
+  }
+  for(var j=0;j<Math.ceil(mh/0.1)+1;j++){
+    o.push('<line x1="'+x(mx)+'" y1="'+(y(my)+j*6)+'" x2="'+x(mx+mw)+'" y2="'+(y(my)+j*6)+'" stroke="var(--sv-calc-dark)" stroke-width=".55" opacity=".35"/>');
+  }
+  o.push('</g>');
+  o.push(area(mx,my,mw,mh,'none'));
+  return o.join('');
+}
+/* calçada de padrão a duas cores: xadrez de losangos */
+function calcadaPadrao(mx,my,mw,mh){
+  var o=[area(mx,my,mw,mh,'var(--sv-calc)')];
+  var step=0.55;
+  for(var i=0;i*step<mw;i++) for(var j=0;j*step<mh;j++){
+    if((i+j)%2) continue;
+    var cx=x(mx+i*step+step/2), cy=y(my+j*step+step/2), h=step*S/2;
+    if(mx+i*step+step>mx+mw || my+j*step+step>my+mh) continue;
+    o.push('<polygon points="'+cx+','+(cy-h)+' '+(cx+h)+','+cy+' '+cx+','+(cy+h)+' '+(cx-h)+','+cy+'" fill="var(--sv-calc-dark)" opacity=".72"/>');
+  }
+  for(var k=0;k*step<mw;k++) o.push('<line x1="'+x(mx+k*step)+'" y1="'+y(my)+'" x2="'+x(mx+k*step)+'" y2="'+y(my+mh)+'" stroke="var(--sv-calc-dark)" stroke-width=".5" opacity=".3"/>');
+  o.push(area(mx,my,mw,mh,'none'));
+  return o.join('');
+}
+function deck(mx,my,mw,mh,dir){
+  var o=[area(mx,my,mw,mh,'var(--sv-deck)')];
+  if(dir==='v'){ for(var i=1;i*0.14<mw;i++) o.push('<line x1="'+x(mx+i*0.14)+'" y1="'+y(my)+'" x2="'+x(mx+i*0.14)+'" y2="'+y(my+mh)+'" stroke="var(--sv-paper)" stroke-width="1.3" opacity=".6"/>'); }
+  else { for(var j=1;j*0.14<mh;j++) o.push('<line x1="'+x(mx)+'" y1="'+y(my+j*0.14)+'" x2="'+x(mx+mw)+'" y2="'+y(my+j*0.14)+'" stroke="var(--sv-paper)" stroke-width="1.3" opacity=".6"/>'); }
+  o.push(area(mx,my,mw,mh,'none'));
+  return o.join('');
+}
+function lajeado(mx,my,mw,mh,g){
+  g=g||0.6;
+  var o=[area(mx,my,mw,mh,'var(--sv-stone)')];
+  for(var i=1;i*g<mw;i++) o.push('<line x1="'+x(mx+i*g)+'" y1="'+y(my)+'" x2="'+x(mx+i*g)+'" y2="'+y(my+mh)+'" stroke="var(--sv-paper)" stroke-width="1.8" opacity=".85"/>');
+  for(var j=1;j*g<mh;j++) o.push('<line x1="'+x(mx)+'" y1="'+y(my+j*g)+'" x2="'+x(mx+mw)+'" y2="'+y(my+j*g)+'" stroke="var(--sv-paper)" stroke-width="1.8" opacity=".85"/>');
+  o.push(area(mx,my,mw,mh,'none'));
+  return o.join('');
+}
+function saibro(mx,my,mw,mh){
+  return area(mx,my,mw,mh,'var(--sv-gravel)')+
+    '<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'" fill="url(#dots)" opacity=".55"/>';
+}
+function gravilha(mx,my,mw,mh){
+  return area(mx,my,mw,mh,'var(--sv-gravel)')+
+    '<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'" fill="url(#coarse)" opacity=".7"/>';
+}
+function pave(mx,my,mw,mh){
+  var o=[area(mx,my,mw,mh,'var(--sv-conc)')];
+  for(var i=0;i*0.4<mw;i++) for(var j=0;j*0.4<mh;j++){
+    var off=(j%2)?0.2:0;
+    if(0.02+i*0.4+off+0.36>mw || 0.02+j*0.4+0.36>mh) continue;
+    o.push('<rect x="'+x(mx+0.02+i*0.4+off)+'" y="'+y(my+0.02+j*0.4)+'" width="'+(0.36*S)+'" height="'+(0.36*S)+'" fill="none" stroke="var(--sv-paper)" stroke-width="1.2" opacity=".8"/>');
+  }
+  o.push(area(mx,my,mw,mh,'none'));
+  return o.join('');
+}
+function betonilha(mx,my,mw,mh,bad){
+  var o=[area(mx,my,mw,mh,bad?'var(--sv-conc-bad)':'var(--sv-conc)')];
+  if(!bad){ for(var i=1;i*2.2<mw;i++) o.push('<line x1="'+x(mx+i*2.2)+'" y1="'+y(my)+'" x2="'+x(mx+i*2.2)+'" y2="'+y(my+mh)+'" stroke="var(--sv-line)" stroke-width="1.6" stroke-dasharray="2 2"/>'); }
+  return o.join('');
+}
+function mulch(mx,my,mw,mh){
+  return area(mx,my,mw,mh,'var(--sv-mulch)')+
+    '<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'" fill="url(#bark)" opacity=".6"/>';
+}
+/* coberturas verdes: evergreen vs dormente */
+function green(mx,my,mw,mh,dorm){
+  var o=[area(mx,my,mw,mh,dorm?'var(--sv-dormant)':'var(--sv-evergreen)')];
+  o.push('<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+(mw*S)+'" height="'+(mh*S)+'" fill="url(#'+(dorm?'zoy':'dich')+')" opacity=".6"/>');
+  return o.join('');
+}
+function bed(mx,my,mw,mh,shade){
+  return area(mx,my,mw,mh,shade?'var(--sv-shade)':'var(--sv-bed)');
+}
+function pot(mx,my,dia,lbl){
+  var o=['<circle cx="'+x(mx)+'" cy="'+y(my)+'" r="'+(dia/2*S)+'" fill="var(--sv-bed)" stroke="var(--sv-line)" stroke-width="1.2"/>'];
+  if(lbl) o.push('<text class="sp" x="'+x(mx)+'" y="'+(y(my)+3)+'" text-anchor="middle">'+lbl+'</text>');
+  return o.join('');
+}
+function shrub(mx,my,dia,lbl){
+  var o=['<circle cx="'+x(mx)+'" cy="'+y(my)+'" r="'+(dia/2*S)+'" fill="var(--sv-bed-2)" stroke="var(--sv-line)" stroke-width="1"/>'];
+  if(lbl) o.push('<text class="sp" x="'+x(mx)+'" y="'+(y(my)+3)+'" text-anchor="middle">'+lbl+'</text>');
+  return o.join('');
+}
+function climber(side,a,b,lbl){
+  var o=[], i, step=0.34;
+  for(i=a;i<b;i+=step){
+    var px,py;
+    if(side==='SE'){ px=x(i+step/2); py=y(H)-4; }
+    else if(side==='NW'){ px=x(i+step/2); py=y(0)+4; }
+    else if(side==='SW'){ px=x(W)-4; py=y(i+step/2); }
+    else { px=x(0)+4; py=y(i+step/2); }
+    o.push('<circle cx="'+px+'" cy="'+py+'" r="7" fill="var(--sv-shade)" opacity=".55"/>');
+  }
+  if(lbl){
+    if(side==='SE') o.push('<text class="sp" x="'+x((a+b)/2)+'" y="'+(y(H)-13)+'" text-anchor="middle">'+lbl+'</text>');
+    if(side==='NW') o.push('<text class="sp" x="'+x((a+b)/2)+'" y="'+(y(0)+21)+'" text-anchor="middle">'+lbl+'</text>');
+    if(side==='SW') o.push('<text class="sp" x="'+(x(W)-15)+'" y="'+y((a+b)/2)+'" text-anchor="middle" transform="rotate(-90 '+(x(W)-15)+' '+y((a+b)/2)+')">'+lbl+'</text>');
+    if(side==='NE') o.push('<text class="sp" x="'+(x(0)+16)+'" y="'+y((a+b)/2)+'" text-anchor="middle" transform="rotate(-90 '+(x(0)+16)+' '+y((a+b)/2)+')">'+lbl+'</text>');
+  }
+  return o.join('');
+}
+function steppers(mx,my,count,dx,dy){
+  var o=[];
+  for(var i=0;i<count;i++) o.push('<rect x="'+x(mx+i*dx)+'" y="'+y(my+i*dy)+'" width="'+(0.5*S)+'" height="'+(0.5*S)+'" rx="3" fill="var(--sv-stone)" stroke="var(--sv-line)" stroke-width="1"/>');
+  return o.join('');
+}
+function table(mx,my,lbl){
+  var o=['<g opacity=".9"><circle cx="'+x(mx)+'" cy="'+y(my)+'" r="'+(0.55*S)+'" fill="none" stroke="var(--sv-dim)" stroke-width="1.3"/>'];
+  for(var i=0;i<4;i++){ var a=i*90*Math.PI/180;
+    o.push('<circle cx="'+(x(mx)+Math.cos(a)*0.82*S)+'" cy="'+(y(my)+Math.sin(a)*0.82*S)+'" r="'+(0.19*S)+'" fill="none" stroke="var(--sv-dim)" stroke-width="1.1"/>'); }
+  if(lbl) o.push('<text class="lbl-s" x="'+x(mx)+'" y="'+(y(my)+1.35*S)+'" text-anchor="middle">'+lbl+'</text>');
+  o.push('</g>'); return o.join('');
+}
+function bench(mx,my,len,horiz){
+  var w=horiz?len*S:0.45*S, h=horiz?0.45*S:len*S;
+  return '<rect x="'+x(mx)+'" y="'+y(my)+'" width="'+w+'" height="'+h+'" rx="4" fill="none" stroke="var(--sv-dim)" stroke-width="1.3" opacity=".9"/>';
+}
+function drain(mx,my,lbl){
+  return '<path d="M '+x(mx)+' '+y(my)+' L '+x(mx-1.5)+' '+y(my)+'" stroke="var(--sv-water)" stroke-width="2.4" marker-end="url(#arW)"/>'+
+    '<text class="lbl-s" x="'+x(mx+0.1)+'" y="'+(y(my)-6)+'" fill="var(--sv-water)">'+(lbl||'pendente → NE')+'</text>';
+}
+function svg(inner){
+  return '<svg viewBox="0 0 '+n(VBW)+' '+n(VBH)+'" role="img" xmlns="http://www.w3.org/2000/svg"><defs>'+
+    '<marker id="arN" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4.5" markerHeight="4.5" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="var(--sv-label)"/></marker>'+
+    '<marker id="arW" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="var(--sv-water)"/></marker>'+
+    '<pattern id="dots" width="9" height="9" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.25" fill="var(--sv-line)" opacity=".8"/></pattern>'+
+    '<pattern id="coarse" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="3" cy="4" r="2.1" fill="var(--sv-line)" opacity=".55"/><circle cx="9" cy="10" r="2.4" fill="var(--sv-line)" opacity=".45"/></pattern>'+
+    '<pattern id="bark" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M1,3 l5,1 M6,8 l5,-1.5 M2,10 l4,.5" stroke="var(--sv-label)" stroke-width="1.5" opacity=".35"/></pattern>'+
+    '<pattern id="dich" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="2.2" fill="none" stroke="var(--sv-paper)" stroke-width="1" opacity=".7"/><circle cx="8" cy="8" r="2.2" fill="none" stroke="var(--sv-paper)" stroke-width="1" opacity=".7"/></pattern>'+
+    '<pattern id="zoy" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,8 L4,0 M4,8 L8,0" stroke="var(--sv-paper)" stroke-width=".9" opacity=".6"/></pattern>'+
+    '</defs>'+paper()+inner+walls()+dims()+compass()+'</svg>';
+}
+var NOTA_LODAO='<strong>Custo de remover o lodão.</strong> Ganha-se ~0,5–1,5 h de sol de tarde em Z1/NW, entre Abril e Novembro. '+
+ '<strong>Não se ganha nada no Inverno</strong> — o lodão é caduco e já está despido em Dez-Jan, quando o sol é escasso '+
+ '(1,1 h de média). E não desbloqueia relva de gramíneas: a exigência de luz <strong>duplica</strong> com o calor '+
+ '(<em>Zoysia</em> pede 10 mol/m²/dia no Verão contra 6,7 no Inverno), e as horas ganhas são as de pior eficiência '+
+ 'fotossintética — tarde quente, estomas a fechar por stress térmico. Perde-se sombra estival útil; '+
+ 'ganha-se luz nas horas erradas; o Inverno fica igual.';
+var L=[];
+</script>
+<script>
+"use strict";
+/* ---------------- #0 ESTADO ACTUAL ---------------- */
+L.push({
+  id:'L0', idx:'#0', current:true,
+  name:'Estado actual',
+  intent:'O que existe hoje, desenhado à mesma escala para servir de base de comparação.',
+  pavfam:'Betonilha fissurada + saibro solto',
+  concept:'Plataforma central em betonilha no fim de vida, dois canteiros sem desenho e um extremo SW de saibro solto sob a palmeira. '+
+          'Não é um layout: é o ponto de partida, com as patologias assinaladas.',
+  pav:'<strong>Betonilha existente ≈45 m²</strong> — fissuração generalizada em rede, por retracção e ausência de juntas, não por assentamento pontual. '+
+      '<strong>Saibro/gravilha solta ≈15,1 m²</strong> em Z5. Muretes de delimitação de ≈0,15 m de espessura, com fissura passante no murete central. '+
+      'Permeabilidade nula nos 45 m² centrais — é a causa directa do lençol de água.',
+  plant:'As três árvores existentes. Canteiro linear SE ≈4,7 m² (Z4, 0 h de sol em Dez) e canteiro da citrinheira ≈10,7 m² (Z3). '+
+        'Vegetação infestante instalada nas fissuras, com maior densidade junto aos muros. Colonização biológica na base dos muros SE e NW.',
+  verdepis:'Nenhuma. A única coisa verde e pisável hoje são as infestantes nas fissuras.',
+  p:'—', pdesc:'Sem intervenção. A sondagem do que está sob a betonilha não foi feita.',
+  dren:'<strong>Sem escoamento aparente.</strong> A betonilha ESCOA bem, mesmo com chuva prolongada: pendentes reais convergem do muro SW e de NE para um ponto junto ao muro SW, provável caixa ligada a colector (~90%). A foto de 9 Fev 2026 mostra agua EM TRANSITO, nao acumulacao. Facto observado.',
+  z5:'Saibro solto, carga própria desprezável. Nenhuma sobrecarga acrescentada — é o único mérito da situação actual.',
+  estar:'≈45 m² de betonilha, mas de uso comprometido por fissuração e encharcamento.',
+  ganha:['Carga zero acrescentada ao muro de suporte.','As três árvores estão instaladas e adultas.','Custo zero.'],
+  perde:['Betonilha no fim de vida útil — tem de sair de qualquer forma.','Escoamento funcional para caixa provavel junto ao muro SW.','Nenhuma intenção de desenho.','Zero permeabilidade em 45 m².'],
+  risco:'A betonilha continua a degradar-se e a água continua a estagnar. Fazer nada não é estável: é degradação a prazo, e o encharcamento agrava a colonização biológica dos muros — incluindo o muro de suporte SW.',
+  custo:'—', manut:'Baixa por omissão (não há nada a manter).',
+  legend:[['var(--sv-conc-bad)','Betonilha fissurada'],['var(--sv-gravel)','Saibro solto'],['var(--sv-bed)','Canteiro existente'],['var(--sv-water)','Água estagnada']],
+  cmp:{estar:'≈45',verde:'≈15,4',pis:'0',jan:'não',perm:'Nula (45 m²)',p:'—',custo:'—',manut:'Baixa (nada a manter)',mo:'—',pavfam:'Betonilha fissurada',sac:'Linha de base — betonilha no fim de vida, água estagnada'},
+  draw:function(){
+    var o=[];
+    o.push(betonilha(0,0,10.38,5.78,true));
+    o.push(gravilha(10.38,0,2.62,5.78));
+    o.push(txt(5.2,0.55,'BETONILHA ≈45 m² · fissuração em rede · permeabilidade nula','lbl'));
+    o.push(txt(11.7,0.85,'saibro solto ≈15,1 m²'));
+    o.push(bed(2.49,5.15,7.75,0.63));
+    o.push(txt(6.3,5.52,'canteiro linear SE ≈4,7 m² · Z4 · 0 h em Dez'));
+    o.push(bed(6.70,1.73,3.68,2.91));
+    o.push(txt(8.54,2.0,'canteiro citrinheira ≈10,7 m²'));
+    o.push('<ellipse cx="'+x(5.2)+'" cy="'+y(3.1)+'" rx="'+(2.3*S)+'" ry="'+(1.25*S)+'" fill="var(--sv-water)" opacity=".5" stroke="var(--sv-water)" stroke-width="1.6" stroke-dasharray="6 4"/>');
+    o.push(txt(5.2,2.98,'ÁGUA ESTAGNADA','lbl','middle','var(--sv-water)'));
+    o.push(txt(5.2,3.28,'lençol após chuva · 9 Fev 2026','lbl-s','middle','var(--sv-water)'));
+    for(var i=0;i<9;i++){ var bx=0.6+i*1.05;
+      o.push('<path d="M '+x(bx)+' '+y(0.45)+' L '+x(bx+0.3)+' '+y(2.6)+' L '+x(bx+0.12)+' '+y(5.0)+'" fill="none" stroke="var(--sv-wall-ret)" stroke-width="1.1" opacity=".75"/>');
+      o.push('<path d="M '+x(bx)+' '+y(1.6+(i%3)*1.2)+' L '+x(bx+1.0)+' '+y(1.3+(i%3)*1.2)+'" fill="none" stroke="var(--sv-wall-ret)" stroke-width=".9" opacity=".65"/>');
+    }
+    o.push('<rect x="'+x(6.70)+'" y="'+y(1.73)+'" width="'+(0.15*S)+'" height="'+(2.91*S)+'" fill="var(--sv-wall)" opacity=".8"/>');
+    o.push('<line x1="'+x(6.77)+'" y1="'+y(2.6)+'" x2="'+x(6.77)+'" y2="'+y(3.7)+'" stroke="var(--sv-wall-ret)" stroke-width="2.6"/>');
+    o.push('<text class="lbl-s" x="'+x(6.6)+'" y="'+y(4.1)+'" text-anchor="end" fill="var(--sv-wall-ret)">fissura passante no murete</text>');
+    for(var j=0;j<15;j++) o.push('<circle cx="'+x(0.4+j*0.72)+'" cy="'+y(0.2)+'" r="4" fill="var(--sv-shade)" opacity=".5"/>');
+    o.push(txt(9.0,0.52,'infestantes nas fissuras','lbl-s','end'));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(8.5,3.2,false));
+    return o.join('');
+  }
+});
+
+/* ---------------- #1 INTERVENÇÃO MÍNIMA ---------------- */
+L.push({
+  id:'L1', idx:'#1',
+  name:'Intervenção mínima — betonilha remendada',
+  intent:'Baliza de custo. Não se demole; remenda-se, pinta-se, e todo o verde vem em vaso.',
+  pavfam:'Betonilha existente mantida',
+  concept:'A betonilha fica. Remendam-se as fissuras largas, aplica-se pintura de piso mineral clara — que devolve alguma da pouca luz de Inverno — '+
+          'abre-se um rasgo de drenagem superficial com pendente para NE, e o verde novo vem todo em contentor. '+
+          'Reversível na totalidade, e serve de ensaio do clima do recinto antes de investir.',
+  pav:'<strong>Betonilha existente mantida ≈45 m²</strong>, fissuras largas seladas com mástique elástico e pintura de piso mineral clara. '+
+      '<strong>Saibro existente em Z5 nivelado e compactado ≈15,1 m².</strong> '+
+      '<strong>Rasgo de drenagem linear de 0,20 m</strong> ao longo de Y≈2,9, com pendente de 1,5% para NE. '+
+      'Permeabilidade continua nula nos 45 m² — é a limitação assumida deste layout.',
+  plant:'Tudo em vaso, sem excepção. '+
+        '<strong>Z1</strong> (5,0 h equinócio): <em>Pittosporum tobira</em>, <em>Euphorbia characias</em>. '+
+        '<strong>Z2</strong> (5,2 h): <em>Laurus nobilis</em>, <em>Myrtus communis</em>, aromáticas mediterrânicas. '+
+        '<strong>Z3</strong>: citrinheira transplantada para vaso, conforme decisão anterior. '+
+        '<strong>Z4</strong> (1,3 h): <em>Aspidistra elatior</em>, <em>Clivia miniata</em>, <em>Asplenium scolopendrium</em>. '+
+        '<strong>Z5</strong>: <em>Ruscus aculeatus</em> e <em>Aspidistra</em> em vasos ≤40 cm Ø com substrato leve, ~24 kg cada.',
+  verdepis:'Nenhuma. Não há cobertura vegetal — a betonilha impede-a, e este layout não a resolve.',
+  p:'P1', pdesc:'Vaso e contentor, sem obra de solo. É o único layout que não depende da sondagem.',
+  dren:'Rasgo superficial em Y≈2,9, pendente 1,5% para NE, ligação ao ramal de pluviais. '+
+       '<strong>Não resolve a causa</strong> — a betonilha continua impermeável e sem juntas — mas retira o lençol da zona de estar.',
+  z5:'Só vasos ≤40 cm Ø em substrato leve. ~24 kg por vaso; dez vasos são 240 kg distribuídos em 15 m². Irrelevante face aos 700 kg/m² de terra vegetal a 40 cm.',
+  estar:'≈40 m² — quase toda a betonilha, menos os vasos e o rasgo.',
+  ganha:['Custo mínimo e totalmente reversível.','Não depende da sondagem — arranca amanhã.','Serve de ensaio: um ano a observar o que sobrevive antes de decidir a obra.','Zero carga nova em Z5.'],
+  perde:['Não resolve a causa do encharcamento, e mantém 45 m² de permeabilidade nula.','A betonilha tem de sair de qualquer forma — este dinheiro não capitaliza.','Nenhuma plantação em solo e nenhuma cobertura verde: rega frequente, vasos a secar no Verão, raízes confinadas.','Leitura visual de arrumo provisório, não de jardim.'],
+  risco:'O rasgo superficial pode ser insuficiente se o encharcamento vier de baixo — água a subir por sub-base saturada e não só de escorrência. Nesse caso gasta-se e o lençol mantém-se.',
+  custo:'€', manut:'Alta — rega de 20 a 30 vasos, no Verão quase diária.',
+  legend:[['var(--sv-conc)','Betonilha mantida e pintada'],['var(--sv-gravel)','Saibro nivelado'],['var(--sv-bed)','Vasos'],['var(--sv-water)','Rasgo de drenagem']],
+  cmp:{estar:'≈40',verde:'≈8 (vaso)',pis:'0',jan:'não',perm:'Nula (45 m²)',p:'P1',custo:'€',manut:'Alta (rega de vasos)',mo:'Nenhuma',pavfam:'Betonilha mantida',sac:'Não resolve a causa da água; betonilha sai depois de qualquer forma'},
+  draw:function(){
+    var o=[];
+    o.push(betonilha(0,0,10.38,5.78,false));
+    o.push(saibro(10.38,0,2.62,5.78));
+    o.push(txt(5.2,0.5,'BETONILHA MANTIDA ≈45 m² · fissuras seladas · pintura mineral clara','lbl'));
+    o.push(txt(11.7,0.85,'saibro nivelado'));
+    o.push('<rect x="'+x(0.3)+'" y="'+y(2.8)+'" width="'+(9.9*S)+'" height="'+(0.2*S)+'" fill="var(--sv-water)"/>');
+    o.push(drain(1.7,2.6,'rasgo · 1,5% → NE → pluviais'));
+    o.push(bed(2.49,5.15,7.75,0.63));
+    o.push(txt(6.3,5.52,'Z4 mantido · Asplenium scolopendrium, Aspidistra, Clivia','sp'));
+    var v=[[1.0,1.0,0.5,'Pit.'],[1.0,1.85,0.4,''],[1.05,4.2,0.5,'Euph.'],[3.4,1.0,0.5,'Laurus'],[4.3,1.0,0.4,''],[5.1,0.95,0.5,'Myrtus'],[3.7,4.9,0.4,''],[5.3,4.9,0.4,'arom.'],[7.6,0.9,0.5,''],[9.6,1.0,0.45,''],[9.7,4.9,0.4,''],[11.2,0.8,0.4,'Rusc.'],[11.0,5.2,0.4,''],[12.4,2.0,0.4,'Aspid.'],[12.4,4.2,0.4,'']];
+    for(var i=0;i<v.length;i++) o.push(pot(v[i][0],v[i][1],v[i][2],v[i][3]));
+    o.push(txt(4.3,1.72,'vasos · Laurus nobilis, Myrtus, aromáticas','sp'));
+    o.push(txt(11.7,1.45,'Z5: vasos ≤40 cm Ø','lbl-s'));
+    o.push(txt(11.7,1.75,'substrato leve ~24 kg','lbl-s'));
+    o.push(table(5.0,3.9,'mesa · Z2 · 5,2 h equinócio'));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(8.5,3.2,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #2 CALÇADA DE CUBO SIMPLES ---------------- */
+L.push({
+  id:'L2', idx:'#2',
+  name:'Calçada de cubo simples',
+  intent:'Calçada portuguesa de uma só cor, em fiadas de arco. Permeável, reparável, e cala-se para deixar falar os muros.',
+  pavfam:'Calçada portuguesa (cubo simples)',
+  concept:'Cubo de calcário de 6×6 cm, uma só cor, assentado em fiadas de arco sobre leito de areia. '+
+          'As juntas em areia infiltram, o que ataca directamente o lençol de água; e o chão levanta-se por zonas '+
+          'para passar rega e electricidade de iluminação cénica sem demolir nada. '+
+          'A escolha de uma só cor é deliberada: os muros são território da arte, e o chão não compete.',
+  pav:'<strong>Calçada portuguesa de cubo simples ≈38 m²</strong> — calcário 6×6 cm, leito de areia de 5 cm sobre base compactada, '+
+      'juntas tomadas com areia, assentamento em fiadas de arco. ≈190 kg/m². '+
+      '<strong>Saibro estabilizado sobre geotêxtil ≈17 m²</strong> em Z3 e Z5. '+
+      'Permeabilidade alta em toda a superfície: as juntas em areia deixam passar a água.',
+  plant:'<strong>Z1</strong> (5,0 h), canteiro de 4,0 m²: <em>Pittosporum tobira</em>, <em>Euphorbia characias</em>, <em>Iris foetidissima</em>, <em>Narcissus</em>. '+
+        '<strong>Z2</strong> (5,2 h), 5,2 m²: <em>Myrtus communis</em>, <em>Teucrium fruticans</em>, <em>Laurus nobilis</em> em porte arbustivo. '+
+        '<strong>Z3</strong> (4,0 h equinócio, 0,2 h em Dez), 6,5 m²: <em>Viburnum tinus</em> para a floração de Nov–Mar, <em>Acanthus mollis</em>, citrinheira em vaso. '+
+        '<strong>Z4</strong> (0 h em Dez): faixa de <em>Ruscus aculeatus</em> e <em>Danae racemosa</em> — as que aguentam sombra total sem sofrer. '+
+        '<strong>Z5</strong>: <em>Ruscus</em> em covacho sob a palmeira. '+
+        'Muro SE em <em>Clematis cirrhosa</em> sobre treliça afastada 8 cm — nada auto-aderente num muro degradado.',
+  verdepis:'Nenhuma cobertura verde pisável. É um layout deliberadamente mineral: o verde está nos canteiros e nos muros, não no chão.',
+  p:'P3', pdesc:'40–60 cm nos três canteiros. A calçada exige base compactada de 10–15 cm, logo escavação — a sondagem é indispensável antes.',
+  dren:'Resolve por infiltração, não por tubo: juntas em areia mais leito de areia mais base compactada absorvem a chuva no local em ≈38 m². '+
+       'Pendente de 1% para NE e ralo linear junto à fachada, ligado aos pluviais, como segurança. Nada descarrega para SW.',
+  z5:'Saibro estabilizado (≈90 kg/m²) e covachos individuais. Se a calçada chegasse a Z5 seriam ≈190 kg/m², ainda abaixo da betonilha armada — '+
+     'mas o saibro é mais leve e mais barato, e a palmeira não precisa de chão duro em volta.',
+  estar:'≈34 m² de calçada, contínuos e sem obstáculos.',
+  ganha:['Permeabilidade alta em 38 m² — ataca a causa do lençol de água, não o sintoma.','Reparável e abrível: rega e iluminação cénica passam depois, sem demolir.','Mais leve que betonilha armada (190 contra 240 kg/m²).','Cor única deixa os muros como única superfície forte — não compete com a arte UV.','Material tradicional lisboeta, coerente com o sítio.'],
+  perde:['Mão-de-obra de calceteiro é especializada e escassa: custo e, sobretudo, prazo.','Cubo de calcário é desconfortável para mobiliário de pés finos e para andar descalço.','Nenhuma superfície macia, nenhuma cobertura verde pisável.','Verde limitado a ≈16 m² de canteiro.'],
+  risco:'O prazo. Encontrar calceteiro disponível pode atrasar a obra meses, e um assentamento mal executado sobre base insuficiente abate por zonas ao primeiro Inverno — com o agravante de o terreno por baixo ser desconhecido até à sondagem.',
+  custo:'€€', manut:'Baixa — reassentar pontualmente a cada poucos anos, rechear juntas com areia.',
+  legend:[['var(--sv-calc)','Calçada de cubo simples'],['var(--sv-gravel)','Saibro estabilizado'],['var(--sv-bed)','Canteiro em solo'],['var(--sv-shade)','Z4 sombra / trepadeira']],
+  cmp:{estar:'≈34',verde:'≈16',pis:'0',jan:'não',perm:'Alta',p:'P3',custo:'€€',manut:'Baixa',mo:'Calceteiro + jardineiro',pavfam:'Calçada (cubo simples)',sac:'Nenhuma superfície macia; prazo dependente de calceteiro'},
+  draw:function(){
+    var o=[];
+    o.push(calcadaSimples(0,0,7.2,5.78));
+    o.push(saibro(7.2,0,5.8,5.78));
+    o.push(txt(3.6,3.15,'CALÇADA DE CUBO SIMPLES ≈38 m²','lbl'));
+    o.push(txt(3.6,3.45,'calcário 6×6 · leito de areia 5 cm · fiadas de arco'));
+    o.push(txt(3.6,3.73,'juntas em areia = permeável · ≈190 kg/m²'));
+    o.push(txt(3.6,4.01,'levanta-se por zonas para rega e iluminação cénica'));
+    o.push(txt(10.0,0.85,'saibro estabilizado ≈17 m² · geotêxtil'));
+    o.push(bed(0.25,0.25,1.0,3.9));
+    o.push(vtxt(0.75,2.2,'Z1 · 4,0 m² · Pittosporum tobira, Euphorbia characias, Iris foetidissima, Narcissus','sp'));
+    o.push(bed(3.3,0.25,3.6,1.45));
+    o.push(txt(5.1,0.72,'Z2 · 5,2 m² · Myrtus communis, Teucrium fruticans, Laurus nobilis','sp'));
+    o.push(txt(5.1,1.05,'5,2 h equinócio · 5,9 h Jun','lbl-s'));
+    o.push(shrub(3.9,1.35,0.5,''));
+    o.push(shrub(5.1,1.4,0.55,''));
+    o.push(shrub(6.3,1.35,0.5,''));
+    o.push(bed(7.6,1.4,2.6,2.6));
+    o.push(txt(8.9,1.72,'Z3 · 6,5 m²','lbl'));
+    o.push(txt(8.9,2.0,'Viburnum tinus · Nov–Mar','sp'));
+    o.push(txt(8.9,2.28,'Acanthus mollis','sp'));
+    o.push(bed(2.6,5.32,7.5,0.46,true));
+    o.push(txt(6.3,5.62,'Z4 · Ruscus aculeatus + Danae racemosa · 0 h em Dez','sp'));
+    o.push(pot(11.0,1.0,0.6,'Rusc.')); o.push(pot(12.3,1.6,0.6,'')); o.push(pot(12.3,4.7,0.6,''));
+    o.push(txt(11.85,0.65,'Ruscus em covacho','sp'));
+    o.push(climber('SE',2.6,10.0,'Clematis cirrhosa · treliça afastada 8 cm'));
+    o.push(drain(1.3,4.85,'1% → NE · ralo linear'));
+    o.push(table(2.3,2.3,'estar ≈34 m²'));
+    o.push(bench(4.2,4.5,1.8,true));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(9.6,3.6,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #3 SUB-BOSQUE COM PASSADEIRA E MULCH ---------------- */
+L.push({
+  id:'L3', idx:'#3',
+  name:'Sub-bosque com passadeira e mulch',
+  intent:'Máximo de verde e mínima área impermeável. O pavimento reduz-se a lajes soltas sobre mulch e Dichondra.',
+  pavfam:'Mulch + passadeira de lajes soltas + Dichondra',
+  concept:'O oposto de #2. Só uma clareira de estar em Z2; o resto é canteiro contínuo com três estratos, '+
+          'coberto de casca de pinheiro, atravessado por uma passadeira de lajes soltas. '+
+          'A aposta é que um recinto com 1,1 h de sol em Dezembro é, na verdade, um sub-bosque — e que se planta em consequência.',
+  pav:'<strong>Casca de pinheiro / mulch ≈44 m²</strong> em todo o canteiro — não pisável, só canteiro. '+
+      '<strong>Passadeira de lajes soltas ≈4,5 m²</strong>, lajes de 0,50 m com intervalo, assentes sobre o mulch. '+
+      '<strong>Clareira lajeada com juntas abertas ≈9 m²</strong> em Z2. '+
+      '<strong><em>Dichondra repens</em> pisável ≈8 m²</strong> em Z1. '+
+      'Área impermeável total: ≈2 m². É o layout de menor selagem de solo dos onze.',
+  plant:'<strong>Estrato alto:</strong> <em>Laurus nobilis</em> e <em>Viburnum tinus</em> em Z1 e Z3, <em>Arbutus unedo</em> isolado em Z2. '+
+        '<strong>Estrato médio:</strong> <em>Pittosporum tobira</em>, <em>Myrtus communis</em>; em Z4 o grupo de sombra — <em>Aucuba japonica</em>, <em>Fatsia japonica</em>, <em>Ruscus</em>, <em>Danae racemosa</em>. '+
+        '<strong>Herbáceas:</strong> <em>Acanthus mollis</em>, <em>Iris foetidissima</em>, <em>Helleborus</em> e <em>Bergenia</em> em Z4. '+
+        '<strong>Z4 é a zona dos fetos</strong> — <em>Asplenium scolopendrium</em>, <em>A. trichomanes</em>, <em>Cyrtomium falcatum</em>, <em>Polystichum</em>: 0 h de sol em Dezembro é exactamente o habitat deles. '+
+        '<strong>Bulbosas:</strong> <em>Narcissus</em>, <em>Cyclamen hederifolium</em>, <em>Clivia</em>. '+
+        '<strong>Z5</strong>: <em>Aspidistra</em> e <em>Ruscus</em> em covacho.',
+  verdepis:'<strong><em>Dichondra repens</em>, ≈8 m² em Z1</strong> (1,7 h em Dez, 5,0 h no equinócio) — verde o ano inteiro, sem dormência. '+
+           'Em Janeiro mantém-se verde: é a única cobertura que não muda de cor. Macia, quase sem corte, tolera a sombra real do recinto.',
+  p:'P4', pdesc:'Mais de 60 cm / solo natural em Z1–Z4. É o layout mais dependente da sondagem: sem profundidade, não há sub-bosque.',
+  dren:'Canteiro contínuo com dreno francês perimetral ao longo da fachada NE, pendente 1,5%, ligado aos pluviais. '+
+       'O solo profundo absorve muito, mas <strong>Inverno escuro mais solo encharcado é a combinação que mata por <em>Phytophthora</em></strong> — '+
+       'daí a exigência de sub-bosque mediterrânico e macaronésico, e de camada drenante de 15 cm sob todo o canteiro.',
+  z5:'Sem canteiro elevado, sem terra vegetal em camada. <em>Aspidistra</em> e <em>Ruscus</em> em covacho individual e mulch leve (≈30 kg/m²). '+
+     'Nenhuma árvore nova — o limite é absoluto, e a palmeira já compete por água em todo o raio da copa.',
+  estar:'≈9 m² de clareira em Z2, mais 8 m² de <em>Dichondra</em> pisável em Z1, mais 4,5 m² de passadeira.',
+  ganha:['Máximo de verde possível neste recinto: ≈44 m² de canteiro mais 8 m² de cobertura pisável.','Selagem de solo quase nula — o melhor comportamento hidrológico dos onze.','Trabalha com a sombra: as espécies de Z4 prosperam com 0 h em Dezembro.','Floração de Inverno abundante: Viburnum, Helleborus, Narcissus, Clivia, Cyclamen.','Dichondra dá superfície macia e verde em Janeiro.'],
+  perde:['Área de estar reduzida a 9 m² de clareira — não é um terraço, é um recanto.','Densidade num recinto de ar estagnado aumenta muito o risco de fungos e cochonilha.','Mulch tem de ser reposto todos os anos ou ano e meio.','Rega de estabelecimento longa, dois a três anos.','O mais dependente da sondagem — pode ser inviável.'],
+  risco:'Ar estagnado mais plantacao densa e Inverno escuro favorece <em>Phytophthora</em> e oidio. Atenuado por o quintal escoar, mas o perfil de solo tem de ser drenante. Mitiga-se com espaçamento generoso, camada drenante e folha rija, mas não se elimina. Se a sondagem der pouca profundidade, o layout cai por inteiro.',
+  custo:'€€€', manut:'Média-alta nos primeiros três anos; média depois. Reposição anual de mulch.',
+  legend:[['var(--sv-mulch)','Casca de pinheiro (não pisável)'],['var(--sv-evergreen)','Dichondra repens'],['var(--sv-stone)','Clareira + passadeira'],['var(--sv-shade)','Z4 · fetos']],
+  greens:[['Dichondra repens',false]],
+  cmp:{estar:'≈21',verde:'≈52',pis:'≈8',jan:'sim (Dichondra)',perm:'Alta (quase total)',p:'P4',custo:'€€€',manut:'Média-alta 3 anos',mo:'Jardineiro',pavfam:'Mulch + passadeira + vegetal',sac:'Área de estar; risco de fungos em ar estagnado'},
+  draw:function(){
+    var o=[];
+    o.push(mulch(0,0,13,5.78));
+    o.push(green(0.3,0.25,2.0,3.9,false));
+    o.push(vtxt(1.3,2.2,'Dichondra repens · ≈8 m² pisável · VERDE EM JANEIRO','sp'));
+    o.push(bed(2.6,4.2,7.6,1.58,true));
+    o.push(txt(6.4,4.6,'Z4 · A ZONA DOS FETOS','lbl'));
+    o.push(txt(6.4,4.9,'Asplenium scolopendrium · A. trichomanes · Cyrtomium falcatum · Polystichum','sp'));
+    o.push(txt(6.4,5.18,'Aucuba japonica · Fatsia japonica · Helleborus · Bergenia','sp'));
+    o.push(txt(6.4,5.48,'0 h em Dez · 1,3 h equinócio — é o habitat deles','lbl-s'));
+    o.push(lajeado(3.6,1.3,2.6,2.3,0.6));
+    o.push(txt(4.9,1.6,'clareira ≈9 m² · Z2'));
+    o.push(steppers(2.5,2.3,2,0.68,0));
+    o.push(steppers(6.5,2.25,8,0.6,0.05));
+    o.push(txt(8.8,2.0,'passadeira de lajes soltas ≈4,5 m²'));
+    var arb=[[1.0,4.7,0.9,'Laurus'],[3.0,0.8,0.85,'Vib.'],[4.7,0.55,0.8,'Arbutus'],[6.3,0.7,0.8,'Pitt.'],[7.6,0.75,0.9,'Laurus'],[9.5,0.8,0.85,'Vib.'],[7.4,3.6,0.8,'Myrtus'],[9.6,3.9,0.8,'Acanth.'],[10.3,1.7,0.7,'Iris']];
+    for(var k=0;k<arb.length;k++) o.push(shrub(arb[k][0],arb[k][1],arb[k][2],arb[k][3]));
+    o.push(txt(5.6,0.25,'Laurus nobilis · Viburnum tinus · Arbutus unedo · Pittosporum tobira','sp'));
+    o.push(txt(9.0,4.4,'Narcissus · Cyclamen hederifolium · Clivia','sp'));
+    o.push(pot(11.2,0.8,0.5,'Aspid.')); o.push(pot(12.4,1.8,0.5,'')); o.push(pot(12.4,4.4,0.5,'Rusc.')); o.push(pot(11.4,5.2,0.5,''));
+    o.push(vtxt(12.0,3.1,'Z5 · Aspidistra, Ruscus em covacho · mulch leve','sp'));
+    o.push(climber('SE',2.6,10.2,'Hedera helix nativa'));
+    o.push(drain(1.9,5.45,'dreno francês → NE'));
+    o.push(table(4.9,2.45,''));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(8.3,1.5,false));
+    return o.join('');
+  }
+});
+</script>
+<script>
+"use strict";
+/* ---------------- #4 DECK SPLIT-LEVEL ---------------- */
+L.push({
+  id:'L4', idx:'#4',
+  name:'Deck split-level sobre vão técnico',
+  intent:'Resolver a água por baixo em vez de por cima, e usar o 1,35 m de desnível a favor.',
+  pavfam:'Deck de madeira (split-level) + lajeado',
+  concept:'Há 1,35 m da soleira ao solo. Este layout aproveita-o: um deck superior a +0,60 m junto à fachada, ao alcance de dois degraus da porta, '+
+          'e um deck inferior a +0,25 m em Z2, ligados por um degrau largo que serve de assento. '+
+          'Por baixo corre a drenagem, a rega e a electricidade, com acesso por alçapão.',
+  pav:'<strong>Deck superior +0,60 m ≈13 m²</strong> em Z1, <strong>deck inferior +0,25 m ≈21 m²</strong> em Z2 — '+
+      'cumaru sobre rastreis, madeira clara de tom médio. Total de deck ≈34 m². '+
+      '<strong>Lajeado de juntas abertas ao nível ≈9 m²</strong> em Z3. <strong>Gravilha ≈14 m²</strong> em Z5. '+
+      '<strong>Vão técnico de 0,25 a 0,60 m</strong> sob todo o deck. '+
+      'Escolha de madeira: cumaru, 25+ anos, oleado anual; o pinho tratado duraria 10–15 anos, e menos neste recinto; '+
+      'o WPC compósito dispensa oleado mas aquece 10–15 °C mais ao sol de tarde, o que em Z2 com 5,9 h de sol em Junho é um problema real.',
+  plant:'Caixas recortadas no deck, 50 cm de profundidade: em Z2 com <em>Myrtus communis</em>, <em>Teucrium fruticans</em> e aromáticas; '+
+        'em Z1 com <em>Pittosporum tobira</em> e <em>Euphorbia characias</em>. '+
+        '<strong>Z3</strong> em canteiro ao nível com <em>Viburnum tinus</em> e a citrinheira em vaso. '+
+        '<strong>Z4</strong> em faixa ao nível do solo, portanto 0,25–0,60 m abaixo do deck — lê-se como jardim afundado visto de cima: '+
+        '<em>Asplenium scolopendrium</em>, <em>Cyrtomium falcatum</em>, <em>Aucuba japonica</em>, <em>Fatsia japonica</em>, <em>Helleborus</em>. '+
+        '<strong>Z5</strong>: <em>Ruscus</em> e <em>Aspidistra</em> em covacho sob a palmeira. '+
+        '<em>Dichondra repens</em> em ≈5 m² de bolsa recortada no deck inferior, ao nível do rodapé.',
+  verdepis:'<strong><em>Dichondra repens</em>, ≈5 m²</strong>, numa bolsa recortada no deck inferior em Z2 (5,2 h no equinócio). '+
+           'Verde em Janeiro. Pequena, mas dá um pé descalço no meio da madeira — e prova o material antes de o alargar.',
+  p:'P2', pdesc:'20–30 cm bastam para os apoios pontuais do deck. As caixas de canteiro resolvem-se acima da cota, não abaixo. '+
+      'É, com #1 e #10, o layout que melhor tolera uma sondagem desfavorável.',
+  dren:'<strong>O melhor cenário de drenagem dos onze.</strong> Sob o deck, tela e camada drenante com pendente de 2% para NE, '+
+       'caleira transversal junto à fachada, ligação directa aos pluviais. O vão é visitável por alçapão, logo inspeccionável e desobstruível. '+
+       '<strong>Ventilação do vão:</strong> rodapé em grelha nas quatro faces, secção livre de 0,02 m² por metro linear, e o desnível entre os dois decks '+
+       'cria tiragem. Sem isto, o vão é criadouro — é o ponto que este layout não pode falhar. Nada descarrega para SW.',
+  z5:'Z5 fica fora do deck: gravilha ao nível, sem estrutura, sem carga. <strong>Os apoios do deck param em X≈10,4</strong>, '+
+     'afastamento deliberado da estrutura ao muro de suporte. Covachos individuais, ≈70 kg/m².',
+  estar:'≈34 m² de deck em dois níveis, mais 9 m² de lajeado em Z3.',
+  ganha:['Resolve a drenagem de forma inspeccionável — o único layout onde se pode abrir e ver.','Usa o 1,35 m de desnível a favor: dois degraus da porta ao deck superior, em vez de sete.','Madeira clara é fresca ao toque de tarde, ao contrário da pedra e do compósito escuro.','Rega e electricidade escondidas e acessíveis para sempre.','Só exige P2.'],
+  perde:['Madeira em recinto de ar estagnado e Inverno escuro: apodrece mais depressa e fica escorregadia. Oleado anual obrigatório.','Perde-se 0,25–0,60 m de altura útil face aos muros de 2,50 m — a sensação de recinto fechado aumenta.','As caixas no deck são volumes limitados, não solo.','Cobertura verde reduzida a 5 m².','Vão técnico é abrigo de roedores se o rodapé em grelha não for bem executado.'],
+  risco:'A humidade permanente contra a madeira. Com 1,1 h de sol em Dezembro e ar sem circulação, mesmo cumaru exige oleado anual e vai ter de ser substituído antes do prazo nominal. E se a ventilação do rodapé for mal feita, o vão passa de vantagem a criadouro de mosquitos — a única forma de o corrigir depois é levantar o deck.',
+  custo:'€€€', manut:'Média-alta — oleado anual, verificação do rodapé e do vão.',
+  legend:[['var(--sv-deck)','Deck (dois níveis)'],['var(--sv-stone)','Lajeado ao nível'],['var(--sv-evergreen)','Dichondra em bolsa'],['var(--sv-shade)','Z4 afundado · fetos']],
+  greens:[['Dichondra repens',false]],
+  cmp:{estar:'≈43',verde:'≈22',pis:'≈5',jan:'sim (Dichondra)',perm:'Média (vão drenante)',p:'P2',custo:'€€€',manut:'Média-alta (oleado anual)',mo:'Carpinteiro + jardineiro',pavfam:'Deck split-level + lajeado',sac:'Durabilidade da madeira em recinto húmido; altura útil'},
+  draw:function(){
+    var o=[];
+    o.push(deck(0,0,2.5,4.3,'h'));
+    o.push(deck(2.5,0,7.9,4.3,'v'));
+    o.push(txt(1.25,0.55,'DECK SUP.','lbl'));
+    o.push(txt(1.25,0.85,'+0,60 m'));
+    o.push(txt(1.25,1.15,'≈13 m²'));
+    o.push(txt(1.25,1.45,'2 degraus'));
+    o.push(txt(1.25,1.75,'da porta'));
+    o.push('<line x1="'+x(2.5)+'" y1="'+y(0)+'" x2="'+x(2.5)+'" y2="'+y(4.3)+'" stroke="var(--sv-dim)" stroke-width="2.4"/>');
+    o.push(vtxt(2.72,2.2,'degrau largo 0,45 m = assento','sp'));
+    o.push(txt(6.4,0.5,'DECK INFERIOR +0,25 m · ≈21 m² · cumaru sobre rastreis','lbl'));
+    o.push(txt(6.4,0.8,'vão técnico ventilado · rodapé em grelha nas 4 faces · 0,02 m²/m linear'));
+    o.push('<rect x="'+x(7.3)+'" y="'+y(1.15)+'" width="'+(0.8*S)+'" height="'+(0.8*S)+'" fill="none" stroke="var(--sv-dim)" stroke-width="1.4" stroke-dasharray="4 3"/>');
+    o.push(txt(7.7,2.2,'alçapão de inspecção'));
+    o.push(green(3.3,2.55,2.0,1.6,false));
+    o.push(txt(4.3,3.15,'Dichondra','sp'));
+    o.push(txt(4.3,3.45,'≈5 m² · VERDE JAN','lbl-s'));
+    o.push(bed(0.25,2.35,2.0,1.75));
+    o.push(txt(1.25,2.75,'Z1 · caixa 50 cm','lbl-s'));
+    o.push(txt(1.25,3.05,'Pittosporum tobira','sp'));
+    o.push(txt(1.25,3.35,'Euphorbia characias','sp'));
+    o.push(bed(5.7,2.55,1.3,1.55));
+    o.push(txt(6.35,3.1,'Myrtus','sp'));
+    o.push(txt(6.35,3.4,'Teucrium','sp'));
+    o.push(lajeado(8.5,2.4,1.8,1.7,0.6));
+    o.push(txt(9.4,2.2,'Z3 lajeado ao nível','lbl-s'));
+    o.push(bed(2.6,4.3,7.8,1.48,true));
+    o.push(txt(6.4,4.65,'Z4 AFUNDADO −0,25/−0,60 m','lbl'));
+    o.push(txt(6.4,4.95,'Asplenium scolopendrium · Cyrtomium falcatum · Aucuba · Fatsia · Helleborus','sp'));
+    o.push(txt(6.4,5.25,'visto de cima, do deck · bordadura serve de assento','lbl-s'));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push(txt(11.7,0.85,'Gravilha Z5'));
+    o.push(txt(11.7,1.15,'apoios do deck'));
+    o.push(txt(11.7,1.45,'param em X=10,4'));
+    o.push('<rect x="'+x(0)+'" y="'+y(4.3)+'" width="'+(0.22*S)+'" height="'+(1.48*S)+'" fill="var(--sv-water)"/>');
+    o.push(drain(2.4,4.15,'2% sob deck → caleira NE → pluviais'));
+    o.push(pot(11.2,2.1,0.5,'Rusc.')); o.push(pot(12.4,3.2,0.5,'Aspid.')); o.push(pot(12.3,5.0,0.5,''));
+    o.push(climber('SE',2.6,10.2,'Trachelospermum jasminoides · treliça'));
+    o.push(table(4.6,1.5,''));
+    o.push(bench(8.4,0.35,1.8,true));
+    o.push(stairs(2,0.9));
+    o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(9.4,0.9,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #5 TRÊS SALAS ---------------- */
+L.push({
+  id:'L5', idx:'#5',
+  name:'Três salas, três pavimentos',
+  intent:'Subdividir os 13 m em três ambientes, cada um com o seu material. O pavimento é o que faz a divisão.',
+  pavfam:'Misto: lajeado plantável + Dichondra + saibro',
+  concept:'Os 5,78 m de largura não dão para subdividir no sentido curto, mas os 13 m dão para três salas no sentido longo. '+
+          'A divisão não se faz por muro nem por sebe alta: faz-se pela mudança de pavimento. '+
+          'Sala de sol em lajeado plantável, sala de estar em tapete de <em>Dichondra</em>, sala da palmeira em saibro.',
+  pav:'<strong>Sala 1 (Z1–Z2): lajeado de juntas abertas plantáveis ≈17 m²</strong> — juntas de 3 cm com <em>Thymus</em> nas mais soalheiras e <em>Dichondra</em> nas de sombra. '+
+      '<strong>Sala 2 (Z2–Z3): tapete de <em>Dichondra repens</em> ≈13 m²</strong>, com passadeira de lajes soltas a atravessar. '+
+      '<strong>Sala 3 (Z5): saibro estabilizado ≈12 m²</strong> sob a palmeira. '+
+      'Sebes baixas de <em>Myrtus</em> conduzido a 0,80 m marcam a transição sem fechar a vista.',
+  plant:'<strong>Sebes de transição</strong> em <em>Myrtus communis</em> a 0,80 m — folha rija, tolera poda, aguenta os 4–5 h de tarde. '+
+        '<strong>Sala 1</strong> (5,0–5,2 h): aromáticas mediterrânicas, <em>Teucrium fruticans</em>, <em>Euphorbia characias</em>, <em>Narcissus</em>, <em>Thymus</em> nas juntas. '+
+        '<strong>Sala 2</strong>, Z3 (4,0 h equinócio, 0,2 h em Dez): <em>Viburnum tinus</em> para a floração Nov–Mar, <em>Acanthus mollis</em>, citrinheira em vaso. '+
+        '<strong>Sala 3</strong>, Z5 (0 h em Dez): <em>Aspidistra elatior</em>, <em>Clivia miniata</em>, <em>Iris foetidissima</em> em covacho, sob a copa da palmeira. '+
+        '<strong>Z4</strong> atravessa as três salas em faixa contínua: <em>Asplenium scolopendrium</em>, <em>Ruscus</em>, <em>Danae racemosa</em>, <em>Helleborus</em>.',
+  verdepis:'<strong><em>Dichondra repens</em>, ≈13 m² na sala 2</strong>, mais as juntas plantadas do lajeado da sala 1 (≈1,5 m² de junta). '+
+           'Verde em Janeiro, sem dormência. A sala 2 é a maior superfície macia dos onze layouts com subdivisão.',
+  p:'P3', pdesc:'40–60 cm nas sebes de transição e nos canteiros das salas 1 e 2. A sala 3 é P1/P2, só covacho e vaso. '+
+      'O tapete de <em>Dichondra</em> precisa de 20–25 cm de solo aproveitável.',
+  dren:'Cada sala com pendente própria de 1,5% convergindo para uma caleira longitudinal em Y≈0,25 junto ao muro NW, '+
+       'com escoamento para NE e ligação aos pluviais. A subdivisão ajuda: três bacias pequenas escoam melhor que uma grande e plana. '+
+       'O tapete de <em>Dichondra</em> da sala 2 é superfície infiltrante — mas exige que não encharque, ou apodrece.',
+  z5:'A sala 3 é saibro (≈90 kg/m²) e covacho. Sem depósito de água, sem canteiro elevado, sem árvore nova. '+
+     'A carga total acrescentada em Z5 fica abaixo de 120 kg/m², contra 700 kg/m² de terra vegetal a 40 cm.',
+  estar:'≈17 m² na sala 1, ≈13 m² na sala 2, ≈8 m² na sala 3. Total ≈38 m², mas nunca todo junto.',
+  ganha:['Combate a proporção de corredor — 13 m por 5,78 m é uma faixa, e três salas dão-lhe escala humana.','Cada sala usa a luz que tem: sol na 1, meia-luz na 2, sombra na 3.','13 m² de Dichondra pisável e verde em Janeiro, na zona de maior uso.','Percurso com surpresa — a palmeira só se revela por inteiro na sala 3.','Três materiais dão três temperaturas ao pé: pedra, vegetal, saibro.'],
+  perde:['Nenhuma área de estar grande. A maior tem 17 m²: cinco pessoas, não doze.','As sebes comem 4–5 m² e exigem poda duas vezes por ano.','Três pavimentos distintos podem ler-se como incoerência se a paleta não for muito disciplinada.','Dichondra da sala 2 precisa de rega regular no Verão e não aceita mobiliário pesado fixo.'],
+  risco:'Subdividir 5,78 m de largura tem um limite. Se as sebes passarem de 1,00 m, o quintal deixa de ser três salas e passa a três celas — a claustrofobia é o risco real, com muros de 2,50 m já nos quatro lados. A poda a 0,80 m não é estética, é estrutural.',
+  custo:'€€', manut:'Média — poda de sebe duas vezes por ano, rega da Dichondra no Verão.',
+  legend:[['var(--sv-stone)','Sala 1 · lajeado plantável'],['var(--sv-evergreen)','Sala 2 · Dichondra'],['var(--sv-gravel)','Sala 3 · saibro'],['var(--sv-bed-2)','Sebe de Myrtus 0,80 m']],
+  greens:[['Dichondra repens',false]],
+  cmp:{estar:'≈38 (3 salas)',verde:'≈28',pis:'≈14,5',jan:'sim (Dichondra)',perm:'Alta',p:'P3',custo:'€€',manut:'Média (poda 2x/ano)',mo:'Jardineiro + assentador',pavfam:'Misto: lajeado + vegetal + saibro',sac:'Nenhuma área de estar grande; risco de claustrofobia'},
+  draw:function(){
+    var o=[];
+    o.push(lajeado(0,0,4.5,5.05,0.75));
+    o.push(green(4.9,0,4.6,5.05,false));
+    o.push(saibro(9.9,0,3.1,5.05));
+    o.push(bed(4.5,0,0.4,3.3,false));
+    o.push('<rect x="'+x(4.5)+'" y="'+y(0)+'" width="'+(0.4*S)+'" height="'+(3.3*S)+'" fill="var(--sv-bed-2)"/>');
+    o.push('<rect x="'+x(9.5)+'" y="'+y(1.5)+'" width="'+(0.4*S)+'" height="'+(3.55*S)+'" fill="var(--sv-bed-2)" stroke="var(--sv-line)"/>');
+    o.push(vtxt(4.7,1.65,'sebe Myrtus 0,80 m','sp'));
+    o.push(vtxt(9.7,3.3,'sebe Myrtus 0,80 m','sp'));
+    o.push(txt(2.25,0.4,'SALA 1 · SOL','lbl'));
+    o.push(txt(2.25,0.7,'lajeado de juntas plantáveis ≈17 m²'));
+    o.push(txt(2.25,0.98,'Thymus e Dichondra nas juntas de 3 cm','sp'));
+    o.push(txt(2.25,1.26,'Z1–Z2 · 5,0–5,2 h equinócio','lbl-s'));
+    o.push(txt(7.2,0.4,'SALA 2 · TAPETE','lbl'));
+    o.push(txt(7.2,0.7,'Dichondra repens ≈13 m²','sp'));
+    o.push(txt(7.2,0.98,'VERDE EM JANEIRO · sem dormência','lbl-s'));
+    o.push(txt(11.4,0.4,'SALA 3','lbl'));
+    o.push(txt(11.4,0.68,'saibro ≈12 m²','lbl-s'));
+    o.push(txt(11.4,0.96,'0 h em Dez','lbl-s'));
+    o.push(bed(0.3,1.9,0.95,2.9));
+    o.push(vtxt(0.78,3.35,'aromáticas · Teucrium fruticans · Euphorbia · Narcissus','sp'));
+    o.push(bed(5.3,3.3,1.5,1.7));
+    o.push(txt(6.05,3.85,'Viburnum','sp'));
+    o.push(txt(6.05,4.15,'tinus','sp'));
+    o.push(txt(6.05,4.45,'Nov–Mar','lbl-s'));
+    o.push(shrub(8.2,4.2,0.8,'Acanth.'));
+    o.push(bed(2.4,5.05,10.6,0.73,true));
+    o.push(txt(7.5,5.42,'Z4 · faixa contínua a atravessar as três salas · Asplenium, Ruscus, Danae racemosa, Helleborus','sp'));
+    o.push(steppers(5.3,2.2,6,0.72,0));
+    o.push('<rect x="'+x(0.2)+'" y="'+y(0.04)+'" width="'+(12.6*S)+'" height="'+(0.15*S)+'" fill="var(--sv-water)" opacity=".85"/>');
+    o.push(drain(2.2,0.32,'caleira longitudinal → NE'));
+    o.push(pot(10.8,1.9,0.5,'Aspid.')); o.push(pot(12.5,2.4,0.5,'Clivia')); o.push(pot(12.4,4.5,0.5,'Iris'));
+    o.push(txt(11.6,4.85,'covacho sob a palmeira','sp'));
+    o.push(table(2.2,3.6,''));
+    o.push(bench(7.0,2.6,1.6,true));
+    o.push(bench(12.2,3.1,1.0,false));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(true)); o.push(citrus(8.4,2.6,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #6 CALÇADA DE PADRÃO ---------------- */
+L.push({
+  id:'L6', idx:'#6', lodao:true,
+  name:'Calçada de padrão a duas cores',
+  intent:'O chão como peça de desenho. Calçada figurativa em preto e branco, e o resto contido.',
+  pavfam:'Calçada portuguesa (padrão a duas cores)',
+  concept:'A alternativa formal a #2: a mesma técnica, a mesma permeabilidade, o mesmo peso, mas com padrão a duas cores. '+
+          'Calcário branco e basalto preto em desenho geométrico contínuo, com o lodão removido para abrir a metade NW e dar ao padrão a luz que ele precisa. '+
+          'É a opção mais decorativa dos onze — e a que traz um conflito de composição declarado.',
+  pav:'<strong>Calçada portuguesa de padrão ≈42 m²</strong> — calcário branco e basalto preto 5×5 cm, leito de areia de 5 cm sobre base compactada, '+
+      'juntas em areia. ≈190 kg/m². Assentamento à mão, desenho geométrico contínuo com faixa de bordadura lisa. '+
+      '<strong>Gravilha ≈13 m²</strong> em Z5. Permeabilidade alta: juntas em areia.',
+  plant:'Contida por decisão de composição — se o chão é a peça, a plantação recua. '+
+        '<strong>Faixa NW de 0,80 m</strong> (Z1–Z3): <em>Pittosporum tobira</em> conduzido, <em>Euphorbia characias</em>, <em>Narcissus</em>. '+
+        '<strong>Z4, faixa de 0,80 m</strong> (1,3 h equinócio): <em>Aucuba japonica</em>, <em>Ruscus aculeatus</em>, <em>Asplenium scolopendrium</em>, <em>Bergenia</em>. '+
+        '<strong>Muro SW</strong>: <em>Trachelospermum jasminoides</em> em treliça. '+
+        '<strong>Muro SE</strong>: <em>Clematis cirrhosa</em> (Dez–Fev) em treliça afastada 8 cm — nada auto-aderente. '+
+        'Citrinheira em vaso de canto em Z3. <strong>Z5</strong>: <em>Ruscus</em> e <em>Aspidistra</em> em covacho.',
+  verdepis:'Nenhuma. O padrão não admite interrupção vegetal sem se desfazer — é uma opção assumida, não um esquecimento.',
+  p:'P2', pdesc:'20–30 cm nas faixas perimetrais; a base da calçada exige 10–15 cm compactados. Não há canteiro profundo.',
+  dren:'Infiltração pelas juntas em ≈42 m², mais pendente de 1% para NE e ralo linear junto à fachada ligado aos pluviais. '+
+       'Cuidado de execução: o padrão tem de ser assentado <em>com</em> a pendente, não contra ela — corrigir pendente depois obriga a levantar e reassentar o desenho.',
+  z5:'Gravilha sobre geotêxtil (≈70 kg/m²) e covachos. A calçada para em X≈10,4: não por peso — ≈190 kg/m² seria aceitável — '+
+     'mas porque a palmeira compete por água à superfície em todo o raio da copa e um leito de areia compactado agrava a concorrência.',
+  estar:'≈38 m² de calçada, contínuos.',
+  ganha:['Chão com valor próprio de desenho — é o único layout onde o pavimento é a peça principal.','Permeabilidade alta e peso moderado, iguais a #2.','Reparável e abrível para rega e iluminação cénica.','Área de estar generosa, ≈38 m².','Material tradicional lisboeta, executado a sério.'],
+  perde:['Nenhuma cobertura verde pisável e pouco canteiro: ≈11 m².','Mão-de-obra de calceteiro para padrão é ainda mais escassa e mais caro que cubo simples.','Perde-se a sombra do lodão sobre a metade NW, e o padrão devolve luz — Z1 fica mais quente nas tardes de Verão.','Padrão forte cansa num recinto pequeno, e não se desfaz sem refazer.'],
+  risco:'<strong>Conflito de composição.</strong> Num recinto de 5,78 m de largura o padrão a duas cores é visualmente muito forte e compete com tudo o resto. '+
+        'O projecto prevê arte UV nos muros, território de um dos artistas: chão de padrão forte mais muros pintados são duas superfícies a disputar a atenção — '+
+        'e de noite, com iluminação cénica rasante, o padrão ganha relevo e domina. É um facto de composição a decidir antes de assentar a primeira pedra, '+
+        'porque é irreversível sem refazer o pavimento.',
+  custo:'€€€', manut:'Baixa — reassentar pontualmente, rechear juntas.',
+  legend:[['var(--sv-calc)','Calçada de padrão (2 cores)'],['var(--sv-gravel)','Gravilha Z5'],['var(--sv-bed)','Faixa perimetral'],['var(--sv-shade)','Z4 / trepadeira']],
+  cmp:{estar:'≈38',verde:'≈11',pis:'0',jan:'não',perm:'Alta',p:'P2',custo:'€€€',manut:'Baixa',mo:'Calceteiro de padrão (escasso)',pavfam:'Calçada (padrão 2 cores)',sac:'Compete com a arte UV dos muros; zero verde pisável'},
+  draw:function(){
+    var o=[];
+    o.push(calcadaPadrao(0,0.85,10.4,4.1));
+    o.push(calcadaSimples(0,0,10.4,0.85));
+    o.push(calcadaSimples(0,4.95,10.4,0.83));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push(txt(5.2,2.5,'CALÇADA DE PADRÃO ≈42 m²','lbl'));
+    o.push(txt(5.2,2.8,'calcário branco + basalto preto 5×5 · leito de areia 5 cm'));
+    o.push(txt(5.2,3.08,'juntas em areia = permeável · ≈190 kg/m²'));
+    o.push(txt(5.2,3.36,'assentado COM a pendente — corrigir depois obriga a refazer o desenho','lbl-s'));
+    o.push(txt(5.2,3.7,'bordadura lisa de cubo simples','lbl-s'));
+    o.push(txt(11.7,0.85,'gravilha Z5'));
+    o.push(txt(11.7,1.15,'≈70 kg/m²'));
+    o.push(bed(0.3,0.05,9.8,0.72));
+    o.push(txt(5.2,0.48,'faixa NW 0,80 m · Pittosporum tobira · Euphorbia characias · Narcissus','sp'));
+    o.push(bed(2.5,4.98,7.8,0.80,true));
+    o.push(txt(6.4,5.32,'Z4 · Aucuba japonica · Ruscus aculeatus · Asplenium scolopendrium · Bergenia','sp'));
+    o.push(txt(6.4,5.62,'1,3 h no equinócio · 0 h em Dez','lbl-s'));
+    o.push(climber('SE',2.5,10.3,'Clematis cirrhosa · Dez–Fev · treliça afastada 8 cm'));
+    o.push(climber('SW',0.3,5.4,'Trachelospermum'));
+    o.push(drain(1.6,4.6,'1% → NE · ralo linear'));
+    o.push(table(3.4,2.1,''));
+    o.push(table(7.8,3.6,''));
+    o.push(bench(8.6,1.1,1.4,true));
+    o.push(pot(11.2,2.2,0.5,'Rusc.')); o.push(pot(12.4,3.4,0.5,'Aspid.')); o.push(pot(12.4,5.1,0.5,''));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(false)); o.push(citrus(9.6,4.2,true));
+    return o.join('');
+  }
+});
+</script>
+<script>
+"use strict";
+/* ---------------- #7 JARDIM VERTICAL ---------------- */
+L.push({
+  id:'L7', idx:'#7', lodao:true,
+  name:'Jardim vertical sobre saibro',
+  intent:'O verde sobe. Os ~78 m² de muro passam a ser a principal área de plantação, e o chão fica simples e barato.',
+  pavfam:'Saibro estabilizado + passadeira',
+  concept:'O chão tem 75 m² e é disputado; os muros têm cerca de 78 m² e estão vazios. Este layout inverte a prioridade: '+
+          'canteiros lineares estreitos junto aos quatro muros alimentam trepadeiras que cobrem o pano vertical, e o chão fica quase todo em saibro. '+
+          'A remoção do lodão liberta luz de tarde para as trepadeiras da face NW.',
+  pav:'<strong>Saibro estabilizado sobre geotêxtil ≈43 m²</strong> — permeável, leve (≈90 kg/m²), económico; solta pó e prende-se ao calçado, '+
+      'o que é o preço de pôr o dinheiro nos muros e não no chão. '+
+      '<strong>Passadeira de lajes soltas ≈5 m²</strong> nas linhas de maior passagem. '+
+      '<strong>Gravilha ≈11 m²</strong> em Z5. Permeabilidade alta em toda a superfície.',
+  plant:'<strong>Muros, ≈55 m² a cobrir em 4–6 anos.</strong> '+
+        'Muro SW e face de Z3: <em>Parthenocissus tricuspidata</em> — caduco, o que no Inverno devolve luz ao muro em vez de a roubar. '+
+        'Muro NW: <em>Trachelospermum jasminoides</em> e <em>Clematis cirrhosa</em> (Dez–Fev). '+
+        'Fachada NE, lateral da escada: <em>Jasminum officinale</em>. '+
+        '<strong>Muro SE, o degradado:</strong> exclusivamente trepadeira de gavinha em treliça metálica afastada 8 cm — '+
+        '<em>Clematis cirrhosa</em> e <em>Passiflora</em>. Nada auto-aderente neste muro. '+
+        'Canteiros lineares de 0,45–0,60 m na base dos muros; Z4 com <em>Asplenium scolopendrium</em> e <em>Cyrtomium</em> ao nível do solo.',
+  verdepis:'Nenhuma no chão — é saibro. O verde está todo no plano vertical, que é a proposta.',
+  p:'P3', pdesc:'40–60 cm nos canteiros lineares: trepadeira vigorosa exige volume de raiz, mesmo em faixa estreita. '+
+      'Área total escavada é pequena, mas tem de ser funda.',
+  dren:'Saibro estabilizado permeável, pendente de 1,5% para NE e caleira junto à fachada. '+
+       'Os canteiros lineares da base dos muros funcionam como bacias de infiltração — mas <strong>não junto ao muro SW</strong>: '+
+       'ali o canteiro leva impermeabilização de tardoz e dreno próprio, para não infiltrar água atrás do muro de suporte.',
+  z5:'Canteiro linear de 0,50 m contra o muro SW, em substrato leve a 40 cm — ≈160 kg/m² numa faixa de 2,9 m², contra ≈700 kg/m² se fosse terra vegetal. '+
+     '<strong>O tardoz impermeabilizado é obrigatório:</strong> água infiltrada atrás de um muro de suporte de 95 anos com fundação não confirmada '+
+     'é sobrecarga hidrostática, não só peso de terra.',
+  estar:'≈40 m² livres de saibro.',
+  ganha:['Resolve a contradição entre área de estar e área verde — não competem pelo mesmo m².','Cobre o muro SE degradado e o muro NW de meação, que são a pior vista do quintal.','Parthenocissus caduco devolve luz de Inverno ao muro; Clematis cirrhosa floresce Dez–Fev, na estação vazia.','Pavimento barato e permeável: o orçamento vai para onde tem efeito.','Superfície inteiramente permeável.'],
+  perde:['Quatro a seis anos até o efeito estar feito. É o layout mais lento.','Saibro solta pó e entra em casa.','Trepadeira em muro de meação cresce para o lado do vizinho e obriga a conversa e a poda de limite.','Nada de porte médio no chão — visualmente o centro fica vazio.','Nenhuma cobertura verde pisável.'],
+  risco:'<strong>O muro SW.</strong> Plantar contra um muro de suporte de 95 anos significa raiz, rega e infiltração no tardoz. Mesmo com impermeabilização e dreno, é a decisão que exige mais cuidado de execução dos onze layouts. Se houver dúvida, este canteiro passa a vaso e o muro SW fica sem trepadeira. Segundo risco: o muro SE já degradado, onde a treliça afastada é a única solução aceitável.',
+  custo:'€€', manut:'Média — poda de contenção duas a três vezes por ano, e vigilância dos limites de meação.',
+  legend:[['var(--sv-gravel)','Saibro estabilizado'],['var(--sv-shade)','Trepadeira no muro'],['var(--sv-bed)','Canteiro linear 0,45–0,60 m'],['var(--sv-stone)','Passadeira']],
+  cmp:{estar:'≈40',verde:'≈12 chão + ≈55 muro',pis:'0',jan:'parcial (trepadeiras persistentes)',perm:'Alta',p:'P3',custo:'€€',manut:'Média (poda 2–3x/ano)',mo:'Jardineiro + serralheiro (treliça)',pavfam:'Saibro + passadeira',sac:'4–6 anos até ao efeito; canteiro contra o muro de suporte'},
+  draw:function(){
+    var o=[];
+    o.push(saibro(0,0,10.4,5.78));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push(bed(0.25,0.05,12.5,0.5));
+    o.push(bed(2.5,5.28,7.8,0.5));
+    o.push(bed(12.45,0.05,0.5,5.7));
+    o.push(bed(0.05,1.3,0.45,3.2));
+    o.push(climber('NW',0.3,12.5,'Trachelospermum jasminoides + Clematis cirrhosa (Dez–Fev)'));
+    o.push(climber('SE',2.5,10.3,'TRELIÇA AFASTADA 8 cm · Clematis cirrhosa, Passiflora · nada auto-aderente'));
+    o.push(climber('SW',0.3,5.5,'Parthenocissus tricuspidata · caduco'));
+    o.push(climber('NE',1.4,4.4,'Jasminum officinale'));
+    o.push(txt(6.0,2.2,'≈55 m² DE MURO A COBRIR','lbl'));
+    o.push(txt(6.0,2.52,'o chão tem 75 m² e é disputado · os muros têm ~78 m² e estão vazios'));
+    o.push(txt(6.0,2.8,'4–6 anos até ao efeito feito','lbl-s'));
+    o.push(txt(6.0,3.15,'saibro estabilizado ≈43 m² · permeável · ≈90 kg/m² · solta pó','lbl-s'));
+    o.push('<rect x="'+x(12.45)+'" y="'+y(0.05)+'" width="'+(0.5*S)+'" height="'+(5.7*S)+'" fill="none" stroke="var(--sv-wall-ret)" stroke-width="2.2"/>');
+    o.push(vtxt(11.95,2.9,'tardoz impermeabilizado + dreno · substrato leve 40 cm ≈160 kg/m²','sp','var(--sv-wall-ret)'));
+    o.push(txt(6.4,5.6,'Z4 · Asplenium scolopendrium, Cyrtomium falcatum ao nível do solo','sp'));
+    o.push(steppers(1.2,3.9,13,0.7,0));
+    o.push(drain(1.5,0.95,'1,5% → NE'));
+    o.push(table(3.4,4.8,''));
+    o.push(bench(7.6,0.9,1.8,true));
+    o.push(pot(11.3,1.2,0.5,'Rusc.')); o.push(pot(11.3,4.9,0.5,'Aspid.'));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(false)); o.push(citrus(9.3,4.4,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #8 DECK, ÁGUA E SOMBRA ---------------- */
+L.push({
+  id:'L8', idx:'#8', lodao:true,
+  name:'Deck, água e sombra',
+  intent:'Espelho de água raso em Z2 como elemento central, com deck em volta. Luz reflectida no Inverno, frescura no Verão.',
+  pavfam:'Deck de madeira + lajeado + espelho de água',
+  concept:'Espelho de água de 6 m² e 0,20 m de profundidade em Z2, a zona mais fiável de sol, '+
+          'posicionado para captar as 5,2 h de tarde e devolvê-las aos muros e ao tecto da varanda. '+
+          'Num recinto com 1,1 h de sol em Dezembro, a água é sobretudo um refletor. Em volta, deck ao nível; o resto é lajeado e plantação de sombra.',
+  pav:'<strong>Deck de madeira ≈14 m²</strong> em moldura ao espelho, ao nível +0,20 m — <strong>ipê ou cumaru</strong>, nunca pinho: '+
+      'madeira em contacto com respingo permanente de água num recinto sem ventilação é o pior caso possível para pinho tratado. '+
+      '<strong>Lajeado de juntas abertas ≈22 m²</strong> em Z1 e Z3. <strong>Espelho de água 6 m².</strong> <strong>Gravilha ≈11 m²</strong> em Z5. '+
+      '<strong>Ventilação do vão do deck:</strong> rodapé em grelha nas quatro faces da moldura, e o deck é interrompido junto ao espelho para inspecção. '+
+      'Madeira clara escolhida também por temperatura: compósito escuro junto a água reflectora aquece demasiado ao sol de tarde.',
+  plant:'Junto à água, em Z2 (5,2 h): <em>Iris foetidissima</em>, <em>Acanthus mollis</em>, <em>Euphorbia characias</em> — '+
+        'nenhuma planta aquática; o espelho é de água limpa e recirculada, não é um charco plantado. '+
+        '<strong>Z1</strong>: <em>Pittosporum tobira</em>, <em>Laurus nobilis</em> em porte arbustivo. '+
+        '<strong>Z3</strong>: <em>Viburnum tinus</em>, citrinheira em vaso. '+
+        '<strong>Z4</strong> (0 h em Dez): <em>Asplenium scolopendrium</em>, <em>Cyrtomium falcatum</em>, <em>Fatsia japonica</em>, <em>Clivia miniata</em> — '+
+        'a humidade do espelho favorece-os. '+
+        '<strong>Z5</strong>: <em>Aspidistra</em> e <em>Ruscus</em> em covacho.',
+  verdepis:'Nenhuma. Cobertura vegetal junto a respingo permanente e em sombra de deck não se mantém — é uma exclusão técnica, não uma preferência.',
+  p:'P3', pdesc:'40–60 cm para a caixa do espelho, que é obra de impermeabilização. Canteiros de Z1 e Z3 em P2–P3.',
+  dren:'<strong>Dupla:</strong> o espelho tem descarga de superfície e esvaziamento de fundo, ligados ao ramal de pluviais. '+
+       'O pavimento tem pendente de 1,5% para NE, afastando-se do espelho; o vão do deck drena para a mesma caleira. '+
+       '<strong>A sondagem é indispensável</strong> — uma caixa de água sobre terreno de comportamento desconhecido, num quintal que já encharca, '+
+       'é o pior sítio para improvisar. Nada descarrega para SW.',
+  z5:'<strong>O espelho fica em Z2, a 6,8 m do muro de suporte, deliberadamente.</strong> '+
+     '6 m² a 0,20 m são ≈1200 kg de água, e nada disso pode aproximar-se de Z5: um depósito de 500 L já são 500 kg num ponto. '+
+     'Z5 leva gravilha e covachos, ≈70 kg/m². A regra de peso é o que determina a posição do espelho, não a estética.',
+  estar:'≈22 m² de lajeado, mais 14 m² de deck em moldura utilizável como assento.',
+  ganha:['Devolve luz. Num quintal com 1,1 h de sol em Dezembro, uma superfície reflectora de 6 m² em Z2 tem efeito real nos muros e no tecto da varanda.','Arrefecimento evaporativo nas tardes de Verão, quando Z2 tem 5,9 h de sol directo.','Som de água mascara o ruído urbano; a moldura de deck serve de assento.','A humidade local beneficia o grupo de fetos em Z4.','Deck e água juntos são, de todos os onze, a combinação mais cénica de noite com iluminação rasante.'],
+  perde:['Área de estar reduzida para 22 m² de lajeado.','Mosquitos, se a recirculação parar. Exige bomba a funcionar, electricidade permanente, e uma avaria possível.','Madeira junto a água em recinto sem ventilação é o pior caso de durabilidade — obriga a ipê ou cumaru, e a oleado anual.','Custo e complexidade de impermeabilização, num terreno de comportamento desconhecido.','Manutenção semanal: folhas, algas, nível de água.'],
+  risco:'Ar estagnado, água parada e sombra são as três condições da larva de mosquito. A recirculação é obrigatória, não opcional — e se a bomba falhar em Julho, o problema aparece em dias. Segundo risco: impermeabilização a assentar sobre o mesmo terreno que hoje retém água em lençol, antes de qualquer sondagem. Terceiro: o deck e a água a degradarem-se em conjunto, porque a humidade que serve os fetos também serve o fungo da madeira.',
+  custo:'€€€', manut:'Alta — semanal no espelho, oleado anual no deck.',
+  legend:[['var(--sv-water)','Espelho de água 0,20 m'],['var(--sv-deck)','Deck em moldura'],['var(--sv-stone)','Lajeado'],['var(--sv-shade)','Z4 · fetos']],
+  cmp:{estar:'≈36',verde:'≈19',pis:'0',jan:'não',perm:'Média',p:'P3',custo:'€€€',manut:'Alta (semanal)',mo:'Carpinteiro + impermeabilizador + electricista',pavfam:'Deck + lajeado + água',sac:'Manutenção semanal; mosquitos se a bomba falhar'},
+  draw:function(){
+    var o=[];
+    o.push(lajeado(0,0,3.0,5.78,0.6));
+    o.push(lajeado(6.9,0,3.5,5.78,0.6));
+    o.push(deck(3.0,1.0,3.9,3.0,'h'));
+    o.push(lajeado(3.0,0,3.9,1.0,0.6));
+    o.push(lajeado(3.0,4.0,3.9,0.9,0.6));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push('<rect x="'+x(3.5)+'" y="'+y(1.4)+'" width="'+(2.9*S)+'" height="'+(2.2*S)+'" fill="var(--sv-water)" stroke="var(--sv-water)" stroke-width="2"/>');
+    o.push(txt(4.95,2.05,'ESPELHO DE ÁGUA','lbl'));
+    o.push(txt(4.95,2.35,'6 m² · 0,20 m · ≈1200 kg'));
+    o.push(txt(4.95,2.63,'em Z2 · 5,2 h equinócio'));
+    o.push(txt(4.95,2.91,'recirculação OBRIGATÓRIA','lbl-s'));
+    o.push(txt(4.95,3.19,'sem plantas aquáticas','lbl-s'));
+    o.push(txt(4.95,0.65,'deck em moldura ≈14 m² · ipê/cumaru · rodapé em grelha nas 4 faces','sp'));
+    o.push('<g stroke="var(--sv-wall-ret)" stroke-width="1.3">'+
+      '<line x1="'+x(6.4)+'" y1="'+y(4.35)+'" x2="'+x(13)+'" y2="'+y(4.35)+'" stroke-dasharray="5 3"/>'+
+      '<line x1="'+x(6.4)+'" y1="'+y(4.25)+'" x2="'+x(6.4)+'" y2="'+y(4.45)+'"/>'+
+      '<line x1="'+x(13)+'" y1="'+y(4.25)+'" x2="'+x(13)+'" y2="'+y(4.45)+'"/></g>');
+    o.push(txt(9.7,4.25,'6,8 m de afastamento ao muro de suporte — deliberado','lbl-s','middle','var(--sv-wall-ret)'));
+    o.push(bed(0.25,0.3,1.0,3.5));
+    o.push(vtxt(0.75,2.05,'Z1 · Pittosporum tobira, Laurus nobilis','sp'));
+    o.push(bed(7.3,0.8,2.3,2.2));
+    o.push(txt(8.45,1.3,'Z3','lbl'));
+    o.push(txt(8.45,1.6,'Viburnum tinus','sp'));
+    o.push(txt(8.45,1.9,'Iris foetidissima','sp'));
+    o.push(txt(8.45,2.2,'Acanthus mollis','sp'));
+    o.push(bed(2.5,4.95,7.8,0.83,true));
+    o.push(txt(6.4,5.3,'Z4 · Asplenium scolopendrium · Cyrtomium falcatum · Fatsia japonica · Clivia miniata','sp'));
+    o.push(txt(6.4,5.6,'a humidade do espelho favorece-os','lbl-s'));
+    o.push(climber('SE',2.5,10.3,'Trachelospermum · treliça'));
+    o.push(drain(1.9,4.6,'1,5% → NE · afasta-se do espelho'));
+    o.push(table(1.8,1.5,''));
+    o.push(bench(7.6,3.6,1.6,true));
+    o.push(pot(11.3,1.0,0.5,'Rusc.')); o.push(pot(12.4,2.3,0.5,'Aspid.')); o.push(pot(12.4,4.9,0.5,''));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(false)); o.push(citrus(9.9,4.5,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #9 TAPETE VERDE ---------------- */
+L.push({
+  id:'L9', idx:'#9', lodao:true,
+  name:'Tapete verde — Zoysia e Dichondra',
+  intent:'A resposta directa ao pedido de «relva»: o mosaico que é tecnicamente possível, com a dormência declarada.',
+  pavfam:'Cobertura vegetal + lajeado plantável + passadeira',
+  concept:'Não há relva de gramíneas viável aqui. Há um mosaico: <em>Zoysia tenuifolia</em> na zona de mais luz, '+
+          '<em>Dichondra repens</em> nas margens sombrias, <em>Liriope</em> e fetos em Z4, inerte em Z5. '+
+          'Em Julho é um tapete verde contínuo de 26 m². Em Janeiro, 15 m² ficam cor de palha e 11 m² continuam verdes. '+
+          'O lodão removido dá à <em>Zoysia</em> a luz de tarde que ela precisa entre Abril e Outubro.',
+  pav:'<strong><em>Zoysia tenuifolia</em> ≈15 m²</strong> em Z1–Z2, a zona de mais luz (5,0–5,2 h no equinócio). '+
+      '<strong><em>Dichondra repens</em> ≈11 m²</strong> nas margens de Z2–Z3 e na bolsa junto à escada. '+
+      '<strong>Lajeado de juntas abertas plantáveis ≈13 m²</strong> como zona de mobiliário — o tapete não aceita mesa fixa. '+
+      '<strong>Passadeira de lajes soltas ≈3 m²</strong> nas linhas de passagem, para o tapete não se gastar num carreiro. '+
+      '<strong>Gravilha ≈11 m²</strong> em Z5. Permeabilidade alta.',
+  plant:'<strong>Cobertura:</strong> ver acima. '+
+        '<strong>Z1, canteiro:</strong> <em>Pittosporum tobira</em>, <em>Euphorbia characias</em>, <em>Narcissus</em> (Dez–Fev). '+
+        '<strong>Z3:</strong> <em>Viburnum tinus</em> (Nov–Mar), <em>Acanthus mollis</em>, citrinheira em vaso. '+
+        '<strong>Z4</strong> (0 h em Dez): <em>Liriope muscari</em> e <em>Ophiopogon</em> como cobertura visual — <strong>pisabilidade nula</strong>, nunca como caminho — '+
+        'com <em>Asplenium scolopendrium</em>, <em>Helleborus</em> e <em>Bergenia</em>. '+
+        '<strong>Z5:</strong> <em>Aspidistra</em> e <em>Clivia</em> em covacho. '+
+        'Muro SE: <em>Clematis cirrhosa</em> em treliça afastada.',
+  verdepis:'<strong>≈26 m², o máximo dos onze layouts.</strong> '+
+           '<em>Zoysia tenuifolia</em> ≈15 m²: excelente pisabilidade, tapete almofadado, verde de Abril a Outubro e <strong>cor de palha de Novembro a Março</strong>. '+
+           'Tem o limiar de DLI mais baixo que existe — 6,7 mol/m²/dia no Inverno contra 10,0 no Verão — e a dormência invernal é aqui uma vantagem: '+
+           'nos meses de 1,1 h de sol a planta não pede luz nenhuma, e o risco fúngico cai. '+
+           '<em>Dichondra repens</em> ≈11 m²: boa pisabilidade, macia, <strong>verde os doze meses</strong>, tolera a sombra real das margens. '+
+           'O desenho põe a <em>Dichondra</em> no perímetro precisamente para que Janeiro não seja inteiramente cor de palha.',
+  p:'P3', pdesc:'40–60 cm sob o tapete. <em>Zoysia</em> precisa de 25–30 cm de solo bem drenado e de base que não encharque; '+
+      'os canteiros de <em>Viburnum</em> pedem 40–60 cm. É exigente na sondagem.',
+  dren:'<strong>Condição de viabilidade, não detalhe.</strong> Camada drenante de 20 cm sob todo o tapete, tela geotêxtil de separação, '+
+       'pendente de 1,5% para NE e caleira junto à fachada ligada aos pluviais. '+
+       '<em>Zoysia</em> em dormência sobre solo saturado apodrece nas coroas e não reabre em Abril — e é precisamente em Dez-Fev que chove '+
+       'e que a planta está sem defesa. Sem drenagem resolvida antes, este layout falha no primeiro Inverno.',
+  z5:'Gravilha e covachos, ≈70 kg/m². <strong>Nenhuma cobertura vegetal em Z5:</strong> 0 h de sol em Dezembro e 2,5–3,0 h em Junho, '+
+     'sob a copa da palmeira que compete por água à superfície. Zero candidatos pisáveis — é material inerte, por regra do sítio.',
+  estar:'≈13 m² de lajeado para mobiliário, mais ≈26 m² de tapete pisável.',
+  ganha:['Responde directamente ao que foi pedido, com a única combinação tecnicamente possível.','26 m² de superfície macia e pisável — o máximo dos onze.','A dormência da Zoysia é uma vantagem real: elimina a exigência de luz nos meses de 1,1 h.','Dichondra no perímetro garante verde em Janeiro, em vez de palha total.','Permeabilidade alta e superfície fresca de tarde no Verão.'],
+  perde:['Quatro a cinco meses de cor de palha em 15 m². É o que a dormência significa, e não há como a evitar numa gramínea.','Rega regular no Verão — a Zoysia é resistente mas não é seca, e a Dichondra menos ainda.','Não aceita mobiliário pesado fixo nem uso intenso no mesmo ponto: daí a passadeira e os 13 m² de lajeado.','Dependente da sondagem e, sobretudo, da drenagem resolvida antes.','Nenhuma cobertura possível em Z4 nem em Z5 — a mancha verde para em X≈10,4.'],
+  risco:'A dormência é visual e aceitável; o encharcamento é fatal. <em>Zoysia</em> dormente sobre solo saturado de Dezembro a Fevereiro apodrece e não reabre. '+
+        'Este é o layout onde a ordem dos trabalhos importa mais: sondagem, drenagem, e só depois plantar. Plantar primeiro é perder o investimento.',
+  custo:'€€', manut:'Média — corte ocasional da Zoysia, rega no Verão, remoção de folha caída sobre o tapete.',
+  legend:[['var(--sv-evergreen)','Dichondra (verde todo o ano)'],['var(--sv-dormant)','Zoysia (palha Nov–Mar)'],['var(--sv-stone)','Lajeado + passadeira'],['var(--sv-shade)','Z4 · Liriope, pisabilidade nula']],
+  greens:[['Zoysia tenuifolia',true],['Dichondra repens',false]],
+  cmp:{estar:'≈39',verde:'≈34',pis:'≈26',jan:'parcial (11 de 26 m²)',perm:'Alta',p:'P3',custo:'€€',manut:'Média',mo:'Jardineiro',pavfam:'Vegetal + lajeado plantável',sac:'15 m² cor de palha 4–5 meses; rega de Verão'},
+  draw:function(){
+    var o=[];
+    o.push(green(0,0,3.6,4.8,true));
+    o.push(green(3.6,0.9,1.6,3.9,true));
+    o.push(green(5.2,0.9,2.0,3.9,false));
+    o.push(green(0,4.8,2.4,0.98,false));
+    o.push(lajeado(7.2,0.9,3.2,3.9,0.6));
+    o.push(lajeado(3.6,0,3.6,0.9,0.6));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push(txt(1.8,1.6,'ZOYSIA TENUIFOLIA','lbl'));
+    o.push(txt(1.8,1.92,'≈15 m² · Z1–Z2 · 5,0–5,2 h equinócio'));
+    o.push(txt(1.8,2.2,'verde Abr–Out'));
+    o.push(txt(1.8,2.48,'COR DE PALHA NOV–MAR','lbl-s'));
+    o.push(txt(1.8,2.8,'DLI 6,7 Inverno / 10,0 Verão','lbl-s'));
+    o.push(txt(1.8,3.1,'a dormência é aqui uma vantagem','lbl-s'));
+    o.push(vtxt(6.2,2.85,'DICHONDRA REPENS ≈11 m² · VERDE OS 12 MESES','sp'));
+    o.push(txt(1.2,5.3,'Dichondra','sp'));
+    o.push(txt(1.2,5.6,'margem sombria','lbl-s'));
+    o.push(txt(8.8,1.3,'LAJEADO ≈13 m²','lbl'));
+    o.push(txt(8.8,1.6,'juntas plantáveis'));
+    o.push(txt(8.8,1.88,'zona de mobiliário —','lbl-s'));
+    o.push(txt(8.8,2.14,'o tapete não aceita mesa fixa','lbl-s'));
+    o.push(steppers(3.9,2.2,5,0.68,0));
+    o.push(bed(0.25,0.05,10.1,0.8));
+    o.push(txt(5.2,0.5,'Z1–Z3 · Pittosporum tobira · Euphorbia characias · Narcissus (Dez–Fev) · Viburnum tinus (Nov–Mar)','sp'));
+    o.push(bed(2.4,4.8,7.9,0.98,true));
+    o.push(txt(6.4,5.15,'Z4 · Liriope muscari + Ophiopogon — PISABILIDADE NULA, cobertura visual','sp'));
+    o.push(txt(6.4,5.45,'com Asplenium scolopendrium, Helleborus, Bergenia · 0 h em Dez','sp'));
+    o.push(txt(11.7,0.9,'Z5 · gravilha'));
+    o.push(txt(11.7,1.2,'zero candidatos','lbl-s'));
+    o.push(txt(11.7,1.48,'pisáveis','lbl-s'));
+    o.push(climber('SE',2.4,10.3,'Clematis cirrhosa · treliça afastada'));
+    o.push(drain(1.6,4.35,'1,5% → NE · camada drenante 20 cm sob o tapete'));
+    o.push(table(8.8,3.6,''));
+    o.push(pot(11.3,2.4,0.5,'Aspid.')); o.push(pot(12.4,3.6,0.5,'Clivia')); o.push(pot(12.4,5.1,0.5,''));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(false)); o.push(citrus(9.9,0.6,true));
+    return o.join('');
+  }
+});
+
+/* ---------------- #10 PAVÊ DRENANTE ---------------- */
+L.push({
+  id:'L10', idx:'#10', lodao:true,
+  name:'Pavê drenante, baixíssima manutenção',
+  intent:'Desenhado para exigir o mínimo. Sem rega obrigatória, sem poda de sebe, sem madeira, sem bomba.',
+  pavfam:'Pavê / blocos drenantes + gravilha',
+  concept:'Parte de um pressuposto duro: ninguém vai estar aqui todas as semanas. '+
+          'Tudo o que falha por falta de atenção é eliminado — sebe conduzida, bulbosas delicadas, espelho de água, madeira, cobertura vegetal que seca. '+
+          'Fica pavê drenante, quatro maciços de folha rija que se defendem sozinhos, e nada mais.',
+  pav:'<strong>Pavê / blocos drenantes ≈40 m²</strong> em Z1–Z3 — permeabilidade máxima da família de pavimentos, assentamento mecânico em leito de brita de 10–15 cm, '+
+      'estética utilitária assumida. <strong>Gravilha grossa sobre geotêxtil ≈15 m²</strong> em Z4 e Z5. '+
+      'Geotêxtil sob toda a gravilha, contra infestantes. Nenhuma superfície que exija tratamento, oleado ou reassentamento manual.',
+  plant:'Quatro maciços apenas, todos de folha rija e todos capazes de aguentar seca de Verão depois de instalados. '+
+        '<strong>Z1</strong> (5,0 h): <em>Pittosporum tobira</em> em maciço, sem condução. '+
+        '<strong>Z2</strong> (5,2 h): <em>Myrtus communis</em> e <em>Euphorbia characias</em>. '+
+        '<strong>Z3</strong> (4,0 h equinócio): <em>Viburnum tinus</em>, que dá também a floração de Nov–Mar sem pedir nada. '+
+        '<strong>Z4</strong> (1,3 h): <em>Ruscus aculeatus</em>, <em>Danae racemosa</em>, <em>Aspidistra elatior</em> — as três plantas mais indestrutíveis da paleta. '+
+        '<strong>Z5</strong>: <em>Aspidistra</em> em covacho sob a palmeira. '+
+        '<em>Hedera helix</em> nativa no muro SE <strong>apenas se o muro for previamente reparado</strong>; caso contrário, muro SE sem trepadeira. '+
+        'Citrinheira em vaso grande com reserva de água.',
+  verdepis:'Nenhuma, por decisão. Qualquer cobertura vegetal pisável — <em>Zoysia</em> ou <em>Dichondra</em> — exige rega no Verão, '+
+           'e este layout foi desenhado para não depender de rega. É o trade-off central.',
+  p:'P2', pdesc:'20–30 cm nos quatro maciços. O pavê assenta em leito de brita de 10–15 cm. '+
+      'Tolera bem uma sondagem mediana — é, com #1 e #4, o menos exigente.',
+  dren:'Pavê drenante infiltra no local em ≈40 m²; gravilha sobre geotêxtil nos outros 15 m². '+
+       'Superfície totalmente permeável, com pendente de 1% para NE e ralo de segurança junto à fachada. '+
+       'É a solução que menos depende de haver um bom ponto de descarga nos pluviais — e a que menos precisa de manutenção depois.',
+  z5:'Gravilha grossa e <em>Aspidistra</em> em covacho, ≈70 kg/m². Sem vaso grande, sem depósito, sem canteiro elevado. '+
+     'A palmeira compete por água em todo o raio da copa, e a <em>Aspidistra</em> é das poucas que tolera essa concorrência sem rega de apoio.',
+  estar:'≈36 m² de pavê, contínuos e sem obstáculos.',
+  ganha:['A manutenção mais baixa dos onze: uma poda de limpeza por ano, e nada mais obrigatório.','Nenhum sistema que possa falhar — sem bomba, sem madeira, sem sebe conduzida, sem rega indispensável.','Permeabilidade máxima, a menos dependente de encontrar ponto de descarga.','Custo médio e execução simples, sem mão-de-obra especializada rara.'],
+  perde:['Pobreza botânica: quatro espécies dominantes em 75 m². É eficaz, não é interessante.','Pavê e gravilha em 55 m² dão uma leitura utilitária, quase de estacionamento.','Nenhuma cobertura verde pisável, nenhuma superfície macia.','Nenhuma floração de Verão, e a de Inverno limita-se ao Viburnum.'],
+  risco:'Não é risco técnico, é risco de desinteresse. Um jardim que não pede nada também não dá muito, e a probabilidade de ser abandonado por indiferença é maior do que a de falhar tecnicamente. Se a motivação existir, um layout de manutenção média entrega muito mais por euro.',
+  custo:'€€', manut:'Muito baixa — uma poda de limpeza por ano.',
+  legend:[['var(--sv-conc)','Pavê drenante'],['var(--sv-gravel)','Gravilha grossa + geotêxtil'],['var(--sv-bed)','Maciço de folha rija'],['var(--sv-shade)','Z4 · Ruscus, Danae, Aspidistra']],
+  cmp:{estar:'≈36',verde:'≈18',pis:'0',jan:'parcial (folhagem persistente)',perm:'Alta (máxima)',p:'P2',custo:'€€',manut:'Muito baixa (1 poda/ano)',mo:'Nenhuma especializada',pavfam:'Pavê drenante + gravilha',sac:'Pobreza botânica; leitura utilitária de 55 m² de inerte'},
+  draw:function(){
+    var o=[];
+    o.push(pave(0,0,10.4,4.9));
+    o.push(gravilha(2.5,4.9,7.9,0.88));
+    o.push(gravilha(10.4,0,2.6,5.78));
+    o.push(txt(4.2,3.2,'≈40 m² PAVÊ DRENANTE','lbl'));
+    o.push(txt(4.2,3.5,'permeabilidade máxima · leito de brita 10–15 cm'));
+    o.push(txt(4.2,3.78,'assentamento mecânico · estética utilitária assumida','lbl-s'));
+    o.push(txt(4.2,4.08,'1 poda de limpeza por ano · nada mais obrigatório','lbl-s'));
+    o.push(bed(0.3,0.3,1.1,3.2));
+    o.push(vtxt(0.85,1.9,'Z1 · Pittosporum tobira em maciço','sp'));
+    o.push(bed(3.9,0.3,2.0,1.4));
+    o.push(txt(4.9,0.8,'Z2 · Myrtus communis','sp'));
+    o.push(txt(4.9,1.12,'Euphorbia characias','sp'));
+    o.push(bed(7.6,0.3,2.5,2.1));
+    o.push(txt(8.85,0.8,'Z3 · Viburnum tinus','sp'));
+    o.push(txt(8.85,1.12,'floração Nov–Mar','lbl-s'));
+    o.push(txt(8.85,1.4,'sem pedir nada','lbl-s'));
+    o.push(txt(6.4,5.2,'Z4 · Ruscus aculeatus · Danae racemosa · Aspidistra elatior','sp'));
+    o.push(txt(6.4,5.52,'as três plantas mais indestrutíveis da paleta · 0 h em Dez','lbl-s'));
+    o.push(txt(11.7,0.85,'gravilha grossa'));
+    o.push(txt(11.7,1.15,'+ geotêxtil · ≈70 kg/m²'));
+    o.push(drain(1.6,4.5,'1% → NE · ralo de segurança'));
+    o.push(txt(6.5,5.74,'muro SE: Hedera helix nativa SÓ se reparado antes','lbl-s','middle','var(--sv-wall-ret)'));
+    o.push(table(2.6,2.2,''));
+    o.push(bench(6.4,3.4,1.8,true));
+    o.push(pot(11.3,2.2,0.5,'Aspid.')); o.push(pot(12.4,3.5,0.5,'')); o.push(pot(12.3,5.1,0.5,''));
+    o.push(stairs()); o.push(zones());
+    o.push(palm()); o.push(decid(false)); o.push(citrus(9.9,4.3,true));
+    return o.join('');
+  }
+});
+</script>
+<script>
+"use strict";
+function ul(items){ return '<ul class="tight" style="margin-bottom:0">'+items.map(function(i){return '<li>'+i+'</li>';}).join('')+'</ul>'; }
+
+function seasonBlock(d){
+  if(!d.greens || !d.greens.length) return '';
+  var rows = d.greens.map(function(g){
+    var jul='var(--sv-evergreen)';
+    var jan = g[1] ? 'var(--sv-dormant)' : 'var(--sv-evergreen)';
+    var note = g[1] ? 'cor de palha em Janeiro' : 'verde em Janeiro';
+    return '<div class="season"><span class="pair"><i style="background:'+jul+'" data-m="JUL"></i><i style="background:'+jan+'" data-m="JAN"></i></span>'+
+      '<span><strong><em>'+g[0]+'</em></strong> — '+note+'</span></div>';
+  }).join('');
+  return '<div class="seasons">'+rows+'</div>';
+}
+
+function renderCard(d){
+  var legend=(d.legend||[]).map(function(l){
+    return '<li><span class="sw" style="background:'+l[0]+'"></span>'+l[1]+'</li>';
+  }).join('');
+
+  var badges=
+    '<span class="badge pav">'+d.pavfam+'</span>'+
+    '<span class="badge">Estar <b>'+d.cmp.estar+' m²</b></span>'+
+    '<span class="badge">Verde pisável <b>'+d.cmp.pis+' m²</b></span>'+
+    '<span class="badge">Verde em Jan. <b>'+d.cmp.jan+'</b></span>'+
+    '<span class="badge">Permeab. <b>'+d.cmp.perm+'</b></span>'+
+    '<span class="badge p">'+d.p+'</span>'+
+    '<span class="badge">Custo <b>'+d.custo+'</b></span>'+
+    (d.lodao? '<span class="badge">lodão <b>removido</b></span>' : '<span class="badge">3 árvores <b>mantidas</b></span>');
+
+  return '<article class="card'+(d.current?' current':'')+'" id="'+d.id+'">'+
+    '<div class="card-head">'+
+      '<div class="idx">Layout '+d.idx+'</div>'+
+      '<h3>'+d.name+'</h3>'+
+      '<p class="intent">'+d.intent+'</p>'+
+      '<div class="badges">'+badges+'</div>'+
+    '</div>'+
+    '<div class="card-body">'+
+      '<div class="drawing">'+
+        '<div class="svgbox">'+svg(d.draw())+'</div>'+
+        '<ul class="legend">'+legend+
+          '<li><span class="sw" style="background:var(--sv-wall-face)"></span>Fachada NE 15,50 m</li>'+
+          '<li><span class="sw" style="background:var(--sv-wall-ret)"></span>Muro de suporte SW</li>'+
+          '<li><span class="sw" style="background:var(--sv-wall)"></span>Meações NW / SE</li>'+
+        '</ul>'+
+        seasonBlock(d)+
+      '</div>'+
+      '<div class="specs">'+
+        '<dl>'+
+          '<dt>Conceito</dt><dd>'+d.concept+'</dd>'+
+          '<dt>Pavimento · '+d.pavfam+'</dt><dd>'+d.pav+'</dd>'+
+          '<dt>Plantação</dt><dd>'+d.plant+'</dd>'+
+          '<dt>Cobertura verde pisável</dt><dd>'+d.verdepis+'</dd>'+
+          '<dt>Cenário mínimo de profundidade · '+d.p+'</dt><dd>'+d.pdesc+'</dd>'+
+          '<dt>Drenagem</dt><dd>'+d.dren+'</dd>'+
+          '<dt>Carga em Z5 · muro de suporte</dt><dd>'+d.z5+'</dd>'+
+          '<dt>Área útil de estar</dt><dd>'+d.estar+'</dd>'+
+          '<dt>Mão-de-obra especializada</dt><dd>'+d.cmp.mo+'</dd>'+
+        '</dl>'+
+        '<div class="split">'+
+          '<div class="gain"><h4>O que ganha</h4>'+ul(d.ganha)+'</div>'+
+          '<div class="loss"><h4>O que sacrifica</h4>'+ul(d.perde)+'</div>'+
+        '</div>'+
+        '<div class="risk"><h4>Risco principal</h4><p style="margin:0">'+d.risco+'</p></div>'+
+        (d.lodao? '<div class="note-lodao">'+NOTA_LODAO+'</div>' : '')+
+        '<a class="totop" href="#topo">↑ topo</a>'+
+      '</div>'+
+    '</div>'+
+  '</article>';
+}
+
+document.getElementById('cards').innerHTML = L.map(renderCard).join('');
+
+var tb=document.querySelector('#cmp tbody');
+tb.innerHTML = L.map(function(d){
+  return '<tr>'+
+    '<td><strong>'+d.idx+'</strong></td>'+
+    '<td>'+d.name+'</td>'+
+    '<td>'+d.cmp.pavfam+'</td>'+
+    '<td class="num">'+d.cmp.estar+'</td>'+
+    '<td class="num">'+d.cmp.verde+'</td>'+
+    '<td class="num">'+d.cmp.pis+'</td>'+
+    '<td>'+d.cmp.jan+'</td>'+
+    '<td>'+d.cmp.perm+'</td>'+
+    '<td>'+d.cmp.p+'</td>'+
+    '<td>'+d.cmp.custo+'</td>'+
+    '<td>'+d.cmp.manut+'</td>'+
+    '<td>'+d.cmp.mo+'</td>'+
+    '<td>'+d.cmp.sac+'</td>'+
+  '</tr>';
+}).join('');
+</script>
+</body>
+</html>

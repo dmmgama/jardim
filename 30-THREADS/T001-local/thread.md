@@ -4,7 +4,8 @@ project: Jardim
 thread: T001
 assunto: Local — descrição do espaço existente
 estado: ONGOING
-sessoes: 0
+etapa_1: ENTREGUE 2026-09-15
+sessoes: 1
 ---
 
 # T001 — Local
@@ -92,22 +93,110 @@ Nenhum destes pontos pode ficar por abordar — ainda que a resposta seja "desco
 
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
-**Última sessão:** —
-**Estado:** Por arrancar, **etapa 1**. Pasta criada, mandato escrito, matéria-prima em `research/`. `10-LOCAL/` vazia.
+**Última sessão:** S1 — 2026-09-15
+**Estado:** **Etapa 1 ENTREGUE.** Aguarda absorção pelo Arquitecto.
 
-**Prioridade máxima do projecto:** T002 (Jardim V2) está bloqueada até esta etapa entregar.
+O cenário completo do jardim está produzido em `Docs-David-Local/DOSSIER-LOCAL.md` (806 linhas, 14
+secções, 6 diagramas ASCII, índice de 49 imagens, semáforo por secção) e na versão autónoma
+`DOSSIER-LOCAL.html`. Nota de entrega em `entregue/README.md`.
+
+**T002 deixou de estar bloqueada por esta thread.**
+
+### Cobertura face ao mínimo exigido
+
+| Ponto do mandato | Estado |
+|---|---|
+| Geometria e cotas · limites e nomenclatura | 🟢 |
+| Superfície actual e seu estado | 🟢 / 🟡 |
+| Muros: os quatro, incluindo o de suporte | 🟢 geometria · 🔴 tipo construtivo e fundação |
+| Fachada norte e escadas | 🟢 |
+| Canteiros existentes | 🟢 |
+| Árvores: espécie, porte, posição, estado | 🟡 — citrinheira por confirmar, copas não medidas |
+| Exposição solar por estação · sombras | 🟢 — NREL SPA, validado com 3 fotos datadas |
+| Água, electricidade, drenagem, esgoto | 🟡 drenagem · 🔴 destino da descarga · 🔴 electricidade |
+| Envolvente: o que confina, quem vê | 🟢 confinação · 🔴 exposição visual |
+| Condicionantes: condomínio, acessos, ruído | 🔴 — por instruir |
+
+**Semáforo global:** 🟢 38 · 🟡 26 · 🔴 34.
+
+### O que a sessão estabeleceu
+
+**Três conflitos fechados.** Altura dos muros a **2,50 m** `[observado]` — era o item 1 e a maior fonte
+de erro do modelo solar. Corte de arquitectura anotado pelo proprietário (era de *proposta de
+ampliação*, usado como levantamento). Drenagem construída **existe e funciona**, estabelecido por
+observação de caudal.
+
+**Três erros de facto corrigidos.** «Água estagnada sem escoamento aparente» — retirado, era conclusão
+tirada de uma fotografia. Cinco fotografias mal descritas no índice, incluindo `Foto2b`, única fonte
+sobre electricidade do acervo. E a hora de entrada do sol em 21 Mar (11:28), que não correspondia a
+nenhum plano de fachada plausível — corrigida para 12:40.
+
+**Oito contradições, sete encerradas.** Cinco resolvidas, duas anuladas por não serem contradições.
+A única aberta (C5) não afecta o quintal. Destaque: **C3 — azimute do eixo longo — resolvida a favor
+de 65°/245° e aplicada**, com as horas de entrada do sol recalculadas por posição solar.
+
+**Etiqueta `[observado]`** criada: sobre comportamento prevalece sobre foto; sobre dimensão cede ao
+desenho.
+
+**Auditoria de coerência e acerto da pasta.** `research/AUDITORIA-COERENCIA-T001.md` confrontou os 73
+ficheiros contra as regras T1–T17: 15 incoerências, 3 altas. Corrigidas:
+
+| | |
+|---|---|
+| **A2** — violação de T10 | `entregue/` guardava duas cópias mortas com «água estagnada», o erro retractado nesta sessão. Estavam bit-a-bit idênticas a ficheiros já em `arqueologia/`. **Eliminadas.** |
+| **A3** — violação de T9+T10 | `Jardim_Analise_Decisao_Betonilha.md` estava em `entregue/` com fase e âmbito errados. **Movido para `research/`.** |
+| **A1** — lacuna, não violação | Produto fora de `entregue/` foi decisão informada do David. **Corrigiu-se o protocolo**, não a arrumação. |
+
+**Protocolo alterado** (`CLAUDE.md` da thread): **T9-bis** (fora do mandato fica marcado em
+`research/`) · **T10-bis** (produto pode viver com as suas dependências binárias, desde que a nota o
+declare) · **T12** reescrita (`NOTA-<entrega>.md`; `README.md` proibido) · **T18/T19/T19-bis**
+(estrutura passa a 6 elementos; varredura total ao arquivar por erro de facto). Registo em §7 do
+`CLAUDE.md`.
+
+**A entrega é `entregue/NOTA-etapa-1.md`**, que abre com bloco PRODUTO a apontar para
+`Docs-David-Local/`. A porta é o `thread.md`; o corpo é a pasta de fontes.
+
+**Um canónico, um só: `DOSSIER-LOCAL.md`.** O `Planta_e_Espaco_Fisico.md` duplicava-o — mesmos
+factos, sincronizados à mão — e saiu de circulação. Verificado antes: valores-chave todos
+coincidentes, raciocínio todo presente no dossier, e os valores exclusivos eram arredondamentos e um
+número obsoleto.
 
 ---
 
 ## HANDOFF  *(para a próxima sessão desta thread)*
 
-**Próximo passo:** Executar a etapa 1. Varrer as fontes, separar facto de decisão, produzir o cenário completo do jardim e a lista de buracos.
+**Próximo passo:** etapa 2 — aprofundamento por tema. Não arrancar sem saber o que o Arquitecto
+decidiu quanto à absorção do dossier.
 
-**À espera de:** nada. O David é fonte para o que não está documentado — perguntar durante a sessão.
+**À espera de:** resposta do Arquitecto (ver `mensagens.md`). Três pontos: absorver o dossier em
+`10-LOCAL/`, avaliar a hipótese de rebaixamento do muro SW, levantar o bloqueio da T002.
+
+**Prioridade da etapa 2** — o que desbloqueia mais, por ordem:
+
+1. **Destino do dreno** (X ≈ 11,7 · Y ≈ 3,5). Corante traçador: < 10 €, uma tarde. Responde à mesma
+   pergunta que escavar.
+2. **Teste de percolação.** Eliminatório para qualquer vegetação de solo. 0 €, meio-dia + 1 noite.
+3. **Processo de obra no Arquivo Municipal.** Gratuito a consultar, até 10 dias para certidão.
 
 **Cuidado com:**
 
-- **Não copiar a planta V1 para `10-LOCAL/`.** Mistura medição com decisão. "Canteiro central: ELIMINAR" não é um facto sobre o espaço.
-- **Não preencher lacunas com o plausível.** Um "desconhecido" escrito vale mais do que um número inventado — foi assim que nasceram as duas cotas em conflito.
-- **Não deslizar para projecto.** Ideia de transformação vai para `INBOX.md` da raiz, não para aqui.
-- **Não confundir profundidade com cobertura.** A etapa 1 precisa de cobrir o jardim todo; aprofundar é a etapa 2.
+- **Não reabrir conflitos fechados.** Muros a 2,50 m e drenagem funcional estão estabelecidos por
+  observação directa do proprietário. Se surgir fonte que os contradiga, é a fonte que cede.
+- **Só uma contradição continua aberta** (C5, cotas da planta da fracção) e **não afecta o quintal**.
+  Sete das oito foram resolvidas ou anuladas em 2026-09-15 — ver secção 13 do dossier. Não as
+  reabrir sem fonte nova.
+- **Azimute do eixo longo é 65°/245°**, não 60°/240°. Plano da fachada a **155°**. Aplicado em ambos
+  os documentos. `Sol-Planta.jpg` ainda mostra os valores antigos no painel — foi despromovido a
+  qualidade **B** e não deve ser usado para orientação.
+- **Não deslizar para projecto.** O catálogo vegetal e a viabilidade de relva, em `research/`,
+  atravessaram a fronteira do mandato em sessão anterior. Ficam onde estão; não sobem ao Local.
+- **`DOSSIER-LOCAL.html` regenera-se do `.md`**, nunca se edita à mão. O HTML antigo foi arquivado
+  precisamente por ter divergido.
+- **A palmeira inspecciona-se pela coroa**, não pelo tronco, para sinais de *Rhynchophorus*.
+- **T19-bis é nova e existe por um erro concreto desta sessão.** Ao arquivar algo por erro de facto,
+  varrer a pasta inteira — incluindo `entregue/`. Arquivar uma cópia e deixar outra viva é pior do
+  que não ter arquivado nenhuma.
+- **Um canónico, um só.** `DOSSIER-LOCAL.md`. Não recriar um segundo documento com os mesmos factos —
+  foi assim que nasceram as cotas divergentes do V1 (G1).
+- **`Docs-David-Local/` está untracked no git** (~48 MB, com o produto final lá dentro). Fora do
+  alcance da thread; assinalado ao Arquitecto.
