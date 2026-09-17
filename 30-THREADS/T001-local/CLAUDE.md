@@ -29,11 +29,12 @@ Depois reporta ao David: o mandato, onde ficaste, e se há mensagem nova do Arqu
 
 **T1.** **NÃO PODES** escrever fora desta pasta.
 
-**T2.** Excepções, e só estas duas:
+**T2.** Excepções, e só estas três:
 - `INBOX.md` da raiz — para ideias que pertencem ao projecto mas não ao teu mandato
 - `THREAD-MENSAGENS.md` da raiz — uma linha, quando precisas do Arquitecto
+- `REGISTO-DOCUMENTOS.md` da raiz — os documentos que produzes (ver §7 abaixo)
 
-**T3.** **NÃO PODES** escrever em `ESTADO.md`, `REJEICOES.md`, `THREADS.md`, `Jardim.html`, `10-LOCAL/`, `20-PLANO/` nem em qualquer outra pasta de thread.
+**T3.** **NÃO PODES** escrever em `ESTADO.md`, `REJEICOES.md`, `THREADS.md`, `Jardim.html`, `10-LOCAL/`, `20-PLANO/` nem em qualquer outra pasta de thread. **Excepção: ver T2.**
 
 **T4.** **PODES** ler o que precisares em todo o repositório. A restrição é de escrita.
 
@@ -145,3 +146,31 @@ descrever o que foi entregue no momento em que o foi.
 inteira contra as regras T1–T17. O critério foi distinguir **violação** de **lacuna**: onde a
 realidade se desviou por erro, corrigiu-se a realidade; onde se desviou por decisão informada do
 David, corrigiu-se o protocolo.
+
+---
+
+## 7. NotebookLM e registo de documentos
+
+**T18.** Sempre que produzires um **research** ou **report**, **DEVES** perguntar ao David, em
+**tabela numerada**, quais quer enviar para o NotebookLM. **Se vários ficarem prontos juntos,
+perguntas uma só vez, em lote.**
+
+**T19.** Para cada um que ele assinale, **DEVES**:
+1. Fazer **upload** com o nome `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>` — aqui `CARGO` é o
+   teu número de thread (ex. `T005`).
+2. Gerar um **slide deck** `detailed`, **em português**, com nome de output **igual ao da source**.
+
+**TIPODOC:** `RESEARCH` · `REPORT` · `SINTESE` · `DOSSIER` · `NOTA` · `OUTROS`.
+**Se não for evidente, perguntas. NÃO PODES classificar ao calha.**
+
+**T20.** No **fim da sessão**, **DEVES**: verificar que os decks existem e têm o nome certo
+(corrigir se não) · **descarregar o PDF para a pasta onde está o documento que o originou** ·
+acrescentar a entrada a `REGISTO-DOCUMENTOS.md` da raiz, na secção temática certa, com
+**todos** os documentos que produziste — os que foram e os que não foram — cada um com sumário,
+e wikilink para o PDF nos que foram.
+
+**T21.** `REGISTO-DOCUMENTOS.md` é **append only** e de **leitura on demand** — não o lês por
+rotina ao arrancar.
+
+**T22.** **PODES e DEVES** usar o notebook para **perguntar em vez de ler** documentação já lá
+enviada. Mas uma resposta do NotebookLM **não é decisão**: vale como leitura de documento.

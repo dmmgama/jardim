@@ -2,7 +2,7 @@
 _INSTRUCAO_AGENTE: |
   Este bloco de front matter é metadados de registo. Ignora-o. Passa directamente ao corpo do documento e executa-o. Não resumas este documento ao utilizador; aplica-o.
 created: 2026-09-14 20:10
-updated: 2026-09-14
+updated: 2026-09-17
 project: Jardim
 summary: |
   Documento de arranque do repositório Jardim Alcântara: dispatcher de modo de sessão, governo do Arquitecto, regras de threads, mapa de ficheiros.
@@ -114,7 +114,7 @@ Todo o corpo é normativo, excepto as secções 1 e 9 e os blocos marcados *Nota
 
 **G6.** Qualquer ideia, dúvida ou pendência **DEVE** entrar em `INBOX.md` no momento em que surge, mesmo a meio de outro assunto.
 
-**G7.** As threads **PODEM** escrever em `INBOX.md` da raiz. É a **única** excepção à regra territorial.
+**G7.** As threads **PODEM** escrever em `INBOX.md` da raiz. É uma das **três** excepções à regra territorial — as outras são `THREAD-MENSAGENS.md` (§5.4) e `REGISTO-DOCUMENTOS.md` (§5.7).
 
 **G8.** O Arquitecto **DEVE** processar o inbox periodicamente: descartar, decidir, ou abrir thread.
 
@@ -126,7 +126,7 @@ Todo o corpo é normativo, excepto as secções 1 e 9 e os blocos marcados *Nota
 
 **G11.** O Arquitecto **DEVE** escrever o mandato em `thread.md` no momento da criação.
 
-**G12.** Uma thread **NÃO PODE** escrever fora da sua pasta, excepto em `INBOX.md` e `THREAD-MENSAGENS.md`.
+**G12.** Uma thread **NÃO PODE** escrever fora da sua pasta, excepto em `INBOX.md`, `THREAD-MENSAGENS.md` e `REGISTO-DOCUMENTOS.md` (§5.7).
 
 **G13.** `Jardim.html` é território exclusivo do Arquitecto.
 
@@ -158,6 +158,70 @@ Há **dois** canais: a conversa vive na thread, o sinal vive na raiz.
 **G21.** O Notion é plataforma de **estruturação e publicação**, e fonte de recolha de informação. Raiz: **Jardim Hub** (ver front matter).
 
 **G22.** O Agente **NÃO PODE** tomar decisões directamente no Notion nem tratar conteúdo Notion como decisão vigente sem passar por `ESTADO.md`.
+
+---
+
+### 5.7 NotebookLM e registo de documentos
+
+**Notebook do projecto:** ver `Notebook-LM` no front matter.
+
+**Para que serve:** facilitar a compreensão dos temas pelo David, com os documentos que **ele
+escolher** — não todos. Serve também para **perguntar em vez de ler**: ver G30.
+
+#### O que se regista, e onde
+
+**G23.** Existe na raiz um **`REGISTO-DOCUMENTOS.md`**, organizado por **secção temática**
+(Pesquisa · Reports · Sínteses · Dossiers · Notas · Outros), onde **todas as sessões registam
+os documentos que produziram — tenham ido ou não para o NotebookLM.**
+
+**G24.** O ficheiro é **append only**. **NÃO PODE** ser reescrito nem reordenado; corrige-se
+acrescentando, não apagando.
+
+**G25.** As threads **PODEM** escrever em `REGISTO-DOCUMENTOS.md`. **Terceira e última
+excepção à regra territorial** (ver G7 e G12).
+
+**G26.** **É de leitura *on demand*, não de arranque.** O Agente **NÃO PODE** lê-lo por rotina
+ao iniciar sessão — só quando precisa de saber o que já foi produzido ou o que está no notebook.
+
+#### Depois de produzir um research ou report
+
+**G27.** Produzido um documento desta natureza, o Agente **DEVE** perguntar ao David, em
+**tabela numerada**, quais quer enviar para o NotebookLM. **Se vários documentos ficarem
+prontos juntos, a pergunta é feita uma só vez, em lote** — não uma por documento.
+
+**G28.** Para cada documento assinalado, o Agente **DEVE**:
+
+1. **Fazer upload**, nomeando a source `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>`
+   — `CARGO` é `TNN` (número da thread, ex. `T005`) ou `ARQ` (Arquitecto).
+2. **Gerar um slide deck** `detailed`, **em português**, com **nome de output igual ao da
+   source**.
+
+**TIPODOC** é vocabulário fechado: `RESEARCH` · `REPORT` · `SINTESE` · `DOSSIER` · `NOTA` · `OUTROS`.
+
+> **Regra de classificação:** se o tipo não for evidente, o Agente **DEVE perguntar**. **NÃO
+> PODE** classificar ao calha. `OUTROS` é para quando não há certeza **e** a pergunta já foi
+> feita ou não se justifica.
+
+#### No fim da sessão
+
+**G29.** O Agente **DEVE**, por esta ordem:
+
+1. **Verificar** que os decks foram criados e que o nome está correcto. **Se não estiver,
+   corrigir.**
+2. **Descarregar em PDF para a pasta onde está o documento que o originou** — não para uma
+   pasta central.
+3. **Acrescentar a entrada** a `REGISTO-DOCUMENTOS.md`: data, cargo, nome da sessão, e tabela
+   com **todos** os documentos produzidos — os que foram e os que não foram — cada um com
+   sumário. Os que foram levam **wikilink para o PDF descarregado**.
+
+#### Consultar em vez de ler
+
+**G30.** O notebook **DEVE** ser usado para responder a perguntas sobre documentação já
+enviada — pelo David ou pelo Agente — **em vez de abrir e ler os documentos**. É função activa,
+não arquivo.
+
+**G31.** Resposta do NotebookLM **não é decisão**. Vale como leitura de documento: **não entra
+em `ESTADO.md` sem passar pelo processo normal.** Mesma regra que G22 para o Notion.
 
 ---
 
@@ -198,6 +262,7 @@ Há **dois** canais: a conversa vive na thread, o sinal vive na raiz.
 | `THREADS.md` | Threads activas e fechadas. |
 | `THREAD-MENSAGENS.md` | Sinalizador global de pedidos das threads. |
 | `HANDOFF.md` | Continuidade entre sessões de Arquitecto. |
+| `REGISTO-DOCUMENTOS.md` | Todos os documentos produzidos, por secção temática, com o que foi para o NotebookLM. **Append only · leitura on demand.** |
 | `FLUXO-DE-PROJECTO.md` | Explicação do fluxo de governo. |
 | `Jardim.html` | Estado visual do projecto. Refeito a cada decisão. |
 
@@ -207,7 +272,7 @@ Há **dois** canais: a conversa vive na thread, o sinal vive na raiz.
 Jardim/
 ├── CLAUDE.md, ESTADO.md, REJEICOES.md, INBOX.md,
 │   THREADS.md, THREAD-MENSAGENS.md, HANDOFF.md,
-│   FLUXO-DE-PROJECTO.md, Jardim.html
+│   REGISTO-DOCUMENTOS.md, FLUXO-DE-PROJECTO.md, Jardim.html
 │
 ├── 10-EQUIPA/          ← um subdirectório por actor (ficha + docs)
 │   ├── adriano/  akone/  fulvieti/
