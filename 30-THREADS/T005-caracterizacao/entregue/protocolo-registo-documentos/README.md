@@ -13,10 +13,18 @@ summary: |
 
 # Protocolo de registo de documentos — entrega da T005
 
-> ⚠ **NADA DISTO ESTÁ EM VIGOR.** São propostas. O ficheiro que governa hoje continua a ser
-> o `REGISTO-DOCUMENTOS.md` da raiz, com a estrutura antiga. **A substituição é decisão do
-> Arquitecto**, e há duas contradições com o governo actual que têm de ser resolvidas antes
-> (ver §4).
+> ⚠ **NADA DISTO ESTÁ EM VIGOR. São propostas.**
+>
+> **A raiz ficou sem `REGISTO-DOCUMENTOS.md`** — o que lá estava foi movido para aqui a
+> 2026-09-18, por instrução do David. **Isto é deliberado:** o antigo não é canon, e deixá-lo na
+> raiz fazia-o parecer governo em vigor.
+>
+> **Consequência a resolver, e é imediata:** as regras G23–G29 do `CLAUDE.md` e as T18–T23 das
+> threads **mandam escrever num ficheiro que já não está onde dizem**. Até o Arquitecto decidir,
+> **o registo de fim de sessão não tem destino válido.**
+>
+> **Se o protocolo novo for ratificado:** o `REGISTO-DOCUMENTOS-ANTIGO.md` vai para
+> `90-ARQUEOLOGIA/`, o template gera o registo definitivo na raiz, e as regras são reescritas.
 
 ---
 
@@ -46,6 +54,8 @@ repetido e decisões tomadas sem informação que já existia.**
 | 1 | [[REGISTO-DOCUMENTOS-INSTRUCOES]] | **A lógica.** 540 linhas: estrutura, as oito colunas com formato exacto, vocabulário de tipos, mecânica dos índices, resolução do «Supported», sete casos difíceis, regras de higiene, e **nove decisões de desenho assinaladas para revisão** | **Ler primeiro.** É o documento que decide como tudo funciona |
 | 2 | [[REGISTO-DOCUMENTOS-TEMPLATE]] | **O esqueleto.** 315 linhas: front matter, os quatro índices do topo, os quatro níveis de Dono, e um bloco de sessão preenchido com dados fictícios óbvios | Copiar quando se criar o registo definitivo |
 | 3 | [[REGISTO-DOCUMENTOS-DRAFT]] | **As regras aplicadas ao real.** 545 linhas, 58 documentos catalogados, 27 dependências registadas | **A prova.** Serve para ver se as regras resistem aos dados, antes de substituir o que está em vigor |
+
+| 4 | [[REGISTO-DOCUMENTOS-ANTIGO]] | **O que estava em vigor até 2026-09-18.** 9 documentos, estrutura por secção temática. **Movido da raiz para aqui** por instrução do David | **Referência histórica.** Se o protocolo novo for ratificado, **isto vai para `90-ARQUEOLOGIA/` — não é canon** |
 
 **Ordem de leitura recomendada:** 3 → 1 → 2. O draft mostra o resultado; as instruções explicam
 porque é assim; o template serve para executar.
@@ -105,7 +115,36 @@ em vez de dispersa**.
 
 ---
 
-## 5. O que foi verificado
+## 5. Tarefa em aberto — automatizar os índices
+
+**O problema, dito sem rodeios:** os índices do topo — por Dono e por Tipo — **são mantidos à
+mão**. Cada documento novo obriga a acrescentar a linha no corpo **e** a actualizar dois índices.
+**Três coisas a fazer em vez de uma é a definição de passo que se esquece**, e o histórico deste
+projecto é de coisas que não aconteceram.
+
+**Agravante conhecido:** as instruções (§5.2) já reconhecem que **o Dataview não resolve isto**
+com tudo num só ficheiro — `FROM #tipo/x` devolve o ficheiro inteiro, não as linhas. O
+automatismo óbvio está descartado à partida.
+
+**Vias a avaliar, por ordem de esforço:**
+
+| Via | O que seria | Custo |
+|---|---|---|
+| **MOC / nota por documento** | Uma nota por documento em vez de linhas numa tabela. **Faz o Dataview funcionar de verdade** e os índices passam a gerar-se sozinhos | Muda a arquitectura toda. As instruções já a registam como via de evolução, não adoptada |
+| **Script de regeneração** | Um script que lê o corpo e **reescreve os índices**. Corre no fim de sessão, ou em *pre-commit* | Baixo. **Provavelmente a resposta certa a curto prazo** |
+| **Dataview com ficheiros separados** | Um registo por thread, em vez de um só | Resolve o Dataview, parte a visão única |
+| **Manual, como está** | Nada muda | Zero de setup, e **falha na terceira vez que alguém tiver pressa** |
+
+**Recomendação:** o **script de regeneração**. Trata os índices como *derivados* — o corpo é a
+fonte, os índices são saída. **Assim nunca divergem**, e ninguém tem de se lembrar deles.
+
+> **Precedente desta própria entrega:** o subagente que produziu o draft **não construiu o índice
+> por Tipo** — teve de ser lançado um segundo para o fazer. **Se falha com um agente a seguir
+> instruções escritas, falha com uma pessoa com pressa.**
+
+---
+
+## 6. O que foi verificado
 
 O draft foi validado **por script, não por leitura**:
 
@@ -115,7 +154,7 @@ O draft foi validado **por script, não por leitura**:
 
 ---
 
-## 6. Proveniência
+## 7. Proveniência
 
 Produzido na sessão **«2026.09.17 - Arquiteto - Pesquisa de Catalogacao»**, por dois subagentes
 `gsd-doc-writer`, a pedido do David:

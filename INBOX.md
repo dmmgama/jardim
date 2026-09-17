@@ -174,7 +174,11 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 
   **Mais oito classificações duvidosas** listadas no draft a pedir confirmação, e uma pendência de G29 não apurada: **porque é que dois decks cujas sources estão no notebook não têm PDF em disco.**
 
-  **Os ficheiros nasceram na raiz e foram movidos para a entrega da T005** a 2026-09-18, por instrução do David — para ficar claro que são **entrega de thread, não governo em vigor**. O que governa hoje continua a ser o `REGISTO-DOCUMENTOS.md` da raiz, com a estrutura antiga.
+  **Os ficheiros nasceram na raiz e foram movidos para a entrega da T005** a 2026-09-18, por instrução do David — para ficar claro que são **entrega de thread, não governo em vigor**.
+
+  > ⚠ **E o `REGISTO-DOCUMENTOS.md` da raiz foi movido com eles**, como `REGISTO-DOCUMENTOS-ANTIGO.md`. **A raiz ficou sem registo.** É deliberado — o antigo não é canon e deixá-lo na raiz fazia-o parecer governo em vigor. **Mas tem consequência imediata: as regras G23–G29 e T18–T23 mandam escrever num ficheiro que já não existe onde dizem.** Até isto ser decidido, **o registo de fim de sessão não tem destino válido.** Se o protocolo novo for ratificado, o antigo vai para `90-ARQUEOLOGIA/`.
+
+  **Tarefa nova registada no README da entrega:** **automatizar os índices.** São mantidos à mão, e o Dataview não os resolve com tudo num ficheiro (as próprias instruções o reconhecem). Recomendação: **script de regeneração** que trate os índices como derivados do corpo. **Precedente:** o subagente que produziu o draft não construiu o índice por Tipo — teve de ser lançado um segundo. Se falha com um agente a seguir instruções escritas, falha com uma pessoa com pressa.
 
 ### Higiene do repositório
 
