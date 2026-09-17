@@ -116,6 +116,8 @@ perguntas uma só vez, em lote.**
 **TIPODOC:** `RESEARCH` · `REPORT` · `SINTESE` · `DOSSIER` · `NOTA` · `OUTROS`.
 **Se não for evidente, perguntas. NÃO PODES classificar ao calha.**
 
+**Nota:** `CARGO` pode ainda ser `DVD` — material que o próprio David carregou, de origem externa ao repositório. **Não é teu, e não o eliminas sem perguntar.**
+
 **T20.** No **fim da sessão**, **DEVES**: verificar que os decks existem e têm o nome certo
 (corrigir se não) · **descarregar o PDF para a pasta onde está o documento que o originou** ·
 acrescentar a entrada a `REGISTO-DOCUMENTOS.md` da raiz, na secção temática certa, com

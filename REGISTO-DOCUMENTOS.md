@@ -37,8 +37,9 @@ ordem de sessão.
 | **NotebookLM** | ✅ com wikilink para o PDF do deck · ❌ se não foi · ⏳ se está pendente |
 
 **Nomenclatura da source no NotebookLM:** `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>`, onde `CARGO`
-é `TNN` (thread) ou `ARQ` (Arquitecto). **TIPODOC:** `RESEARCH` · `REPORT` · `SINTESE` ·
-`DOSSIER` · `NOTA` · `OUTROS`.
+é `TNN` (thread), `ARQ` (Arquitecto) ou `DVD` (material do próprio David, de origem externa
+ao repositório — **não tem wikilink, e não se elimina sem perguntar**). **TIPODOC:** `RESEARCH` ·
+`REPORT` · `SINTESE` · `DOSSIER` · `NOTA` · `OUTROS`.
 
 ---
 
@@ -93,7 +94,20 @@ separados e sem conhecimento umas das outras.
 
 # 📦 OUTROS
 
-*(sem entradas)*
+## 2026-09-17 · Arquitecto · «2026.09.17 - Arquiteto - Pesquisa de Catalogacao»
+
+| # | Documento | Sumário | NotebookLM |
+|---|---|---|---|
+| 1 | [[CONSOLIDACAO-NOTEBOOKLM-2026-09-17]] | **Primeira consolidação de documentação (G32–G35).** Auditoria às 9 sources e 11 artefactos do notebook. Propõe eliminar 4 sources e 3 artefactos, renomear 7. Achado grave: a `Analise_Decisao_Betonilha` está **revogada** — foi escrita para decidir a demolição, e o `ESTADO.md` decidiu a 2026-09-17 que a betonilha não se demole. **Proposta: nada executado sem aprovação.** | ❌ não enviado — é documento de governo, não material de estudo |
+
+### Material do David já no notebook  (`DVD`)
+
+Registado aqui para constar. **Não saiu de sessão nenhuma e não tem ficheiro no repositório** —
+por isso não tem wikilink. Identificado pelo David a 2026-09-17.
+
+| Source no notebook | Origem | Estado |
+|---|---|---|
+| «Relatório Técnico: Projeto de Reabilitação Paisag…» | **Pesquisa autónoma do David**, carregada por ele | 🔵 Vigente. **Não é do Agente propor eliminá-lo.** |
 
 ---
 

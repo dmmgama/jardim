@@ -199,7 +199,8 @@ prontos juntos, a pergunta é feita uma só vez, em lote** — não uma por docu
 **G28.** Para cada documento assinalado, o Agente **DEVE**:
 
 1. **Fazer upload**, nomeando a source `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>`
-   — `CARGO` é `TNN` (número da thread, ex. `T005`) ou `ARQ` (Arquitecto).
+   — `CARGO` é `TNN` (número da thread, ex. `T005`), `ARQ` (Arquitecto) ou `DVD` (material trazido pelo David, de origem
+   externa ao repositório — pesquisa própria, documento de terceiro, relatório encomendado).
 2. **Gerar um slide deck** `detailed`, **em português**, com **nome de output igual ao da
    source**.
 
@@ -208,6 +209,12 @@ prontos juntos, a pergunta é feita uma só vez, em lote** — não uma por docu
 > **Regra de classificação:** se o tipo não for evidente, o Agente **DEVE perguntar**. **NÃO
 > PODE** classificar ao calha. `OUTROS` é para quando não há certeza **e** a pergunta já foi
 > feita ou não se justifica.
+
+> **Material do David (**`DVD`**).** Nem tudo o que está no notebook sai de uma sessão. O David
+> **PODE** carregar material próprio directamente. Esse material **não tem ficheiro no
+> repositório** e, por isso, **não tem wikilink** — regista-se em `REGISTO-DOCUMENTOS.md` na
+> mesma, com origem declarada e sem link. **O Agente NÃO PODE propor eliminá-lo por não
+> reconhecer a origem:** pergunta primeiro.
 
 #### No fim da sessão
 
