@@ -279,6 +279,20 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
 - 2026-09-17 — **Pedido encaminhado à T003**, com as duas alterações aplicadas: pedido 5 decisivo, e forma da mancha além da área. O `mensagens.md` da T003 estava vazio até esta data — **a thread nunca tinha recebido nada.**
 
+- 2026-09-17 — **A captura 3D não serve para medir os muros. Serve só para as copas.**
+
+  Pesquisa de estado da arte em `T003/research/02-CAPTURA-3D-ESTADO-DA-ARTE.md`. **Contraria o enunciado com que a encomendei**, e a correcção é para melhor.
+
+  | Alvo | Ferramenta | Erro |
+  |---|---|---|
+  | **Altura dos muros, troço a troço** | **Telémetro laser, 20–40 €** | **±1,5 mm** |
+  | **Copas** — palmeira, lodão, citrinheira | LiDAR de iPhone Pro (Scaniverse) | dezenas de cm |
+  | **Cota de retenção do muro SW** | Fita ou telémetro | mm |
+
+  **Três razões independentes:** (1) a fotogrametria falha estruturalmente em reboco liso sem textura — **é limitação do método, não da app**, e confirma por via independente a razão pela qual a via Google 3D foi rejeitada; (2) a deriva do *tracking* acumula ao longo dos 13 m, e a Apple nunca publicou tolerância oficial; (3) **não existe Android com LiDAR verdadeiro em 2026** — se o telemóvel não for iPhone Pro, a via está fechada, não apenas desaconselhada.
+
+  **O limiar crítico do projecto é 0,5 m.** Um telémetro de 30 € tem três ordens de grandeza de margem. **Compra-se um telémetro, não se compra software.**
+
 **Em aberto**
 - Escolha da ferramenta de modelação. Via Google 3D está fechada — ver `REJEICOES.md` §11.
 - Escolha da ferramenta de **captura 3D**. Pesquisa de estado da arte lançada em 2026-09-17.

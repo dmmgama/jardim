@@ -154,3 +154,84 @@ Estão registados com etiqueta. Quando correres o modelo a sério, **é possíve
 
 Se não baterem, **diz-o alto.** Não ajustes o modelo para reproduzir o que já está escrito — há
 decisões tomadas em cima desses números e o valor de existires é precisamente poderes contrariá-los.
+
+---
+
+### 2026-09-17 — ARQUITECTO → THREAD  *(adenda à mensagem de arranque)*
+**A pesquisa chegou, e contraria o enunciado que te dei há uma hora.**
+
+Está em `research/02-CAPTURA-3D-ESTADO-DA-ARTE.md`. **Lê-a antes de recomendar seja o que for.**
+
+---
+
+## O que a pesquisa diz, e porque muda a tua tarefa
+
+Encomendei-te uma recomendação de ferramenta de captura 3D. A resposta honesta é que **para o alvo
+mais sensível do projecto — a altura dos muros — a captura 3D é a ferramenta errada.**
+
+| Alvo | Ferramenta | Erro esperado |
+|---|---|---|
+| **Altura dos muros, troço a troço** | **Telémetro laser, 20–40 €** | **±1,5 mm** por medição |
+| **Copas** (palmeira, lodão, citrinheira) | LiDAR de iPhone Pro | **dezenas de cm** |
+| **Cota de retenção do muro SW** | Fita ou telémetro | mm |
+
+**O limiar crítico do projecto é 0,5 m.** Um telémetro de 30 € tem três ordens de grandeza de
+margem. Nenhuma app chega perto disso num varrimento de 13 m, onde a deriva do *tracking* é o
+problema dominante.
+
+**Três razões técnicas, todas independentes:**
+
+1. **Fotogrametria falha estruturalmente em reboco liso sem textura.** Não é limitação de app — é
+   limitação do método. **Isto confirma, por via independente, a razão pela qual a via Google 3D foi
+   rejeitada** em `REJEICOES.md` §11. A razão não era do Google.
+2. **A deriva acumula ao longo dos 13 m.** A indústria diz-lhe o nome: *«walls that should be
+   ruler-straight end up slightly bent»*. A Apple nunca publicou tolerância oficial.
+3. **Não existe Android com LiDAR verdadeiro em 2026.** Se o telemóvel do David não for iPhone Pro,
+   a via 3D para os muros está fechada, não só desaconselhada.
+
+---
+
+## A instrução corrigida
+
+**Não recomendes captura 3D para os muros.** Recomenda **telémetro laser**, e diz porquê em duas
+linhas que o David perceba.
+
+**Recomenda captura 3D só para as copas** — que é onde ganha, porque estão fora do alcance de
+qualquer fita e têm forma irregular.
+
+**Mantém tudo o resto do que te pedi:** o procedimento de campo, executável numa tarde, sozinho.
+Só que agora é um procedimento híbrido, e é mais barato e mais fiável do que aquilo que eu tinha
+imaginado quando te escrevi.
+
+**Continua a perguntar ao David que telemóvel tem.** Muda o plano B, e o plano B tem resposta:
+pedir um iPhone Pro emprestado por uma tarde chega — não é preciso possuir.
+
+---
+
+## O que quero que faças com isto
+
+**Não aceites a pesquisa como decisão.** É matéria-prima. Tu é que sabes que tolerância o modelo
+aceita em cada parâmetro, e essa é a pergunta que a pesquisa não podia responder:
+
+- **Que erro na copa da palmeira é aceitável** antes de o resultado de sombreamento deixar de ter
+  significado? Se dezenas de cm no diâmetro da copa moverem a resposta do pedido 5, então o LiDAR
+  também não chega e temos um problema maior.
+- **Precisas dos muros troço a troço, ou um valor por muro chega?** Muda o procedimento de campo de
+  forma significativa.
+
+**Três ressalvas do agente que não podes tratar como facto** — estão marcadas no documento:
+1. Se a Scaniverse mantém todos os exports LiDAR sem paywall. Não verificado.
+2. O erro de deriva em 13 m. **Não há número publicado** — o que está lá é extrapolação por analogia.
+3. Não encontrou plugin que leve nuvem a modelo de sombreamento sem modelação manual. Procurou e não
+   achou; não é prova de que não exista.
+
+E um aviso sobre números: os **8–9 cm** de erro citados para altura de árvore são de **troncos em
+floresta, com ajuste de cilindros**. Para uma copa de palmeira — palmas pendentes, forma irregular —
+o próprio agente disse que a incerteza real é **muito maior**. Não uses os 8–9 cm.
+
+---
+
+**Uma nota sobre como isto correu.** Pedi-te uma ferramenta e a resposta certa era «não uses
+ferramenta nenhuma para metade do problema». Escrevi-te na mensagem de arranque que o objectivo é
+ter o número certo, não usar tecnologia. **A pesquisa cobrou-me a própria instrução, e ainda bem.**
+Se chegares a conclusão parecida sobre outra coisa que eu te tenha pedido, diz.

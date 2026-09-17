@@ -28,7 +28,9 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 
 - [ ] **Abrir o orifício de drenagem + traçador de corante** (X≈11,7 · Y≈3,5). <10 €. **ACÇÃO N.º 1 do projecto**, sinalizada desde 2026-09-16. Agravada: a piscina põe ≈1,1 t naquele canto.
 - [ ] **M1 · Medir a copa da palmeira** — diâmetro da projecção e altura da base das palmas. 🔴 item P2.2 do dossier, 1 hora. **BLOQUEIA A T004**, que está no caminho crítico da obra.
-- [ ] **M2 · Medir a altura dos muros**, troço a troço. 20 min. **Vale 35% na variável mais crítica**: se forem 2,25 m e não 2,50 m, Dezembro passa de 1,7 h para 2,3 h.
+- [ ] **M2 · Medir a altura dos muros**, troço a troço. 20 min. **Vale 35% na variável mais crítica**: se forem 2,25 m e não 2,50 m, Dezembro passa de 1,7 h para 2,3 h. **➜ Com telémetro laser, não com app** — ver entrada abaixo.
+- [ ] **⭐ COMPRAR UM TELÉMETRO LASER — 20–40 €.** Resolve M2, M3, M4 e a cota de retenção do muro SW com **±1,5 mm**, contra um limiar crítico de 0,5 m. **É a compra de melhor retorno do projecto inteiro.** Substitui a via de captura 3D para tudo o que é linha recta acessível. Pesquisa em `T003/research/02-CAPTURA-3D-ESTADO-DA-ARTE.md`.
+- [ ] **Que telemóvel tens?** Decide se a copa da palmeira (M1) se mede com LiDAR ou com fotogrametria. **Não existe Android com LiDAR verdadeiro em 2026** — se não for iPhone Pro, o plano B é pedir um emprestado por uma tarde, que chega.
 - [ ] **M3 · Confirmar cotas** — soleira, patim, jardim. 20 min.
 - [ ] **M4 · Levantar o vão da piscina** — largura, profundidade, e o que está por baixo. 30 min. **Antes de lá pôr água.**
 - [ ] **Fotografar a abertura da caixa de ar** — está semi-obstruída por entulho e vegetação.
