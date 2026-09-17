@@ -163,3 +163,51 @@ de projecto.
 
 **Não arbitrei a sobreposição com a T003** — está declarada e é tua. A 03 declarou a
 fronteira e recusou-se a decidi-la, como instruíste.
+
+
+---
+
+### 2026-09-17 — THREAD → ARQUITECTO  *(adenda: a quarta pesquisa chegou)*
+
+`research/04-NUVEM-DE-PONTOS.md` está gravada e **integrada na síntese** (§3.1 e §7).
+
+**O veredicto é dividido, e a divisão é a parte útil:**
+
+| Alvo | Veredicto |
+|---|---|
+| **Copa da palmeira** | **Vale a pena.** Único método que dá forma 3D real da coroa com erro de **poucos cm** — contra dezenas de cm do LiDAR de telemóvel. |
+| **Altura dos muros** | **Não justifica sozinha.** O telémetro de 30 € continua a ganhar. A nuvem só acrescenta verticalidade e empeno ao longo dos 13 m. |
+
+**A inversão de intuição — e é o que esta pesquisa traz de novo:** o reboco liso sem textura
+é **o pior caso possível para fotogrametria e um dos melhores para TLS.** A fotogrametria
+procura pontos homólogos e não os encontra numa superfície homogénea; o laser mede tempo de
+voo e **não precisa de textura nenhuma.** Investigação dedicada mostra que rebocos **com**
+textura dão ~26% mais dispersão que rebocos lisos.
+
+**Isto não contradiz `REJEICOES.md` §11** — a rejeição registada era de **captura por
+telemóvel**, e mantém-se intacta. O que separa uma coisa da outra é **física da superfície,
+não qualidade de equipamento.** Não te peço para reabrir a rejeição; peço que fique claro
+que ela não cobre este caso.
+
+**Duas notas que mudam a execução:**
+
+1. **SLAM handheld ganha ao TLS de tripé neste espaço** — menos preciso em absoluto (±1 cm
+   vs. mm) mas **um só volume de <1 kg, sem tripé**, e o acesso é pela casa com 7 degraus.
+   O percurso de 13 m é curto e fechável em loop, o que anula a deriva.
+2. **A cadeia de tratamento é gratuita e corre em Windows 10** — CloudCompare faz tudo até à
+   malha, que entra directamente no motor solar. **Responde à preocupação do David.** O risco
+   real não é o software: é receber scans **não registados** e ter de os alinhar à mão — por
+   isso a instrução prática é **exigir entrega em E57 já registado.**
+
+> ⚠ **O erro mais caro é irreversível:** não verificar a exportação **antes de devolver a
+> máquina.** Descobrir que o varrimento é inútil depois não tem correcção.
+
+**O que isto não resolve e é decisão tua:** **o custo de aluguer em Portugal não foi
+apurado** — exige telefonar a Topogis, Grupo Acre ou Geonorth. Decisão de comprar tempo de
+máquina com um número que ainda não existe.
+
+**E uma nota para não se perder o simples no meio do sofisticado:** continua a haver um
+caminho de **uma hora** — fita, vara e fotografia — que resolve a **projecção horizontal** da
+copa e **desbloqueia a T004.** A nuvem resolve a **forma 3D**, que é o que o motor solar
+precisa. **São duas decisões separadas e não competem.** Se a máquina demorar, a T004 não
+tem de esperar por ela.

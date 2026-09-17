@@ -22,9 +22,9 @@ summary: |
 > pediu: **não um resumo dos três documentos, mas o que só aparece quando se cruzam.**
 >
 > Os documentos-fonte são `01-ESPECIALIDADES.md`, `02-DIGITAL-TWIN-SOFTWARE.md` e
-> `03-MONITORIZACAO-ACTUACAO.md`. Uma quarta pesquisa — nuvem de pontos com equipamento
-> profissional — foi encomendada depois, por instrução do David, e entra em
-> `04-NUVEM-DE-PONTOS.md`. **Esta síntese não a cobre**, e será revista quando chegar.
+> `03-MONITORIZACAO-ACTUACAO.md`. Uma quarta pesquisa — `04-NUVEM-DE-PONTOS.md`, levantamento
+> com equipamento profissional — foi encomendada depois, por instrução do David, e **chegou. Está
+> integrada** no §3.1 e no §7.
 
 ---
 
@@ -122,6 +122,42 @@ Isto não estava no enunciado de nenhuma delas como tema central. Apareceu sozin
 (modelo solar, pedido 5), impede avaliar o risco de soterrar o colo, e impede dimensionar
 a carga. Continua a custar **uma hora** (🔴 P2.2).
 
+### 3.1 A quarta pesquisa resolve como se mede — e inverte uma intuição
+
+A  foi encomendada com a copa como alvo declarado. **Confirma que é aí
+que a nuvem de pontos ganha, e recusa-a para o resto.**
+
+| Alvo | Veredicto da 04 |
+|---|---|
+| **Copa da palmeira** | **Vale a pena, com convicção.** É o único método capaz de produzir forma 3D real da coroa com erro de **poucos centímetros**, contra dezenas de cm do LiDAR de telemóvel e erro provavelmente maior da medição manual. |
+| **Altura dos muros** | **Não justifica sozinha.** O telémetro de 30 € continua a ganhar em custo-precisão-simplicidade. A nuvem só acrescenta **verticalidade e empeno ao longo dos 13 m** — valor real, não crítico. |
+
+**A inversão de intuição, e é a parte mais valiosa:** o reboco liso sem textura é **o pior caso
+possível para a fotogrametria e um dos melhores para o TLS.** A fotogrametria procura pontos
+homólogos e não os encontra numa superfície homogénea — **é limitação do método, não da câmara**,
+e por isso uma DSLR de 45 MP não resolve o que o telemóvel não resolveu. O TLS mede tempo de voo
+do próprio laser e **não precisa de textura nenhuma**; investigação dedicada mostra que rebocos
+**com** textura dão ~26% mais dispersão que rebocos lisos.
+
+**O que separa «telemóvel não serve» de «TLS profissional serve» é física da superfície, não
+qualidade de equipamento.** Isto reconcilia a nova conclusão com a rejeição já registada em
+ §11 **sem a contradizer** — a rejeição era de captura por telemóvel, e mantém-se
+intacta.
+
+**Duas notas operacionais que mudam a execução:**
+
+- **SLAM handheld ganha ao TLS de tripé, neste espaço.** Menos preciso em absoluto (±1 cm vs. mm),
+  mas um só volume de <1 kg, sem tripé — e **o acesso é pela casa, com 7 degraus.** Um percurso de
+  13 m é curto e fechável em loop, o que anula o ponto fraco do SLAM (deriva).
+- **A cadeia de tratamento é 100% gratuita e corre em Windows 10.** CloudCompare faz limpeza,
+  classificação de chão (CSF), ajuste de planos e malha por Poisson; a malha sai em OBJ e entra
+  directamente no motor solar. **Isto responde à preocupação declarada do David** — «só preciso
+  depois de tratar o que daí vier». O risco real não é o software: é receber scans **não
+  registados** e ter de os alinhar à mão.
+
+> ⚠ **O erro mais caro deste procedimento é irreversível:** não verificar a exportação **antes de
+> devolver a máquina**. Descobrir que o varrimento é inútil depois não tem correcção.
+
 > **Nota de fronteira, importante.** A pesquisa 03 acrescenta uma obrigação que não é de
 > projecto, é externa: a fitopatologia é **a única disciplina com obrigação legal
 > confirmada** — vigilância do escaravelho vermelho como praga de controlo obrigatório.
@@ -212,8 +248,11 @@ forma e corrigem-na no conteúdo** — faltavam dois campos, ambos revelados pel
    é geometria, não acabamento. **Isto é matéria da T004 e é urgente**, porque a obra
    arranca.
 
-3. **A copa da palmeira bloqueia por três razões independentes**, não por uma. Continua a
-   custar uma hora. É a melhor relação esforço/desbloqueio de todo o projecto.
+3. **A copa da palmeira bloqueia por três razões independentes**, não por uma — e a quarta
+   pesquisa diz **como medi-la**: nuvem de pontos, de preferência SLAM handheld, com tratamento
+   integralmente gratuito em CloudCompare. **Continua a haver um caminho de uma hora** (fita, vara,
+   fotografia) que resolve a projecção horizontal e desbloqueia a T004; a nuvem é o que resolve a
+   **forma 3D**, que é o que o motor solar precisa. **São decisões separadas e não competem.**
 
 4. **A grelha da fase 2 ganha dois campos** — *quando tem de estar medido* e *o que acontece
    se estiver errado* — e o segundo reordena a lista inteira: **a consequência do erro manda,
@@ -227,7 +266,7 @@ forma e corrigem-na no conteúdo** — faltavam dois campos, ambos revelados pel
   instrução explícita do mandato.
 - **Não arbitrou T003 × T005.** A sobreposição está declarada em `ESTADO.md` §11 e a
   arbitragem é do Arquitecto, depois de ver as duas.
-- **Não integrou a pesquisa de nuvem de pontos**, que foi encomendada depois e ainda não
-  chegou. Quando chegar, esta síntese é revista — sobretudo o ponto 3, porque o alvo
-  declarado dessa pesquisa é exactamente a copa da palmeira.
+- **Não decidiu se se aluga a máquina.** A 04 diz que vale a pena **para a copa** e que não vale
+  a pena só pelos muros. **O custo de aluguer em Portugal não foi apurado** — exige contacto directo
+  com Topogis, Grupo Acre ou Geonorth. É decisão do Arquitecto, com um número que ainda não existe.
 - **Não orçamentou nada.** O filtro de custo continua por aplicar em V2.

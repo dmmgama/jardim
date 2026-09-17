@@ -101,14 +101,21 @@ um parâmetro que as duas listas de lacunas do dossier não contêm. **Não cont
 descuido** — quando o dossier foi escrito o jardim ainda era de chão, e nenhum levantamento
 por observação podia antecipar uma coisa que ainda não existe no espaço.
 
-### Em curso
+### A quarta pesquisa — chegou e está integrada
 
-**Quarta pesquisa — `04-NUVEM-DE-PONTOS.md`**, levantamento com equipamento profissional
-(TLS, SLAM), por instrução do David de 2026-09-17: *«tenho eventualmente possibilidade de
-arranjar máquina. Só preciso depois de tratar o que daí vier.»* O peso do enunciado está no
-**pós-processamento**, e o alvo declarado é a **copa da palmeira**.
+`research/04-NUVEM-DE-PONTOS.md`, por instrução do David de 2026-09-17: *«tenho eventualmente
+possibilidade de arranjar máquina. Só preciso depois de tratar o que daí vier.»*
 
-**Quando chegar, a síntese é revista** — sobretudo o ponto sobre a palmeira.
+**Veredicto dividido:** vale a pena **para a copa da palmeira** (forma 3D real com erro de poucos
+cm); **não justifica sozinha para os muros** (o telémetro de 30 € continua a ganhar).
+
+**A inversão de intuição:** o reboco liso é o **pior caso para fotogrametria e um dos melhores
+para TLS** — o laser mede tempo de voo e não precisa de textura. **Não contradiz `REJEICOES.md`
+§11**, que rejeitou captura por *telemóvel*; o que separa os casos é física da superfície, não
+qualidade de equipamento.
+
+**A cadeia de tratamento é gratuita e corre em Windows 10** (CloudCompare até à malha, que entra
+no motor solar) — responde à preocupação declarada do David. **Síntese actualizada** em §3.1 e §7.
 
 ---
 

@@ -31,6 +31,7 @@ summary: |
 ## Pendentes
 
 - [ ] 2026-09-17 | T005 | **Fase 1 entregue (3 pesquisas + sintese cruzada).** ⚠ **URGENTE para a T004:** os +0,50 m estao fixados como cota mas **nao decompostos em camadas** (drenante/filtrante/substrato) — e a decomposicao e geometria, nao acabamento. Achado central: as tres pesquisas convergiram, sem combinacao, em que **o projecto e tecnicamente uma cobertura ajardinada** — activa normativo FLL, modo de falha proprio e ferramenta de simulacao gratuita. Pede-se: encaminhar as camadas a T004, e instruir (ou adiar) a fase 2.
+- [ ] 2026-09-17 | T005 | **Adenda — 4.a pesquisa (nuvem de pontos) entregue e integrada.** Veredicto dividido: **vale para a copa da palmeira** (forma 3D, erro de poucos cm), **nao vale so para os muros** (telemetro de 30 EUR continua a ganhar). Inversao util: reboco liso e o **pior caso para fotogrametria e um dos melhores para TLS** — **nao contradiz `REJEICOES.md` §11**, que rejeitou captura por telemovel. Tratamento 100% gratuito em Windows (CloudCompare). **Custo de aluguer em PT nao apurado** — decisao tua.
 
 ---
 
