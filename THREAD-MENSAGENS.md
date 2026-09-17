@@ -30,7 +30,7 @@ summary: |
 
 ## Pendentes
 
-*(nenhum)*
+- [ ] 2026-09-17 | T005 | **Fase 1 entregue (3 pesquisas + sintese cruzada).** ⚠ **URGENTE para a T004:** os +0,50 m estao fixados como cota mas **nao decompostos em camadas** (drenante/filtrante/substrato) — e a decomposicao e geometria, nao acabamento. Achado central: as tres pesquisas convergiram, sem combinacao, em que **o projecto e tecnicamente uma cobertura ajardinada** — activa normativo FLL, modo de falha proprio e ferramenta de simulacao gratuita. Pede-se: encaminhar as camadas a T004, e instruir (ou adiar) a fase 2.
 
 ---
 

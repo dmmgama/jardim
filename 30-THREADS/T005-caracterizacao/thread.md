@@ -76,18 +76,55 @@ cruze — porque as três frentes respondem à mesma pergunta por ângulos difer
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
 **Última sessão:** 2026-09-17
-**Estado:** Fase 1 em execução — três pesquisas lançadas em paralelo.
+**Estado:** **Fase 1 entregue ao Arquitecto.** Quarta pesquisa em curso. Fase 2 por instruir.
 
-Thread criada e arrancada na mesma sessão, por instrução directa do David
-(«cria a thread de imediato e passas logo a funcionar dentro dela»).
+Thread criada e arrancada na mesma sessão, por instrução directa do David.
+
+### O que está feito
+
+| Documento | O que é |
+|---|---|
+| `research/00-PONTO-DE-PARTIDA.md` | Diagnóstico da estrutura de informação existente, **escrito antes de as pesquisas chegarem**, de propósito — para ser possível testar depois se elas respondem à pergunta certa. |
+| `research/01-ESPECIALIDADES.md` | 16 disciplinas, com métodos, normas, fase de intervenção e decisões bloqueadas. Matriz de conflitos entre disciplinas. |
+| `research/02-DIGITAL-TWIN-SOFTWARE.md` | Nove eixos de software, três pilhas com custo, e cepticismo documentado sobre o termo «digital twin» a esta escala. |
+| `research/03-MONITORIZACAO-ACTUACAO.md` | Sensores, protocolos, plataformas, actuadores. Três configurações com custo e manutenção. Modos de falha classificados em «mata» vs. «só irrita». |
+| `research/05-SINTESE-FASE-1.md` | **A peça principal.** O que só aparece no cruzamento das três. |
+| `mensagens.md` | Entrega comunicada, com sinal urgente para a T004. |
+
+### O achado que justifica a thread
+
+**As três pesquisas convergiram, independentemente e sem combinação, em que o projecto é
+tecnicamente uma cobertura ajardinada.** Nenhuma foi instruída a concluí-lo.
+
+Isto **passou o teste** que `00-PONTO-DE-PARTIDA.md` tinha fixado à cabeça: fazer aparecer
+um parâmetro que as duas listas de lacunas do dossier não contêm. **Não contêm, e não por
+descuido** — quando o dossier foi escrito o jardim ainda era de chão, e nenhum levantamento
+por observação podia antecipar uma coisa que ainda não existe no espaço.
+
+### Em curso
+
+**Quarta pesquisa — `04-NUVEM-DE-PONTOS.md`**, levantamento com equipamento profissional
+(TLS, SLAM), por instrução do David de 2026-09-17: *«tenho eventualmente possibilidade de
+arranjar máquina. Só preciso depois de tratar o que daí vier.»* O peso do enunciado está no
+**pós-processamento**, e o alvo declarado é a **copa da palmeira**.
+
+**Quando chegar, a síntese é revista** — sobretudo o ponto sobre a palmeira.
 
 ---
 
 ## HANDOFF  *(para a próxima sessão desta thread)*
 
-**Próximo passo:** Ler as três pesquisas, produzir a síntese cruzada, e levar ao
-Arquitecto a proposta de estrutura da fase 2.
-**À espera de:** Nada. A fase 1 não depende de terceiros.
-**Cuidado com:** O risco desta thread é **produzir uma enciclopédia em vez de uma
-regra.** O quintal tem ~75 m². Uma caracterização que exija instrumentação de
-estação agronómica falha o mandato, mesmo estando correcta.
+**Próximo passo:** Gravar e integrar a pesquisa 04; rever a síntese em conformidade.
+Depois, **esperar instrução do Arquitecto para a fase 2** — o mandato proíbe arrancá-la sem
+ele ver a fase 1.
+
+**À espera de:** Resposta do Arquitecto em `mensagens.md` — três pedidos: encaminhar as
+camadas à T004, ver a síntese, instruir ou adiar a fase 2.
+
+**Cuidado com:**
+1. **O risco original mantém-se:** produzir uma enciclopédia em vez de uma regra. As quatro
+   pesquisas dão muito material; a fase 2 tem de **cortar**, não acumular. Uma grelha de
+   oito parâmetros que se preenche numa tarde vale mais que uma de trinta que ninguém preenche.
+2. **Não arbitrar a sobreposição com a T003.** Está declarada em `ESTADO.md` §11 e é do
+   Arquitecto.
+3. **Não atrasar a T004.** Se houver dúvida entre esperar e sinalizar, sinalizar.
