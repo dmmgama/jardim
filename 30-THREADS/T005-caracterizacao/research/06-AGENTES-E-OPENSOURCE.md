@@ -781,6 +781,29 @@ Declarados com o que faltaria para fechar cada um.
 
 ---
 
+## Nota operacional sobre o NotebookLM — para a próxima sessão
+
+**Dois comportamentos novos, verificados nesta sessão, que o protocolo G29/T20 ainda não previa.**
+
+1. **`download_artifact` falha com `Download failed` enquanto o deck gera, e o `studio_status`
+   não distingue «a gerar» de «avariado» — ambos aparecem como `unknown`.** O sinal fiável é o
+   contador `summary`: ficou em **`completed: 12` de 13** durante toda a geração e passou a
+   **13 de 13** quando acabou. **É o contador que se vigia, não o campo `status`.**
+
+2. **`download_all_artifacts` funcionou quando o `download_artifact` individual falhava**, já
+   com o deck pronto. **E revelou a razão pela qual o passo de renomear tem de ser o último:**
+   o deck **não foi descarregado com o nome que lhe dei** — veio como **«Garden AI Technical
+   Audit»**, título que o servidor gerou por sua conta **ao concluir**, sobrepondo-se ao
+   `source_rename` que eu tinha aplicado enquanto gerava.
+
+> **Regra prática que daqui sai, e corrige o alcance da nota de 2026-09-17.** O registo já dizia
+> que o `title` da criação «não pega». **É pior do que isso: um rename aplicado *antes* de o deck
+> concluir também não pega** — o servidor renomeia por cima ao terminar. **O rename só é
+> definitivo depois de `summary.completed` incluir o artefacto.** Nesta sessão foi preciso
+> renomear **duas vezes**: uma antes (perdida) e outra depois (válida, verificada).
+
+---
+
 ## Nota final de método
 
 Toda a verificação de vida dos repositórios foi feita contra a **API pública do GitHub**

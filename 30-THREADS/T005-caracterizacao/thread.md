@@ -136,35 +136,45 @@ do Arquitecto** — o mandato é explícito.
 
 ---
 
-### ⚠ Uma pesquisa foi lançada e pode ter terminado depois desta nota
+### ✅ Pesquisa 06 — concluída e verificada
 
-**`research/06-AGENTES-E-OPENSOURCE.md`** — agentes de IA, skills e projectos open source
-adoptáveis para as áreas que a fase 1 identificou. Três eixos: agentes especializados por
-disciplina · open source para análise e estudo · instrumentação, dados e automatização.
+**`research/06-AGENTES-E-OPENSOURCE.md`** (818 linhas) — agentes de IA, skills e projectos open
+source adoptáveis para as áreas da fase 1. Encomendada pelo David a 2026-09-18.
 
-**Encomendada pelo David a 2026-09-18**, executada por subagente com instrução para: ler as
-cinco pesquisas da fase 1 antes de pesquisar · incluir no report **o prompt integral e a lista
-do que leu** · registar em `REGISTO-DOCUMENTOS.md` · carregar no NotebookLM com deck próprio e
-PDF descarregado para `research/`.
+**Ciclo completo:** report com prompt integral · PDF do deck em `research/` (19 MB) · source e
+artefacto com nome de convenção no NotebookLM · linha no `REGISTO-DOCUMENTOS.md` · **`INBOX.md`
+intocado** (contra-ordem dada a meio e confirmada por `git diff`).
 
-> **PRIMEIRA COISA A FAZER NA PRÓXIMA SESSÃO: verificar se este trabalho ficou completo.**
->
-> | Verificar | Onde |
-> |---|---|
-> | O report existe e tem o prompt lá dentro | `research/06-AGENTES-E-OPENSOURCE.md` |
-> | O PDF do deck foi descarregado | `research/T005-26-09-18-RESEARCH-AGENTES-E-OPENSOURCE.pdf` |
-> | A source e o artefacto têm o nome de convenção no NotebookLM | `T005-26-09-18-RESEARCH-AGENTES-E-OPENSOURCE` |
-> | A linha entrou no registo | `REGISTO-DOCUMENTOS.md` da raiz |
-> | **Não** escreveu no `INBOX.md` da raiz | `INBOX.md` — foi-lhe dada contra-ordem a meio |
->
-> **Duas armadilhas conhecidas, das quatro pesquisas anteriores:** o `title` passado na criação
-> do deck **não pega** — o artefacto nasce com o nome do notebook e **tem de ser renomeado**; e
-> o status fica em `unknown` enquanto gera, não em `in_progress`, pelo que um download
-> prematuro falha com erro genérico.
+**O achado:** **não há agentes de IA de domínio para adoptar.** 504 repositórios de «AI agent for
+agriculture», o melhor com 8 estrelas. **O que vale são MCP servers sobre as ferramentas que a
+pesquisa 02 já tinha escolhido** — `qgis-mcp` para o SOLWEIG, `ha-mcp` para os sensores — mais o
+**`pyfao56`** (CC0, USDA), que a pesquisa identifica como **a peça que faltava para pôr número no
+conflito retenção-vs-drenagem**.
 
-**Porque é que o registo desta pesquisa está aqui e não no `INBOX.md`:** instrução directa do
-David, 2026-09-18. O inbox da raiz é do Arquitecto; **o que a thread produz regista-se na
-thread**, e sobe pelo canal de mensagens quando houver o que reportar.
+**Três consequências para quem pegar nisto:**
+
+1. **Um candidato descartado a meio, com o percurso à vista:** o `agentic-swmm-workflow` tem
+   paper revisto por pares, mas **valida a ~1 km² e 40 sub-bacias** — é «a ferramenta da escala
+   acima» com o melhor disfarce que o projecto encontrou. Correr o SWMM directamente.
+2. **Toca numa compra pendente:** o `homeassistant-plant` (868★, activo) calcula DLI a partir de
+   iluminância com factor lux→PPFD configurável. **É onde vive, em código já escrito, a
+   calibração que a pesquisa 03 propôs em alternativa ao Apogee DLI-500** (≈460 €, no `INBOX.md`
+   desde 2026-09-15). Não dispensa o acesso único a um sensor PAR de referência.
+3. **Sobre o escaravelho: não há código aberto.** Nenhum dos trabalhos com >90% de detecção
+   publicou código. O que existe é de **amoreira**, sem licença, e o hardware da literatura
+   **exige furar o estipe com broca de 8 mm**. **Mantém-se a recomendação da 03: armadilha de
+   feromona.**
+
+> **Correcção à nota de método de 2026-09-17, descoberta nesta execução:** renomear o artefacto
+> **antes** de o deck concluir **também não pega** — o servidor renomeia por cima ao terminar.
+> **Tem de se renomear depois**, e por vezes duas vezes. O sinal fiável de conclusão é o contador
+> `summary.completed`, **não** o campo `status`, que fica em `unknown`. E o
+> `download_all_artifacts` funcionou quando o `download_artifact` individual falhava.
+
+> **⚠ Pendência de protocolo:** o `CLAUDE.md` desta thread ganhou a §8 (T24–T28) durante a sessão,
+> que manda reescrever o `T005-ESTADO-PARA-ARQUITECTO.md` **ao fechar cada sessão**. O ficheiro
+> existe e está actualizado a 2026-09-18, **mas não integra a pesquisa 06** — foi escrito antes de
+> ela terminar. **Reescrever na próxima sessão.**
 
 ---
 
@@ -180,8 +190,8 @@ desta sessão, não por pertencer à thread** — e a decisão é do Arquitecto,
 
 ### Próximo passo
 
-1. **Verificar a pesquisa 06** (quadro acima). Se ficou a meio, completar.
-2. **Integrá-la na síntese** — a `05-SINTESE-FASE-1.md` cobre quatro pesquisas, não cinco.
+1. **Reescrever o `T005-ESTADO-PARA-ARQUITECTO.md`** — não integra a pesquisa 06.
+2. **Integrar a 06 na síntese** — a `05-SINTESE-FASE-1.md` cobre quatro pesquisas, não cinco.
    Tem secção §3.1 dedicada à quarta; a quinta precisa de tratamento equivalente.
 3. **Esperar o Arquitecto** para a fase 2.
 

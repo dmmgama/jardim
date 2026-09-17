@@ -3,6 +3,10 @@
 **Estado:** `ACTIVA` · `ONGOING` · fase 1 entregue, fase 2 por instruir
 **Data:** 2026-09-18 · **Sessões:** 1 · **Assunto:** como se caracteriza este espaço, por disciplina
 
+> ⚠ **Escrito antes de a pesquisa 06 terminar — não a integra.** Ela concluiu depois: não há
+> agentes de IA de domínio para adoptar, e o achado útil é o `pyfao56` (CC0, USDA) para pôr
+> número no conflito retenção-vs-drenagem. **Reescrever na próxima sessão.**
+
 ---
 
 ## 1. O que esta thread é agora
