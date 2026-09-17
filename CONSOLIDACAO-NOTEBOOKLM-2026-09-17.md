@@ -69,8 +69,20 @@ conjunto).
 
 ### ⚠ O que NÃO foi tocado, e porquê
 
-**1. `Jardim_Software_Modelacao_Solar.md` e os seus dois artefactos.** É a decisão de §4, que
-continua **por tomar**. Recomendação mantida: **opção C**, substituir pelas pesquisas novas.
+**1. `Jardim_Software_Modelacao_Solar.md` e os seus dois artefactos → DECIDIDO: OPÇÃO A, MANTER.**
+
+**Decisão do David, 2026-09-17:** *«não substituas.»* A minha recomendação era a opção C
+(substituir pelas pesquisas novas da T005); **foi recusada e a decisão do David prevalece.**
+
+**A favor da decisão, e é mais forte do que eu tinha pesado:** a rejeição da via Google 3D
+continua vigente (`REJEICOES.md` §11), e este é o **documento original** que a fundamenta. As
+pesquisas novas **confirmam-na por via independente** — não a substituem. Eliminar o original
+para pôr a confirmação no lugar dele seria trocar a prova pelo eco.
+
+**O que fica em aberto, e é responsabilidade de quem consultar:** a parte de captura 3D e escolha
+de software **está superada** pela T003 e pela `04-NUVEM-DE-PONTOS`. Quem perguntar ao notebook
+sobre ferramentas pode receber recomendações antigas. **Mitigação: as pesquisas novas estão lá
+também**, e são mais recentes.
 
 **2. Dois artefactos de origem não identificada** — *Geotechnical Landscape Engineering* e
 *Jardim Alcântara Structural Diagnosis* — mais *Boa Hora 15 Technical Diagnostic*, provável
