@@ -3,7 +3,7 @@ created: 2026-09-17
 project: Jardim
 tipo: consolidacao
 cargo: ARQ
-estado: PROPOSTA — aguarda decisão do David
+estado: EXECUTADA em 2026-09-17, com duas pendências declaradas
 summary: |
   Primeira consolidação de documentação do NotebookLM (G32-G35). Auditoria às 9 sources e
   11 artefactos existentes, classificados em VIGENTE / SUPERADO / REVOGADO / DUPLICADO.
@@ -16,6 +16,73 @@ summary: |
 ---
 
 # Consolidação NotebookLM — 2026-09-17
+
+---
+
+## ✅ EXECUÇÃO — 2026-09-17, autorizada pelo David
+
+> A proposta abaixo foi **aprovada e executada**. Este bloco regista o que se fez (G35).
+> **Duas coisas não foram tocadas** e estão no fim.
+
+### Eliminado — 4 sources, 3 artefactos
+
+| Objecto | Tipo | Motivo |
+|---|---|---|
+| `Jardim_Analise_Decisao_Betonilha.md` | source | **REVOGADO** — a betonilha não se demole (`ESTADO.md` 2026-09-17) |
+| `Jardim_Analise_Decisao_Betonilha.md` *(2.ª cópia)* | source | Duplicado + revogado |
+| `Jardim_Relva_Natural_Viabilidade.md` *(2.ª cópia)* | source | Duplicado exacto |
+| `Jardim_Research_Relva_Natural_vs_Artificial.md` | source | **SUPERADO** — de 2026-09-14, assume muros a 3 m e cota 1,60 m |
+| *Jardim_Analise Decisao_Betonilha* | deck | Órfão de source revogada |
+| *Jardim_Analise_Decisao_Betonilha* | deck | Idem, duplicado |
+| *Relvado Alcântara Feasibility* | deck | Órfão de source superada |
+
+### Renomeado — 8 sources, 3 artefactos
+
+**Sources** — todas as que ficam seguem agora a convenção:
+
+| Nome final |
+|---|
+| `T001-26-09-15-DOSSIER-LOCAL` |
+| `T001-26-09-15-RESEARCH-CATALOGO-VEGETAL` |
+| `T001-26-09-15-RESEARCH-RELVA-VIABILIDADE` |
+| `DVD-26-09-17-RESEARCH-COBERTURA-AJARDINADA-FLL` |
+| `T005-26-09-17-RESEARCH-ESPECIALIDADES` *(nova)* |
+| `T005-26-09-17-RESEARCH-MONITORIZACAO-ACTUACAO` *(nova)* |
+| `T005-26-09-17-RESEARCH-NUVEM-DE-PONTOS` *(nova)* |
+| `T005-26-09-17-SINTESE-FASE-1` *(nova)* |
+
+**Artefactos:** *Alcântara Garden Technical Diagnostic* → `T001-26-09-15-DOSSIER-LOCAL` ·
+*Jardim de Alcântara Site Analysis* → `T001-26-09-15-DOSSIER-LOCAL-infografico` ·
+*Alcântara Botanical Feasibility* → `T001-26-09-15-RESEARCH-CATALOGO-VEGETAL`
+
+> **Correcção a esta consolidação:** o §5 dizia que renomear sources *«pode não ser possível via
+> API»*. **É possível** — `source_rename` existe e funciona. A reserva era minha, por não ter
+> verificado antes de escrever.
+
+### Carregado — 4 sources novas, com um deck cada
+
+Os quatro documentos que o David escolheu, cada um com **slide deck `detailed` próprio**
+(`source_ids` restrito a uma source, por instrução expressa dele — não um deck sobre o
+conjunto).
+
+---
+
+### ⚠ O que NÃO foi tocado, e porquê
+
+**1. `Jardim_Software_Modelacao_Solar.md` e os seus dois artefactos.** É a decisão de §4, que
+continua **por tomar**. Recomendação mantida: **opção C**, substituir pelas pesquisas novas.
+
+**2. Dois artefactos de origem não identificada** — *Geotechnical Landscape Engineering* e
+*Jardim Alcântara Structural Diagnosis* — mais *Boa Hora 15 Technical Diagnostic*, provável
+duplicado do dossier.
+
+> **Porque não os toquei:** pedi os detalhes à API e o campo `source_ids` **vem vazio** — não
+> há forma programática de saber de que source cada artefacto saiu. **Não apago nem renomeio o
+> que não consigo identificar.** Ficam para o David ver no notebook, onde a interface mostra a
+> origem.
+
+---
+
 
 > **Regra G34: nada se elimina sem aprovação explícita do David.** Isto é uma proposta.
 
