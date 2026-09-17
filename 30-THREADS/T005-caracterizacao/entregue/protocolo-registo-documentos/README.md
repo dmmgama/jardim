@@ -54,7 +54,6 @@ repetido e decisões tomadas sem informação que já existia.**
 | 1 | [[REGISTO-DOCUMENTOS-INSTRUCOES]] | **A lógica.** 540 linhas: estrutura, as oito colunas com formato exacto, vocabulário de tipos, mecânica dos índices, resolução do «Supported», sete casos difíceis, regras de higiene, e **nove decisões de desenho assinaladas para revisão** | **Ler primeiro.** É o documento que decide como tudo funciona |
 | 2 | [[REGISTO-DOCUMENTOS-TEMPLATE]] | **O esqueleto.** 315 linhas: front matter, os quatro índices do topo, os quatro níveis de Dono, e um bloco de sessão preenchido com dados fictícios óbvios | Copiar quando se criar o registo definitivo |
 | 3 | [[REGISTO-DOCUMENTOS-DRAFT]] | **As regras aplicadas ao real.** 545 linhas, 58 documentos catalogados, 27 dependências registadas | **A prova.** Serve para ver se as regras resistem aos dados, antes de substituir o que está em vigor |
-
 | 4 | [[REGISTO-DOCUMENTOS-ANTIGO]] | **O que estava em vigor até 2026-09-18.** 9 documentos, estrutura por secção temática. **Movido da raiz para aqui** por instrução do David | **Referência histórica.** Se o protocolo novo for ratificado, **isto vai para `90-ARQUEOLOGIA/` — não é canon** |
 
 **Ordem de leitura recomendada:** 3 → 1 → 2. O draft mostra o resultado; as instruções explicam
