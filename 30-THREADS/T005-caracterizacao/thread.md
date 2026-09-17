@@ -121,17 +121,70 @@ no motor solar) — responde à preocupação declarada do David. **Síntese act
 
 ## HANDOFF  *(para a próxima sessão desta thread)*
 
-**Próximo passo:** Gravar e integrar a pesquisa 04; rever a síntese em conformidade.
-Depois, **esperar instrução do Arquitecto para a fase 2** — o mandato proíbe arrancá-la sem
-ele ver a fase 1.
+**Última actualização:** 2026-09-18, fim da sessão «2026.09.17 - Arquiteto - Pesquisa de Catalogacao».
 
-**À espera de:** Resposta do Arquitecto em `mensagens.md` — três pedidos: encaminhar as
-camadas à T004, ver a síntese, instruir ou adiar a fase 2.
+---
 
-**Cuidado com:**
-1. **O risco original mantém-se:** produzir uma enciclopédia em vez de uma regra. As quatro
-   pesquisas dão muito material; a fase 2 tem de **cortar**, não acumular. Uma grelha de
+### Onde a thread está
+
+**Fase 1 entregue e integrada.** Cinco documentos de pesquisa, uma síntese cruzada e um report,
+todos em `research/` e `reports/`. **A fase 2 não arrancou e não deve arrancar sem instrução
+do Arquitecto** — o mandato é explícito.
+
+**Pedido em mão, sem resposta:** `mensagens.md`, três pontos — encaminhar a questão das camadas
+à T004, ver a síntese, instruir ou adiar a fase 2.
+
+---
+
+### ⚠ Uma pesquisa foi lançada e pode ter terminado depois desta nota
+
+**`research/06-AGENTES-E-OPENSOURCE.md`** — agentes de IA, skills e projectos open source
+adoptáveis para as áreas que a fase 1 identificou. Três eixos: agentes especializados por
+disciplina · open source para análise e estudo · instrumentação, dados e automatização.
+
+**Encomendada pelo David a 2026-09-18**, executada por subagente com instrução para: ler as
+cinco pesquisas da fase 1 antes de pesquisar · incluir no report **o prompt integral e a lista
+do que leu** · registar em `REGISTO-DOCUMENTOS.md` · carregar no NotebookLM com deck próprio e
+PDF descarregado para `research/`.
+
+> **PRIMEIRA COISA A FAZER NA PRÓXIMA SESSÃO: verificar se este trabalho ficou completo.**
+>
+> | Verificar | Onde |
+> |---|---|
+> | O report existe e tem o prompt lá dentro | `research/06-AGENTES-E-OPENSOURCE.md` |
+> | O PDF do deck foi descarregado | `research/T005-26-09-18-RESEARCH-AGENTES-E-OPENSOURCE.pdf` |
+> | A source e o artefacto têm o nome de convenção no NotebookLM | `T005-26-09-18-RESEARCH-AGENTES-E-OPENSOURCE` |
+> | A linha entrou no registo | `REGISTO-DOCUMENTOS.md` da raiz |
+> | **Não** escreveu no `INBOX.md` da raiz | `INBOX.md` — foi-lhe dada contra-ordem a meio |
+>
+> **Duas armadilhas conhecidas, das quatro pesquisas anteriores:** o `title` passado na criação
+> do deck **não pega** — o artefacto nasce com o nome do notebook e **tem de ser renomeado**; e
+> o status fica em `unknown` enquanto gera, não em `in_progress`, pelo que um download
+> prematuro falha com erro genérico.
+
+**Porque é que o registo desta pesquisa está aqui e não no `INBOX.md`:** instrução directa do
+David, 2026-09-18. O inbox da raiz é do Arquitecto; **o que a thread produz regista-se na
+thread**, e sobe pelo canal de mensagens quando houver o que reportar.
+
+---
+
+### Próximo passo
+
+1. **Verificar a pesquisa 06** (quadro acima). Se ficou a meio, completar.
+2. **Integrá-la na síntese** — a `05-SINTESE-FASE-1.md` cobre quatro pesquisas, não cinco.
+   Tem secção §3.1 dedicada à quarta; a quinta precisa de tratamento equivalente.
+3. **Esperar o Arquitecto** para a fase 2.
+
+**À espera de:** resposta em `mensagens.md` aos três pedidos da entrega da fase 1.
+
+---
+
+### Cuidado com
+
+1. **O risco original mantém-se, e agravou-se.** Produzir uma enciclopédia em vez de uma regra.
+   São agora **cinco** pesquisas densas. **A fase 2 tem de cortar, não acumular** — uma grelha de
    oito parâmetros que se preenche numa tarde vale mais que uma de trinta que ninguém preenche.
-2. **Não arbitrar a sobreposição com a T003.** Está declarada em `ESTADO.md` §11 e é do
-   Arquitecto.
-3. **Não atrasar a T004.** Se houver dúvida entre esperar e sinalizar, sinalizar.
+2. **Não arbitrar a sobreposição com a T003.** Está declarada em `ESTADO.md` §11 e é do Arquitecto.
+3. **Não atrasar a T004.** Se houver dúvida entre esperar e sinalizar, **sinalizar**.
+4. **A pesquisa 06 é sobre ferramentas, não sobre o jardim.** Se a fase 2 começar a desenhar
+   automatismos em vez de definir o que se caracteriza e com que tolerância, **saiu do mandato**.
