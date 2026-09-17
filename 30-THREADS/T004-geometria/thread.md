@@ -6,7 +6,7 @@ thread: T004
 assunto: Geometria do jardim — transição de cota, área útil, copa da palmeira
 estado: ACTIVA
 prioridade: URGENTE — caminho crítico da obra
-sessoes: 0
+sessoes: 1 (em curso — 2026-09-17)
 ---
 
 # T004 — A Geometria do Jardim
@@ -279,32 +279,153 @@ palmeira)* · piscina a SE *(longe da única descida)* · zonamento em quatro fa
 
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
-**Sessões:** 0 — thread criada, ainda não arrancou.
+**Sessão 1 — 2026-09-17, em curso.**
 
 ### Onde estou face ao que me foi mandado
 
-Nada feito. O mandato está fixado, os recursos estão identificados e as medições bloqueantes estão
-listadas.
+O mandato pede **a geometria**. Ainda não há geometria nenhuma desenhada — e não devia haver.
+A sessão 1 fez o que tinha de vir antes: **enunciou o problema com números certos** e lançou a
+pesquisa.
+
+**O que esta sessão apurou, e muda as contas:** o David fixou os dados reais do jacuzzi e declarou
+que **é para usar e para manter**. Os números que a T002 tinha estavam errados.
+
+### Feito
+
+| O quê | Onde |
+|---|---|
+| **Enunciado do desnível** — dados corrigidos, cargas, o encaixe dos 15 cm, as sete pistas de pesquisa | `research/01-O-DESNIVEL-ENUNCIADO.md` |
+| **Pesquisa intensiva lançada** — tipologias de transição, jacuzzis encastrados, precedentes, estratégias anti-barreira | em curso |
+
+### Por fazer
+
+```
+   sessão 1  ✅ enunciado do desnível + pesquisa lançada
+             ⬜ absorver a pesquisa e apresentar ao David
+       │
+   sessão 2  ⬜ M1–M4 — as medições (bloqueiam o desenho definitivo)
+             ⬜ geometria da transição  ← É O QUE A OBRA PRECISA
+       │
+   sessão 3+ ⬜ área útil e copa · cotas zona a zona
+             ⬜ entregar planta, corte, quadro de áreas, cargas
+```
 
 ---
 
-## HANDOFF  *(para a primeira sessão)*
+## HANDOFF  *(para a sessão seguinte)*
 
-### Arranque em quatro passos
+### Arranque
 
-1. Ler `mensagens.md` — **há mensagem do Arquitecto na abertura.**
-2. Ler `../T002-jardim-v2/research/EXPLICACAO-DO-LOCAL.html` — o projecto explicado.
-3. Ler `../T002-jardim-v2/research/07-ZONAMENTO-DAVID.md` — as seis zonas.
-4. Consultar o dossier do Local **só para factos específicos**. Não o reler inteiro.
+1. Ler `mensagens.md` — **há mensagem de abertura do Arquitecto.**
+2. Ler **`research/01-O-DESNIVEL-ENUNCIADO.md`** — é o documento de trabalho desta thread.
+3. Ver se a pesquisa lançada na sessão 1 deixou resultado em `research/`.
+4. Só depois consultar `../T002-jardim-v2/research/EXPLICACAO-DO-LOCAL.html` para o enquadramento.
 
-### A primeira coisa a fazer
+**Não reler o dossier do Local inteiro.** Consultar só para factos específicos.
 
-**Pôr as medições M1–M4 nas mãos do David.** Uma tarde de trabalho, e bloqueiam o resto. A lista
-está no âmbito, ponto 1. **M1 — a copa da palmeira — é a mais importante e nunca foi feita.**
+---
 
-Enquanto não houver medições: **ensaiar a transição com a copa parametrizada.** Não parar.
+### AS TRÊS COISAS QUE NÃO PODES NÃO SABER
 
-### As cinco perguntas por responder
+#### 1 · Os números do jacuzzi mudaram — a T002 tinha-os errados
 
-Estão no fim deste documento. **As duas primeiras** — piscina de usar ou de ver, e se a descida
-tem de ser a direito — **decidem a geometria da transição** e não se avança sem elas.
+> *«piscina é para usar. eu hoje tenho um jacuzzi e é espetacular. **70cm altura, 1.75x1.75**. e dá
+> para verão e inverno. portanto **gostava de manter**.»* `[David, 2026-09-17]`
+
+| | T002 (lido da planta) | **Real** `[David]` |
+|---|---|---|
+| Dimensões | 1,30 × 1,24 m | **1,75 × 1,75 m** |
+| Área | 1,6 m² | **3,06 m²** |
+| Peso cheio + 4 pessoas | ≈1,1 t | **≈2,6 t · ≈750 kg/m²** |
+
+**Não é espelho de água nem elemento decorativo. É equipamento em uso corrente, todo o ano.**
+Qualquer solução que o trate como ornamento está fora.
+
+**A carga declara-se, não se dimensiona** — o David é engenheiro de estruturas. Mas **≈2,6 t
+concentradas em 3 m², sobre betonilha fissurada em placas e sobre a caixa de ar**, é informação que
+tem de estar em cima da mesa.
+
+#### 2 · Há um encaixe de 15 cm que pode resolver metade do problema
+
+**Foi o David que deu a pista:** *«se a relva tiver a 50cm do pavimento, só sobra 30cm por aí.
+ou seja é rente ao chão.»*
+
+```
+                              ┌──────────────┐  +1,35  PLATAFORMA / SALA
+        ╔═════════════╗ +1,20 │   15 cm      │   ← UM degrau
+        ║   JACUZZI   ║ ──────┘              │
+        ║    0,70 m   ║                      │
+ +0,50 ─╚═════════════╝──────────────────────┘  +0,50  JARDIM
+```
+
+**Jacuzzi pousado no jardim (+0,50) → topo a +1,20 m. Plataforma a +1,35 m. São 15 cm.**
+
+Os três números que já estavam fixados — cota do jardim, altura do jacuzzi, cota da plataforma —
+**encaixam com 15 cm de folga.** O jacuzzi deixa de ser obstáculo no caminho e passa a ser extensão
+da plataforma, com o bordo à altura de banco.
+
+> ⚠ **Mas isto resolve o acesso AO JACUZZI, não a descida ao jardim.** Essa continua a ser
+> **0,85 m**, e é o problema que o David declarou: *«tem mesmo de se resolver o desnível.»*
+> **Não confundir as duas coisas.**
+
+#### 3 · A ideia do «canto norte» tem uma ambiguidade por resolver
+
+> *«o jacuzzi poderia ficar **no canto norte ao lado da palmeira** eventualmente. não sei.»*
+> `[David, 2026-09-17]`
+
+**O canto N é junto à fachada. A palmeira está no extremo oposto** (X≈11,6, canto W). A frase junta
+os dois.
+
+| Leitura | A favor | Contra |
+|---|---|---|
+| **Canto N** (zona 1, junto à casa) | Perto de água e electricidade. É onde já está. | Continua a ocupar a faixa da transição. |
+| **Canto W** (zona 5, junto à palmeira) | **Liberta a transição por completo.** Dá uso a um canto morto. | Longe da casa — em Dezembro atravessa-se o jardim molhado. Perto do muro de suporte. **Por cima do dreno, que nunca foi aberto.** |
+
+**Perguntar ao David. Não assumir.**
+
+---
+
+### O PROBLEMA, EM UMA FRASE
+
+> **Vencer 0,85 m entre a plataforma e o jardim, alojando um jacuzzi de 1,75×1,75×0,70 de uso
+> corrente, SEM CORTAR O JARDIM EM DOIS** — o recinto só tem **5,78 m** de largura, e jacuzzi
+> (1,75) + escada (1,10) lado a lado já ocupam **2,85 m**.
+
+**Tecnicamente, vencer 0,85 m é fácil:** 5 degraus de 17 cm, Blondel 0,62–0,64, melhor que a escada
+actual. **O difícil é não transformar a transição numa barreira** — que é o defeito do canteiro
+central, já eliminado, a voltar com outro nome.
+
+---
+
+### CUIDADOS
+
+1. **Medir antes de fixar.** M1 — copa da palmeira — custa **uma hora** e nunca foi feito.
+   **A obra avança já, e o que se desenhar mal fica em betão.** Ensaiar com a copa parametrizada
+   para não parar; **não entregar sem M1.**
+
+2. **Medir em X é insuficiente** — foi o erro da T002. **Tudo o que importa acontece em Y**:
+   a largura de 5,78 m, a barreira, a copa que atravessa o recinto de muro a muro.
+
+3. **O jardim é sobretudo OLHADO, de dentro da sala.** O projecto é *«fazer o jardim entrar na
+   sala»*. A transição é a primeira coisa que se vê do sofá — **não é só circulação, é primeiro
+   plano de uma vista.**
+
+4. **Objectivo do David, que é critério de aceitação:** *«um jardim muito bonito de dia e cénico de
+   noite.»* Uma solução tecnicamente correcta que produza um pátio arrumado **falha**.
+
+5. **Proveniência.** Os números de sol são **estimativa da T002, a confirmar pela T003** — entram
+   sempre com etiqueta. A T003 nunca correu.
+
+---
+
+### A SESSÃO 1 FICOU A MEIO DE
+
+**A pesquisa intensiva**, lançada e por absorver. Sete pistas, na secção 6 do
+`research/01-O-DESNIVEL-ENUNCIADO.md`:
+
+jacuzzi encastrado · degraus-banco · talude plantado em parte da largura · escada na zona 2
+(0,0 h de sol, não serve para plantar) · split-level · engawa japonesa e pátios mediterrânicos ·
+jardins urbanos de Londres, que têm proporções quase iguais a este.
+
+**Instrução do David:** *«primeiro passo é pesquisa intensiva a tentar ver soluções para isto.»*
+**Não avançar para desenho antes de lhe mostrar o que a pesquisa deu.**
