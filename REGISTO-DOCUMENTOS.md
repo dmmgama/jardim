@@ -100,14 +100,20 @@ separados e sem conhecimento umas das outras.
 |---|---|---|---|
 | 1 | [[CONSOLIDACAO-NOTEBOOKLM-2026-09-17]] | **Primeira consolidação de documentação (G32–G35).** Auditoria às 9 sources e 11 artefactos do notebook. Propõe eliminar 4 sources e 3 artefactos, renomear 7. Achado grave: a `Analise_Decisao_Betonilha` está **revogada** — foi escrita para decidir a demolição, e o `ESTADO.md` decidiu a 2026-09-17 que a betonilha não se demole. **Proposta: nada executado sem aprovação.** | ❌ não enviado — é documento de governo, não material de estudo |
 
-### Material do David já no notebook  (`DVD`)
+### Pesquisa autónoma do David  (`DVD`) — `40-PESQUISAS/David/`
 
-Registado aqui para constar. **Não saiu de sessão nenhuma e não tem ficheiro no repositório** —
-por isso não tem wikilink. Identificado pelo David a 2026-09-17.
+**Não saiu de sessão nenhuma.** Identificada e arrumada pelo David a 2026-09-17, em pasta
+própria. **Tem ficheiro no repositório e, por isso, tem wikilink.**
 
-| Source no notebook | Origem | Estado |
-|---|---|---|
-| «Relatório Técnico: Projeto de Reabilitação Paisag…» | **Pesquisa autónoma do David**, carregada por ele | 🔵 Vigente. **Não é do Agente propor eliminá-lo.** |
+| # | Documento | Sumário | NotebookLM |
+|---|---|---|---|
+| 1 | [[40-PESQUISAS/David/2026.09.17-RESEARCH-SISTEMAS_DE_COBERTURA_AJARDINADA]] | **Sistemas de cobertura ajardinada**, com fontes FLL / ZinCo / Optigreen: espessuras mínimas e recomendadas de substrato **por tipologia de plantação**, substratos técnicos leves com **densidade seca e saturada** (o saturado é o que dimensiona), e **mitigação da sobrecarga sobre o muro SW**. **Responde à questão da decomposição dos +0,50 m em camadas** que a T005 sinalizou à T004 como urgente. | ✅ está no notebook como «Relatório Técnico: Projeto de Reabilitação Paisag…» — **a renomear** para `DVD-26-09-17-RESEARCH-COBERTURA-AJARDINADA-FLL` |
+| 2 | [[40-PESQUISAS/David/Jardim_Research_Relva_Natural_vs_Artificial]] | Relva natural vs. artificial — espécies, sombra, execução, manutenção, custos. **De 2026-09-14, anterior à T001.** Assume **muros a 3 m** (são 2,50) e **cota 1,60 m**: premissas hoje corrigidas. Superado por `Jardim_Relva_Natural_Viabilidade.md`, que é o relatório completo com fontes. | ✅ está no notebook — **proposto para eliminação** (superado) |
+
+> **Nota de método, registada para constar.** Na primeira consolidação classifiquei o #1 como
+> «por identificar» e o #2 como «órfão», por ter procurado os ficheiros apenas em
+> `30-THREADS/`. **Ambos existiam.** Foi o que levou à criação do cargo `DVD` e à regra de
+> perguntar antes de propor eliminar — ver `CLAUDE.md` §5.7.
 
 ---
 
