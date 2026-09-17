@@ -409,3 +409,14 @@ medições.
    existe.
 4. **A escada toca o muro SE**, cuja patologia tem origem desconhecida 🔴. **A escada não pode ser a
    primeira coisa da obra.** A plataforma pode.
+
+---
+
+## ⚑ AUDITORIA PENDENTE — 2026-09-17
+
+**O David vai auditar esta thread antes de se prosseguir.**
+A folha de auditoria está em **`AUDITORIA-2026-09-17.md`** na raiz — secção **T004 — GEOMETRIA**.
+
+**Não avançar com trabalho novo antes de o David dar a auditoria por feita.**
+
+Sessão de origem: `2026.09.16 - T002 S2 e T004 S1`

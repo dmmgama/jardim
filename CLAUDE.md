@@ -10,6 +10,7 @@ tipo: agent-SOP
 lingua: pt-PT
 regime: governo-v2
 Notion-Jardim HUB: https://app.notion.com/p/Jardim-Hub-3db8798288be80358962e3d37be1531e?source=copy_link
+Notebook-LM: https://notebook.google.com/notebook/8e3c8f38-0f8c-494d-aae5-fc24e9be17d2
 ---
 
 # CLAUDE.md — Jardim Alcântara

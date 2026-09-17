@@ -295,3 +295,14 @@ A última coisa que esta thread apurou é a pergunta central da seguinte:
 
 E o número que a responde **não existe**: o diâmetro de copa da palmeira está 🔴 por medir
 (item P2.2, uma hora de trabalho).
+
+---
+
+## ⚑ AUDITORIA PENDENTE — 2026-09-17
+
+**O David vai auditar esta thread antes de se prosseguir.**
+A folha de auditoria está em **`AUDITORIA-2026-09-17.md`** na raiz — secção **T002 — JARDIM V2**.
+
+**Não avançar com trabalho novo antes de o David dar a auditoria por feita.**
+
+Sessão de origem: `2026.09.16 - T002 S2 e T004 S1`

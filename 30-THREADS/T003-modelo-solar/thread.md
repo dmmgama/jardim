@@ -152,3 +152,14 @@ O que já existe nesta pasta:
 - **Fuso horário e hora de verão.** `pvlib` exige datetimes com timezone; um *naive* é lido como UTC e o erro passa despercebido até as sombras não baterem com as fotos.
 - **`PyYAML` não estava instalado** neste ambiente (verificado 2026-09-15). Confirma e instala.
 - O caminho deste repositório tem espaços. Algumas ferramentas de linha de comandos falham silenciosamente; se houver fotogrametria, trabalhar em pasta sem espaços.
+
+---
+
+## ⚑ AUDITORIA PENDENTE — 2026-09-17
+
+**O David vai auditar esta thread antes de se prosseguir.**
+A folha de auditoria está em **`AUDITORIA-2026-09-17.md`** na raiz — secção **T003 — MODELO SOLAR**.
+
+**Não avançar com trabalho novo antes de o David dar a auditoria por feita.**
+
+Sessão de origem: `2026.09.16 - T002 S2 e T004 S1`
