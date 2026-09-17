@@ -45,9 +45,9 @@ respostas erradas com a autoridade de quem cita uma fonte.
 | 4 | `Jardim_Catalogo_Vegetal.md` | 🟡 **VIGENTE com reserva** | Continua útil (espécies por zona), mas foi escrito **antes** da reclassificação como cobertura ajardinada e **antes** da correcção da drenagem. As conclusões por luz mantêm-se; as de encharcamento estão atenuadas (ver `INBOX.md`). | **Manter, com nota** |
 | 5 | `Jardim_Relva_Natural_Viabilidade.md` | 🟡 **VIGENTE com reserva** | Conclusão principal (relva de gramíneas inviável) mantém-se e é robusta — assenta em luz, não em água. Mas contém secções de **sequência de demolição** que estão revogadas. | **Manter, com nota** |
 | 6 | `Jardim_Relva_Natural_Viabilidade.md` *(2.ª cópia)* | 🟠 **DUPLICADO** | Cópia exacta da #5. | **Eliminar** |
-| 7 | `Jardim_Research_Relva_Natural_vs_Artificial.md` | ⚫ **ÓRFÃO** | **Não existe ficheiro correspondente no repositório**, nem no histórico do git. Foi superado por #5, que é o relatório completo com fontes. | **Eliminar** |
+| 7 | `Jardim_Research_Relva_Natural_vs_Artificial.md` | 🟠 **SUPERADO** | **Correcção 2026-09-17:** o ficheiro **existe** em `40-PESQUISAS/David/` — não o tinha encontrado porque procurei só em `30-THREADS/`. É de **2026-09-14**, anterior à T001, e assume premissas hoje corrigidas: muros a **3 m** (são 2,50) e cota **1,60 m**. Superado por #5. | **Eliminar do notebook** — o ficheiro fica no repositório |
 | 8 | `Jardim_Software_Modelacao_Solar.md` | 🟡 **PARCIALMENTE SUPERADO** | Foi o relatório que fechou a via Google 3D (`REJEICOES.md` §11) — **essa parte mantém-se**. Mas a matéria de captura 3D foi **superada duas vezes**: pela pesquisa da T003 e pela `04-NUVEM-DE-PONTOS` da T005. | **Decisão tua** — ver §4 |
-| 9 | «Relatório Técnico: Projeto de Reabilitação Paisag…» | 🔵 **MATERIAL DO DAVID** (`DVD`) | **Identificado 2026-09-17:** pesquisa autónoma do David, carregada por ele directamente. **Não saiu de sessão nenhuma** — por isso não tem ficheiro no repositório. **Não é ausência, é origem externa.** | **Manter.** Não é do Agente propor eliminá-lo. |
+| 9 | «Relatório Técnico: Projeto de Reabilitação Paisag…» | 🔵 **MATERIAL DO DAVID** (`DVD`) · 🟢 **VIGENTE E CRÍTICO** | **Identificado 2026-09-17:** pesquisa autónoma do David, em `40-PESQUISAS/David/Sem título.md`. **É a peça mais actual do notebook** — trata **espessuras de substrato FLL, substratos leves com peso saturado e carga sobre o muro SW**. Responde ao conflito que a T005 identificou como o mais valioso por arbitrar. | **Manter e renomear.** Ver §4-bis. |
 
 **Balanço:** 1 vigente sem reserva · 3 vigentes com reserva · **4 propostos para eliminação** ·
 1 material do David (mantém-se).
@@ -100,6 +100,42 @@ O documento tem duas partes com destinos diferentes:
 
 ---
 
+## 4-bis. A descoberta que muda a prioridade desta consolidação
+
+**O documento do David responde à pergunta que a T005 deixou em aberto.**
+
+A síntese da fase 1 identificou como *«o compromisso técnico não resolvido mais valioso do
+projecto»* o conflito **retenção de água para a planta vs. drenagem rápida para proteger a
+impermeabilização** — e concluiu que a espessura de cada camada *«é uma decisão de compromisso,
+não uma optimização única, e ainda não foi tomada neste projecto»*.
+
+**Já tinha sido trabalhada.** O «Relatório Técnico: Projeto de Reabilitação Paisagística e
+Geotécnica com Sistema de Cobertura Ajardinada» traz, com fontes FLL / ZinCo / Optigreen:
+
+- **Espessuras mínimas e recomendadas de substrato por tipologia de plantação** — e a
+  classificação extensiva / semi-intensiva / intensiva que decorre delas.
+- **Substratos técnicos leves com densidade seca *e saturada***, que é o parâmetro certo: em
+  geotecnia de coberturas o que dimensiona não é o peso seco, é o peso saturado.
+- **Mitigação da sobrecarga sobre o muro de suporte SW** — explicitamente, pelo nome.
+
+**O que isto significa, por ordem de importância:**
+
+1. **O sinal urgente que a T005 mandou à T004 — «os +0,50 m estão fixados como cota mas não
+   decompostos em camadas» — tem agora com que ser respondido.** O documento não decide por
+   ninguém, mas dá as ordens de grandeza que faltavam.
+2. **Confirma a reclassificação por via totalmente independente.** Três pesquisas da T005
+   convergiram em que isto é uma cobertura ajardinada; **este documento já o tratava como tal,
+   e o David encomendou-o antes.**
+3. **É o argumento mais forte a favor de o notebook ser usado para perguntar (G30).** Esta
+   informação estava disponível durante toda a fase 1 e **não foi consultada** — porque o
+   protocolo que manda consultar só foi escrito hoje, depois das pesquisas.
+
+> **Recomendação do Arquitecto:** este documento deve ser **o primeiro a ser lido** por quem
+> pegar na questão das camadas, e **deve ser passado à T004** com o sinal já enviado. Fica em
+> `INBOX.md`.
+
+---
+
 ## 5. Nomenclatura proposta para o que fica
 
 Aplicando a convenção `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>` (G28), com a data **do documento
@@ -113,6 +149,7 @@ original**, não a do upload:
 | *Alcântara Garden Technical Diagnostic* | `T001-26-09-15-DOSSIER-LOCAL` *(igual à source)* |
 | *Alcântara Botanical Feasibility* | `T001-26-09-15-RESEARCH-CATALOGO-VEGETAL` |
 | *Relvado Alcântara Feasibility* | `T001-26-09-15-RESEARCH-RELVA-VIABILIDADE` |
+| «Relatório Técnico: Projeto de Reabilitação Paisag…» | `DVD-26-09-17-RESEARCH-COBERTURA-AJARDINADA-FLL` |
 
 > **Nota:** as sources antigas foram carregadas antes de a convenção existir. **Renomear sources
 > pode não ser possível via API** — confirmo antes de prometer. Os artefactos têm acção de
