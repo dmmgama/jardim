@@ -247,6 +247,35 @@ não arquivo.
 **G31.** Resposta do NotebookLM **não é decisão**. Vale como leitura de documento: **não entra
 em `ESTADO.md` sem passar pelo processo normal.** Mesma regra que G22 para o Notion.
 
+#### Pesquisa feita pelo David
+
+**G36.** Se o David indicar que fez uma pesquisa — em qualquer momento, mesmo a meio de outro
+assunto — o Agente **DEVE catalogá-la antes de continuar**. Não se adia para o fim da sessão.
+
+**O que catalogar significa, por esta ordem:**
+
+1. **Localizar e ler o ficheiro.** Se não estiver em `40-PESQUISAS/David/`, perguntar onde está.
+   **NÃO PODE** concluir que não existe sem procurar no repositório inteiro.
+2. **Verificar o front matter** — `created`, `summary`, `Asked by`. Se o `summary` não
+   descrever o conteúdo real, corrigir. *(Já aconteceu: um summary copiado de outro ficheiro.)*
+3. **Confirmar que o prompt está lá.** Se não estiver, pedi-lo ao David — ver regra do prompt acima.
+4. **Registar em `REGISTO-DOCUMENTOS.md`**, secção Pesquisa, com sumário substantivo: **o que
+   responde**, não só de que trata.
+5. **Confrontar com o estado do projecto** — e é este o passo que dá valor ao resto:
+   - **Responde a alguma questão hoje em aberto** em `ESTADO.md` ou numa thread activa? → **dizê-lo
+     ao David e sinalizar a quem interessa**, sem esperar que alguém pergunte.
+   - **Assenta em premissas entretanto corrigidas?** → registar a ressalva **no registo**, não só na
+     conversa.
+   - **Contradiz algo decidido?** → é matéria de `ESTADO.md`, e vai pelo processo normal.
+6. **Perguntar se vai para o NotebookLM** (G27), com cargo `DVD`.
+
+**Porquê esta regra existe.** A 2026-09-17 descobriu-se que uma pesquisa do David **respondia à
+questão que a T005 tinha acabado de sinalizar como urgente à T004** — e esteve disponível durante
+toda a fase 1 sem ninguém a abrir. **O custo de não catalogar não é desarrumação: é trabalho
+repetido e decisões tomadas sem informação que já existia.**
+
+---
+
 #### Consolidação de documentação  *(modo Arquitecto)*
 
 **G32.** O Arquitecto **PODE** correr uma **consolidação de documentação** — opção de sessão, não

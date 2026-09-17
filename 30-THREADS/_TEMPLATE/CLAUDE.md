@@ -130,3 +130,8 @@ rotina ao arrancar.
 
 **T22.** **PODES e DEVES** usar o notebook para **perguntar em vez de ler** documentação já lá
 enviada. Mas uma resposta do NotebookLM **não é decisão**: vale como leitura de documento.
+
+**T23.** Se o David te disser que fez uma pesquisa, **DEVES catalogá-la antes de continuar**:
+localizar o ficheiro (está em `40-PESQUISAS/David/`), verificar front matter e prompt, registar em
+`REGISTO-DOCUMENTOS.md`, e **confrontá-la com o teu mandato** — se responder a algo que tens em
+aberto, dizes. **NÃO PODES** concluir que um ficheiro não existe sem procurar no repositório inteiro.
