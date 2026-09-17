@@ -210,6 +210,11 @@ prontos juntos, a pergunta é feita uma só vez, em lote** — não uma por docu
 > PODE** classificar ao calha. `OUTROS` é para quando não há certeza **e** a pergunta já foi
 > feita ou não se justifica.
 
+> **O prompt fica com o documento.** Toda a pesquisa — do David ou de sessão — **DEVE** guardar
+> o **prompt que a originou** dentro do próprio ficheiro, antes do relatório. **Um relatório sem o
+> prompt não é auditável:** não se sabe o que foi perguntado, o que ficou de fora, nem que
+> premissas foram dadas ao modelo.
+>
 > **Onde vive.** A pesquisa autónoma do David guarda-se em `40-PESQUISAS/David/`. **Tem ficheiro no
 > repositório e, por isso, tem wikilink** — ao contrário do que só existe no notebook. **O Agente PODE e
 > DEVE lê-la**; é material de projecto como qualquer outro, e a consolidação de 2026-09-17 mostrou o custo

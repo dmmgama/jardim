@@ -107,8 +107,18 @@ própria. **Tem ficheiro no repositório e, por isso, tem wikilink.**
 
 | # | Documento | Sumário | NotebookLM |
 |---|---|---|---|
-| 1 | [[40-PESQUISAS/David/2026.09.17-RESEARCH-SISTEMAS_DE_COBERTURA_AJARDINADA]] | **Sistemas de cobertura ajardinada**, com fontes FLL / ZinCo / Optigreen: espessuras mínimas e recomendadas de substrato **por tipologia de plantação**, substratos técnicos leves com **densidade seca e saturada** (o saturado é o que dimensiona), e **mitigação da sobrecarga sobre o muro SW**. **Responde à questão da decomposição dos +0,50 m em camadas** que a T005 sinalizou à T004 como urgente. | ✅ está no notebook como «Relatório Técnico: Projeto de Reabilitação Paisag…» — **a renomear** para `DVD-26-09-17-RESEARCH-COBERTURA-AJARDINADA-FLL` |
-| 2 | [[40-PESQUISAS/David/Jardim_Research_Relva_Natural_vs_Artificial]] | Relva natural vs. artificial — espécies, sombra, execução, manutenção, custos. **De 2026-09-14, anterior à T001.** Assume **muros a 3 m** (são 2,50) e **cota 1,60 m**: premissas hoje corrigidas. Superado por `Jardim_Relva_Natural_Viabilidade.md`, que é o relatório completo com fontes. | ✅ está no notebook — **proposto para eliminação** (superado) |
+| 1 | [[40-PESQUISAS/David/2026.09.17-RESEARCH-SISTEMAS_DE_COBERTURA_AJARDINADA]] | **Sistemas de cobertura ajardinada**, com fontes FLL / ZinCo / Optigreen. **Inclui o prompt de pesquisa integral** (acrescentado pelo David a 2026-09-17), com as **8 perguntas** que o originaram. Cobre: espessuras de substrato por tipologia · substratos leves com densidade seca **e saturada** · camadas drenantes comparadas por peso · **cálculo de sobrecarga em kPa com Rankine/Coulomb e Eurocódigo 7** · **consequências de enterrar o colo de *Phoenix canariensis* e *Celtis australis*** · impermeabilização sobre betonilha fissurada e barreira anti-raízes FLL · saída de drenagem e modo de falha · **2-3 secções-tipo completas, camada a camada, com peso e custo por m²**. **Responde à questão da decomposição dos +0,50 m em camadas** que a T005 sinalizou à T004 como urgente. | ✅ está no notebook como «Relatório Técnico: Projeto de Reabilitação Paisag…» — **a renomear** para `DVD-26-09-17-RESEARCH-COBERTURA-AJARDINADA-FLL` |
+| 2 | [[40-PESQUISAS/David/2026-09-14-Research-Relva_Natural_vs_Artificial]] | Relva natural vs. artificial — espécies, sombra, execução, manutenção, custos. **De 2026-09-14, anterior à T001.** Assume **muros a 3 m** (são 2,50) e **cota 1,60 m**: premissas hoje corrigidas. Superado por `Jardim_Relva_Natural_Viabilidade.md`, que é o relatório completo com fontes. | ✅ está no notebook — **proposto para eliminação** (superado) |
+
+> **Os prompts ficam com os documentos.** O David guardou o prompt de pesquisa **dentro** do
+> ficheiro #1, antes do relatório. **É a prática certa e adopta-se:** um relatório sem o prompt
+> que o gerou não é auditável — não se sabe o que foi perguntado, o que ficou de fora, nem que
+> premissas foram dadas ao modelo. Vale para pesquisa do David e para pesquisa de sessão.
+>
+> **Um detalhe que o prompt revela e importa:** foi escrito com **cota 1,60 m** e **muros de
+> 2,0–2,5 m** — e descreve a betonilha como **«EMPOÇA água»**. Esta última premissa **está
+> corrigida** desde 2026-09-16 (o quintal escoa; ver `ESTADO.md` §01). **Não invalida o
+> relatório** — as espessuras e pesos FLL não dependem disso — mas quem o ler deve saber.
 
 > **Nota de método, registada para constar.** Na primeira consolidação classifiquei o #1 como
 > «por identificar» e o #2 como «órfão», por ter procurado os ficheiros apenas em
