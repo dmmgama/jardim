@@ -157,11 +157,14 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 
 - [ ] 2026-09-18 | arquitecto | **⚠ PROTOCOLO DE REGISTO DE DOCUMENTOS — três ficheiros novos na raiz, por avaliar e integrar.** Produzidos por subagentes na sessão de 2026-09-17/18, a pedido do David. **Nenhum está em vigor: são propostas.**
 
+  > **Tudo em `30-THREADS/T005-caracterizacao/entregue/protocolo-registo-documentos/`.**
+  > **Começa pelo [[30-THREADS/T005-caracterizacao/entregue/protocolo-registo-documentos/README]]** — introduz a questão, indexa os ficheiros e lista o que falta decidir.
+
   | Ficheiro | O que é |
   |---|---|
-  | `REGISTO-DOCUMENTOS-INSTRUCOES.md` (540 lin.) | A lógica: estrutura, oito colunas com formato exacto, vocabulário de tipos, índices, sete casos difíceis, regras de higiene, e **nove decisões de desenho assinaladas para revisão** |
-  | `REGISTO-DOCUMENTOS-TEMPLATE.md` (315 lin.) | O esqueleto vazio, com exemplo fictício preenchido |
-  | `REGISTO-DOCUMENTOS-DRAFT.md` (545 lin.) | As regras **aplicadas a tudo o que existe** — para ver se resistem aos dados reais |
+  | [[30-THREADS/T005-caracterizacao/entregue/protocolo-registo-documentos/REGISTO-DOCUMENTOS-INSTRUCOES]] (540 lin.) | A lógica: estrutura, oito colunas com formato exacto, vocabulário de tipos, índices, sete casos difíceis, regras de higiene, e **nove decisões de desenho assinaladas para revisão** |
+  | [[30-THREADS/T005-caracterizacao/entregue/protocolo-registo-documentos/REGISTO-DOCUMENTOS-TEMPLATE]] (315 lin.) | O esqueleto vazio, com exemplo fictício preenchido |
+  | [[30-THREADS/T005-caracterizacao/entregue/protocolo-registo-documentos/REGISTO-DOCUMENTOS-DRAFT]] (545 lin.) | As regras **aplicadas a tudo o que existe** — para ver se resistem aos dados reais |
 
   **O achado do draft: 58 documentos catalogados, contra 9 no `REGISTO-DOCUMENTOS.md` actual.** Não é melhoria de formato — **49 documentos não estavam em catálogo nenhum.** Quase todo o trabalho do projecto estava fora de qualquer índice. Verificado por script: todos os wikilinks resolvem, todas as linhas têm o número certo de colunas.
 
@@ -170,6 +173,8 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
   **Duas contradições com o governo em vigor, por resolver:** a **G23 manda organizar por secção temática** e a estrutura nova é **por Dono** — são incompatíveis, e a G23 e o T20 têm de ser reescritos; e **a excepção ao append-only** (a secção de Dependências, única editável) **não existe como regra no `CLAUDE.md`.**
 
   **Mais oito classificações duvidosas** listadas no draft a pedir confirmação, e uma pendência de G29 não apurada: **porque é que dois decks cujas sources estão no notebook não têm PDF em disco.**
+
+  **Os ficheiros nasceram na raiz e foram movidos para a entrega da T005** a 2026-09-18, por instrução do David — para ficar claro que são **entrega de thread, não governo em vigor**. O que governa hoje continua a ser o `REGISTO-DOCUMENTOS.md` da raiz, com a estrutura antiga.
 
 ### Higiene do repositório
 

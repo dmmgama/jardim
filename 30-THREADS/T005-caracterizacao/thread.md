@@ -168,6 +168,16 @@ thread**, e sobe pelo canal de mensagens quando houver o que reportar.
 
 ---
 
+### Entregue nesta sessão, fora do mandato
+
+**`entregue/protocolo-registo-documentos/`** — instruções, template e draft do protocolo de
+registo de documentos, mais um README que os indexa. **Não é matéria do mandato da T005**: foi
+encomendado pelo David a meio da sessão e produzido por subagentes. **Está aqui por ser trabalho
+desta sessão, não por pertencer à thread** — e a decisão é do Arquitecto, sinalizada no
+`INBOX.md`.
+
+---
+
 ### Próximo passo
 
 1. **Verificar a pesquisa 06** (quadro acima). Se ficou a meio, completar.

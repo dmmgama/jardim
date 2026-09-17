@@ -15,11 +15,14 @@ summary: |
   projecto precisa: não tem arboricultura de obra, não tem cobertura ajardinada, não tem FLL.
 
   O que vale a pena não são agentes de domínio — são **MCP servers que dão ao agente acesso
-  às ferramentas que a pesquisa 02 já tinha escolhido**. Três achados fortes e verificados:
+  às ferramentas que a pesquisa 02 já tinha escolhido**. Dois achados fortes e verificados:
   `nkarasiak/qgis-mcp` (310★, commit de ontem, 118 ferramentas, Windows) põe o agente a correr
-  SOLWEIG/UMEP directamente; `Zhonghao1995/agentic-swmm-workflow` (29★, MIT, paper revisto por
-  pares, PowerShell one-liner) põe o agente a correr o EPA SWMM; `homeassistant-ai/ha-mcp`
-  (4766★, MIT, modo só-leitura) põe o agente a ler o histórico dos sensores.
+  SOLWEIG/UMEP directamente — confirmado que o UMEP regista provider `umep:` de Processing;
+  `homeassistant-ai/ha-mcp` (4766★, MIT, modo só-leitura) põe o agente a ler o histórico dos
+  sensores. Um terceiro candidato, o `agentic-swmm-workflow`, foi **elogiado e depois
+  descartado dentro da própria pesquisa**: tem paper revisto por pares, mas os casos de
+  validação são de **~1 km² e 40 sub-bacias** — é a «ferramenta da escala acima» outra vez,
+  desta vez bem disfarçada.
 
   Armadilha documentada com prova: `jjsantos01/qgis_mcp` tem 1096 estrelas — **mais do triplo
   do vivo — e está parado desde Outubro de 2025.** Neste espaço a contagem de estrelas mede
@@ -29,6 +32,11 @@ summary: |
   implementação de referência do FAO-56 com balanço hídrico diário de solo — é a ferramenta
   que fecha o lado «quanto retém o substrato» do conflito retenção-vs-drenagem, e nenhuma
   pesquisa anterior a tinha.
+
+  Achado lateral com consequência imediata: o `Olen/homeassistant-plant` (868★, activo)
+  **calcula DLI a partir de um sensor de iluminância, com factor lux→PPFD configurável** —
+  é onde vive, em código já escrito, a calibração que a pesquisa 03 propôs para substituir a
+  compra do Apogee DLI-500 (≈460 €, pendente no `INBOX.md` desde 2026-09-15).
 
   No eixo 3, a pergunta expressa do enunciado — **há código aberto para detecção acústica do
   escaravelho-da-palmeira?** — tem resposta apurada e é **quase não**. Nenhum dos trabalhos de
@@ -283,10 +291,40 @@ ferramentas que a pesquisa 02 já escolheu.**
 | MCP server | ★ | Último push | Licença | Windows | O que faz, e porque importa aqui |
 |---|---|---|---|---|---|
 | [`nkarasiak/qgis-mcp`](https://github.com/nkarasiak/qgis-mcp) | **310** | **2026-09-17** | GPL-2.0 (plugin) + MIT (servidor) | **Sim** (inclui MSIX/Microsoft Store) | **O mais valioso.** 118 ferramentas: gestão de camadas, edição de features, `execute_processing`, `execute_processing_batch`, `list_processing_algorithms`, SQL, render, layouts. QGIS 3.28–4.x. **Porque é que isto é grande:** o SOLWEIG/UMEP corre como *Processing provider* do QGIS (`processing_umep`), e a pesquisa 02 escolheu SOLWEIG como «a ferramenta certa» para microclima. Este MCP permite ao agente **correr SOLWEIG por chamada de algoritmo**, em vez de o David clicar numa interface que só usaria três vezes por ano. |
-| [`Zhonghao1995/agentic-swmm-workflow`](https://github.com/Zhonghao1995/agentic-swmm-workflow) | **29** | **2026-09-06** | **MIT** | **Sim** — instalação por one-liner PowerShell ou Docker | **Agente que conduz o EPA SWMM.** Objectivo descrito em linguagem natural → pré-processamento GIS, geração do modelo, execução, QA e relatório, «determinístico, inspeccionável, baseado em artefactos». Compatível com **Claude Code** como runtime externo. **Paper revisto por pares:** *Agentic SWMM: Auditable and reproducible stormwater modelling workflow*, *AI for Engineering* (2026), [DOI 10.3390/aieng1010005](https://doi.org/10.3390/aieng1010005). **Ressalva verificada: a documentação não menciona LID nem Green Roof** — e o módulo Green Roof é precisamente o que a pesquisa 02 identificou como o encaixe do SWMM neste projecto. |
+| [`Zhonghao1995/agentic-swmm-workflow`](https://github.com/Zhonghao1995/agentic-swmm-workflow) | **29** | **2026-09-06** | **MIT** | **Sim** — one-liner PowerShell ou Docker | **Agente que conduz o EPA SWMM**, com paper revisto por pares e reprodutibilidade byte-a-byte verificada. **Tecnicamente impressionante e — apurado depois — à escala errada.** Ver §1.3-bis. |
 | [`homeassistant-ai/ha-mcp`](https://github.com/homeassistant-ai/ha-mcp) | **4 766** | **2026-09-17** | **MIT** | **Sim** — script de instalação dedicado | 87+ ferramentas sobre uma instância Home Assistant: **ler histórico de sensores**, estados, traces de automações, logs; criar automações, scripts, dashboards. **Tem `Read Only Mode` e endpoint `/readonly`, com backups automáticos antes de qualquer edição.** É o que transforma o histórico de sensores da configuração (b) da pesquisa 03 numa coisa que se **pergunta**, em vez de um dashboard que se olha. |
 | [`sparkgeo/geo-mcp-servers`](https://github.com/sparkgeo/geo-mcp-servers) | **104** | **2026-09-11** | MIT | n/a (é uma lista) | Lista curada e **com estado monitorizado** de MCP servers geoespaciais. Vale como índice para não repetir esta pesquisa daqui a seis meses. |
 | [`voska/hass-mcp`](https://github.com/voska/hass-mcp) | **342** | 2026-08-06 | MIT | Sim | Alternativa mais magra ao `ha-mcp`. Sem razão forte para preferir, dado que o `ha-mcp` tem 14× as estrelas e commit de ontem. |
+
+### 1.3-bis. O `agentic-swmm-workflow`, e porque é que o descarto depois de o ter elogiado
+
+**Correcção a mim próprio, feita durante a redacção.** Classifiquei-o como achado forte com base
+na página do projecto. Ao fechar o buraco «suporta LID/Green Roof?», li o README completo — e a
+resposta muda a conclusão.
+
+**O que a leitura do README estabelece (factos, com citação):**
+
+- A tabela de validação tem **seis linhas de evidência e nenhuma menciona LID ou Green Roof.**
+- Os casos são: **Greenwich Peninsula e NYC Midtown, «~1 km² cada»**; «**modelo Tecnopolo externo
+  de 40 sub-bacias**»; camadas GeoPackage públicas do TUFLOW.
+- O trabalho de síntese de rede é do [SWMManywhere](https://github.com/ImperialCollegeLondon/SWMManywhere)
+  (Imperial College London) e parte de uma **bounding box WGS84**.
+- O próprio repositório declara os limites: «***not** a calibrated or validated network*»,
+  «*GIS preprocessing concept, not a calibrated SWMM performance claim*», «*Structured raw GIS
+  path, not arbitrary CAD/GIS recognition*».
+- Convite a contribuições em «*DEM / land-use / soil / drainage-asset workflows*» — o vocabulário
+  é de bacia hidrográfica urbana.
+
+**Veredicto revisto: não adoptar.** Este agente resolve *«sintetizar a rede de drenagem de um
+quilómetro quadrado de cidade a partir de dados escassos»*. O problema deste projecto é
+*«uma cobertura ajardinada de 75 m² com uma saída de drenagem»* — **quatro ordens de grandeza
+abaixo, e sem rede nenhuma para sintetizar.** É o padrão que as pesquisas 02 e 03 já tinham
+nomeado (§4.1 da síntese): **a tentação de comprar a ferramenta da escala acima.** Desta vez
+vinha embrulhada num paper revisto por pares, que é o disfarce mais convincente que o padrão já
+usou neste projecto.
+
+**O que se mantém:** o **EPA SWMM** e o seu módulo Green Roof continuam a ser a resposta certa —
+directamente, pela interface, como a pesquisa 02 disse. **O agente por cima é que não.**
 
 ### A armadilha, documentada com prova
 
@@ -335,7 +373,7 @@ Regra do enunciado: **não repetir o que a 02 já tem.** Tudo aqui é acrescento
 
 | Ferramenta | ★ | Último push | Licença | Veredicto |
 |---|---|---|---|---|
-| [`kthorp/pyfao56`](https://github.com/kthorp/pyfao56) | **97** | **2026-02-12** | ver ressalva | **Adoptar.** Implementação Python do **FAO-56, método dos coeficientes culturais duplo e simples**, com **balanço hídrico diário do solo**. Classes `SoilWaterProfile` (depleção da zona radicular, SWD em mm) e `Visualization` (séries temporais de depleção, ET e Kc). Publicado em *SoftwareX* e mantido por **investigador do USDA-ARS**. Existe cópia editorial em `ElsevierSoftwareX/SOFTX-D-23-00060`. |
+| [`kthorp/pyfao56`](https://github.com/kthorp/pyfao56) | **97** | **2026-02-12** | **CC0 1.0 / domínio público** | **Adoptar.** Implementação Python do **FAO-56, método dos coeficientes culturais duplo e simples**, com **balanço hídrico diário do solo**. Classes `SoilWaterProfile` (depleção da zona radicular, SWD em mm) e `Visualization` (séries temporais de depleção, ET e Kc). Publicado em *SoftwareX* e mantido por **investigador do USDA-ARS**. Existe cópia editorial em `ElsevierSoftwareX/SOFTX-D-23-00060`. |
 | [`soilwater/fieldcaster`](https://github.com/soilwater/fieldcaster) | **0** | **2020-11-04** | nenhuma | **Abandonware.** Parado há quase 6 anos. Nomeado só para o descartar. |
 | `WaterpyBal` | não apurado no GitHub | — | — | Biblioteca de recarga de aquíferos publicada em *Environmental Modelling & Software*. **Escala errada** — modelação espácio-temporal de recarga difusa. Não é para 75 m². |
 
@@ -354,9 +392,12 @@ pyfao56 serve na mesma para **dimensionar as camadas**, que é uma pergunta de p
 rega diária. **Correcção honesta a mim próprio:** isto não é rega automatizada por ML, que a 03
 rejeitou com razão — é uma folha de cálculo hidrológica a correr uma vez.
 
-⚠ **Ressalva de licença:** o GitHub API devolve `NOASSERTION` para o campo licença — há
-ficheiro de licença que o GitHub não classifica automaticamente. **Verificar o `LICENSE` antes
-de usar em qualquer coisa que se publique.** Para uso privado num quintal, irrelevante.
+> **Licença verificada durante esta pesquisa, e é o melhor caso possível.** O GitHub API
+> devolve `NOASSERTION`, mas o ficheiro `LICENSE.md` diz: «*As a work of the United States
+> Government, this package is in the public domain within the United States. Additionally, we
+> waive copyright and related rights in the work worldwide through the **CC0 1.0 Universal**
+> public domain dedication.*» **Sem obrigações de atribuição, sem contaminação copyleft, uso
+> comercial livre.** Buraco fechado.
 
 ## 2.2 Modelação de crescimento vegetal
 
@@ -505,9 +546,36 @@ manter — o oposto do critério «sobrevive ao abandono».
 
 | Recurso | ★ | Último push | Licença | Veredicto |
 |---|---|---|---|---|
-| [`Olen/homeassistant-plant`](https://github.com/Olen/homeassistant-plant) | **868** | **2026-09-04** | GPL-3.0 | **Adoptar quando houver sensores.** Componente alternativo `plant` do HA: compara humidade, temperatura, luz e condutividade medidas **contra os limiares por espécie**, e alerta quando saem do intervalo. **É o que transforma «tenho um número» em «esta planta está fora do intervalo dela».** |
+| [`Olen/homeassistant-plant`](https://github.com/Olen/homeassistant-plant) | **868** | **2026-09-04** | GPL-3.0 | **Adoptar quando houver sensores — e é mais valioso do que parecia.** Ver §3.6. Limiares min/max para **temperatura · humidade de solo · condutividade · iluminância · humidade do ar · CO2 · temperatura de solo**, e **calcula DLI e VPD por derivação**. Cada limiar é uma entidade editável pela interface. **É o que transforma «tenho um número» em «esta planta está fora do intervalo dela».** |
 | [`Olen/home-assistant-openplantbook`](https://github.com/Olen/home-assistant-openplantbook) | **563** | **2026-08-11** | GPL-3.0 | O backend de dados do anterior. Conta gratuita necessária. |
 | `PatrickHallek/automated-irrigation-system` | 778★ | **2024-02-18** | nenhuma | O mais estrelado do espaço de rega — **e parado há 19 meses, sem licença.** Segunda instância do padrão «estrelas ≠ vida». Não adoptar. |
+
+## 3.6 O DLI já está resolvido em código — e isso toca numa compra pendente de 460 €
+
+**Este achado apareceu ao fechar um buraco e é o mais accionável do eixo 3.**
+
+**Facto verificado** no README do `Olen/homeassistant-plant`: a integração **cria
+automaticamente um sensor de DLI para cada planta**, descrito como «*a luz total
+fotossinteticamente activa recebida por dia*», **calculado a partir de um sensor de
+iluminância através de um factor de conversão lux→PPFD configurável, com valor por omissão
+0,0185**. Cria também VPD a partir de temperatura e humidade (limiares por omissão 0,4 e
+1,6 kPa).
+
+**Porque é que isto importa, e liga-se a `INBOX.md`.** A síntese §4.3 documenta a compra
+pendente do **Apogee DLI-500 (≈460 €)** e a resposta da pesquisa 03: *um BH1750 de 5–8 € por
+zona, calibrado uma vez contra um PAR de referência, dá 80% do valor a 5% do custo*. **O que
+faltava era onde vive essa calibração.** Vive aqui: **é o factor lux→PPFD, um campo
+configurável.**
+
+A cadeia fica fechada e sem escrever código: **BH1750 por zona (ESPHome) → `homeassistant-plant`
+converte para DLI com o factor → compara contra o limiar da espécie vindo do OpenPlantbook.**
+O Apogee emprestado serve para **afinar um número**, não para equipar o jardim.
+
+⚠ **Ressalva de método, e é importante:** 0,0185 é um factor **genérico**. A pesquisa 03 dizia
+que a incerteza espectral (factor PAR, ±14%) é precisamente o que nenhuma simulação resolve.
+**O factor por omissão não resolve nada — resolve o facto de ser editável.** Isto reforça o
+argumento da 03, não o dispensa: continua a ser preciso **um** acesso a um sensor PAR de
+referência, uma vez, para saber que número pôr no campo.
 
 ---
 
@@ -558,6 +626,12 @@ manter — o oposto do critério «sobrevive ao abandono».
     de imagem aérea — problema inverso. **O módulo Green Roof do SWMM continua a ser a única
     resposta séria**, e já estava identificado.
 
+11. **`Zhonghao1995/agentic-swmm-workflow`, apesar de tudo o que tem a favor.** MIT, vivo, paper
+    revisto por pares, reprodutibilidade byte-a-byte, instalação por PowerShell. **E os casos de
+    validação são de ~1 km² e 40 sub-bacias, sem uma única menção a LID ou Green Roof.** É a
+    ferramenta da escala acima com o melhor disfarce que este projecto já encontrou. **Correr o
+    SWMM directamente**, como a pesquisa 02 disse.
+
 ---
 
 ## Recomendação — as três coisas a adoptar
@@ -594,7 +668,7 @@ pessoa** — mas com 213 commits, 77 forks e commit de ontem, está na categoria
 > mas **não mostra o identificador exacto do algoritmo SOLWEIG** no excerto consultado.
 > Obtém-se em 2 minutos por `list_processing_algorithms` ou pelo log do Processing.
 
-### 2. [`kthorp/pyfao56`](https://github.com/kthorp/pyfao56) — 97★ · commit de 2026-02-12 · USDA-ARS · publicado em *SoftwareX*
+### 2. [`kthorp/pyfao56`](https://github.com/kthorp/pyfao56) — 97★ · commit de 2026-02-12 · **CC0 / domínio público** · USDA-ARS · publicado em *SoftwareX*
 
 **Porquê.** É a única ferramenta desta pesquisa que ataca **o compromisso que a síntese
 classificou como o mais valioso por resolver**: retenção-para-a-planta vs.
@@ -608,7 +682,7 @@ densidades saturadas; **o pyfao56 é o que testa essas secções-tipo contra um 
 antes de serem construídas.** Custo: zero. Corre em Python, que o David já usa com modelo
 validado — o indicador de sucesso que a 02 destacou.
 
-**Riscos:** campo de licença `NOASSERTION` — **verificar o `LICENSE`**. E o Kc para este
+**Riscos:** nenhum de licença — **verificado: CC0 1.0 / domínio público dos EUA**. O Kc para este
 substrato não existe, como a 03 avisou; para dimensionar camadas, uma gama de Kc plausível
 chega, e a sensibilidade do resultado a esse intervalo é ela própria informação útil.
 
@@ -634,6 +708,14 @@ esperam pelo QGIS montado e pelos sensores instalados. Se só uma coisa for feit
 
 Declarados com o que faltaria para fechar cada um.
 
+> **Cinco foram fechados durante a própria redacção, e um deles inverteu uma recomendação.**
+> Ficam registados como fechados em vez de apagados, porque o percurso é a prova: (1) o UMEP
+> regista provider `umep:` de Processing — a recomendação nº 1 fica de pé; (2) o
+> `agentic-swmm-workflow` valida a ~1 km² e **passou de recomendado a rejeitado**; (3) o Trefle
+> está de pé e o 401 é normal; (4) o `homeassistant-plant` **deriva DLI de iluminância com
+> factor configurável**, o que gerou o §3.6 e toca numa compra de 460 €; (5) o `pyfao56` é
+> **CC0 / domínio público**, não `NOASSERTION`.
+
 1. **~~Não confirmei que o `nkarasiak/qgis-mcp` expõe o `processing_umep`/SOLWEIG.~~
    FECHADO durante esta pesquisa, quase por inteiro.** A documentação oficial do UMEP confirma
    que o plugin regista um **provider de Processing normal com prefixo `umep:`**, invocável por
@@ -642,23 +724,34 @@ Declarados com o que faltaria para fechar cada um.
    consta do excerto consultado. Obtém-se por `list_processing_algorithms` ou pelo log do
    Processing. Minutos, não horas.
 
-2. **O `agentic-swmm-workflow` não documenta suporte a LID / Green Roof.** Foi verificado e é
-   uma lacuna material: o módulo Green Roof é precisamente o que a 02 identificou como o
-   encaixe do SWMM. **Para fechar:** ler o código ou o paper (DOI 10.3390/aieng1010005), ou
-   abrir issue no repositório.
+2. **~~O `agentic-swmm-workflow` não documenta suporte a LID / Green Roof.~~ FECHADO, e mudou a
+   conclusão** — ver §1.3-bis. A leitura do README completo confirma que nenhuma das seis linhas
+   de evidência de validação menciona LID ou Green Roof, e que os casos são de ~1 km² e de um
+   modelo externo de 40 sub-bacias. **Passou de recomendado a rejeitado.** O paper em si
+   (DOI 10.3390/aieng1010005) **não foi lido** — a MDPI devolve HTTP 403 a este agente — mas o
+   README é do mesmo autor e é explícito sobre os limites de evidência.
 
-3. **Estado real do serviço público do Trefle.** O repositório tem commits de 2026-09-16, mas
-   `GET /api/v1/plants` devolve **401**. Não apurei se aceita registos novos nem se o token é
-   gratuito. **Para fechar:** tentar registar em trefle.io. Irrelevante se o OpenPlantbook
-   chegar.
+3. **Estado do serviço público do Trefle — parcialmente fechado.** Verificado: `trefle.io`
+   responde **HTTP 200**, a página de registo `/users/sign_up` responde **HTTP 200**, e
+   `GET /api/v1/plants` devolve **401 com `{"code":"unauthorized"}`** e remete para obter token
+   — ou seja, **o serviço está de pé e o 401 é comportamento normal, não avaria.** **Por
+   apurar:** se o registo conclui e se o token é gratuito. **Baixa prioridade** — o
+   OpenPlantbook cobre a necessidade e integra-se directamente no Home Assistant, o que o
+   Trefle não faz.
 
-4. **O OpenPlantbook tem DLI e condutividade?** A documentação confirma humidade, temperatura,
-   rega, luz solar, solo, poda, fertilização — **e não confirma DLI nem EC**. Como a 03 diz que
-   «o DLI é o número que decide a espécie», isto decide se o par
-   `openplantbook`+`homeassistant-plant` serve como está. **Para fechar:** consultar uma espécie
-   na API de open.plantbook.io.
+4. **~~O OpenPlantbook tem DLI e condutividade?~~ FECHADO pelo lado do consumidor, não do
+   fornecedor.** O `homeassistant-plant` trata limiares de **condutividade, iluminância,
+   humidade do ar, CO2 e temperatura de solo**, e **deriva DLI e VPD** (ver §3.6). Logo o par
+   serve. **O que fica por apurar** é se os **valores por espécie** do OpenPlantbook cobrem
+   todos esses campos ou se alguns ficam por preencher à mão — e, em particular, se traz
+   valores para ***Phoenix canariensis*, *Celtis australis*** e citrinos. **Para fechar:**
+   consultar essas quatro espécies na API. Tentei aceder à documentação da API e a
+   `open.plantbook.io/docs.html` devolve apenas a página de login; a documentação real está em
+   `/api/docs/` (Swagger), que **não consultei**.
 
-5. **Licença do `pyfao56`.** Campo `NOASSERTION` no API. **Para fechar:** abrir o `LICENSE`.
+5. **~~Licença do `pyfao56`.~~ FECHADO.** `LICENSE.md` declara **domínio público dos EUA +
+   CC0 1.0 Universal**. O `NOASSERTION` do API era falta de classificação automática, não
+   ausência de licença.
 
 6. **`aegro/skills` não verificado no repositório de origem.** Só apareceu num directório de
    plugins. Baixa prioridade — pelo perfil (ERP agrícola brasileiro) é gestão, não técnica.
