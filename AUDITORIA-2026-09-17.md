@@ -10,6 +10,16 @@ sessao: "2026.09.16 - T002 S2 e T004 S1"
 > **Para o David auditar antes de prosseguir.** Uma folha por thread: o que lá está, o que está
 > fixado, o que está por resolver, e **o que verificar**.
 >
+> ### A auditoria tem duas partes
+>
+> | | |
+> |---|---|
+> | **1 · Protocolo** | A thread cumpre as regras? Mandato, território, canal de mensagens, entrega |
+> | **2 · Arrumação e conteúdo** | **Sabendo tudo o que lá está:** o que melhorar na estrutura do relatório final, que ficheiros renomear para ganhar clareza, o que consolidar, o que arquivar, o que eliminar |
+>
+> **A parte 2 é a que produz trabalho.** Está na secção **ARRUMAÇÃO** no fim deste documento,
+> com propostas concretas thread a thread.
+>
 > **Regra de leitura:** só factos actuais. Onde há dúvida, o grau de confiança está declarado e diz
 > se afecta ou não alguma decisão.
 
@@ -308,3 +318,220 @@ o debate avançar. **Não verificados.** `T002/TICKETS.md`
 - [ ] **O pedido à T003 nunca foi encaminhado**
 - [ ] **`Jardim.html`** — território do Arquitecto, **desactualizado** face às decisões de 2026-09-17
 - [ ] **Orçamento de V2** — o filtro 4 nunca foi aplicado
+
+---
+
+# ARRUMAÇÃO — propostas concretas
+
+> **Esta secção é a parte 2 da auditoria.** Não é verificação: são **propostas de trabalho**,
+> levantadas a partir do que está efectivamente nas pastas a 2026-09-17.
+>
+> **Nada aqui está decidido.** Cada proposta diz o problema, a proposta e o que custa.
+
+---
+
+## A · PROBLEMAS FACTUAIS ENCONTRADOS
+
+### A1 · Oito imagens da T002 estão fora do índice
+
+`David-Docs/INDICE.md` é a ficha de cada imagem — o que é, serve, mostra, **não é**, liga a.
+**Oito das 20 imagens não têm ficha:**
+
+| Imagem | O que é |
+|---|---|
+| `PLANTA-ARVORES-POSICAO.jpg` | **A planta de referência das árvores** |
+| `PLANTA-ARVORES-POSICAO-COPAS.jpg` | **A planta das copas — base do cálculo das duas estações** |
+| `JARDIM-LODAO1-A.jpg` · `-B.jpg` · `JARDIM-LODAO1E2.jpg` | **A prova de que são dois lodões** |
+| `DEPOIS-VISTA -PALMEIRA.jpg` | Render de intenção |
+| `DEPOIS-VISTA PARA FRACAO.jpg` · `(2).jpg` | Renders de intenção |
+
+**Gravidade: alta para as cinco primeiras** — são as que suportam factos usados na T004.
+**Proposta:** fichar as oito. Meia hora.
+
+### A2 · O índice tem entrada para um ficheiro que não existe
+
+`INDICE.md` descreve `Plano-Original-V2.jfif`. **O ficheiro não está na pasta.**
+
+**Proposta:** recuperar o ficheiro, ou remover a entrada e dizer porquê.
+
+### A3 · Nomes inconsistentes — três convenções na mesma pasta
+
+| Convenção | Exemplos |
+|---|---|
+| MAIÚSCULAS-COM-HÍFENS | `PALMEIRA-ICONE-NOITE.jpg` · `ZONAMENTO-PLANTA-ZONAS.jpg` |
+| Capitalizado | `Situacao-Atual.jpg` · `Plano-Original-V1.jpg` |
+| minúsculas | `palmeira-icone.jpeg` |
+| **Com espaços e parênteses** | `DEPOIS-VISTA -PALMEIRA.jpg` · `DEPOIS-VISTA PARA FRACAO (2).jpg` |
+
+**Os nomes com espaços já obrigaram a aspas em comandos e são os que quebram ligações relativas.**
+
+**Proposta de convenção:** `TEMA-SUBTEMA-QUALIFICADOR.ext`, MAIÚSCULAS, hífens, **sem espaços,
+sem parênteses, sem acentos**.
+
+**Custo:** renomear obriga a corrigir as referências em `INDICE.md`, nos `.md` de `research/` e
+**dentro dos HTML** (que embebem as imagens em base64 — esses não partem, mas as legendas citam nomes).
+
+### A4 · Um PDF de 17 MB em `T001/research/`
+
+`Jardim_Relva_Natural_Viabilidade_slides.pdf` — **17 MB, 25% do peso da T001.**
+É um deck gerado a partir de um `.md` que está ao lado.
+
+**Proposta:** arquivar em `90-ARQUEOLOGIA/` ou eliminar. **O conteúdo está no markdown.**
+
+### A5 · A T001 pesa 67 MB — 87% do repositório
+
+| Thread | Tamanho |
+|---|---|
+| **T001** | **67 MB** |
+| T002 | 6,3 MB |
+| T004 | 2,4 MB |
+| T003 | 264 KB |
+
+`Docs-David-Local/` tem **52 ficheiros**, incluindo subpastas `arqueologia/` e `Claude outputs/`.
+
+**Proposta:** inventariar o que ainda serve. **Não mexer sem o David decidir** — o dossier é canónico
+e as ligações relativas são frágeis (foi por isso que se decidiu não o migrar).
+
+---
+
+## B · ESTRUTURA DO RELATÓRIO FINAL — T004
+
+### B1 · Os sete documentos numerados sobrepõem-se
+
+| Ficheiro | Problema |
+|---|---|
+| `01-O-DESNIVEL-ENUNCIADO.md` | Os dados do jacuzzi repetem-se em 03, 04 e 07 |
+| `03-SOLUCAO-TRANSICAO.md` | **Superado por 04** — a geometria mudou com o maciço |
+| `04-TRANSICAO-FIXADA.md` | Repete partes de 01 e 03 |
+| `06-O-PROBLEMA-DAS-COPAS.md` | **Superado por 07** — os valores do David substituíram os cálculos |
+
+**Proposta:** consolidar em **três documentos**:
+
+| Novo | Absorve |
+|---|---|
+| `01-A-TRANSICAO.md` | 01 + 03 + 04 |
+| `02-AS-ARVORES.md` | 06 + 07 |
+| `03-PESQUISAS.md` *(ou sai da thread — ver C1)* | 02 + 05 |
+
+**O que se ganha:** quem chegar de novo lê três documentos em vez de sete, sem repetições.
+**O que se perde:** o rasto de como se lá chegou. **É aceitável** — o David pediu factos actuais,
+não histórico.
+
+### B2 · Três HTML, dois deles superados
+
+| Ficheiro | Estado |
+|---|---|
+| `PLANTA-TRANSICAO.html` | **Superado** — geometria anterior ao maciço |
+| `DUAS-TRANSICOES.html` | **Superado** — as variantes A e B foram postas de lado |
+| `VARIANTE-C-MACICO.html` | **Actual** |
+
+**Proposta:** **um HTML só, completo**, com a geometria final, as árvores e as duas estações.
+Os dois superados vão para `research/historico/` ou saem.
+
+> ⚠ **O degrau-banco não está desenhado em peça nenhuma.** Foi decidido depois do
+> `VARIANTE-C-MACICO.html`. **A peça final tem de o incluir.**
+
+### B3 · Três scripts `_planta*.py` em `research/`
+
+`_planta.py` · `_planta2.py` · `_plantaC.py` — geram as peças. **Os dois primeiros geram HTML
+superados.**
+
+**Proposta:** manter só o que gera a peça final, renomeado `gerar-pecas.py`. Os outros saem.
+
+---
+
+## C · ÂMBITO — o que está na thread errada
+
+### C1 · A pesquisa de vegetação não é geometria
+
+`T004/research/05-PESQUISA-VEGETACAO.md` — paleta para seis zonas, relva, iluminação.
+**Excede o mandato da T004**, e está assinalado no próprio ficheiro.
+
+**Três destinos possíveis:**
+
+| Opção | A favor | Contra |
+|---|---|---|
+| **`40-PESQUISAS/`** | É pesquisa transversal, serve o projecto todo | Sai da thread que a produziu |
+| Ficar na T004 | Foi lá que se produziu | **Fica escondida numa thread de geometria** |
+| Thread de vegetação | Terá de existir de qualquer modo | Ainda não existe |
+
+**Recomendação:** `40-PESQUISAS/` — **a pasta existe e está vazia**.
+
+### C2 · O mesmo se aplica à pesquisa de transições
+
+`02-PESQUISA-TRANSICOES.md` é tipologias com fontes. **Essa é de geometria** — fica.
+
+### C3 · As imagens da T002 são usadas pela T004
+
+A T004 cita `David-Docs/` da T002 em vários documentos. **Está correcto** (T4: pode ler tudo), mas
+**cria dependência entre threads**: se a T002 for arquivada, a T004 perde as imagens.
+
+**Proposta:** decidir se `David-Docs/` sobe a **`20-VISUAL/`** — material do David, não de uma thread.
+
+---
+
+## D · O QUE O DOSSIER PRECISA DE RECEBER
+
+Já listado na secção T001. **Resumo do trabalho:**
+
+| # | Facto | Onde toca |
+|---|---|---|
+| 1 | **São dois lodões** | §8 vegetação · §5.6 limitações do modelo |
+| 2 | Relva artificial ainda existe | §7.1 superfícies |
+| 3 | Muros podem não ter altura uniforme | §2.2 dimensões · **§5.4 toda a tabela de sol** |
+| 4 | **Valores de copa do David** | §8 — substituem o que lá está |
+| 5 | Padrão de fissuração diverge | §7.2 patologias |
+
+**O #3 é o que dá mais trabalho:** se os muros forem 2,25 m, **a tabela de sol do §5.4 muda toda.**
+
+---
+
+---
+
+## F · REGRAS NOVAS — T18–T22 (NotebookLM e registo de documentos)
+
+**As quatro threads receberam regras novas** sobre NotebookLM e `REGISTO-DOCUMENTOS.md`, que
+existe na raiz. **Confirmado presente nos quatro `CLAUDE.md`.**
+
+### O que as regras obrigam
+
+| Regra | O quê |
+|---|---|
+| **T18** | Ao produzir **research** ou **report**, perguntar ao David em tabela numerada quais enviar para o NotebookLM. Em lote, se vários ficarem prontos juntos |
+| **T19** | Upload com nome `<CARGO>-YY-MM-DD-<TIPODOC>-<TITULO>` + slide deck `detailed` em português |
+| **T20** | No fim da sessão: verificar decks, descarregar PDF para junto do documento, **registar TODOS os documentos produzidos** em `REGISTO-DOCUMENTOS.md` — os que foram e os que não foram |
+| **T21** | `REGISTO-DOCUMENTOS.md` é **append only**, leitura on demand |
+| **T22** | Pode perguntar ao notebook em vez de ler. **Uma resposta do NotebookLM não é decisão** |
+
+### ⚠ Dívida desta sessão
+
+**A sessão de 2026-09-17 produziu documentos sob estas regras e não cumpriu T18 nem T20.**
+
+**Documentos produzidos e não registados:**
+
+| Thread | Documentos | Tipo |
+|---|---|---|
+| **T002** | `05-LUZ-COTA-ESTIMATIVA-T002.md` · `06-PROJECTO-REFORMULADO-VISTA.md` · `07-ZONAMENTO-DAVID.md` · `08-EXPLICACAO-DO-LOCAL.md` + HTML | RESEARCH / REPORT |
+| **T004** | `01` a `07` + 3 HTML | RESEARCH / REPORT |
+
+**Proposta:** a sessão 2 da T004 aplica T18 e T20 **retroactivamente** — apresenta a tabela numerada
+ao David com todos os documentos das duas threads, e regista o que ele decidir.
+
+**Nota de método:** as regras entraram durante a sessão; **não é incumprimento retroactivo, é dívida
+a saldar.** Mas a partir de agora aplicam-se a todas as sessões.
+
+## E · PROPOSTA DE SEQUÊNCIA
+
+| Ordem | O quê | Onde |
+|---|---|---|
+| **1** | **Fichar as 8 imagens órfãs** e resolver a entrada fantasma | T002 — **rápido e desbloqueia o resto** |
+| **2** | **Consolidar os 7 documentos em 3** | T004 sessão 2 |
+| **3** | **Uma peça HTML final**, com o degrau-banco | T004 sessão 2 |
+| **4** | **Decidir o destino da pesquisa de vegetação** | Arquitecto |
+| **5** | **Convenção de nomes** e renomeação | Depois de 1–3, para não renomear duas vezes |
+| **6** | **Incorporar os 5 factos no dossier** | T001 |
+| **7** | **Arrumar o peso da T001** — PDF de 17 MB, 52 ficheiros | T001, sem pressa |
+| **8** | **Saldar a dívida T18/T20** — tabela ao David, registar em `REGISTO-DOCUMENTOS.md` | T004 sessão 2 |
+
+> **A ordem importa:** renomear antes de consolidar obriga a corrigir referências duas vezes.
+
