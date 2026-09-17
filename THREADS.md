@@ -87,12 +87,24 @@ summary: |
 | | |
 |---|---|
 | **Pasta** | `30-THREADS/T003-modelo-solar/` |
-| **Estado** | `ACTIVA` · pacote de arranque pronto, por montar |
+| **Estado** | `ACTIVA` · **arrancada 2026-09-17, a correr em paralelo** |
 | **Aberta** | 2026-09-15 |
-| **Mandato** | Construir e manter um modelo digital paramétrico do quintal que permita testar posições de árvores e ver o efeito no sombreamento. |
-| **Entrega** | Modelo funcional em `modelo/` + tabelas de exposição por cenário em `entregue/`. `ONGOING`. |
+| **Mandato** | Construir e manter um modelo digital paramétrico do quintal que permita testar posições de árvores e ver o efeito no sombreamento. **Alargado em 2026-09-17:** avaliar e recomendar uma ferramenta de **captura 3D operável com telemóvel** que alimente o modelo. |
+| **Entrega** | Modelo funcional em `modelo/` + tabelas de exposição por cenário em `entregue/`. **Mais:** recomendação de ferramenta de captura + procedimento de campo executável pelo David numa tarde. `ONGOING`. |
 | **Sessões** | 0 |
-| **Nota** | Criada pela sessão T001 de 2026-09-15 com autorização expressa do David para derrogar G9. **Ratificada pelo Arquitecto em 2026-09-16, mandato confirmado sem alteração** — ver `ESTADO.md` §11. |
+| **Pedido em mão** | **Encaminhado 2026-09-17.** `T002-jardim-v2/research/03-PEDIDO-T003-COTA.md` — cinco pedidos, com duas alterações do Arquitecto: pedido 5 (palmeira) sobe a **decisivo**; pedido 1 ganha **forma e posição** da mancha de sol, não só área. |
+| **Nota** | Criada pela sessão T001 de 2026-09-15 com autorização expressa do David para derrogar G9. **Ratificada em 2026-09-16, mandato confirmado sem alteração** — ver `ESTADO.md` §11. |
+
+**Porque foi alargada.** A T003 precisa de geometria que não existe: a copa da palmeira nunca foi
+medida (🔴 P2.2) e **bloqueia a T004**, que está no caminho crítico da obra. Os muros estão a 2,50 m
+`[observado]` sem detalhe por troço, e há suspeita nova de que não têm todos a mesma altura. A
+captura 3D entra no âmbito da T003 porque **é ela que sabe de que geometria precisa e com que
+tolerância** — não é decisão de ferramenta, é decisão de requisito.
+
+**Cautela registada à cabeça:** os muros são o pior caso para fotogrametria — reboco liso, sem
+textura, em sombra permanente. A via Google 3D já foi rejeitada por não os resolver
+(`REJEICOES.md` §11). A T003 está instruída a dizer **onde a fita métrica ganha à app**, em vez de
+recomendar tecnologia por defeito.
 
 ---
 

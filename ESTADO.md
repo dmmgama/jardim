@@ -255,11 +255,16 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
   **Regra própria:** a T003 não copia dados de outras threads nem escreve caminhos de ficheiros. Declara o que precisa; o David indica a origem de cada dado, que fica registada em `parametros-activos.yaml`. Sem `origem:`, o parâmetro não existe. Evita números sem dono e cópias que divergem da fonte.
 
-**Em aberto**
-- Escolha da ferramenta. Via Google 3D está fechada — ver `REJEICOES.md` §11.
-- Zero dados carregados. O modelo está por montar.
+- 2026-09-17 — **Âmbito da T003 alargado à captura 3D com telemóvel.** Instrução do David. Passa a caber-lhe avaliar e recomendar uma ferramenta de captura — nuvem de pontos ou equivalente — que alimente o modelo, mais o procedimento de campo para o David a executar sozinho.
 
-**Em aberto**
+  **Porquê na T003 e não noutro sítio:** não é decisão de ferramenta, é decisão de **requisito**. Quem sabe de que geometria o modelo precisa, e com que tolerância, é a thread do modelo. Escolher app sem saber que erro é aceitável é escolher às cegas.
+
+  **Quatro alvos, por ordem de valor:** copa da palmeira (🔴, **bloqueia a T004**) · altura dos muros troço a troço · lodão e citrinheira · cota até onde o muro SW retém terras.
+
+  **Instrução explícita contra o entusiasmo:** a T003 tem de dizer **onde a fita métrica ganha à app**. Se a altura dos muros se resolve melhor com um telémetro laser de 30 €, é isso que se recomenda. O objectivo é ter o número certo, não usar tecnologia.
+
+- 2026-09-17 — **Pedido de quantificação encaminhado à T003**, com duas alterações do Arquitecto ao enunciado da T002: o **pedido 5 (palmeira modelada) sobe a decisivo** — sem a copa, o cenário do muro SW responde à pergunta errada, porque todo o sol que entra atravessa a palmeira antes de chegar ao chão; e o **pedido 1 ganha forma e posição** da mancha de sol, não só área — 23 m² concentrados não é o mesmo que 23 m² espalhados.
+
 - 2026-09-17 — **A T002 produziu um modelo solar próprio**, por a T003 nunca ter recebido o pedido. Geometria NOAA, sem dependências externas, em `30-THREADS/T002-jardim-v2/research/*.py`. **Validado contra a tabela §5.4 do dossier: concorda dentro de 0,3 h em todas as zonas, sempre pelo lado conservador.**
 
   **Os resultados são `[estimado pela T002, a confirmar pela T003]` e não entram aqui como decisão.** Ficam registados como matéria de trabalho:
@@ -272,5 +277,11 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
   | Canteiro NW (zona 6) | **4,9 h** | 6,0 h | 4,7 h |
   | Canteiro SE (zona 2) | **0,0 h** | 1,4 h | 5,0 h |
 
-- **O pedido à T003 sobe de prioridade.** O **pedido 5 — palmeira modelada — passa a decisivo**: é ele que diz quanto da zona 4 é utilizável e se o muro SW ainda vale alguma coisa. **Acrescentar: a forma da mancha dos 23 m², não só a área.**
-- **A T003 nunca recebeu o pedido.** O `mensagens.md` da T003 está vazio até 2026-09-17.
+- 2026-09-17 — **Pedido encaminhado à T003**, com as duas alterações aplicadas: pedido 5 decisivo, e forma da mancha além da área. O `mensagens.md` da T003 estava vazio até esta data — **a thread nunca tinha recebido nada.**
+
+**Em aberto**
+- Escolha da ferramenta de modelação. Via Google 3D está fechada — ver `REJEICOES.md` §11.
+- Escolha da ferramenta de **captura 3D**. Pesquisa de estado da arte lançada em 2026-09-17.
+- Zero dados carregados. O modelo está por montar.
+- **A copa da palmeira continua por medir** (🔴 P2.2). Bloqueia o pedido 5 e a T004.
+- **Os números de sol em uso são estimativa da T002, não da T003.** Quando o modelo correr a sério, podem não bater certo. A T003 está instruída a **dizê-lo em vez de ajustar o modelo** ao que já está escrito — há decisões tomadas em cima destes números.

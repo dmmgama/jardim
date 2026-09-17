@@ -3,6 +3,7 @@ created: 2026-09-15
 project: Jardim
 thread: T003
 estado: ACTIVA
+updated: 2026-09-17
 sessoes: 0
 ---
 
@@ -37,10 +38,73 @@ Construir e manter um **modelo digital paramétrico** do quintal que permita:
 
 ---
 
+## ALARGAMENTO DE ÂMBITO — captura 3D com telemóvel  *(2026-09-17)*
+
+> Instrução do David, ratificada pelo Arquitecto. **Acrescenta ao mandato, não o substitui.**
+
+Passa a caber a esta thread **avaliar e recomendar uma ferramenta de captura 3D operável com
+telemóvel** — nuvem de pontos ou equivalente — que produza a geometria de que o modelo precisa.
+
+**Porquê aqui e não noutra thread:** não é uma decisão de ferramenta, é uma decisão de **requisito**.
+Quem sabe de que geometria o modelo precisa, e com que tolerância, é esta thread. Escolher uma app
+sem saber que erro é aceitável é escolher às cegas.
+
+### O que a captura tem de resolver
+
+| # | Alvo | Porque importa | Estado hoje |
+|---|---|---|---|
+| **1** | **Copa da palmeira** — diâmetro da projecção no solo e altura da base das palmas | **Bloqueia a T004**, no caminho crítico da obra. Item 🔴 P2.2 do dossier, nunca medido. | Desconhecido |
+| **2** | **Altura dos muros, troço a troço** | O parâmetro mais sensível do projecto. 3,00 → 2,50 m **duplicou** a média de sol de Dezembro. Suspeita nova: podem não ter todos a mesma altura. | 2,50 m `[observado]`, sem detalhe |
+| **3** | **Lodão e citrinheira** — porte e copa | Entram no modelo como obstáculos móveis. | Não medidos |
+| **4** | **Cota até onde o muro SW retém terras** | Fronteira suporte/guarda. Define quanto se pode rebaixar sem tocar em estrutura. | Desconhecido |
+
+### As dificuldades, declaradas à cabeça
+
+- **Os muros são o pior caso possível para fotogrametria:** reboco liso, sem textura, em sombra
+  permanente sob uma fachada de 15,50 m. A via Google 3D já foi rejeitada por não os resolver
+  (`REJEICOES.md` §11) — e a razão aplica-se a qualquer reconstrução baseada em imagem.
+- **Vegetação é o ponto fraco histórico** de qualquer reconstrução: folhagem fina, movimento com o
+  vento, oclusão.
+- **Escala.** Uma nuvem de pontos sem referência de dimensão conhecida dá geometria **relativa**,
+  não cotas. O procedimento tem de resolver isto explicitamente.
+
+### O que se espera
+
+1. **Uma recomendação, não um levantamento.** Já existe levantamento de software em
+   `../T001-local/research/Jardim_Software_Modelacao_Solar.md`. **Não repetir.**
+2. **Um procedimento de campo que o David execute sozinho numa tarde** — quantas fotos, de onde,
+   que referência de escala, que ordem, que erros evitar.
+3. **Dizer onde a fita métrica ganha.** Se a altura dos muros se resolve melhor com um telémetro
+   laser de 30 €, **é isso que se recomenda.** O objectivo é ter o número certo, não usar
+   tecnologia.
+4. **Perguntar ao David que telemóvel tem** antes de recomendar. Não assumir hardware — LiDAR não é
+   universal.
+
+**Entrega:** recomendação + procedimento de campo em `entregue/`, autónomo e executável sem o
+agente presente.
+
+---
+
 ## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
 
-**Última sessão:** — (thread criada 2026-09-15, ainda sem sessão própria)
+**Última sessão:** — (thread criada 2026-09-15, arrancada pelo Arquitecto em 2026-09-17, ainda sem sessão própria)
 **Estado:** Pacote de arranque pronto. **Zero dados.** Por decidir a ferramenta, levantar os dados com o David, e montar.
+
+> ### ⚠ LÊ `mensagens.md` ANTES DE TUDO
+>
+> Há uma mensagem de arranque do Arquitecto de 2026-09-17 com **um pedido de quantificação
+> encaminhado** e o contexto do que mudou no projecto desde que foste criada. O projecto mudou de
+> natureza: a T002 fechou, abriu a T004 em urgência de obra, e o pavimento vai subir ≈0,50 m.
+>
+> **Ordem de trabalho recomendada pelo Arquitecto:**
+> 1. **Primeiro o que não precisa de dados novos** — os pedidos 1–4 correm com a geometria que o
+>    dossier já dá. Não esperar pela palmeira para entregar isso.
+> 2. **Depois a captura 3D** — recomendação + procedimento de campo.
+> 3. **Por fim o pedido 5** (palmeira), quando a copa estiver medida.
+>
+> **Um aviso que consta da mensagem:** os números de sol que a T002 usou para fechar o debate são
+> estimativa dela, não desta thread. **Se o modelo não os reproduzir, dizê-lo alto** — há decisões
+> tomadas em cima deles, e o valor desta thread é poder contrariá-los.
 
 > **REGRA QUE GOVERNA ESTA THREAD — decisão do David, 2026-09-15:**
 > A T003 **não copia dados de outras threads e não escreve caminhos de ficheiros.**

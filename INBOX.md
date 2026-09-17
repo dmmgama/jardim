@@ -41,7 +41,7 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 ### Para o Arquitecto despachar
 
 - [ ] **Criar as threads de impermeabilização e de redução de peso por zona** — propostas em `30-THREADS/T002-jardim-v2/TICKETS.md`, ainda por criar.
-- [ ] **Encaminhar o pedido à T003.** `30-THREADS/T002-jardim-v2/research/03-PEDIDO-T003-COTA.md`. **Duas alterações:** o pedido 5 (palmeira modelada) sobe a **decisivo**; acrescentar **a forma da mancha dos 23 m²**, não só a área.
+- [x] **[FEITO 2026-09-17 — encaminhado em `T003/mensagens.md`, com as duas alterações aplicadas. T003 arrancada com âmbito alargado à captura 3D.]** **Encaminhar o pedido à T003.** `30-THREADS/T002-jardim-v2/research/03-PEDIDO-T003-COTA.md`. **Duas alterações:** o pedido 5 (palmeira modelada) sobe a **decisivo**; acrescentar **a forma da mancha dos 23 m²**, não só a área.
 - [ ] **Passar dois factos à T001:** (1) a relva artificial existe e ainda lá está — o dossier descreve betonilha à vista; (2) os muros podem não ter todos a mesma altura.
 - [ ] **Rever os cinco princípios de V1 que sobram** — #3, #4, #6, #7, #8. Os #1, #2 e #5 já estão em `ESTADO.md`.
 - [ ] **Orçamento de V2.** O filtro 4 do mandato da T002 nunca chegou a ser aplicado.
