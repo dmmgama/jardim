@@ -82,6 +82,39 @@ summary: |
 
 ---
 
+### T005 — Caracterização do espaço
+
+| | |
+|---|---|
+| **Pasta** | `30-THREADS/T005-caracterizacao/` |
+| **Estado** | `ACTIVA` · `ONGOING` · **fase 1 (pesquisa) em execução** |
+| **Aberta** | 2026-09-17 |
+| **Mandato** | **Organizar a informação que o projecto já tem numa estrutura de caracterização do espaço conforme ao estado da arte das especialidades envolvidas** — paisagismo, jardinagem, geotecnia, drenagem, climatologia e as demais que a thread identificar. |
+| **Entrega** | **Fase 1:** três pesquisas + síntese cruzada. **Fase 2 (por instruir):** a estrutura de caracterização — que parâmetros, por disciplina, com que método, tolerância e critério de suficiência. |
+| **Sessões** | 1 (2026-09-17) |
+| **Criada por** | Instrução directa do David, 2026-09-17: *«cria a thread de imediato com esse mandato e passas logo a funcionar dentro dela como agente da thread»*. |
+
+**Porque existe.** O projecto acumulou muita informação — dossier do Local com 827 linhas, modelo
+solar da T002, pesquisas dispersas — **organizada por conveniência de quem a recolheu, não por
+disciplina.** Falta saber o que as disciplinas que tratam deste tipo de espaço consideram ser a
+caracterização mínima, e com que regra se decide que um parâmetro está caracterizado.
+
+**As três frentes da fase 1**, lançadas em paralelo: (1) **quem são os especialistas** — que
+disciplinas intervêm, o que cada uma caracteriza, com que métodos e normas; (2) **digital twin** —
+software open source e comercial que permita modelar o existente **e fazer experiências**; (3)
+**monitorização e actuação** — do sensor ao actuador, com rega, iluminação e nutrição accionadas a
+partir de medições em contínuo.
+
+**Fronteiras.** Não mede no terreno (é da T001) · não reescreve o `DOSSIER-LOCAL.md`, que é canónico
+· não escolhe a ferramenta de modelação, recomenda · não constrói o digital twin · **não atrasa nem
+bloqueia a T004**, que está no caminho crítico da obra.
+
+**Risco registado à cabeça:** esta thread pode **produzir uma enciclopédia em vez de uma regra.** O
+quintal tem ~75 m². Uma caracterização que exija instrumentação de estação agronómica falha o
+mandato, mesmo estando tecnicamente correcta.
+
+---
+
 ### T003 — Modelo solar
 
 | | |

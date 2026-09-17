@@ -56,6 +56,18 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
 - 2026-09-17 — **T002 fechada, entrega absorvida. T004 aberta** por autorização expressa do David. Ver `THREADS.md`.
 
+- 2026-09-17 — **T005 aberta — Caracterização do espaço.** Instrução directa do David.
+
+  **O que a motiva:** o projecto já tem muita informação, mas **organizada por conveniência de quem a recolheu, não por disciplina.** O dossier do Local tem 827 linhas e um semáforo de fiabilidade; o que não tem é uma resposta à pergunta *«quem diz que isto está caracterizado, e segundo que critério»*.
+
+  **Mandato:** organizar a informação numa estrutura conforme ao estado da arte das especialidades envolvidas, e **definir a regra** — que parâmetros, por disciplina, com que método, tolerância e critério de suficiência.
+
+  **Fase 1 em execução:** três pesquisas em paralelo — especialidades envolvidas · software de digital twin · monitorização e actuação em contínuo. **Fase 2 por instruir**, não arranca sem o Arquitecto ver a fase 1.
+
+  **Ordem de precedência declarada:** a **T004 mantém prioridade absoluta.** A T005 não a atrasa, não lhe pede dados e não bloqueia nada seu. Se as duas competirem por atenção, a T004 ganha — está no caminho crítico da obra e a T005 não.
+
+  **Reserva do Arquitecto, registada à cabeça:** o risco desta thread é **produzir uma enciclopédia em vez de uma regra**, e chegar tarde de mais para servir a obra que já vai começar. Fica escrito para ser cobrado na entrega.
+
 **Em aberto**
 - Os outros cinco princípios de V1 (#3, #4, #6, #7, #8). → por rever.
 - Âmbito, orçamento e prazo de V2. → §10, e depende da geometria (T004).
@@ -295,6 +307,7 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
 **Em aberto**
 - Escolha da ferramenta de modelação. Via Google 3D está fechada — ver `REJEICOES.md` §11.
+- **Sobreposição T003 × T005 declarada, por resolver.** A T005 pesquisa software de digital twin, o que inclui a parte solar que é da T003. **A T003 mantém a palavra sobre o sol**; a T005 está instruída a dizer explicitamente se o que recomendar engole, complementa ou contradiz a T003. **O Arquitecto arbitra depois de ver as duas** — não antes, porque decidir agora seria escolher sem prova.
 - Escolha da ferramenta de **captura 3D**. Pesquisa de estado da arte lançada em 2026-09-17.
 - Zero dados carregados. O modelo está por montar.
 - **A copa da palmeira continua por medir** (🔴 P2.2). Bloqueia o pedido 5 e a T004.
