@@ -36,4 +36,6 @@ summary: |
 
 ## Respondidos
 
+- [x] 2026-09-16 | T002 | Base de trabalho fixada (subir cota +0,50 m sobre betonilha) — pede 3 threads novas (impermeabilizacao, peso por zona, afinacao da cota), sinaliza acao n.1 (tracador no dreno) e 2 factos para a T001  → **[RESPONDIDO 2026-09-17]** Base absorvida em `ESTADO.md` §02/§04. **Questão de mandato resolvida:** a base do David substituiu a necessidade de leque de opções — a T002 fecha sem as 2–4 opções, e o Arquitecto ratifica o desvio. **Afinação da cota:** o âmbito de geometria foi absorvido pela T004; o resto fica pendente. **Impermeabilização e peso por zona: ainda por criar.** Acção n.º 1 e os 2 factos da T001 registados em `ESTADO.md` §05 e em `INBOX.md`.
+- [x] 2026-09-17 | T002 | Entrega da thread + proposta de criação da T004 (geometria do jardim)  → **[RESPONDIDO 2026-09-17]** Entrega absorvida. **T002 FECHADA.** **T004 criada** por autorização expressa do David, mandato ratificado sem alterações. Ver `THREADS.md`.
 - [x] 2026-09-15 | T001 | Etapa 1 entregue — absorver dossier, avaliar hipótese de rebaixamento do muro SW, levantar bloqueio da T002  → **[RESPONDIDO 2026-09-16]** Dossier declarado canónico onde está (não migra). Muro SW vai para debate na T002. Bloqueio da T002 levantado.

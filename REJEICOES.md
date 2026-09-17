@@ -13,7 +13,7 @@ summary: |
 > **Regra G4:** espelho de `ESTADO.md` — os mesmos temas, nos dois.
 > **Regra O9:** o Agente consulta este ficheiro antes de propor uma opção, e assinala se já foi rejeitada.
 
-**Última actualização:** 2026-09-16
+**Última actualização:** 2026-09-17
 
 ---
 
@@ -48,6 +48,12 @@ Uma rejeição registada tem três partes: **o quê**, **quando**, **porquê**. 
 
 ---
 
+- 2026-09-17 — **Zonamento em quatro faixas em X + três camadas transversais.** *(proposta da T002, substituída)*
+
+  **Motivo:** os perímetros (muros SE e NW) ficavam como camadas abstractas **sem chão próprio**, e a thread nunca conseguia dizer «o que se põe no P-SE». Além disso juntava a palmeira e o canto do dreno numa só zona, o que **obrigava a bloquear a zona da palmeira por causa do dreno**.
+
+  **Substituído pelo zonamento de seis zonas do David** — ver `ESTADO.md` §01 e `30-THREADS/T002-jardim-v2/research/07-ZONAMENTO-DAVID.md`. Histórico em `04-ZONAMENTO-PRESSUPOSTO.md`, marcado ⛔.
+
 ## 02. Pavimento
 
 | Opção rejeitada | Data | Motivo |
@@ -73,6 +79,12 @@ Uma rejeição registada tem três partes: **o quê**, **quando**, **porquê**. 
 
 ---
 
+- 2026-09-17 — **Piscina deslocada para junto do muro SE.** *(proposta da T002, retirada pela própria)*
+
+  **Motivo:** ignora que a descida para o jardim se faz pela porta da sala, que é a **única** entrada. Pôr a piscina a SE era pô-la longe da única descida, e destruía o gradiente que é a razão de ela existir. A T002 avaliou-a como equipamento de banho a optimizar para sol, quando é **elemento de transição**. `[David corrigiu, 2026-09-17]`
+
+- 2026-09-17 — **Demolir a betonilha.** Substituída por regularizar + impermeabilizar + subir cota. Ver `ESTADO.md` §02. **Não é rejeição técnica — é escolha de uso do favor de construção civil**: «demolir e remover entulho» tinha muito menos probabilidade de acontecer que «regularizar».
+
 ## 05. Água e drenagem
 
 | Opção rejeitada | Data | Motivo |
@@ -91,6 +103,12 @@ Uma rejeição registada tem três partes: **o quê**, **quando**, **porquê**. 
 | Spots de chão sem marca (<10 €) | V1 | Durabilidade e qualidade de feixe. |
 
 ---
+
+- 2026-09-17 — **Rebaixar o muro SW como instrumento de luz.** **REJEITADO como argumento solar.**
+
+  **Motivo:** o quadrante que o rebaixamento ilumina é **exactamente o quadrante da palmeira**, que é inegociável (`ESTADO.md` §03). Todo o sol que entrasse por aí **atravessaria a copa** antes de chegar ao jardim — luz salpicada, não sol directo. O cálculo que lhe dava valor corre **sem árvores**.
+
+  > **Atenção ao que NÃO está rejeitado:** o rebaixamento do muro SW **mantém-se em aberto por vista, por proporção e por sensação de recinto.** Cai só como argumento de luz. A decisão final depende do pedido 5 à T003 (palmeira modelada), da admissibilidade estrutural, do condomínio e da segurança — queda de 7–8 m do lado de fora.
 
 ## 07. Arte
 

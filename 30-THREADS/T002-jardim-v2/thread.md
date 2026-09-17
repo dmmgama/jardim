@@ -1,11 +1,11 @@
 ---
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-17
 project: Jardim
 thread: T002
 assunto: Jardim V2 — soluções e opções viáveis
-estado: ACTIVA
-sessoes: 0
+estado: FECHADA — entrega absorvida 2026-09-17
+sessoes: 2
 ---
 
 # T002 — Jardim V2
@@ -195,28 +195,103 @@ Para o David, na primeira sessão. **Ouvir primeiro, estruturar depois.**
 
 ---
 
-## ESTADO FACE AO MANDATO  *(reescrito a cada sessão)*
+## BASE DE TRABALHO — fixada pelo David em 2026-09-16
 
-**Última sessão:** —
-**Estado:** Por arrancar. Mandato reescrito em 2026-09-16, bloqueio levantado, base factual
-disponível. Nenhuma sessão de debate ainda.
+> **Isto não altera o mandato** (T5 — o mandato é fixo). É o **ponto de partida** dentro do qual o
+> mandato passa a ser exercido: as opções viáveis a produzir são opções **sobre esta base**.
+>
+> São **pressupostos declarados**, não factos verificados. Detalhe em `TICKETS.md`.
+
+### A opção escolhida como base: **subir a cota, não demolir a betonilha**
+
+| | |
+|---|---|
+| **Cota de trabalho** | **+0,50 m** sobre a cota actual |
+| **Espessura útil** | ≈0,30 m (substrato + drenagem + impermeabilização). Os restantes ≈0,20 m ganham-se por plataforma, **sem massa**. |
+| **A betonilha** | **Não se demole.** Regulariza-se, corrigem-se pendentes, impermeabiliza-se. |
+| **O canteiro central** | Não é demolido — é **engolido** pela subida de cota. |
+| **O favor da obra** | Passa de «demolir e remover entulho» a «regularizar e impermeabilizar». Menos pesado, mais provável de acontecer. |
+
+### Os quatro pressupostos que o David fixou
+
+| # | Pressuposto | Estatuto |
+|---|---|---|
+| **T1** | Existe caixa de drenagem que escoa para a rede predial. Se não existir, faz-se — é mais simples que resolver tudo permeável. | Dado adquirido. **Inspecção é a acção n.º 1.** |
+| **T2** | A impermeabilização sobre betonilha é problema resolvido — tecnologia de terraços e coberturas ajardinadas. | Dado adquirido. Thread a abrir, **não já**. |
+| **T3** | Há soluções para reduzir peso, escolhidas por zona. **O David é engenheiro de estruturas.** | Dado adquirido. Thread a abrir **depois** do zonamento. |
+| **T4** | A cota de +0,50 m é base de trabalho, não decisão final. | Fixada. Thread de afinação a abrir depois. |
+
+**Consequência para esta thread:** o peso deixa de ser tratado como limite de viabilidade e passa a
+variável de projecto. A thread **declara a carga** que cada solução implica; **não dimensiona**.
+
+### O que a base **não** resolve — e continua a ser trabalho desta thread
+
+**A luz.** Subir 0,50 m baixa todos os muros em altura relativa, incluindo o SE. Melhora muito.
+**Não chega a 3 h em Dezembro.** · **A palmeira** continua a sombrear o quadrante SW ·
+**O muro SE** continua com patologia de origem 🔴 · **As grelhas de ventilação da caixa de ar**, ao
+nível do pavimento na fachada NE, ficam tapadas pela cota nova — problema **criado** por esta opção ·
+**O colo da palmeira, citrinheira e lodão** fica 0,50 m abaixo da cota nova.
 
 ---
 
-## HANDOFF  *(para a próxima sessão desta thread)*
+## ESTADO FACE AO MANDATO  *(final)*
 
-**Próximo passo:** primeira sessão de debate. Começar pelas perguntas de arranque — **ouvir o David
-antes de propor seja o que for.** Só depois passar hipóteses pelos cinco filtros.
+> **THREAD FECHADA em 2026-09-17.** Entrega absorvida pelo Arquitecto. Ver `entregue/NOTA.md`.
 
-**À espera de:** nada. Pode arrancar.
+**Sessões:** 2 — 2026-09-16, 2026-09-17
 
-**Cuidado com:**
+### Onde ficou face ao que foi mandado
 
-- **O quinto plano.** É o risco desta thread, e é real. Um documento bonito que não arranca é o que
-  este projecto já produziu quatro vezes. Uma opção só é viável se a **primeira coisa a acontecer**
-  não depender de ninguém de fora.
-- **Não redescobrir o Local.** O dossier existe e tem semáforo. Se um facto for 🔴, diz-se que é 🔴 e
-  declara-se plano B — não se inventa.
-- **Consultar `REJEICOES.md` antes de propor** (regra O9). Se já foi rejeitado, dizê-lo e dizer
-  porquê. Reabrir é legítimo; reabrir sem saber que se está a reabrir, não.
-- **Perguntar o gosto cedo.** O filtro 5 aplicado no fim desperdiça o trabalho todo.
+O mandato pedia **duas a quatro opções viáveis**. **A thread não as entregou, e o Arquitecto
+ratificou o desvio.**
+
+Na sessão 2 o David trouxe uma **base de projecto completa** — não uma preferência entre opções, mas
+o projecto: a marquise sai, o envidraçado entra, a plataforma dá continuidade à sala, a cota sobe
+0,50 m, a palmeira é inegociável, o zonamento é este. **Produzir alternativas a uma base já escolhida
+pelo decisor seria fabricá-las para as rejeitar.**
+
+**O que a thread fez em vez disso:** registou a base, testou-a contra os cinco filtros, calculou o
+que estava por calcular, e encontrou três erros — **dois deles seus.**
+
+### O que entregou
+
+| O quê | Onde |
+|---|---|
+| **A explicação do local** — 9 secções, 8 imagens embebidas, autónomo | `research/EXPLICACAO-DO-LOCAL.html` |
+| O mesmo em markdown | `research/08-EXPLICACAO-DO-LOCAL.md` |
+| **As seis zonas do David** — grelha oficial | `research/07-ZONAMENTO-DAVID.md` |
+| **Quantificação solar da subida de cota** — estimativa própria, etiquetada | `research/05-LUZ-COTA-ESTIMATIVA-T002.md` |
+| Enquadramento longo | `research/06-PROJECTO-REFORMULADO-VISTA.md` |
+| **Modelo solar re-executável**, sem dependências | `research/solar.py` · `run.py` · `curva.py` · `sens.py` |
+| 13 imagens fichadas | `David-Docs/INDICE.md` |
+| Nota de entrega | `entregue/NOTA.md` |
+| **Mandato da thread sucessora** | `entregue/PROPOSTA-T004.md` |
+
+### O que apurou
+
+- **A luz quase duplica em Dezembro** com +0,50 m: 0,9 → 1,7 h (×1,8). `[estimado T002]`
+- **A pergunta certa não é a média, é a área:** 12 m² → **23 m²** acima de 3 h em Dezembro.
+- **O canteiro NW nunca tinha sido tabelado** e é a melhor luz de Inverno do quintal — 3,8 h contra
+  0,0 h no SE. Explica a observação do David sobre o que ali nasce.
+- **Três erros corrigidos, dois da própria thread:** a objecção ao muro SW estava errada (D triplica
+  o sol da zona SW face a B); a piscina a SE estava errada; e **medir a palmeira pelo tronco em vez
+  da copa** — corrigido pelo David, e é o que gerou a T004.
+
+### O que não fez
+
+Custo a fazer e a manter (filtro 4) · faseamento completo · cinco dos oito princípios de V1 ·
+as duas a quatro opções do mandato literal.
+
+---
+
+## SUCESSORA
+
+**T004 — Geometria do jardim**, criada em 2026-09-17. `⚠ URGENTE — caminho crítico da obra.`
+
+A última coisa que esta thread apurou é a pergunta central da seguinte:
+
+> **O jardim útil é o que fica entre o fim da transição e o início da copa da palmeira.
+> Quanto é, onde é, e que forma tem?**
+
+E o número que a responde **não existe**: o diâmetro de copa da palmeira está 🔴 por medir
+(item P2.2, uma hora de trabalho).

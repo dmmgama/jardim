@@ -12,7 +12,7 @@ summary: |
 > **Regra G10:** só o Arquitecto fecha uma thread. A thread propõe o fecho pelo canal de mensagens.
 > **Regra G11:** o mandato é escrito em `thread.md` no momento da criação.
 
-**Última actualização:** 2026-09-16
+**Última actualização:** 2026-09-17
 
 ---
 
@@ -65,18 +65,20 @@ summary: |
 
 ---
 
-### T002 — Jardim V2
+### T004 — Geometria do jardim  ⚠ URGENTE
 
 | | |
 |---|---|
-| **Pasta** | `30-THREADS/T002-jardim-v2/` |
-| **Estado** | `ACTIVA` — **em curso.** Bloqueio levantado em 2026-09-16. |
-| **Aberta** | 2026-09-14 |
-| **Mandato** | **Debater soluções possíveis para o jardim e chegar a opções viáveis**, testadas contra as condicionantes reais do local — drenagem, sol, clima, custo — e contra o gosto do David. Mandato reescrito em 2026-09-16. |
-| **Entrega** | Conjunto de opções viáveis em `entregue/`, cada uma com o que implica e porque sobrevive às condicionantes. Para consolidar em `ESTADO.md` e `20-PLANO/`. |
+| **Pasta** | `30-THREADS/T004-geometria/` |
+| **Estado** | `ACTIVA` · **caminho crítico da obra** |
+| **Aberta** | 2026-09-17 |
+| **Mandato** | **Fixar a geometria do jardim:** onde acaba a casa, onde começa o jardim, e o que sobra para ser jardim. A pergunta central: *o jardim útil é o que fica entre o fim da transição e o início da copa da palmeira — quanto é, onde é, que forma tem?* |
+| **Entrega** | Planta cotada · corte longitudinal · quadro de áreas · cargas declaradas · nota do que ficou por medir. **A transição pode entregar-se em separado e primeiro, se a obra o exigir — autorizado à cabeça.** |
 | **Sessões** | 0 |
-| **Desbloqueio** | A etapa 1 da T001 entregou. Existe base factual partilhada: o dossier canónico do Local. |
-| **Nota** | **É agora a thread de trabalho activo do projecto.** Consulta o dossier da T001 em permanência e pede à T003 a quantificação de sombra quando precisar. |
+| **Porquê urgente** | O David declarou em 2026-09-17: *«há URGÊNCIA pq essa parte da plataforma e construção civil é o que vai ocorrer já agora.»* **A ajuda de construção civil está disponível agora** — foi o que destravou o projecto ao fim de quatro planos parados. |
+| **Bloqueante interno** | **Quatro medições, uma tarde.** M1 copa da palmeira (🔴 P2.2, nunca feita) · M2 altura dos muros · M3 cotas · M4 o vão da piscina. A thread ensaia com a copa parametrizada para não parar, **mas não entrega sem M1.** |
+| **Criada por** | Autorização expressa do David, 2026-09-17. Mandato redigido pela T002 a pedido dele, **ratificado sem alterações**. |
+| **Absorve** | O âmbito de **geometria** do ticket T4 da T002 (afinação da cota). |
 
 ---
 
@@ -96,7 +98,21 @@ summary: |
 
 ## Fechadas
 
-*(nenhuma)*
+### T002 — Jardim V2
+
+| | |
+|---|---|
+| **Pasta** | `30-THREADS/T002-jardim-v2/` |
+| **Estado** | `FECHADA` — **entrega absorvida em 2026-09-17** |
+| **Aberta / fechada** | 2026-09-14 → 2026-09-17 |
+| **Sessões** | 2 (2026-09-16, 2026-09-17) |
+| **Mandato que tinha** | Debater soluções possíveis e chegar a **duas a quatro opções viáveis**, testadas contra drenagem, sol, clima, custo e gosto do David. |
+| **O que entregou** | **A lógica do jardim, não um leque de opções.** `research/EXPLICACAO-DO-LOCAL.html` (peça principal, autónoma) · `07-ZONAMENTO-DAVID.md` (as seis zonas) · `05-LUZ-COTA-ESTIMATIVA-T002.md` (quantificação solar própria) · modelo solar re-executável em Python · `David-Docs/INDICE.md` (13 imagens fichadas) · `entregue/NOTA.md`. |
+| **Porque fechou assim** | **Desvio ao mandato literal, aceite pelo Arquitecto.** Na sessão 2 o David trouxe uma base de projecto completa — não uma preferência entre opções, mas o projecto. Produzir «duas a quatro opções distintas» sobre uma base já escolhida pelo decisor seria fabricar alternativas para as rejeitar. A thread registou-o, levantou a questão de mandato em 2026-09-16, e o Arquitecto **ratifica a interpretação**: a base do David substituiu a necessidade de leque. |
+| **O que não fez** | Custo a fazer e a manter (filtro 4) · faseamento completo · cinco dos oito princípios de V1. **Passa à T004 e ao Arquitecto.** |
+| **Sucessora** | **T004 — Geometria do jardim.** |
+
+---
 
 ---
 

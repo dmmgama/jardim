@@ -1,113 +1,90 @@
 ---
 created: 2026-09-14
-updated: 2026-09-16
+updated: 2026-09-17
 project: Jardim
 tipo: governo
 summary: |
-  Continuidade entre sessões de Arquitecto. Reescrito no fim de cada sessão.
+  Continuidade entre sessões de Arquitecto. Onde ficou a sessão anterior e qual é o próximo passo.
 ---
 
-# HANDOFF — Arquitecto
+# HANDOFF
 
-> **Regra A4:** o Arquitecto regista aqui, no fim da sessão, o estado e o próximo passo.
-> Reescrito, não acumulado. O histórico vive em `ESTADO.md` e `REJEICOES.md`.
+> **Regra A4:** o Agente regista aqui, no fim da sessão, o estado e o próximo passo.
+
+**Última sessão:** 2026-09-17 — sessão de thread T002 que passou a Arquitecto por autorização do David.
 
 ---
 
-## Sessão 2 — 2026-09-16
+## Onde ficou
 
-**Nome da sessão:** `2026.09.15 - Arquiteto`
+**A T002 fechou e a T004 abriu.** A sessão começou como sessão 2 da T002 e terminou com o David a
+autorizar expressamente o modo Arquitecto para destravar a abertura da thread seguinte.
 
-### O que se fez
+### O que mudou no projecto, e é muito
 
-Sessão curta e de despacho. A T001 tinha entregue a etapa 1 e o repositório estava com um problema
-de fundo: **existia um dossier canónico de 827 linhas e o `ESTADO.md` continuava a dizer «Local: em
-aberto, tudo».** A entrega não era decisão vigente. Corrigido.
+**1. O projecto foi reformulado.** Deixou de ser «arranjar o jardim» e passou a ser **fazer o jardim
+entrar na sala**. A marquise sai, o envidraçado total entra. Isto explica, retroactivamente, por que
+morreram quatro planos: **ninguém via o jardim, logo ninguém sentia a falta dele.**
 
-- **Etapa 1 da T001 absorvida.** Dossier declarado canónico.
-- **T003 ratificada** — a derrogação de G9 fica regularizada, mandato confirmado sem alteração.
-- **Bloqueio da T002 levantado**, mandato reescrito por instrução do David.
-- **Duas secções novas** em `ESTADO.md` e `REJEICOES.md`: §11 Modelo e simulação.
-- Pedido da T001 respondido no canal; `THREAD-MENSAGENS.md` sem pendentes.
-- Sete entradas do inbox processadas.
+**2. Há urgência de obra, pela primeira vez.** O David tem ajuda de construção civil **disponível
+agora**, e declarou que a plataforma vai avançar já. Foi isto que destravou o projecto ao fim de
+quatro planos parados — e é isto que põe a T004 no caminho crítico.
 
-### O que se decidiu
+**3. A base de projecto está fixada** — oito decisões em `ESTADO.md`, três rejeições em
+`REJEICOES.md`.
 
-Tudo em `ESTADO.md` §00, §01 e §11. Descartes em `REJEICOES.md` §01 e §11.
+**4. A T002 entregou outra coisa que não o mandato, e o Arquitecto aceitou.** O mandato pedia 2–4
+opções viáveis. O David trouxe uma base completa, e produzir alternativas para as rejeitar seria
+teatro. **O desvio está registado e ratificado** em `THREADS.md` e no `entregue/NOTA.md`.
 
-**As três decisões de fundo:**
+### Estado das threads
 
-| | Decisão | Porquê |
+| Thread | Estado | Nota |
 |---|---|---|
-| **Dossier fica onde está** | `DOSSIER-LOCAL.md` é canon em `Docs-David-Local/`, não migra para `10-LOCAL/` | Partir 25 ligações a ~50 imagens não compra nada. **Absorver ≠ mover** — a entrega passa a canon por estar declarada no `ESTADO.md`. |
-| **Muro SW vai para a T002** | Não se decide por despacho do Arquitecto | É a primeira ideia genuinamente nova do projecto. Decidida isolada, produzia o quinto plano. Debate-se com a oportunidade toda em cima da mesa. |
-| **Rejeições vegetais ficam no inbox** | Relva, espécies, floração — não subiram a `REJEICOES.md` | São conclusões de projecto, não factos do Local. Registá-las agora era fechar por escrito o que ainda não foi debatido. |
-
-### Estado no fim da sessão
-
-| | |
-|---|---|
-| **T001 — Local** | `ONGOING` · etapa 1 entregue e absorvida · **thread de consulta**, não de trabalho activo |
-| **T002 — Jardim V2** | `ACTIVA` · **thread de trabalho activo** · mandato reescrito, por arrancar |
-| **T003 — Modelo solar** | `ACTIVA` · ratificada · pacote de arranque pronto, **zero dados**, por montar |
-| **Pedidos pendentes** | **nenhum** |
-| **Obra no terreno** | nenhuma |
-| **Inbox** | ~28 por processar (7 fechadas nesta sessão) |
-| **Git** | por commitar |
+| **T001 — Local** | `ONGOING` | Consulta e alimentação. Recebe as medições à medida que forem feitas. **Dois factos novos por passar-lhe.** |
+| **T002 — Jardim V2** | **`FECHADA` 2026-09-17** | Entrega absorvida. |
+| **T003 — Modelo solar** | `ACTIVA`, parada | **Nunca recebeu o pedido da T002.** `mensagens.md` vazio. |
+| **T004 — Geometria** | **`ACTIVA` ⚠ URGENTE** | Criada 2026-09-17. Zero sessões. **Caminho crítico da obra.** |
 
 ---
 
-## Próximo passo
+## O próximo passo
 
-**O David abre a T002 a seguir a esta sessão.** O mandato está escrito e a thread pode arrancar sem
-mais input do Arquitecto.
+### Primeiro — e é a única coisa que interessa esta semana
 
-**O mandato da T002, em resumo:** debater soluções e chegar a **duas a quatro opções viáveis**, cada
-uma atravessada por cinco filtros — drenagem, sol, clima, custo, **gosto do David**. Uma opção que
-falhe um filtro não é opção; é ideia descartada, com motivo.
+> **Pôr as cinco medições nas mãos do David.** Estão em `INBOX.md`, todas numa tarde, e **nenhuma
+> depende de terceiros**.
+>
+> **M1 — a copa da palmeira — é a mais importante e nunca foi feita.** Custa uma hora. Sem ela, a
+> T004 desenha às escuras, e a plataforma vai ser construída sobre essa geometria.
+>
+> **A urgência é uma oportunidade e um risco:** M1 custa uma hora; a plataforma, se ficar mal,
+> custa a obra toda.
 
-### Para o Arquitecto, quando voltar
+### Depois
 
-Por ordem de valor, não de urgência:
+1. **Arrancar a T004.** Está pronta: mandato ratificado, recursos identificados, mensagem de abertura escrita. **Autorizada à cabeça a entregar a transição em separado e primeiro, se a obra o exigir.**
+2. **Responder às cinco perguntas de arranque da T004.** As duas primeiras — piscina de usar ou de ver, e se a descida tem de ser a direito — **decidem a geometria da transição**.
+3. **Criar as duas threads que faltam** — impermeabilização e redução de peso.
+4. **Encaminhar o pedido à T003**, com o pedido 5 promovido a decisivo.
+5. **Passar os dois factos à T001.**
+6. **Actualizar `Jardim.html`** — está desactualizado.
 
-1. **Absorver a entrega da T002** quando chegar. É o que desbloqueia `20-PLANO/`.
-2. **Instruir a etapa 2 da T001.** Os quatro bloqueantes custam **menos de 10 € e uma tarde**, e o
-   #3 (Arquivo Municipal) **condiciona a T002 directamente** — sem ele o muro SW não é decidível.
-   Se o David for ao terreno, vai uma vez e traz os quatro.
-3. **Processar o inbox vegetal** — mas **só depois** da T002 debater. Ver a nota que lá ficou.
-4. **DL 92/2019 Anexo II** — não espera pela T002. É lei, e a verificação falhou.
-5. `Jardim.html` — por criar. **Três sessões de atraso.** Só faz sentido depois de a T002 entregar;
-   até lá não há estado visual que valha a pena desenhar.
-6. Notion, fichas de actor, PDFs por migrar, pasta vazia.
+### Com prazo próprio
+
+- **Laranjeira: Fev–início Mar 2027.** Decidir o destino. Não depende de ninguém.
+- **Calendário da construção civil** — por confirmar com o David, e manda em tudo o resto.
 
 ---
 
-## Cuidado com
+## Cuidados
 
-**O quinto plano.** É o risco desta fase inteira, e agora tem nome e sítio: a T002. Quatro planos
-morreram; nenhum morreu por ser tecnicamente inviável. V1 parou porque **nada podia acontecer antes
-da demolição, e a demolição dependia de terceiros não controlados.** O DIY foi o recuo perante isso e
-também não arrancou — **baixar a ambição já foi tentado.**
+1. **A urgência não dispensa medir.** É o único ponto em que o Arquitecto insistiria contra a pressa.
 
-O teste está escrito no mandato da T002: *«O que é a primeira coisa que acontece nesta opção, e
-depende de quem?»* Se a resposta for «de um terceiro que ainda não disse que sim», a opção tem o
-defeito que matou V1. **Se a T002 entregar sem responder a isto, o Arquitecto deve recusar a
-entrega.**
+2. **Os pressupostos T1–T3 continuam pressupostos.** Drenagem, impermeabilização e peso foram
+   assumidos por instrução do David para o debate avançar. **Não verificados.**
 
-**A drenagem.** O facto mais valioso que a T001 produziu, e o mais fácil de deitar fora. O quintal
-escoa há décadas por uma descarga que ninguém localizou. **O erro caro deste projecto passou a ser
-destruir ou entupir essa descarga com entulho** — não é construir drenagem, é não partir a que
-existe. Qualquer opção da T002 que mexa no pavimento tem de responder a isto primeiro.
+3. **Os números de sol são estimativa da T002, não da T003.** Entram sempre com etiqueta. A T003
+   nunca correu.
 
-**O muro SW.** Pode ser o maior ganho de luz do projecto — 0,50 m de diferença na altura dos muros
-duplicou o sol de Dezembro. Mas há **três desconhecidos e uma coincidência incómoda**: o tipo
-construtivo é desconhecido, a fundação é desconhecida, a fronteira suporte/guarda não foi medida, e
-**a intervenção proposta cai exactamente em cima do ponto de drenagem.** Entusiasmo aqui sai caro.
-
-**A palmeira.** Princípio 1 do projecto e elemento de maior risco. O único material sobre a manter
-viva — risco *Rhynchophorus ferrugineus*, protocolo 50–400 €/ano — continua **só no Notion, fora do
-repositório**, dois dias depois de ter sido assinalado. E inspecciona-se **pela coroa, não pelo
-tronco** — folhas rasgadas na inserção, murchidão da coroa, serrim na base das folhas.
-
-**A laranjeira.** Janela de transplante **Fevereiro a início de Março**. É a restrição de calendário
-mais dura do projecto e a única que não se negoceia. Faltam ~4 meses.
+4. **O filtro 4 — custo — nunca foi aplicado.** Não há orçamento de V2.

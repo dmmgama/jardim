@@ -13,8 +13,8 @@ summary: |
 > **Regra G4:** este ficheiro tem espelho em `REJEICOES.md` — os mesmos temas, nos dois.
 > **Regra G3:** escreve-se aqui no momento da decisão, não no fim da sessão.
 
-**Última actualização:** 2026-09-16
-**Versão activa:** Jardim V2 (em debate — ver T002)
+**Última actualização:** 2026-09-17
+**Versão activa:** Jardim V2 — **base de projecto fixada 2026-09-17.** Geometria em curso (T004).
 
 ---
 
@@ -40,12 +40,27 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 - 2026-09-14 — **Sequência de trabalho fixada:** primeiro a base factual do espaço (T001, etapa 1), só depois o debate de V2 (T002). Sem entendimento partilhado do cenário não há debate possível.
 - 2026-09-16 — **Etapa 1 da T001 entregue e absorvida.** A condição do bloqueio da T002 deixou de se verificar. **T002 passa a em curso.**
 - 2026-09-16 — **T003 ratificada.** Thread do modelo solar paramétrico, criada pela sessão T001 de 2026-09-15 com autorização expressa do David para derrogar G9. O mandato escrito em `30-THREADS/T003-modelo-solar/thread.md` é confirmado sem alteração. Ver §11.
+- 2026-09-17 — **O PROJECTO É FAZER O JARDIM ENTRAR NA SALA.**
+
+  Não é «arranjar o jardim». Hoje, da sala, vê-se uma marquise com caixilhos tortos e roupa estendida — **não se vê jardim nenhum**, porque ele está 1,35 m abaixo e atrás de uma barreira opaca. **A marquise sai, o envidraçado total entra, e o jardim passa a começar dentro de casa.** Tudo o resto — plataforma, piscina, escada, os 50 cm de cota — é o mecanismo.
+
+  **Isto explica porque morreram quatro planos sem ninguém sentir a falta:** um plano que depende de terceiros e que **ninguém vê falta** não é adiado, é abandonado sem decisão. A dependência explica por que parou; **a invisibilidade explica por que ninguém o retomou.** Ver `30-THREADS/T002-jardim-v2/research/EXPLICACAO-DO-LOCAL.html`.
+
+- 2026-09-17 — **Objectivo declarado pelo David:** *«um verdadeiro jardim. Muito bonito de dia e cénico de noite.»*
+
+  **É critério de aceitação, não intenção.** Uma proposta tecnicamente impecável que produza um pátio arrumado em vez de um jardim bonito **falha**, mesmo passando os filtros de drenagem, sol, clima e custo.
+
+- 2026-09-17 — **Princípios de V1 #2 e #5 confirmados — já estão executados e fotografados.**
+
+  **#2 «vê-se a luz, nunca a luminária»** e **#5 «dois jardins num — mediterrânico de dia, instalação de noite»**: `David-Docs/PALMEIRA-ICONE-NOITE.jpg` mostra a copa acesa sem nenhuma fonte visível. **Não são hipóteses a rever — são descrições do que já funciona.** O objectivo de 2026 é a formulação actual do mesmo princípio. **#1 (palmeira protagonista) confirmado em §03.**
+
+- 2026-09-17 — **T002 fechada, entrega absorvida. T004 aberta** por autorização expressa do David. Ver `THREADS.md`.
 
 **Em aberto**
-- O que é Jardim V2. Âmbito, ambição, orçamento, prazo. → T002, em curso.
-- Se os 8 princípios de V1 se mantêm, revêem-se ou caem. → T002.
+- Os outros cinco princípios de V1 (#3, #4, #6, #7, #8). → por rever.
+- Âmbito, orçamento e prazo de V2. → §10, e depende da geometria (T004).
 
-**Depende de** T002.
+**Depende de** T004 para a geometria; do Arquitecto para o resto.
 
 ---
 
@@ -84,41 +99,87 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
 ## 02. Pavimento
 
-**Decidido** —
+**Decidido**
+- 2026-09-17 — **A betonilha NÃO se demole.** Regulariza-se, corrigem-se pendentes, impermeabiliza-se, e o jardim sobe **+0,50 m** por cima dela. O canteiro central não é demolido: é **engolido** pela subida de cota.
+
+  **Porquê:** o favor de construção civil passa de «demolir e remover entulho» a «regularizar e impermeabilizar» — muito mais provável de acontecer, que é o defeito que matou o V1. Zero entulho.
+
+- 2026-09-17 — **A cota de +0,50 m mantém-se como base**, mas **não por causa da luz.** A curva de ganho solar **não tem joelho** — ≈+0,17 h de Dezembro por cada 10 cm, sem saturar até +1,00 m. A luz quer sempre mais. **A cota é limitada pela soleira, pelas grelhas de ventilação e pelo colo das árvores.** `[estimado T002, a confirmar T003]`
 
 **Em aberto**
-- Que fazer à betonilha existente: demolir, manter, parcial.
+- Cota exacta zona a zona — **não tem de ser uniforme.** → T004.
+- Materiais de pavimento por zona. → depois da geometria.
 
 ---
 
 ## 03. Árvores e plantação
 
-**Decidido** —
+**Decidido**
+- 2026-09-17 — **A PALMEIRA É INEGOCIÁVEL.** É o ícone do jardim. **Dado fixo de projecto, ao lado da geometria do recinto — não é variável a optimizar.**
+
+  Três imagens fazem o caso (`David-Docs/`): o mockup mostra que a composição funciona; `Palmeira-icone2.jpg` mostra um enquadramento **sem muros nenhuns**, em que o recinto estreito desaparece porque o olhar sobe; `PALMEIRA-ICONE-NOITE.jpg` é a única imagem de todo o acervo que não parece um quintal em Alcântara.
+
+  **Consequência assumida:** a sombra que a palmeira faz **é o preço do que ela dá.** A T002 tratou-a como obstáculo solar — tecnicamente correcto, irrelevante para a decisão.
+
+- 2026-09-17 — **A LARANJEIRA SAI da posição actual.** Motivo: *«tapa a palmeira»* `[David]`. Coerente com a palmeira ser o ícone. **Destino em aberto** — vaso ou outro sítio.
+
+  > ⚠ **JANELA Fev–início de Mar 2027.** ≈6 semanas por ano, não se negoceia com roadmap. Se passar, é 2028. **Não depende do dreno, nem da cota, nem do envidraçado, nem de terceiro nenhum — depende só do David, e tem prazo.**
+
+- 2026-09-17 — **A protecção das árvores é uma zona rebaixada única, não poços de arejamento isolados.** Enquadramento do David. O colo da palmeira e do lodão fica 0,50 m abaixo da cota nova; **enterrar o colo mata a árvore a prazo.**
 
 **Em aberto**
-- Palmeira: plano de sobrevivência. Risco *Rhynchophorus ferrugineus* documentado em Notion, nunca integrado.
-- Laranjeira: transplante ou permanência. Janela Fev–início Mar.
-- Lodão bastardo, árvore decídua: manter.
+- **Diâmetro de copa da palmeira** — 🔴 nunca medido (P2.2, 1 hora). **Bloqueia a T004.** A copa transborda sobre o canteiro da citrinheira ⇒ raio ≥3,1 m ⇒ **não cabe nos 5,78 m de largura do recinto.**
+- Palmeira: plano de sobrevivência. *Rhynchophorus ferrugineus* documentado, nunca integrado.
+- Destino da laranjeira.
+- Lodão: manter. **É actor na zona 1 e na zona 6** — sombreia a fachada e está dentro do melhor canteiro.
+- Vegetação por zona. → depois da geometria (T004).
 
 ---
 
 ## 04. Construção civil
 
-**Decidido** —
+**Decidido**
+- 2026-09-17 — **QUATRO PLANOS DE COTA.** `[David]`
+
+  | Plano | Cota | O quê |
+  |---|---|---|
+  | Fracção / sala | **+1,35 m** | Envidraçado total recolhível; **caixilhos e muro saem** |
+  | Plataforma | **+1,35 m** | ≈1,50 m de profundidade; continuidade da sala; alpendre |
+  | Transição | var. | **Piscina (h ≈0,70 m) + escada: o gradiente de descida** |
+  | Jardim | **+0,50 m** | Sobre a betonilha mantida |
+
+  **A plataforma está ao nível da fracção.** Os ≈1,50 m são profundidade, não desnível.
+
+- 2026-09-17 — **A descida faz-se pela porta da sala.** É a única entrada do jardim. A piscina **não é equipamento de banho — é elemento de transição**, e ocupa **um vão que já existe** ao lado da escada (hoje com o jacuzzi insuflável lá metido).
+
+- 2026-09-17 — **O desnível real plataforma→jardim é 0,85 m, não 1,35 m.** Cinco degraus de 17 cm dão Blondel 0,62–0,64 — **dentro do conforto, e melhor que a escada actual (0,68).** `[calculado T002]`
+
+- 2026-09-17 — **As grelhas de ventilação da caixa de ar deixam de ser objecção.** Era o argumento mais duro contra a subida de cota. Com a marquise fora e a plataforma a +1,35 m, a faixa junto à fachada é **vazio sob estrado, não aterro**. **Resolvido pela forma, não por remendo.** Confirmar na solução construtiva. → T004.
+
+- 2026-09-17 — **Os 50 cm servem a proporção, não só a luz.** Do jardim vê-se o encaixe de três construções de alturas diferentes e a fracção **parece** estar «lá em cima». Cota + envidraçado **reequilibram um alçado que hoje esmaga o recinto.** Não aparece em nenhuma tabela de sol, e é provavelmente o argumento mais forte a favor da subida.
 
 **Em aberto**
-- Canteiros existentes: demolir ou aproveitar.
-- Muro sul: muro de suporte ~95 anos, 8 m de desnível no tardoz. Condicionante a caracterizar.
+- **Geometria da transição** — profundidade, escada, piscina, largura ocupada. → **T004, URGENTE.**
+- **O risco da barreira:** o recinto tem 5,78 m de largura; piscina + escada lado a lado ocupam ≈2,40 m. **Se a transição atravessar de muro a muro, corta o jardim em dois** — o defeito do canteiro central com outro nome. → T004.
+- Muro SW: tipo construtivo e fundação desconhecidos. Arquivo Municipal por consultar.
+- **Impermeabilização sobre betonilha** — thread proposta, por criar.
+- **Redução de peso por zona** — thread proposta, por criar.
 
 ---
 
 ## 05. Água e drenagem
 
-**Decidido** —
+**Decidido**
+- 2026-09-17 — **Elemento de água: sim.** A piscina entra em V2 como elemento de transição. **A zona 5 (canto W) é candidata a pond** — ideia do David, com precedente em V1 («pond em U», Mar 2026).
 
 **Em aberto**
-- Drenagem periférica, com atenção ao muro sul.
-- Elemento de água: existe em V2 ou não.
+- **ACÇÃO N.º 1 DO PROJECTO: abrir o orifício de drenagem (X≈11,7 · Y≈3,5) e correr traçador de corante.** <10 €, uma tarde, **depende só do David.** Nunca foi aberto.
+
+  **Agravado em 2026-09-17:** a piscina põe ≈1,1 t em ≈1,6 m² (≈700 kg/m²) sobre betonilha fissurada e sobre a caixa de ar, **no canto onde há menos informação.**
+
+- **Origem da água no muro SE** — 🔴. **Bloqueia a zona 2 para vegetação:** não se planta encostado a uma parede que vai ter de ser picada.
+- Drenagem periférica, com atenção ao muro SW.
+- Teste de percolação. → T001 etapa 2.
 
 ---
 
@@ -162,11 +223,17 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 
 ## 10. Orçamento e faseamento
 
-**Decidido** —
+**Decidido**
+- 2026-09-17 — **Há ajuda de construção civil disponível quase de borla, e é ela que destrava o projecto.** Foi o facto novo que mudou tudo: em vez de a gastar a demolir a betonilha, usa-se para regularizar, impermeabilizar e construir a plataforma.
+
+  > ⚠ **URGÊNCIA declarada pelo David, 2026-09-17:** *«essa parte da plataforma e construção civil é o que vai ocorrer já agora.»* **A T004 está no caminho crítico da obra.**
 
 **Em aberto**
-- Orçamento de V2.
+- **Orçamento de V2.** O filtro 4 do mandato da T002 **não chegou a ser aplicado.**
 - Faseamento e calendário.
+- **Duas datas que mandam:** a janela da laranjeira (Fev–Mar 2027) e o calendário da construção civil (por confirmar).
+
+**Depende de** T004 para a geometria; do Arquitecto para o custo.
 
 ---
 
@@ -191,3 +258,19 @@ Um tema sem nada decidido fica com `—`. Temas novos abrem-se aqui e em `REJEIC
 **Em aberto**
 - Escolha da ferramenta. Via Google 3D está fechada — ver `REJEICOES.md` §11.
 - Zero dados carregados. O modelo está por montar.
+
+**Em aberto**
+- 2026-09-17 — **A T002 produziu um modelo solar próprio**, por a T003 nunca ter recebido o pedido. Geometria NOAA, sem dependências externas, em `30-THREADS/T002-jardim-v2/research/*.py`. **Validado contra a tabela §5.4 do dossier: concorda dentro de 0,3 h em todas as zonas, sempre pelo lado conservador.**
+
+  **Os resultados são `[estimado pela T002, a confirmar pela T003]` e não entram aqui como decisão.** Ficam registados como matéria de trabalho:
+
+  | | Dez | Eq. | Jun |
+  |---|---|---|---|
+  | Média hoje | 0,9 h | 4,2 h | 5,6 h |
+  | Média +0,50 m | **1,7 h** (×1,8) | 4,8 h | 6,0 h |
+  | **Área ≥3 h em Dezembro** | 12 m² → **23 m²** | — | — |
+  | Canteiro NW (zona 6) | **4,9 h** | 6,0 h | 4,7 h |
+  | Canteiro SE (zona 2) | **0,0 h** | 1,4 h | 5,0 h |
+
+- **O pedido à T003 sobe de prioridade.** O **pedido 5 — palmeira modelada — passa a decisivo**: é ele que diz quanto da zona 4 é utilizável e se o muro SW ainda vale alguma coisa. **Acrescentar: a forma da mancha dos 23 m², não só a área.**
+- **A T003 nunca recebeu o pedido.** O `mensagens.md` da T003 está vazio até 2026-09-17.

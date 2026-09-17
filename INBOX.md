@@ -19,6 +19,42 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 
 ---
 
+
+## Entradas de 2026-09-17 — do fecho da T002
+
+### Acções no terreno — uma tarde resolve as cinco
+
+> **Todas dependem só do David. Nenhuma depende de terceiros.** É a diferença entre isto e o V1.
+
+- [ ] **Abrir o orifício de drenagem + traçador de corante** (X≈11,7 · Y≈3,5). <10 €. **ACÇÃO N.º 1 do projecto**, sinalizada desde 2026-09-16. Agravada: a piscina põe ≈1,1 t naquele canto.
+- [ ] **M1 · Medir a copa da palmeira** — diâmetro da projecção e altura da base das palmas. 🔴 item P2.2 do dossier, 1 hora. **BLOQUEIA A T004**, que está no caminho crítico da obra.
+- [ ] **M2 · Medir a altura dos muros**, troço a troço. 20 min. **Vale 35% na variável mais crítica**: se forem 2,25 m e não 2,50 m, Dezembro passa de 1,7 h para 2,3 h.
+- [ ] **M3 · Confirmar cotas** — soleira, patim, jardim. 20 min.
+- [ ] **M4 · Levantar o vão da piscina** — largura, profundidade, e o que está por baixo. 30 min. **Antes de lá pôr água.**
+- [ ] **Fotografar a abertura da caixa de ar** — está semi-obstruída por entulho e vegetação.
+
+### Com prazo
+
+- [ ] **Decidir o destino da laranjeira** — vaso ou outro sítio. ⚠ **Janela Fev–início Mar 2027.** Se passar, é 2028. Não depende de ninguém.
+- [ ] **Confirmar o calendário da construção civil.** Define quanto tempo há para medir e desenhar antes da betoneira.
+
+### Para o Arquitecto despachar
+
+- [ ] **Criar as threads de impermeabilização e de redução de peso por zona** — propostas em `30-THREADS/T002-jardim-v2/TICKETS.md`, ainda por criar.
+- [ ] **Encaminhar o pedido à T003.** `30-THREADS/T002-jardim-v2/research/03-PEDIDO-T003-COTA.md`. **Duas alterações:** o pedido 5 (palmeira modelada) sobe a **decisivo**; acrescentar **a forma da mancha dos 23 m²**, não só a área.
+- [ ] **Passar dois factos à T001:** (1) a relva artificial existe e ainda lá está — o dossier descreve betonilha à vista; (2) os muros podem não ter todos a mesma altura.
+- [ ] **Rever os cinco princípios de V1 que sobram** — #3, #4, #6, #7, #8. Os #1, #2 e #5 já estão em `ESTADO.md`.
+- [ ] **Orçamento de V2.** O filtro 4 do mandato da T002 nunca chegou a ser aplicado.
+- [ ] **Actualizar `Jardim.html`** — território do Arquitecto, desactualizado face às decisões de 2026-09-17.
+
+### Ideias por processar
+
+- [ ] **Zona 5 (canto W) como pond.** Ideia do David. **Precedente:** V1 tinha «pond em U» (Mar 2026). Reaparece com melhor argumento — é um canto morto com 0,5 h de sol em Dezembro, que não serve para plantar.
+- [ ] **A zona 6 é o recurso desperdiçado do projecto.** 4,9 h em Dezembro, o triplo da média, e nunca entrou no raciocínio de vegetação de nenhum dos quatro planos. Na planta actual tem sebe por cima.
+- [ ] **A zona 2 pode alojar a escada.** 0,0 h em Dezembro, não serve para plantar — é candidata natural a uso construído em vez de vegetal.
+
+---
+
 ## Por processar
 
 ### Notion e estrutura de publicação
