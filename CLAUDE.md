@@ -29,6 +29,13 @@ Modo de sessão: ARQUITECTO ou THREAD?
 
 Continua neste documento. Segue a secção 4 (Protocolo de arranque do Arquitecto).
 
+### Se a resposta for ARQUITECTO — opções de sessão
+
+O modo normal segue a secção 4. Além dele, o David **PODE** pedir:
+
+- **«consolidação de documentação»** — auditoria ao NotebookLM: o que está desactualizado,
+  duplicado ou revogado, com proposta de eliminação ou reorganização. Ver §5.7 (G32–G35).
+
 ### Se a resposta for THREAD
 
 1. Lê `THREADS.md`.
@@ -222,6 +229,32 @@ não arquivo.
 
 **G31.** Resposta do NotebookLM **não é decisão**. Vale como leitura de documento: **não entra
 em `ESTADO.md` sem passar pelo processo normal.** Mesma regra que G22 para o Notion.
+
+#### Consolidação de documentação  *(modo Arquitecto)*
+
+**G32.** O Arquitecto **PODE** correr uma **consolidação de documentação** — opção de sessão, não
+rotina. Confronta o que está no notebook com o que é hoje vigente e **propõe eliminação ou
+reorganização.**
+
+**Porquê existe:** o notebook acumula. Sources duplicadas, decks de versões abandonadas, material
+de threads fechadas. **Um notebook que responde com base em documentação revogada é pior que um
+notebook vazio** — dá respostas erradas com a confiança de quem cita uma fonte.
+
+**G33.** A consolidação **DEVE** classificar cada source e cada deck em quatro estados:
+
+| Estado | Significado | Acção proposta |
+|---|---|---|
+| **VIGENTE** | Corresponde a decisão ou facto em vigor | Manter |
+| **SUPERADO** | Foi substituído por versão mais recente do mesmo documento | **Eliminar** — ou manter só o mais recente |
+| **REVOGADO** | Contradiz `ESTADO.md` ou consta de `REJEICOES.md` | **Eliminar** — é o caso mais perigoso |
+| **DUPLICADO** | Existe mais do que uma vez | **Eliminar as cópias** |
+
+**G34.** O Agente **NÃO PODE** eliminar nada no notebook sem aprovação explícita do David.
+**Propõe em tabela; ele decide.** Vale para sources e para decks.
+
+**G35.** O resultado da consolidação **DEVE** ser registado em `REGISTO-DOCUMENTOS.md`, numa
+entrada própria, com o que foi eliminado e porquê. **Sem isto, a mesma limpeza é redescoberta
+daqui a três meses.**
 
 ---
 

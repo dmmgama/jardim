@@ -442,24 +442,30 @@ superados.**
 
 ## C · ÂMBITO — o que está na thread errada
 
-### C1 · A pesquisa de vegetação não é geometria
+### C1 · A pesquisa de vegetação — fica na thread
 
 `T004/research/05-PESQUISA-VEGETACAO.md` — paleta para seis zonas, relva, iluminação.
-**Excede o mandato da T004**, e está assinalado no próprio ficheiro.
+**Excede o mandato de geometria da T004**, e está assinalado no próprio ficheiro.
 
-**Três destinos possíveis:**
+> **Regra de governo, fixada pelo David em 2026-09-17:**
+>
+> **Cada thread guarda as suas pesquisas em `research/` da própria thread.**
+> **Só o Arquitecto decide** se uma pesquisa sobe a `40-PESQUISAS/` por ser de interesse geral.
 
-| Opção | A favor | Contra |
-|---|---|---|
-| **`40-PESQUISAS/`** | É pesquisa transversal, serve o projecto todo | Sai da thread que a produziu |
-| Ficar na T004 | Foi lá que se produziu | **Fica escondida numa thread de geometria** |
-| Thread de vegetação | Terá de existir de qualquer modo | Ainda não existe |
+**Consequência:** a pesquisa **fica onde está**. A thread não a move — nem pode (T3), nem lhe cabe
+julgar se é de interesse geral.
 
-**Recomendação:** `40-PESQUISAS/` — **a pasta existe e está vazia**.
+**O que a thread deve fazer:** sinalizar ao Arquitecto, pelo canal de mensagens, que produziu uma
+pesquisa que excede o seu mandato e que **pode ser de interesse transversal**. A decisão é dele.
 
-### C2 · O mesmo se aplica à pesquisa de transições
+**O mesmo se aplica** às pesquisas da T001 (catálogo vegetal, viabilidade de relva, software de
+modelação): **ficam na T001** até o Arquitecto decidir o contrário — mesmo sendo material que a T004
+consultou e que outras threads vão consultar.
 
-`02-PESQUISA-TRANSICOES.md` é tipologias com fontes. **Essa é de geometria** — fica.
+### C2 · A pesquisa de transições é de geometria
+
+`02-PESQUISA-TRANSICOES.md` — tipologias com fontes. **Está dentro do mandato da T004.**
+Fica, sem reservas.
 
 ### C3 · As imagens da T002 são usadas pela T004
 
@@ -527,7 +533,7 @@ a saldar.** Mas a partir de agora aplicam-se a todas as sessões.
 | **1** | **Fichar as 8 imagens órfãs** e resolver a entrada fantasma | T002 — **rápido e desbloqueia o resto** |
 | **2** | **Consolidar os 7 documentos em 3** | T004 sessão 2 |
 | **3** | **Uma peça HTML final**, com o degrau-banco | T004 sessão 2 |
-| **4** | **Decidir o destino da pesquisa de vegetação** | Arquitecto |
+| **4** | **Sinalizar ao Arquitecto** as pesquisas que excedem o mandato da thread | T004 → canal de mensagens |
 | **5** | **Convenção de nomes** e renomeação | Depois de 1–3, para não renomear duas vezes |
 | **6** | **Incorporar os 5 factos no dossier** | T001 |
 | **7** | **Arrumar o peso da T001** — PDF de 17 MB, 52 ficheiros | T001, sem pressa |
