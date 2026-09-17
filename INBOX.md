@@ -145,6 +145,32 @@ Quando processada, marca-se `[x]` e acrescenta-se o destino: decidido (→ ESTAD
 
 - [ ] 2026-09-17 | david | **Criar protocolo de limpeza e organização de thread.** Cada thread acumula lixo de exploração — é o que `research/` existe para absorver. **Mas nunca foi definido o que acontece a esse lixo depois.** Âmbito a definir: o que se apaga e o que se arquiva · o que sobe a `entregue/` e o que fica · ficheiros órfãos e duplicados · imagens não referenciadas · **wikilinks e caminhos relativos partidos** (o dossier da T001 tem ~50 caminhos relativos frágeis) · versões antigas de documentos reescritos. **Quando corre:** provavelmente ao fechar a thread, mas as `ONGOING` nunca fecham — T001 e T003 precisam de limpeza periódica sem fecho. **Cruza com o item do Scribe:** se o Scribe existir, esta limpeza é trabalho dele.
 
+- [ ] 2026-09-18 | arquitecto | **⚠ PROTOCOLO NOVO POR RATIFICAR — «Estado da thread para o Arquitecto» (G37–G42, §5.8 do `CLAUDE.md`).** Criado por instrução directa do David a 2026-09-18, **numa sessão que operava em modo misto** — não passou pelo processo normal de decisão. **O Arquitecto tem de o ratificar ou corrigir.**
+
+  **O problema que resolve:** o `THREADS.md` é escrito pelo Arquitecto — é a visão *dele* sobre as threads, não o que cada thread sabe. Para traçar panorama ou redefinir estratégia, teria de abrir cinco `thread.md` de centenas de linhas. **Não o faz, e por isso decide sem ver.**
+
+  **O que o protocolo institui:** cada thread mantém um `TNNN-ESTADO-PARA-ARQUITECTO.md` na sua pasta, **reescrito por inteiro ao fechar cada sessão** (retrato, não log), **limitado a 4 000 caracteres** — o que não cabe não é importante ao nível do Arquitecto. Sete secções: o que a thread é agora · achados e o que valem · conhecimento certo · lacunas · **impacto cruzado** · o que pede ao Arquitecto. **Antes de escrever, a thread lê o `ESTADO.md` e os ficheiros de estado das outras threads** — sem isso, a secção de impacto cruzado é opinião no vazio, e é essa secção que dá valor ao ficheiro.
+
+  **Regras propagadas** aos seis `CLAUDE.md` de thread como T24–T28. **Já existe um ficheiro real:** `30-THREADS/T005-caracterizacao/T005-ESTADO-PARA-ARQUITECTO.md` (3 717 car.) — serve de referência para avaliar se o formato funciona.
+
+  **Quatro coisas a decidir:** (a) **ratificar ou não**; (b) **as outras quatro threads não têm o ficheiro** — T001, T002 (fechada), T003 (0 sessões) e T004 ficam por gerar, e a T004 é a mais urgente porque está no caminho crítico; (c) se o limite de 4 000 é o certo; (d) **se uma thread fechada deve manter o ficheiro** — a T002 está fechada e o seu último estado pode valer mais que o silêncio.
+
+- [ ] 2026-09-18 | arquitecto | **⚠ PROTOCOLO DE REGISTO DE DOCUMENTOS — três ficheiros novos na raiz, por avaliar e integrar.** Produzidos por subagentes na sessão de 2026-09-17/18, a pedido do David. **Nenhum está em vigor: são propostas.**
+
+  | Ficheiro | O que é |
+  |---|---|
+  | `REGISTO-DOCUMENTOS-INSTRUCOES.md` (540 lin.) | A lógica: estrutura, oito colunas com formato exacto, vocabulário de tipos, índices, sete casos difíceis, regras de higiene, e **nove decisões de desenho assinaladas para revisão** |
+  | `REGISTO-DOCUMENTOS-TEMPLATE.md` (315 lin.) | O esqueleto vazio, com exemplo fictício preenchido |
+  | `REGISTO-DOCUMENTOS-DRAFT.md` (545 lin.) | As regras **aplicadas a tudo o que existe** — para ver se resistem aos dados reais |
+
+  **O achado do draft: 58 documentos catalogados, contra 9 no `REGISTO-DOCUMENTOS.md` actual.** Não é melhoria de formato — **49 documentos não estavam em catálogo nenhum.** Quase todo o trabalho do projecto estava fora de qualquer índice. Verificado por script: todos os wikilinks resolvem, todas as linhas têm o número certo de colunas.
+
+  **Três falhas das instruções ao contacto com a realidade**, identificadas pelo próprio subagente: (1) **não dizem onde param** — à letra arrastariam `ESTADO.md`, cinco `CLAUDE.md`, seis `mensagens.md` e as fichas de equipa, 30+ linhas de ruído; a exclusão foi decisão do subagente e é a de maior impacto do draft; (2) **não têm modo de migração** — foram escritas para o fluxo de fim-de-sessão, não para catalogar retroactivamente; (3) **falta um valor para «a sessão existiu mas o nome não ficou registado»** — só duas sessões têm nome escrito em todo o repositório, **20 linhas levam `[não apurado]` e só o David as recupera.**
+
+  **Duas contradições com o governo em vigor, por resolver:** a **G23 manda organizar por secção temática** e a estrutura nova é **por Dono** — são incompatíveis, e a G23 e o T20 têm de ser reescritos; e **a excepção ao append-only** (a secção de Dependências, única editável) **não existe como regra no `CLAUDE.md`.**
+
+  **Mais oito classificações duvidosas** listadas no draft a pedir confirmação, e uma pendência de G29 não apurada: **porque é que dois decks cujas sources estão no notebook não têm PDF em disco.**
+
 ### Higiene do repositório
 
 - [ ] 2026-09-14 | arquitecto | Pasta vazia `Nova pasta/` na raiz, por remover.

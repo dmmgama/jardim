@@ -304,6 +304,45 @@ daqui a três meses.**
 
 ---
 
+### 5.8 Estado da thread para o Arquitecto  *(protocolo de fecho de sessão)*
+
+**O problema que isto resolve.** O Arquitecto tem o `THREADS.md`, mas é **ele** que o escreve —
+é a visão dele sobre as threads, não o que cada thread sabe. Para traçar um panorama ou
+redefinir estratégia, teria de abrir cinco `thread.md` de centenas de linhas cada. **Não o faz,
+e por isso decide sem ver.**
+
+**G37.** Cada thread mantém, na sua pasta, um **`TNNN-ESTADO-PARA-ARQUITECTO.md`** (ex.
+`T005-ESTADO-PARA-ARQUITECTO.md`). **Reescrito por inteiro ao fechar cada sessão da thread** —
+não é acumulado, é um retrato do momento.
+
+**G38.** **Limite rígido: 4 000 caracteres.** Se não couber, corta-se — **o que não cabe não é
+importante ao nível do Arquitecto.** O detalhe vive em `thread.md` e em `research/`.
+
+**G39.** Antes de o escrever, a thread **DEVE ler**: `ESTADO.md` da raiz · os
+`*-ESTADO-PARA-ARQUITECTO.md` das outras threads. **Sem isto, a secção de impacto cruzado é
+opinião no vazio** — é precisamente o que dá valor ao ficheiro.
+
+**G40.** Conteúdo obrigatório, por esta ordem:
+
+| Secção | O que responde |
+|---|---|
+| **Cabeçalho** | Thread · estado · data · sessões · uma linha de assunto |
+| **1. O que esta thread é agora** | O tema em tratamento. 2-3 linhas. |
+| **2. Achados, e o que valem** | O que se descobriu **e porque importa ao projecto** — não um índice de documentos |
+| **3. Conhecimento certo** | O que está estabelecido e suporta decisão |
+| **4. Lacunas** | O que falta, e o que fica bloqueado por faltar |
+| **5. Impacto cruzado** | Como afecta ou muda outras threads e o estado geral. **Opinião do dono da thread, assinalada como tal.** |
+| **6. O que peço ao Arquitecto** | Decisões pendentes, por ordem de urgência |
+
+**G41.** A secção 5 é **opinião declarada**, não facto. A thread **DEVE** marcá-la como tal. **NÃO
+PODE** escrever em `ESTADO.md` nem decidir por outra thread — sinaliza, e o Arquitecto arbitra.
+
+**G42.** O Arquitecto **DEVE** ler estes ficheiros quando quiser panorama geral ou redefinir
+estratégia. **Não substituem o `THREADS.md`** — este continua a ser a visão dele; aqueles são a
+visão de cada thread sobre si mesma. **Quando divergirem, a divergência é informação.**
+
+---
+
 ## 6. Regras de operação
 
 **O1.** O Agente **DEVE** responder em português europeu. **DEVE** responder em inglês se o David escrever em inglês.
@@ -359,7 +398,7 @@ Jardim/
 ├── 20-PLANO/           ← decisões consolidadas V2
 ├── 20-VISUAL/
 │   └── estado-real/    ← fotos e planta do estado actual
-├── 30-THREADS/
+├── 30-THREADS/         ← cada thread tem TNNN-ESTADO-PARA-ARQUITECTO.md (≤4000 car.)
 │   ├── _TEMPLATE/      ← modelo de thread
 │   ├── T001-local/     ← ongoing
 │   └── T002-jardim-v2/

@@ -58,6 +58,15 @@ separados e sem conhecimento umas das outras.
 | 4 | [[30-THREADS/T005-caracterizacao/research/04-NUVEM-DE-PONTOS]] | Levantamento com equipamento profissional (TLS, SLAM). **Veredicto dividido:** vale para a copa da palmeira, não justifica sozinha para os muros. **Inversão de intuição:** o reboco liso é o pior caso para fotogrametria e um dos melhores para TLS. Cadeia de tratamento gratuita em Windows. | ✅ [[30-THREADS/T005-caracterizacao/research/T005-26-09-17-RESEARCH-NUVEM-DE-PONTOS.pdf|deck PDF]] |
 | 5 | [[30-THREADS/T005-caracterizacao/research/00-PONTO-DE-PARTIDA]] | Análise própria, escrita **antes** de as pesquisas chegarem. Diagnostica que o dossier está organizado por objecto físico e não sabe dizer quando pode parar. Fixou o teste de falsificação da thread. | ❌ não enviado — método interno da thread, não matéria de estudo |
 
+## 2026-09-18 · Thread T005 · «Agentes e open source»
+
+Pesquisa encomendada **depois** da síntese da fase 1, para responder ao que nenhuma das quatro
+primeiras tinha perguntado: *o que já existe, feito por outros, que possamos simplesmente adoptar?*
+
+| # | Documento | Sumário | NotebookLM |
+|---|---|---|---|
+| 1 | [[30-THREADS/T005-caracterizacao/research/06-AGENTES-E-OPENSOURCE]] | Agentes de IA, skills, MCP servers e open source adoptáveis, nos três eixos (agentes · análise e estudo · instrumentação). **O achado central é negativo:** não existe agente de IA especializado em jardim, arboricultura ou cobertura ajardinada que valha a pena adoptar — 504 repos de «AI agent for agriculture», o mais estrelado com **8 estrelas**. **O que vale são MCP servers sobre as ferramentas que a 02 já escolheu:** `nkarasiak/qgis-mcp` (310★, vivo) põe o agente a correr SOLWEIG/UMEP; `agentic-swmm-workflow` (MIT, paper revisto) a correr o SWMM; `ha-mcp` (4766★) a ler o histórico dos sensores. **Armadilha provada:** `jjsantos01/qgis_mcp` tem 1096★ e está morto há um ano — neste espaço as estrelas medem atenção passada, não vida. **Peça nova que faltava ao projecto: `pyfao56`** (USDA-ARS, activo), balanço hídrico diário FAO-56 — a ferramenta que põe número no conflito retenção-vs-drenagem. **Resposta à pergunta expressa sobre o escaravelho: não há código aberto** — nenhum dos trabalhos de >90% publicou código; o que existe é de **amoreira**, com sonda de 35 cm enfiada no tronco. | ✅ [[30-THREADS/T005-caracterizacao/research/T005-26-09-18-RESEARCH-AGENTES-E-OPENSOURCE.pdf\|deck PDF]] |
+
 ---
 
 # 🧩 SÍNTESES

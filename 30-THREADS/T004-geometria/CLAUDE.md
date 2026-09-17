@@ -134,3 +134,23 @@ enviada. Mas uma resposta do NotebookLM **não é decisão**: vale como leitura 
 localizar o ficheiro (está em `40-PESQUISAS/David/`), verificar front matter e prompt, registar em
 `REGISTO-DOCUMENTOS.md`, e **confrontá-la com o teu mandato** — se responder a algo que tens em
 aberto, dizes. **NÃO PODES** concluir que um ficheiro não existe sem procurar no repositório inteiro.
+
+---
+
+## 8. Estado para o Arquitecto  *(fecho de sessão)*
+
+**T24.** **Ao fechar cada sessão, DEVES reescrever por inteiro** o ficheiro
+`T004-ESTADO-PARA-ARQUITECTO.md` na tua pasta. Não é acumulado — é o **retrato do momento**.
+
+**T25.** **Máximo 4 000 caracteres.** Se não couber, cortas. O detalhe vive em `thread.md` e em
+`research/`; este ficheiro é para o Arquitecto ver o panorama **sem abrir nada**.
+
+**T26.** **Antes de escrever, DEVES ler** o `ESTADO.md` da raiz e os
+`*-ESTADO-PARA-ARQUITECTO.md` das outras threads. Sem isso não consegues escrever a secção de
+impacto cruzado — e é essa que dá valor ao ficheiro.
+
+**T27.** Sete secções: o que a thread é agora · achados e o que valem · conhecimento certo ·
+lacunas · **impacto cruzado** · o que pedes ao Arquitecto.
+
+**T28.** O impacto cruzado é **a tua opinião** — marca-a como tal. **NÃO PODES** escrever em
+`ESTADO.md` nem decidir por outra thread. Sinalizas; o Arquitecto arbitra.
