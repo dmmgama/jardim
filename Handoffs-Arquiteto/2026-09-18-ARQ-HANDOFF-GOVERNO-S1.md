@@ -25,7 +25,8 @@ summary: |
 **Feito nesta sessão:**
 - `Registos-Arquiteto/` com README, índice e primeiro registo.
 - `Handoffs-Arquiteto/` com índice, três protocolos de arranque (GERAL, GOVERNO, REGISTOS-ARQUITETO) e este handoff. O antigo `HANDOFF.md` da raiz passou a `2026-09-17-ARQ-HANDOFF-GERAL-S1.md`, sem reescrita.
-- `MANDATO-DA-BRANCH.md` na raiz.
+- `MANDATO-DA-BRANCH.md` na raiz. Esta branch é a **B1**.
+- `BRANCHES.md` em `master` (B0 Codex fechada, B1 activa), fundido para a branch. Regra G49.
 - `CLAUDE.md`: §0 reescrito com os quatro comandos de arranque; §4 remete para os protocolos por tema; regra de branch; regra de commit no fecho; secção «Registos do Arquitecto»; mapa de ficheiros actualizado.
 
 **Não tocado, de propósito:** `ESTADO.md`, `REJEICOES.md`, `THREADS.md`, `THREAD-MENSAGENS.md`, `INBOX.md`, os protocolos pendentes de ratificação (G37–G42 e registo de documentos), as threads.

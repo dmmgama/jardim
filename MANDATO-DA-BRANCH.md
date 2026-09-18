@@ -9,7 +9,9 @@ summary: |
   de visão do estado geral, e estruturar o projecto top-down.
 ---
 
-# Mandato da Branch — `Governo-correcao-v1`
+# Mandato da Branch — B1 `Governo-correcao-v1`
+
+**Número:** B1 (ver `BRANCHES.md` em `master`). As sessões desta branch chamam-se `YYYY-MM-DD-B1-…`.
 
 > **Regra:** qualquer sessão que detecte estar numa branch que não é a principal **DEVE** ler este ficheiro antes de tudo o resto. Ver `CLAUDE.md` §0.
 
@@ -43,6 +45,8 @@ Esta branch existe para corrigir as duas coisas sem contaminar `master` enquanto
 | **Mandato da branch** | este ficheiro | Toda a branch tem um. Lê-se sempre que se está numa branch. |
 | **Campo `branch`** | todos os registos e handoffs | Para se saber sempre em que linha do repositório o ficheiro foi escrito. |
 | **Commit no fecho** | `CLAUDE.md` | Toda a sessão commita antes de fechar. Sem excepção. |
+| **Texto de arranque** | `CLAUDE.md` §0.3 | No fecho, o agente dá ao David o texto a colar na sessão seguinte. |
+| **Índice de branches** | `BRANCHES.md` em `master` | Número `Bn`, datas, mandato, estado. Só isto se escreve em `master` enquanto a branch estiver activa. |
 
 ### 2.2 Estruturação do projecto (próximo passo — skill wayfinder)
 

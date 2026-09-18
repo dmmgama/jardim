@@ -400,6 +400,13 @@ o que produz, o que não faz, como fecha.
 
 **G48.** Todo o handoff e todo o registo do Arquitecto **DEVE** ter `branch` no front matter.
 
+**G49.** Existe em `master` um **`BRANCHES.md`**: índice de todas as branches, com número (`Bn`), nome,
+datas de abertura e fecho, mandato em uma linha, e estado (`ativa` · `pausada` · `anulada` · `fechada` ·
+`reaberta`). Quem abre uma branch **DEVE** acrescentar-lhe a linha **em `master`**, no mesmo acto, com o
+número seguinte; quem fecha, pausa ou anula **DEVE** actualizar o estado. **O número `Bn` entra no nome
+das sessões** (`YYYY-MM-DD-Bn-…`). Em `master` **não se mete mais nada** enquanto uma branch de governo
+estiver activa — só este índice.
+
 ---
 
 ## 6. Regras de operação
@@ -438,6 +445,7 @@ o que produz, o que não faz, como fecha.
 | `INBOX.md` | Ideias e pendências em bruto. |
 | `THREADS.md` | Threads activas e fechadas. |
 | `THREAD-MENSAGENS.md` | Sinalizador global de pedidos das threads. |
+| `BRANCHES.md` | Índice de branches (`Bn`, nome, datas, mandato, estado). **Mantido em `master`.** |
 | `MANDATO-DA-BRANCH.md` | Só existe numa branch. O que a branch faz e não faz. Lê-se sempre que se está numa branch. |
 | `Handoffs-Arquiteto/` | Continuidade entre sessões de Arquitecto, **por tema**: `Index-handoffs.md`, um `TEMA-Protocolo-arranque.md` por tema, handoffs `YYYY-MM-DD-ARQ-HANDOFF-TEMA-Sn.md`. Substitui o antigo `HANDOFF.md`. |
 | `Registos-Arquiteto/` | Registos de sessão a pedido do David. `README.md`, `Index-registos-arquiteto.md`, uma pasta por registo. **Leitura on demand, só se o David pedir.** |
