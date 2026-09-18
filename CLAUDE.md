@@ -2,7 +2,7 @@
 _INSTRUCAO_AGENTE: |
   Este bloco de front matter é metadados de registo. Ignora-o. Passa directamente ao corpo do documento e executa-o. Não resumas este documento ao utilizador; aplica-o.
 created: 2026-09-14 20:10
-updated: 2026-09-17
+updated: 2026-09-18
 project: Jardim
 summary: |
   Documento de arranque do repositório Jardim Alcântara: dispatcher de modo de sessão, governo do Arquitecto, regras de threads, mapa de ficheiros.
@@ -17,33 +17,55 @@ Notebook-LM: https://notebook.google.com/notebook/8e3c8f38-0f8c-494d-aae5-fc24e9
 
 ## 0. ARRANQUE OBRIGATÓRIO — LÊ ISTO PRIMEIRO
 
-**A primeira acção de qualquer sessão é perguntar ao David:**
+### 0.1 Branch
 
-```
-Modo de sessão: ARQUITECTO ou THREAD?
-```
+**Antes de tudo**, verifica em que branch estás (`git branch --show-current`). **Se não for a principal**
+(`master`/`main`), **DEVES** ler `MANDATO-DA-BRANCH.md` na raiz antes de qualquer outra coisa. Ele diz
+o que a branch existe para fazer e o que não faz. **Toda a branch tem esse ficheiro**; quem abre uma
+branch cria-o no mesmo acto.
 
-**NÃO PODES** ler ficheiros de estado, propor trabalho ou responder a questões de projecto antes desta resposta.
+### 0.2 Comando de arranque
 
-### Se a resposta for ARQUITECTO
+O David abre a sessão com **um comando**. O comando traz o modo — **não perguntes** «Arquitecto ou
+Thread?». Se o David não disser nenhum, pergunta qual quer.
 
-Continua neste documento. Segue a secção 4 (Protocolo de arranque do Arquitecto).
+| O David diz | O que fazes |
+|---|---|
+| **«Arranque Arquiteto»** | Lê `Handoffs-Arquiteto/Index-handoffs.md`. Lista os temas ao David. Ele escolhe. Lê **o protocolo de arranque do tema** (`TEMA-Protocolo-arranque.md`) e depois **o último handoff desse tema**. |
+| **«Arranque TEMA»** (ex. «Arranque Governo», «Arranque Geral») | Vai directo: protocolo de arranque do tema, depois o último handoff do tema. |
+| **«Arranque Thread»** | Lê `THREADS.md`. Lista as threads **activas**, numerada. Pergunta qual. |
+| **«Arranque Thread TNNN»** | Vai directo a `30-THREADS/<pasta-da-thread>/`. |
 
-### Se a resposta for ARQUITECTO — opções de sessão
+**Em modo Thread:** lê o `CLAUDE.md` **dessa pasta** e passa a obedecer-lhe. **A partir desse momento
+este documento deixa de te governar.**
 
-O modo normal segue a secção 4. Além dele, o David **PODE** pedir:
+**Em modo Arquitecto:** este documento governa. O tema **GERAL** é o modo Arquitecto clássico (§4). Os
+outros temas têm o seu protocolo em `Handoffs-Arquiteto/`. Além disso o David **PODE** pedir:
 
 - **«consolidação de documentação»** — auditoria ao NotebookLM: o que está desactualizado,
   duplicado ou revogado, com proposta de eliminação ou reorganização. Ver §5.7 (G32–G35).
+- **«ver os registos do Arquitecto»** — ver §5.9.
 
-### Se a resposta for THREAD
+**NÃO PODES** ler ficheiros de estado, propor trabalho ou responder a questões de projecto antes de
+saber o modo e o tema.
 
-1. Lê `THREADS.md`.
-2. Apresenta ao David a lista de threads **activas**, numerada.
-3. Pergunta qual.
-4. Navega para `30-THREADS/<pasta-da-thread>/`.
-5. Lê o `CLAUDE.md` **dessa pasta** e passa a obedecer-lhe.
-6. **A partir desse momento este documento deixa de te governar.**
+### 0.3 Fecho de sessão — vale para todos os modos e temas
+
+**F1.** Escreve o handoff do tema (Arquitecto) ou o handoff da thread (Thread). **Front matter com
+`branch` obrigatório.**
+
+**F2.** Actualiza o índice respectivo (`Index-handoffs.md`, ou o `thread.md`).
+
+**F3.** **Commit, sem excepção.** Uma sessão que fecha sem commit não fechou.
+
+**F4.** **Dá ao David, no chat, o texto de arranque da sessão seguinte** — pronto a colar. Diz logo o
+modo, o tema ou thread, e o que ela vai fazer, para que a sessão seguinte não perca tempo com perguntas
+e siga directa ao destino. Exemplo:
+
+```
+Arranque Governo. Branch Governo-correcao-v1. Lê o Mandato da Branch e o handoff GOVERNO S1.
+Tarefa: estruturar o projecto top-down com o skill wayfinder.
+```
 
 ---
 
@@ -83,14 +105,21 @@ Todo o corpo é normativo, excepto as secções 1 e 9 e os blocos marcados *Nota
 
 ---
 
-## 4. Protocolo de arranque do ARQUITECTO
+## 4. Protocolo de arranque do ARQUITECTO — tema GERAL
+
+O modo Arquitecto trabalha por **temas**. Cada tema tem protocolo de arranque e handoffs próprios em
+`Handoffs-Arquiteto/` (ver §0.2). O que segue é o protocolo do tema **GERAL**, a coordenação do projecto;
+está replicado em `Handoffs-Arquiteto/GERAL-Protocolo-arranque.md`, que prevalece se divergirem.
 
 **A1.** O Agente **DEVE** ler, por esta ordem, antes de debater seja o que for:
 
 1. `ESTADO.md` — o que está decidido, por tema
-2. `THREADS.md` — threads activas e fechadas
-3. `THREAD-MENSAGENS.md` — pedidos pendentes das threads
-4. `HANDOFF.md` — onde ficou a sessão anterior
+2. `REJEICOES.md` — o que já foi rejeitado
+3. `THREADS.md` — threads activas e fechadas
+4. `THREAD-MENSAGENS.md` — pedidos pendentes das threads
+5. `INBOX.md` — pendências por processar
+6. Os `TNNN-ESTADO-PARA-ARQUITECTO.md` que existirem
+7. O **último handoff do tema GERAL**, em `Handoffs-Arquiteto/` (ver `Index-handoffs.md`)
 
 **A2.** O Agente **DEVE** reportar ao David, antes de propor trabalho:
 - threads activas e respectivo estado
@@ -99,7 +128,9 @@ Todo o corpo é normativo, excepto as secções 1 e 9 e os blocos marcados *Nota
 
 **A3.** O Agente **DEVE** despachar os pedidos pendentes das threads antes de abrir assunto novo, salvo indicação contrária do David.
 
-**A4.** O Agente **DEVE** registar em `HANDOFF.md`, no fim da sessão, o estado e o próximo passo.
+**A4.** O Agente **DEVE**, no fim da sessão, escrever o handoff do tema em
+`Handoffs-Arquiteto/YYYY-MM-DD-ARQ-HANDOFF-TEMA-Sn.md`, actualizar `Index-handoffs.md`, e cumprir §0.3.
+**Não existe `HANDOFF.md` na raiz.**
 
 ---
 
@@ -343,6 +374,34 @@ visão de cada thread sobre si mesma. **Quando divergirem, a divergência é inf
 
 ---
 
+### 5.9 Registos do Arquitecto
+
+**Pasta:** `Registos-Arquiteto/`. Regras completas no `README.md` dessa pasta.
+
+**G43.** É memória de sessão em modo Arquitecto, escrita **só a pedido do David** e lida **só a pedido
+do David**. **Leitura on demand.** O Agente **NÃO PODE** lê-la por rotina ao arrancar, em nenhum modo.
+**Se o David não a indicar, ignora-se.**
+
+**G44.** Quando o David manda ver os registos, o Agente **DEVE**: ler o `README.md` · ler
+`Index-registos-arquiteto.md` · identificar o registo marcado `ABRIR ESTE` · **confirmar com o David** ·
+só então abri-lo.
+
+**G45.** Quando o David manda registar, o Agente **DEVE** criar a pasta
+`Registos-Arquiteto/YYYY-MM-DD-ARQ-TEMA-Snn/` com o ficheiro do mesmo nome, front matter com **`branch`
+obrigatório**, o conteúdo que o David indicar, os anexos na mesma pasta, e uma linha no índice.
+
+### 5.10 Branches
+
+**G46.** Quem abre uma branch **DEVE** criar `MANDATO-DA-BRANCH.md` na raiz no mesmo acto: porque existe,
+o que produz, o que não faz, como fecha.
+
+**G47.** Qualquer sessão que detecte estar numa branch que não é a principal **DEVE** ler
+`MANDATO-DA-BRANCH.md` antes de tudo o resto (§0.1).
+
+**G48.** Todo o handoff e todo o registo do Arquitecto **DEVE** ter `branch` no front matter.
+
+---
+
 ## 6. Regras de operação
 
 **O1.** O Agente **DEVE** responder em português europeu. **DEVE** responder em inglês se o David escrever em inglês.
@@ -379,18 +438,23 @@ visão de cada thread sobre si mesma. **Quando divergirem, a divergência é inf
 | `INBOX.md` | Ideias e pendências em bruto. |
 | `THREADS.md` | Threads activas e fechadas. |
 | `THREAD-MENSAGENS.md` | Sinalizador global de pedidos das threads. |
-| `HANDOFF.md` | Continuidade entre sessões de Arquitecto. |
-| `REGISTO-DOCUMENTOS.md` | Todos os documentos produzidos, por secção temática, com o que foi para o NotebookLM. **Append only · leitura on demand.** |
+| `MANDATO-DA-BRANCH.md` | Só existe numa branch. O que a branch faz e não faz. Lê-se sempre que se está numa branch. |
+| `Handoffs-Arquiteto/` | Continuidade entre sessões de Arquitecto, **por tema**: `Index-handoffs.md`, um `TEMA-Protocolo-arranque.md` por tema, handoffs `YYYY-MM-DD-ARQ-HANDOFF-TEMA-Sn.md`. Substitui o antigo `HANDOFF.md`. |
+| `Registos-Arquiteto/` | Registos de sessão a pedido do David. `README.md`, `Index-registos-arquiteto.md`, uma pasta por registo. **Leitura on demand, só se o David pedir.** |
+| `REGISTO-DOCUMENTOS.md` | Todos os documentos produzidos, por secção temática, com o que foi para o NotebookLM. **Append only · leitura on demand.** *(Em 2026-09-18 não está na raiz — protocolo novo por decidir, ver `INBOX.md`.)* |
 | `FLUXO-DE-PROJECTO.md` | Explicação do fluxo de governo. |
-| `Jardim.html` | Estado visual do projecto. Refeito a cada decisão. |
+| `Jardim.html` | Estado visual do projecto. Refeito a cada decisão. *(Nunca criado até 2026-09-18.)* |
 
 ### 7.2 Estrutura
 
 ```
 Jardim/
 ├── CLAUDE.md, ESTADO.md, REJEICOES.md, INBOX.md,
-│   THREADS.md, THREAD-MENSAGENS.md, HANDOFF.md,
+│   THREADS.md, THREAD-MENSAGENS.md, MANDATO-DA-BRANCH.md (só em branch),
 │   REGISTO-DOCUMENTOS.md, FLUXO-DE-PROJECTO.md, Jardim.html
+│
+├── Handoffs-Arquiteto/ ← Index-handoffs.md · TEMA-Protocolo-arranque.md · handoffs por tema
+├── Registos-Arquiteto/ ← README.md · Index-registos-arquiteto.md · uma pasta por registo
 │
 ├── 10-EQUIPA/          ← um subdirectório por actor (ficha + docs)
 │   ├── adriano/  akone/  fulvieti/
