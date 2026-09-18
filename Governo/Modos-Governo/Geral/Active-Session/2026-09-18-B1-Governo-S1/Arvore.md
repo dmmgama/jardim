@@ -22,8 +22,8 @@ flowchart TB
     T5 --> T5d["5d · bloco Propósito/Resultado/Estado · feito"]
     T5 --> T5e["5e · árvore da sessão · feito"]
     O1 --> T7["T7 · simplificação V2:<br/>raiz · 2 modos · 3 temas · protocolos · feito"]
-    O1 --> T6["▶ T6 · fecho: handoff · commit ·<br/>texto de arranque · AQUI"]
+    O1 --> T6["T6 · fecho: 2 handoffs · commit ·<br/>texto de arranque · feito"]
     O0 -.-> W["wayfinder · handoff (sessão futura)"]
-    style T6 fill:#ffd,stroke:#c90,stroke-width:3px
+    
     style O0 fill:#eee,stroke:#999
 ```

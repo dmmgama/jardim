@@ -10,4 +10,4 @@ summary: |
 
 # Rascunhos — 2026-09-18-B1-Governo-S1
 
-*(vazio)*
+*(apagado no fecho, 2026-09-18)*

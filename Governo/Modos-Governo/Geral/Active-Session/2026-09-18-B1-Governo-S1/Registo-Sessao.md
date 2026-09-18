@@ -18,7 +18,7 @@ summary: |
 |---|---|
 | **Propósito** | Definir a lógica base do modo Governo para que a próxima sessão a abra e corra sem prosa. |
 | **Resultado mínimo** | (1) raiz roteia para Governo; (2) Enquadramento → índice de modos → mandato → modo; (3) um handoff real para a sessão seguinte; (4) commit. |
-| **Estado** | **Atingido em 2026-09-18.** Redefinido no arranque (mandato original: wayfinder; David redireccionou para a organização do governo). (1) raiz pergunta GOVERNO/PROJETO; (2) Enquadramento → modos → mandato → modo; (3) handoff Meta-Governo S1; (4) commit. |
+| **Estado** | **Atingido em 2026-09-18.** Redefinido no arranque (mandato original: wayfinder; David redireccionou para a organização do governo). (1) raiz pergunta GOVERNO/PROJETO; (2) Enquadramento → modos → mandato → modo; (3) handoffs Meta-Governo S1 e Governo-do-Projeto S1; (4) commit `92d908e`. **Sessão fechada 2026-09-18.** |
 
 ## Mandato inicial
 
@@ -121,7 +121,8 @@ Governo-do-Projeto. `Arquiteto/` e `Threads/` na raiz estão vazias.
 
 ## Próximos passos
 
-Ver handoff `Modos-Governo/Geral/Handoffs/Meta-Governo/2026-09-18-Handoff-S1.md`.
+Sessão S2, modo Geral, arranca a frio pelo `CLAUDE.md` da raiz. Handoffs: Meta-Governo S1 (autocontido) e
+Governo-do-Projeto S1 (enquadrado). Rascunhos apagados no fecho.
 
 ## Documentos produzidos
 
