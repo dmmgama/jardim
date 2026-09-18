@@ -97,8 +97,18 @@ Existe para que ninguém volte a fazer trabalho que já estava feito.
 Vocabulário **fechado**. Se o tipo não for evidente, **pergunta-se ao David** — não se
 classifica ao calha (G28 · T19). `Outros` é para quando não há certeza.
 
+**Agrega os 58 documentos do corpo, um por tipo, cada um uma só vez.** Dentro de cada
+tipo, por data decrescente. A tag continua a ser o mecanismo real de agregação em
+Obsidian (§5.2); a tabela abaixo é o que torna o índice legível **sem plugins**.
+
 ### Sínteses · #tipo/sintese
 Cruza e conclui sobre vários documentos anteriores.
+
+**1 documento.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[30-THREADS/T005-caracterizacao/research/05-SINTESE-FASE-1\|Síntese da fase 1]] | T005 | 2026-09-17 |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/sintese SORT Data DESC
@@ -107,6 +117,12 @@ TABLE WITHOUT ID Título, Dono, Data FROM #tipo/sintese SORT Data DESC
 
 ### Reports · #tipo/report
 Relato de trabalho feito: objectivos, método, achados, próximos passos.
+
+**1 documento.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[30-THREADS/T005-caracterizacao/reports/2026-09-17-T005-REPORT-FASE-1-PESQUISA\|Report da fase 1 da T005]] | T005 | 2026-09-17 |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/report SORT Data DESC
@@ -115,6 +131,25 @@ TABLE WITHOUT ID Título, Dono, Data FROM #tipo/report SORT Data DESC
 
 ### Research · #tipo/research
 Estado da arte ou investigação externa. **Leva sempre o prompt dentro do ficheiro.**
+
+**14 documentos.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[30-THREADS/T003-modelo-solar/research/02-CAPTURA-3D-ESTADO-DA-ARTE\|Captura 3D com telemóvel — estado da arte]] | Arquitecto (para T003) | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/02-PESQUISA-TRANSICOES\|Pesquisa — tipologias de transição de cota]] | T004 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/05-PESQUISA-VEGETACAO\|Pesquisa — o que plantar em cada zona]] | T004 | 2026-09-17 |
+| [[30-THREADS/T005-caracterizacao/research/01-ESPECIALIDADES\|Especialidades técnicas na caracterização]] | T005 | 2026-09-17 |
+| [[30-THREADS/T005-caracterizacao/research/02-DIGITAL-TWIN-SOFTWARE\|Software para digital twin do jardim]] | T005 | 2026-09-17 |
+| [[30-THREADS/T005-caracterizacao/research/03-MONITORIZACAO-ACTUACAO\|Monitorização e actuação em contínuo]] | T005 | 2026-09-17 |
+| [[30-THREADS/T005-caracterizacao/research/04-NUVEM-DE-PONTOS\|Nuvem de pontos com equipamento profissional]] | T005 | 2026-09-17 |
+| [[40-PESQUISAS/David/2026.09.17-RESEARCH-SISTEMAS_DE_COBERTURA_AJARDINADA\|Sistemas de cobertura ajardinada]] | David | 2026-09-17 |
+| [[30-THREADS/T001-local/research/Estado_Arte_Caracterizacao_Espaco_Exterior\|Estado da arte — caracterização de espaço exterior privado]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/research/Jardim_Catalogo_Vegetal\|Catálogo de espécies vegetais viáveis]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/research/Jardim_Relva_Natural_Viabilidade\|Relva natural — relatório de investigação]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/research/Jardim_Software_Modelacao_Solar\|Software para modelar exposição solar]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/research/Jardim_Analise_Decisao_Betonilha\|Análise — demolir ou manter a betonilha]] | T001 | 2026-09-14 |
+| [[40-PESQUISAS/David/2026-09-14-Research-Relva_Natural_vs_Artificial\|Relva natural vs. artificial]] | David | 2026-09-14 |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/research SORT Data DESC
@@ -123,6 +158,15 @@ TABLE WITHOUT ID Título, Dono, Data FROM #tipo/research SORT Data DESC
 
 ### Dossiers · #tipo/dossier
 Compilação de referência sobre um objecto ou tema, para consulta.
+
+**4 documentos.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[30-THREADS/T001-local/Docs-David-Local/DOSSIER-LOCAL\|Dossier técnico do Local]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/Docs-David-Local/arqueologia/Planta_e_Espaco_Fisico\|Planta e Espaço Físico — rev. 16:30]] | Outros | 2026-09-15 |
+| [[30-THREADS/T001-local/Docs-David-Local/arqueologia/Planta_e_Espaco_Fisico.BACKUP-20260915\|Planta e Espaço Físico — backup]] | Outros | 2026-09-15 |
+| [[30-THREADS/T001-local/research/Planta_e_Espaco_Fisico\|Planta e Espaço Físico — documento-mestre]] | T001 | 2026-09-14 |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/dossier SORT Data DESC
@@ -131,6 +175,33 @@ TABLE WITHOUT ID Título, Dono, Data FROM #tipo/dossier SORT Data DESC
 
 ### Notas · #tipo/nota
 Registo curto, pontual, sem pretensão de completude.
+
+**22 documentos.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[30-THREADS/T002-jardim-v2/research/06-PROJECTO-REFORMULADO-VISTA\|O projecto reformulado — um problema de vista]] | T002 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/research/07-ZONAMENTO-DAVID\|Zonamento — seis zonas, do David]] | T002 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/research/08-EXPLICACAO-DO-LOCAL\|A explicação do local]] | T002 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/entregue/NOTA\|Nota de entrega — T002 · Jardim V2]] | T002 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/entregue/PROPOSTA-T004\|Proposta — T004 · A Geometria do Jardim]] | T002 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/01-O-DESNIVEL-ENUNCIADO\|O desnível — enunciado do problema]] | T004 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/03-SOLUCAO-TRANSICAO\|A transição — degrau-banco com escada no muro SE]] | T004 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/04-TRANSICAO-FIXADA\|A transição — geometria fixada]] | T004 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/06-O-PROBLEMA-DAS-COPAS\|As copas — metade do jardim está por baixo delas]] | T004 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/research/07-ARVORES-POSICAO-E-COPAS\|As árvores — posição, copas e consequências]] | T004 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/research/01-HIPOTESES-NA-MESA\|Hipóteses na mesa — T002 sessão 1]] | T002 | 2026-09-16 |
+| [[30-THREADS/T002-jardim-v2/research/02-IDEIAS-DAVID-SESSAO1\|Ideias do David — sessão 1]] | T002 | 2026-09-16 |
+| [[30-THREADS/T002-jardim-v2/research/03-PEDIDO-T003-COTA\|Pedido à T003 — a luz e a subida de cota]] | T002 | 2026-09-16 |
+| [[30-THREADS/T002-jardim-v2/research/04-ZONAMENTO-PRESSUPOSTO\|Zonamento de intervenção — pressuposto de trabalho]] | T002 | 2026-09-16 |
+| [[30-THREADS/T002-jardim-v2/research/05-LUZ-COTA-ESTIMATIVA-T002\|Ticket 1 — a luz muda com a subida de cota?]] | T002 | 2026-09-16 |
+| [[30-THREADS/T002-jardim-v2/David-Docs/INDICE\|Índice de David-Docs · T002]] | T002 | 2026-09-16 |
+| [[30-THREADS/T003-modelo-solar/research/00-PACOTE-ARRANQUE\|Pacote de arranque da T003]] | Arquitecto (para T003) | 2026-09-15 |
+| [[30-THREADS/T003-modelo-solar/research/01-PLANO-DE-SESSAO\|Plano da primeira sessão da T003]] | Arquitecto (para T003) | 2026-09-15 |
+| [[30-THREADS/T003-modelo-solar/modelo/PONTE-DADOS\|Ponte de dados T001 → T003]] | Arquitecto (para T003) | 2026-09-15 |
+| [[30-THREADS/T003-modelo-solar/LEIA-ME-DAVID\|T003 — o que isto é, e o que vai acontecer]] | Arquitecto | 2026-09-15 |
+| [[30-THREADS/T001-local/entregue/NOTA-entregue-etapa1\|Nota de entrega da etapa 1]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/Docs-David-Local/arqueologia/NOTA\|Nota de arqueologia — Docs-David-Local]] | T001 | 2026-09-15 |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/nota SORT Data DESC
@@ -139,6 +210,27 @@ TABLE WITHOUT ID Título, Dono, Data FROM #tipo/nota SORT Data DESC
 
 ### Outros · #tipo/outros
 Governo, auditoria, consolidação — **ou** quando não há certeza.
+
+**16 documentos.**
+
+| Documento | Dono | Data |
+|---|---|---|
+| [[AUDITORIA-2026-09-17\|Auditoria — estado das quatro threads]] | Arquitecto | 2026-09-17 |
+| [[CONSOLIDACAO-NOTEBOOKLM-2026-09-17\|Consolidação NotebookLM 2026-09-17]] | Arquitecto | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/ARRUMACAO\|Arrumação — instruções de sessão T002]] | T002 | 2026-09-17 |
+| [[30-THREADS/T004-geometria/ARRUMACAO\|Arrumação — instruções de sessão T004]] | T004 | 2026-09-17 |
+| [[30-THREADS/T005-caracterizacao/research/00-PONTO-DE-PARTIDA\|Ponto de partida — o que o projecto já tem]] | T005 | 2026-09-17 |
+| [[30-THREADS/T002-jardim-v2/TICKETS\|Tickets — T002]] | T002 | 2026-09-16 |
+| [[30-THREADS/T001-local/research/INVENTARIO-DOCS-DAVID-LOCAL\|Inventário exaustivo de Docs-David-Local]] | T001 | 2026-09-15 |
+| [[30-THREADS/T001-local/research/AUDITORIA-COERENCIA-T001\|Auditoria de coerência da T001]] | T001 | 2026-09-15 |
+| [[90-ARQUEOLOGIA/migracao-2026-09-14/MIGRACAO_2026-09-14\|Migração 2026-09-14]] | Outros | 2026-09-14 |
+| [[90-ARQUEOLOGIA/migracao-2026-09-14/worklog\|Worklog da migração]] | Outros | 2026-09-14 |
+| [[10-EQUIPA/adriano/proposta_adriano_Fev2026\|Proposta do Adriano — Fev 2026]] | Outros | 2026-02 `[dia não apurado]` |
+| [[10-EQUIPA/adriano/resposta_david_pedido_proposta\|Resposta do David ao pedido de proposta]] | Outros | s/d |
+| [[90-ARQUEOLOGIA/V1-completo/Jardim_Alcantara_Knowledge_Base\|Knowledge Base do Jardim V1]] | Outros | s/d |
+| [[90-ARQUEOLOGIA/V1-completo/Jardim_Alcantara_Anexos\|Anexos do Jardim V1]] | Outros | s/d |
+| [[90-ARQUEOLOGIA/V1-completo/resumo-notion-jardim\|Resumo Notion — Jardim V1]] | Outros | s/d |
+| [[90-ARQUEOLOGIA/DIY/resumo-notion-jardimtemporario\|Resumo Notion — jardim temporário DIY]] | Outros | s/d |
 <!--
 ```dataview
 TABLE WITHOUT ID Título, Dono, Data FROM #tipo/outros SORT Data DESC
@@ -543,3 +635,80 @@ Data `2026-09-14` — correcto pelas regras, mas **lê-se mal** e convém um avi
 
 **Registo antigo:** 9 documentos. **Este draft:** 58. A diferença não é zelo — **são 49
 documentos que existiam no repositório e não estavam em catálogo nenhum.**
+
+### Índices — correcção de 2026-09-18
+
+Correcção isolada aos **índices do topo**. O corpo não foi tocado: verificado por `diff`, é
+byte a byte idêntico ao draft anterior de `# 1 · ARQUITECTO` até ao fim do ficheiro.
+
+**O que estava mal.** A secção **(d) Índice por Tipo** estava por preencher — era o esqueleto
+do `REGISTO-DOCUMENTOS-TEMPLATE.md` copiado tal e qual: os seis headings de tipo, a linha de
+descrição de cada um e o bloco Dataview comentado, **e mais nada**. Zero entradas, para 58
+documentos catalogados no corpo. Era **a razão de ser da coluna `Tipo`** e não estava lá:
+a pergunta que a §3.1(d) das instruções diz ser a função deste índice — *«mostra-me todas as
+sínteses do projecto»* — não tinha resposta sem descer o ficheiro inteiro à mão.
+
+**O que se fez.** Montaram-se os seis blocos com a agregação real, segundo a §5.2: mantém-se
+a **tag** como primeira camada (funciona sem plugins), mantém-se o **Dataview comentado** como
+andaime, e acrescenta-se a **tabela manual** — `Documento · Dono · Data` — que a §5.2 admite
+como terceira camada «se o David a quiser». Justifica-se aqui porque a própria ressalva técnica
+da §5.2 reconhece que, com tudo num só ficheiro, `FROM #tipo/x` devolve o ficheiro e não as
+linhas: **sem a tabela manual este índice não agrega coisa nenhuma.** Ordenação por data
+decrescente dentro de cada tipo, como manda o `SORT Data DESC` dos blocos Dataview.
+
+**Contagem por tipo** — apurada por script sobre as linhas do corpo, não por leitura:
+
+| Tipo | Documentos |
+|---|---|
+| Síntese | 1 |
+| Report | 1 |
+| Research | 14 |
+| Dossier | 4 |
+| Nota | 22 |
+| Outros | 16 |
+| **Total** | **58** |
+
+**A soma bate certo com os 58** do corpo e com a contagem por Dono da secção 5 acima.
+
+**Verificação feita (por script, não por inspecção visual):**
+
+| Teste | Resultado |
+|---|---|
+| Linhas de documento no corpo | 58 |
+| Entradas no índice por Tipo | 58 |
+| Contagem por tipo, corpo vs. índice | Idêntica nos seis tipos |
+| Documentos do corpo ausentes do índice | 0 |
+| Entradas fantasma (no índice, não no corpo) | 0 |
+| Documentos repetidos no índice | 0 |
+| Wikilinks do índice que resolvem para ficheiro em disco | 58/58 |
+| Wikilinks do corpo que resolvem para ficheiro em disco | 58/58 (reverificado) |
+| `\|` de alias por escapar dentro de célula | 0 |
+| Linhas do corpo com número de colunas ≠ 8 | 0 |
+
+**Índice de Donos (c) — verificado, não alterado.** Os oito donos que aparecem no corpo estão
+todos listados e cada link resolve para o heading correspondente: Arquitecto (3) · T001 (11) ·
+T002 (13) · T004 (8) · T005 (7) · David (2) · Outros (10), mais os 4 de `Arquitecto (para T003)`,
+que somam 58. **A T003 mantém-se no índice com zero documentos próprios** — os quatro que estão
+na sua pasta são do Arquitecto, pela §7.1, e é exactamente a contradição **C2** já levantada
+acima. Não se mexeu.
+
+**Incoerências encontradas entre índice e corpo:** nenhuma. Os dois estão alinhados.
+
+**O que não se resolveu, e porquê:**
+
+- **I1 — `2026-02 [dia não apurado]` ordena mal.** A proposta do Adriano é a única entrada
+  sem dia. No índice fica ordenada pelo prefixo `2026-02`, o que a coloca no sítio certo por
+  acaso; se aparecer outro documento de Fevereiro, a ordem entre os dois é arbitrária. É
+  consequência directa da pendência **N4** — não se decide aqui.
+- **I2 — as quatro entradas `s/d` da arqueologia** ficam no fim do bloco `Outros`, que é o
+  comportamento desejável, mas por convenção minha (`s/d` ordena como data mínima), não por
+  regra escrita. **As instruções não dizem onde ordenar o `s/d`.**
+- **I3 — o índice repete informação do corpo e pode desactualizar-se em silêncio.** É o risco
+  que a §5.2 assinala para a lista manual. Mitigação possível: o script de verificação usado
+  aqui pode ser guardado e corrido a cada consolidação. **Não se guardou — decisão do David.**
+- **I4 — duas cópias do mesmo documento aparecem lado a lado no bloco Dossiers**
+  (`Planta_e_Espaco_Fisico` em `research/` e em `arqueologia/`, com donos diferentes). O índice
+  torna visível o que a decisão **D7** já tinha assinalado como feio. **Não se corrigiu** — é
+  matéria do corpo.
+- **I5 — erros do corpo não foram corrigidos**, por instrução expressa. Nenhum foi encontrado
+  nesta passagem: colunas, escapes e links estão todos bons.

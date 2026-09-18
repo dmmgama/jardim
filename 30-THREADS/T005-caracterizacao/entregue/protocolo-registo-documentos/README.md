@@ -19,12 +19,17 @@ summary: |
 > 2026-09-18, por instrução do David. **Isto é deliberado:** o antigo não é canon, e deixá-lo na
 > raiz fazia-o parecer governo em vigor.
 >
-> **Consequência a resolver, e é imediata:** as regras G23–G29 do `CLAUDE.md` e as T18–T23 das
-> threads **mandam escrever num ficheiro que já não está onde dizem**. Até o Arquitecto decidir,
-> **o registo de fim de sessão não tem destino válido.**
+> **O registo definitivo nasce do draft**, não do template em branco — o draft já tem os 58
+> documentos catalogados e verificados. O template serve de referência de forma, não de ponto
+> de partida.
 >
 > **Se o protocolo novo for ratificado:** o `REGISTO-DOCUMENTOS-ANTIGO.md` vai para
-> `90-ARQUEOLOGIA/`, o template gera o registo definitivo na raiz, e as regras são reescritas.
+> `90-ARQUEOLOGIA/` e o draft passa a registo em vigor.
+
+> **O que este registo é, e o que não é.** Cataloga **documentação** — pesquisas, sínteses,
+> reports, dossiers. **Não regista sessões.** O fim de sessão regista-se **na thread**: em
+> `thread.md` (estado e handoff) e no `TNNN-ESTADO-PARA-ARQUITECTO.md` (G37–G42). São dois
+> sistemas distintos, e confundi-los foi erro meu numa versão anterior deste README.
 
 ---
 
