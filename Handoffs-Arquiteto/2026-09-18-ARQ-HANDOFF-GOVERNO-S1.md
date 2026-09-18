@@ -5,6 +5,8 @@ tipo: handoff-arquitecto
 tema: GOVERNO
 sessao: S1
 nome_sessao: "2026.09.18 - Arquiteto - Estado Geral"
+nome_sessao_convencao_nova: "2026-09-18-B1-Governo-S1"
+fechada: 2026-09-18
 branch: Governo-correcao-v1
 summary: |
   Primeira sessão do tema GOVERNO. Criou os instrumentos Registos-Arquiteto e Handoffs-Arquiteto, o Mandato da Branch,
@@ -32,6 +34,9 @@ summary: |
 **Não tocado, de propósito:** `ESTADO.md`, `REJEICOES.md`, `THREADS.md`, `THREAD-MENSAGENS.md`, `INBOX.md`, os protocolos pendentes de ratificação (G37–G42 e registo de documentos), as threads.
 
 ## Próximo passo
+
+**Sessão seguinte:** `2026-09-18-B1-Governo-S2`. Texto de arranque entregue ao David no fecho desta sessão.
+
 
 **Estruturar o projecto de forma rápida, com o skill wayfinder**, na ordem top-down que o David fixou (ver registo, Tema 1 d). Só depois disso faz sentido voltar ao tema GERAL e despachar os pedidos das threads.
 
