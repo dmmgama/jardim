@@ -1,0 +1,25 @@
+{
+  "id": "INB-schema-debates",
+  "sessao": "2026-09-19-arquitectura-governo",
+  "perfil": "arquitecto",
+  "tipo": "mecanismo_a_aplicar",
+  "effect": "extends",
+  "estado": "por_debater",
+
+  "titulo": "Schema canonico do registo de debates",
+
+  "descoberta": "O registo estruturado de debate preserva as alternativas rejeitadas e a razao da rejeicao, permitindo reverter uma decisao sem reconstituir a conversa",
+
+  "efeito_no_caminho": "Acrescenta um artefacto ao sistema; nao altera o mandato nem frentes existentes",
+
+  "por_definir": [
+    "Campos obrigatorios e opcionais, com enums fechados",
+    "Onde vivem os debates e se entram no varrimento do watcher",
+    "Se substitui ou complementa o registo de rejeicoes",
+    "Se o registo e escrito pelo agente ou por hook a partir de respostas fechadas"
+  ],
+
+  "serve": ["rastreabilidade de decisao"],
+  "toca": ["arquitectura-governo#registo-de-debates"],
+  "depende_de": []
+}

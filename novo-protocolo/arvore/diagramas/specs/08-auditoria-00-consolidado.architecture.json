@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Auditoria consolidada — 93 achados e o plano",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1160,
+      435
+    ],
+    "views": [
+      {
+        "id": "documentos",
+        "label": "Os tres documentos",
+        "focus": [
+          "d1",
+          "d2",
+          "d3"
+        ],
+        "note": "93 achados no total: 21 criticos, 47 maiores, 25 menores, mais cinco achados entre documentos."
+      },
+      {
+        "id": "cruzados",
+        "label": "Achados entre documentos",
+        "focus": [
+          "x3",
+          "x5",
+          "x12",
+          "padrao"
+        ],
+        "note": "Achados que nenhum auditor de documento unico pode encontrar, verificados mecanicamente."
+      },
+      {
+        "id": "plano",
+        "label": "Plano, por ordem",
+        "focus": [
+          "padrao",
+          "p1",
+          "p2",
+          "p3"
+        ],
+        "note": "Seis passos por ordem de execucao; so depois se reescreve D3 contra o resultado."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "d1",
+      "type": "database",
+      "label": "D1 · governo",
+      "sublabel": "590 l. · 33 achados",
+      "tag": "7C · 17M · 9m",
+      "pos": [
+        30,
+        30
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "d2",
+      "type": "database",
+      "label": "D2 · proposta 2",
+      "sublabel": "654 l. · 28 achados",
+      "tag": "7C · 15M · 6m",
+      "pos": [
+        30,
+        182
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "d3",
+      "type": "database",
+      "label": "D3 · sintese arvore",
+      "sublabel": "233 l. · 27 achados",
+      "tag": "5C · 13M · 9m",
+      "pos": [
+        30,
+        334
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "x3",
+      "type": "security",
+      "label": "X3 · Regra fantasma",
+      "sublabel": "tecto que ninguem declara",
+      "tag": "MAIOR",
+      "pos": [
+        330,
+        30
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "x5",
+      "type": "security",
+      "label": "X5 · Contagem errada",
+      "sublabel": "34 no cabecalho, 35 no fim",
+      "tag": "MENOR",
+      "pos": [
+        330,
+        182
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "x12",
+      "type": "security",
+      "label": "X1 e X2 · sem base",
+      "sublabel": "cita D1, pressupoe D2",
+      "tag": "CRITICO",
+      "pos": [
+        330,
+        334
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "padrao",
+      "type": "backend",
+      "label": "Padrao comum aos tres",
+      "sublabel": "cinco falhas iguais",
+      "tag": "defeito de metodo",
+      "pos": [
+        630,
+        182
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "p1",
+      "type": "cloud",
+      "label": "1–2 · Consolidar",
+      "sublabel": "versao unica e numeracao",
+      "tag": "aditiva",
+      "pos": [
+        930,
+        30
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "cloud",
+      "label": "3–4 · Tornar operavel",
+      "sublabel": "detector, consequencia, §0",
+      "pos": [
+        930,
+        182
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "p3",
+      "type": "cloud",
+      "label": "5–6 · Fechar o ciclo",
+      "sublabel": "auditar o canon, refazer D3",
+      "pos": [
+        930,
+        334
+      ],
+      "size": [
+        170,
+        68
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Tres documentos auditados",
+      "wraps": [
+        "d1",
+        "d2",
+        "d3"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Plano de consolidacao",
+      "wraps": [
+        "p1",
+        "p2",
+        "p3"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "d1",
+      "to": "x3",
+      "label": "criterio sem regra",
+      "variant": "security"
+    },
+    {
+      "id": "c2",
+      "from": "d2",
+      "to": "x5",
+      "label": "cabecalho vs indice",
+      "variant": "security"
+    },
+    {
+      "id": "c3",
+      "from": "d3",
+      "to": "x12",
+      "label": "numeracao de D1",
+      "variant": "security"
+    },
+    {
+      "id": "c4",
+      "from": "x3",
+      "to": "padrao",
+      "variant": "dashed"
+    },
+    {
+      "id": "c5",
+      "from": "x5",
+      "to": "padrao",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c6",
+      "from": "x12",
+      "to": "padrao",
+      "variant": "dashed"
+    },
+    {
+      "id": "c7",
+      "from": "padrao",
+      "to": "p1",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c8",
+      "from": "padrao",
+      "to": "p2",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c9",
+      "from": "padrao",
+      "to": "p3",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "O padrao comum",
+      "items": [
+        "Regras sem detector nem consequencia, nos tres documentos",
+        "Garantias apoiadas em mecanismos que nao existem",
+        "Homonimo num conceito central: caminho e triagem, nivel, suspenso",
+        "Prosa que reenuncia o protocolo com redaccao divergente"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "A observacao incomoda",
+      "items": [
+        "Definem um sistema para impedir deriva, e exibem deriva",
+        "O corpo de regras nao tem mecanismo para a sua propria integridade",
+        "O auditor previsto audita o projecto, nao o canon"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Ordem de execucao",
+      "items": [
+        "1 Consolidar numa versao unica; arquivar D2 como registo de decisao",
+        "2 Fixar numeracao aditiva antes de mais nada",
+        "3 Duas colunas: detectado por, consequencia",
+        "4 §0 Definicoes nos tres documentos"
+      ]
+    }
+  ]
+}

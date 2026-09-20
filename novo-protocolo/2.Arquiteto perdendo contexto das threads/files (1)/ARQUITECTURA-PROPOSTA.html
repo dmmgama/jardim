@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arquitectura de governo de projectos com agentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ede3; --ink:#17150f; --muted:#6b6355; --rule:#d6cdbc;
+  --accent:#7a2e28; --accent-soft:#a8564a; --panel:#eae3d5;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14120e; --ink:#eee7d9; --muted:#9a917f; --rule:#332e25;
+    --accent:#c9705f; --accent-soft:#e0937f; --panel:#1d1a14;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14120e; --ink:#eee7d9; --muted:#9a917f; --rule:#332e25;
+  --accent:#c9705f; --accent-soft:#e0937f; --panel:#1d1a14;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  font-weight:300;
+  background-image:radial-gradient(circle at 12% 8%, rgba(122,46,40,.05), transparent 45%);
+}
+.wrap{max-width:46rem;margin:0 auto;padding:clamp(2rem,6vw,5rem) clamp(1.1rem,5vw,2.5rem) 8rem}
+header.mast{border-bottom:2px solid var(--ink);padding-bottom:1.4rem;margin-bottom:3rem}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(2rem,7vw,3.1rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 .6rem}
+.sub{font-size:.95rem;color:var(--muted);margin:0;font-style:italic}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,4.4vw,1.75rem);line-height:1.15;letter-spacing:-.01em;
+   margin:3.4rem 0 1rem;padding-top:1rem;border-top:1px solid var(--rule)}
+h3{font-family:var(--display);font-weight:600;font-size:1.08rem;margin:2.2rem 0 .7rem;color:var(--accent)}
+h4{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:1.8rem 0 .5rem}
+p{margin:0 0 1.05rem}
+strong{font-weight:600}
+em{font-style:italic;color:var(--muted)}
+a{color:var(--accent)}
+hr{border:none;height:1px;background:var(--rule);margin:3rem 0}
+ul,ol{margin:0 0 1.2rem;padding-left:1.15rem}
+li{margin-bottom:.42rem}
+code{font-family:var(--mono);font-size:.84em;background:var(--panel);padding:.1em .35em;border-radius:2px}
+/* regras normativas */
+li>strong:first-child code,
+li code:first-child{background:none;padding:0}
+ul li strong:first-child{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--accent);letter-spacing:.02em}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:22rem}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;
+   padding:.7rem .7rem;border-bottom:1px solid var(--rule);color:var(--muted);font-weight:600;white-space:nowrap}
+td{padding:.62rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--panel)}
+blockquote{margin:1.4rem 0;padding-left:1.1rem;border-left:3px solid var(--accent);color:var(--muted);font-style:italic}
+.toggle{position:fixed;top:calc(env(safe-area-inset-top,0px) + .7rem);right:.7rem;z-index:9;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--panel);color:var(--muted);border:1px solid var(--rule);
+  padding:.4rem .6rem;border-radius:2px;cursor:pointer}
+.toggle:hover{color:var(--accent);border-color:var(--accent)}
+footer.colo{margin-top:5rem;padding-top:1.2rem;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media print{.toggle{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<button class="toggle" id="t">tema</button>
+<div class="wrap">
+<header class="mast">
+<p class="eyebrow">Arquitectura · versão paralela</p>
+<h1>Arquitectura de governo de projectos com agentes</h1>
+<p class="sub">Estrutura paralela à versão de referência, com trinta e cinco alterações marcadas M01 a M35.</p>
+</header>
+<p><strong>Convenção de leitura.</strong> As secções seguem a estrutura da versão de referência, secção a secção, para permitir comparação directa. Toda a divergência está marcada com <code>[Mnn]</code> no ponto exacto em que ocorre. Secções sem marcador são idênticas em substância.</p>
+<hr />
+<h2>1 · Mandato deste documento</h2>
+<h3>1.1 Porque existe</h3>
+<p>Um projecto conduzido por várias sessões de agentes perde o objectivo sem que ninguém decida perdê-lo. Não há momento de falha: há acumulação. Ao fim de algumas semanas o projecto é uma lista de tarefas que geram tarefas, e ninguém sabe dizer para que serve nenhuma delas.</p>
+<p>Este documento descreve o sistema que impede isso.</p>
+<h3>1.2 Sintomas que resolve</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Sintoma</th>
+<th>Mecanismo subjacente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tarefas geram tarefas sem se saber para que servem</td>
+<td>o objectivo não chega à sessão, ou chega e é reinterpretado</td>
+</tr>
+<tr>
+<td>Não se sabe porque se escolheu este caminho e não outro</td>
+<td>as frentes derivam do mandato sem camada de estratégia</td>
+</tr>
+<tr>
+<td>O problema foi atacado por um ângulo só</td>
+<td>não se geraram alternativas antes de decidir</td>
+</tr>
+<tr>
+<td>Sessões contradizem-se sobre factos do projecto</td>
+<td>o estado acumula em vez de ser substituído</td>
+</tr>
+<tr>
+<td>Ficheiros de registo que ninguém lê</td>
+<td>escrever é grátis e não há árbitro</td>
+</tr>
+<tr>
+<td>Duas frentes a mexer na mesma coisa sem saberem</td>
+<td>nada cruza o que cada uma declara tocar</td>
+</tr>
+<tr>
+<td>Uma frente conclui algo que invalida outra, e ninguém liga</td>
+<td>as dependências entre ramos não estão declaradas</td>
+</tr>
+<tr>
+<td>Decisões tomadas e nunca aplicadas</td>
+<td>o fecho não verifica aplicação</td>
+</tr>
+<tr>
+<td>Becos sem saída reabertos meses depois</td>
+<td>o fecho de uma frente não regista a razão</td>
+</tr>
+<tr>
+<td>Regras de governo alteradas sem se saber que foram debatidas</td>
+<td>nada liga documentos a decisões</td>
+</tr>
+<tr>
+<td>Governo que cresce mais depressa que o projecto</td>
+<td>procedimentos sem teste de utilidade</td>
+</tr>
+<tr>
+<td><strong><code>[M01]</code> O alerta existe, está correcto, e ninguém o abriu</strong></td>
+<td>a detecção produz ficheiro, não notificação</td>
+</tr>
+<tr>
+<td><strong><code>[M02]</code> Investigação repetida sobre matéria já fechada</strong></td>
+<td>a protecção do decidido actua na escrita, não na pesquisa</td>
+</tr>
+</tbody>
+</table></div>
+<h3>1.3 O que este sistema não faz</h3>
+<ul>
+<li>Não impede uma frente de fazer a coisa errada dentro da sua própria zona.</li>
+<li>Não substitui julgamento humano sobre o rumo.</li>
+<li>Não garante qualidade do trabalho. Garante alinhamento e rastreabilidade.</li>
+<li><code>[M03]</code> <strong>A exclusão de projectos de frente única é retirada.</strong> O confinamento de escrita, a protecção do decidido, o registo de razões de fecho e a camada de caminho operam com uma frente de cada vez. Sem paralelismo perde-se apenas a passagem de colisão.</li>
+</ul>
+<h3>1.4 Critérios de sucesso</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Medição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Retoma a frio</td>
+<td>uma sessão sem histórico retoma qualquer frente a partir do handoff</td>
+</tr>
+<tr>
+<td>Alerta silencioso</td>
+<td>o ficheiro de alertas vazio é o caso normal</td>
+</tr>
+<tr>
+<td>Zero decisões órfãs</td>
+<td>nenhuma sessão fecha com decisão registada e não aplicada</td>
+</tr>
+<tr>
+<td>Caminho vivo</td>
+<td>todo o pressuposto invalidado produziu reavaliação registada</td>
+</tr>
+<tr>
+<td>Árvores mortais</td>
+<td>nenhuma árvore aberta sem condição de morte declarada</td>
+</tr>
+<tr>
+<td>Rumo rastreável</td>
+<td>toda a alteração ao mandato tem data e alternativa rejeitada registada</td>
+</tr>
+<tr>
+<td>Detecção rápida</td>
+<td>conflito entre frentes sinalizado no fecho seguinte</td>
+</tr>
+<tr>
+<td>Governo estável</td>
+<td>o corpo de regras não cresce sem um modo de falha observado</td>
+</tr>
+<tr>
+<td><strong><code>[M04]</code> Zero sessões de verificação</strong></td>
+<td>nenhuma sessão é convocada com a função única de verificar alinhamento</td>
+</tr>
+<tr>
+<td><strong><code>[M05]</code> Tectos numéricos respeitados</strong></td>
+<td>árvores e frentes simultaneamente abertas nunca excedem os tectos inscritos no mandato</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>[M04]</code> é o critério de topo. Os restantes são condições dele.</p>
+<p>Se ao fim de três meses o alerta dispara sempre, o detector está mal calibrado. Se nunca dispara e há colisões reais, as declarações estão mal preenchidas. Ambos são falhas do sistema, não do projecto.</p>
+<hr />
+<h2>2 · Arquitectura</h2>
+<h3>2.1 Nascimento do projecto</h3>
+<p>Nada arranca antes desta fase estar fechada.</p>
+<h4>O que é preciso estabelecer</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Artefacto</th>
+<th>Conteúdo</th>
+<th>Quem escreve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MANDATO</code></td>
+<td>objectivos, não-objectivos, critério de fim, <strong><code>[M06]</code> tectos, canal de alerta, cadência de auditoria</strong></td>
+<td>agente, por reformulação; autoria do humano</td>
+</tr>
+<tr>
+<td><code>CASOS</code></td>
+<td>vazio no arranque</td>
+<td>preenchido por divergência</td>
+</tr>
+<tr>
+<td>Perfis e zonas</td>
+<td>que perfis existem e onde cada um escreve</td>
+<td>o humano responsável</td>
+</tr>
+<tr>
+<td><code>HALT</code></td>
+<td>ausente; o caminho existe</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>Se o humano não conseguir enunciar o que quer, o mandato não se força: desenha-se uma árvore de mandato e o mandato sai dela.</p>
+<h4>Protocolo P0 — Nascimento</h4>
+<p><em>Vocabulário: </em><em>deve</em><em> = obrigatório; </em><em>não pode</em><em> = proibido; </em><em>pode</em><em> = permitido.</em></p>
+<ul>
+<li><strong>P0.1</strong> — O mandato <strong>deve</strong> declarar entre um e cinco objectivos, cada um com slug.</li>
+<li><strong>P0.2</strong> — O mandato <strong>deve</strong> declarar dois a três não-objectivos por objectivo.</li>
+<li><strong>P0.3</strong> — O mandato <strong>não pode</strong> exceder uma página.</li>
+<li><strong>P0.4</strong> — O mandato <strong>deve</strong> declarar o critério pelo qual o projecto se considera terminado.</li>
+<li><strong>P0.5</strong> — <code>[M06]</code> O mandato <strong>deve</strong> declarar o tecto de árvores e o tecto de frentes simultaneamente abertas.</li>
+<li><strong>P0.6</strong> — <code>[M06]</code> O mandato <strong>deve</strong> declarar o canal de alerta e a cadência de auditoria.</li>
+<li><strong>P0.7</strong> — O mandato <strong>deve</strong> ser redigido por agente, por reformulação da intenção do humano responsável.</li>
+<li><strong>P0.8</strong> — O agente <strong>não pode</strong> acrescentar objectivo ou não-objectivo que o humano não tenha enunciado.</li>
+<li><strong>P0.9</strong> — <code>[M07]</code> O mandato <strong>deve</strong> passar o teste de reformulação.</li>
+<li><strong>P0.10</strong> — <code>[M07]</code> O mandato <strong>deve</strong> passar o teste de discriminação de tarefa.</li>
+<li><strong>P0.11</strong> — Nenhuma frente <strong>pode</strong> ser aberta antes de P0.9 e P0.10 devolverem verdadeiro.</li>
+<li><strong>P0.12</strong> — Uma falha em P0.9 ou P0.10 <strong>deve</strong> produzir não-objectivo novo ou caso registado, e <strong>não pode</strong> produzir princípio novo.</li>
+</ul>
+<h4>Critério de desbloqueio da fase</h4>
+<p>Dois testes. O primeiro verifica compreensão; o segundo verifica precisão. Ambos têm de passar.</p>
+<p><strong>Teste de reformulação.</strong> Reformulação não é paráfrase. Compreendeu se consegue derivar não-objectivos que o humano não enunciou e acertar; classificar um caso-fronteira inventado na hora; dizer o que o mandato exclui; e nomear a tensão entre dois objectivos e dizer qual cede. O último é o mais difícil de fingir.</p>
+<p>Falha em qualquer um: o mandato volta a ser discutido, não reescrito.</p>
+<p><strong>Teste de discriminação de tarefa.</strong> Três tarefas plausíveis, duas dentro e uma fora mas superficialmente parecida. Três sessões limpas, cada uma com o mandato e nada mais. Classificação idêntica e correcta desbloqueia a fase.</p>
+<p><strong>Correcção em caso de falha:</strong> acrescentar não-objectivos e registar em <code>CASOS</code> a tarefa que gerou a divergência. Nunca acrescentar princípios.</p>
+<hr />
+<h3>2.2 A árvore</h3>
+<p>A árvore é o instrumento de partição. Serve quatro propósitos distintos e produz os cortes que o caminho depois testa.</p>
+<p><code>[M17]</code> <strong>A árvore tem duas existências.</strong> A existência epistémica é a partição, desenhada e lida por humanos. A existência mecânica são os nós e as arestas num substrato próprio, consultado por travessia e nunca lido. Um agente não acede a nenhuma das duas: vê o seu ramo e as fronteiras negativas dos vizinhos.</p>
+<h4>Quatro propósitos</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Propósito</th>
+<th>Pergunta que responde</th>
+<th>Exaustividade</th>
+<th>Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Problema</strong></td>
+<td>porque é que isto acontece</td>
+<td>estrita, desde o início</td>
+<td>fechada</td>
+</tr>
+<tr>
+<td><strong>Caracterização</strong></td>
+<td>o que é este objecto</td>
+<td>aspiracional, verificada no fim</td>
+<td>aberta</td>
+</tr>
+<tr>
+<td><strong>Decisão</strong></td>
+<td>o que é que eu quero</td>
+<td>sobre o espaço de opções</td>
+<td>profundidade desigual</td>
+</tr>
+<tr>
+<td><strong>Mandato</strong></td>
+<td>o que é que eu quero, afinal</td>
+<td>emergente</td>
+<td>morre ao produzir o mandato</td>
+</tr>
+</tbody>
+</table></div>
+<h4>MECE, com uma distinção</h4>
+<p><strong>Mutuamente exclusivo aplica-se sempre.</strong> Sobreposição entre ramos produz dupla contagem e duplica esforço.</p>
+<p><strong>Colectivamente exaustivo varia com o propósito.</strong> Estrito numa árvore de problema; aspiracional numa de caracterização, verificado ao fechar.</p>
+<p><strong>Um eixo por nó.</strong> Iterar níveis é permitido e é como se compõem eixos. Misturar eixos no mesmo nível é a violação mais frequente.</p>
+<p><strong>Profundidade desigual não é defeito</strong> numa árvore de decisão. O defeito é o ramo raso desaparecer sem ficar registado que se decidiu não o aprofundar.</p>
+<h4>Critério de corte</h4>
+<p><strong>Assimetria.</strong> O corte vale se criar maior diferença entre ramos e isolar o problema numa área.</p>
+<p><strong>Accionabilidade.</strong> O corte tem de recair sobre variável controlável ou influenciável.</p>
+<h4>Triagem antes de dados</h4>
+<p>Estimativa de ordem de grandeza e cenário extremo antes de recolher evidência. Um ramo cuja variação por um factor de dez não alteraria a decisão final descarta-se sem teste empírico. A triagem é gratuita e é o que impede a árvore de gerar frentes a mais.</p>
+<h4>Árvores múltiplas e árvores acopladas</h4>
+<p>Árvores concorrentes com eixos conceptuais distintos sobre o mesmo problema. Uma árvore só é inércia, não escolha.</p>
+<p>Árvores de propósito diferente não se fundem. Acoplam-se por dependência declarada.</p>
+<p><code>[M10]</code> <strong>Tecto numérico.</strong> O número de árvores simultaneamente abertas não pode exceder o tecto inscrito no mandato. Uma árvore cuja condição de morte se verificou não recebe ramos novos.</p>
+<h4>Estado de ramo</h4>
+<p><code>por abrir</code> · <code>em desenvolvimento</code> · <code>fechado</code> · <code>podado</code> · <code>suspenso: &lt;dependência&gt;</code></p>
+<p><strong>Podado não é rejeitado.</strong> É "decidiu-se não aprofundar", com razão registada.</p>
+<p><code>[M11]</code> <strong>Fechado regista igualmente.</strong> O fecho de um ramo regista resultado e razão, pela mesma razão pela qual a poda regista: o que impede a reabertura é o registo, e um ramo fechado reabre tão facilmente como um podado.</p>
+<p><code>[M24]</code> <strong>A projecção legível omite as razões.</strong> A vista da árvore destinada a leitura humana contém nós, estados e arestas, e não contém as razões de fecho nem de poda. Estas residem no substrato e são devolvidas apenas por mecanismo de bloqueio.</p>
+<h4>Protocolo P1 — Árvore</h4>
+<ul>
+<li><strong>P1.1</strong> — Cada árvore <strong>deve</strong> declarar, ao nascer, o seu propósito e a condição em que morre.</li>
+<li><strong>P1.2</strong> — Num nó <strong>não pode</strong> ser aplicado mais de um eixo de corte.</li>
+<li><strong>P1.3</strong> — Ramos irmãos <strong>não podem</strong> sobrepor-se.</li>
+<li><strong>P1.4</strong> — Um ramo <strong>deve</strong> declarar as suas dependências no momento em que é desenhado.</li>
+<li><strong>P1.5</strong> — Um ramo <strong>não pode</strong> passar a trabalho sem ter passado a triagem de ordem de grandeza.</li>
+<li><strong>P1.6</strong> — Um ramo podado <strong>deve</strong> registar a razão.</li>
+<li><strong>P1.7</strong> — <code>[M11]</code> Um ramo fechado <strong>deve</strong> registar o resultado e a razão.</li>
+<li><strong>P1.8</strong> — Árvores de propósito diferente <strong>não podem</strong> ser fundidas.</li>
+<li><strong>P1.9</strong> — <code>[M10]</code> O número de árvores simultaneamente abertas <strong>não pode</strong> exceder o tecto declarado.</li>
+<li><strong>P1.10</strong> — <code>[M10]</code> Uma árvore cuja condição de morte se verificou <strong>não pode</strong> receber ramos novos.</li>
+<li><strong>P1.11</strong> — <code>[M08]</code> Numa árvore de propósito problema, os ramos irmãos <strong>devem</strong> cobrir integralmente o nó de origem no momento em que são desenhados.</li>
+<li><strong>P1.12</strong> — <code>[M08]</code> Numa árvore de propósito caracterização, a cobertura integral <strong>deve</strong> ser verificada no fecho da árvore.</li>
+<li><strong>P1.13</strong> — <code>[M09]</code> Um ramo só <strong>pode</strong> passar a frente se o seu eixo de corte recair sobre variável controlável ou influenciável.</li>
+</ul>
+<hr />
+<h3>2.3 O caminho</h3>
+<p>Entre o mandato e as frentes há uma camada que decide <strong>por onde</strong>. Caminho é a hipótese, hoje, sobre como se chega ao mandato: uma aposta entre apostas possíveis, com pressupostos declarados e testáveis.</p>
+<p>A árvore gera os cortes; o caminho testa-os. A triagem mata ramos antes de haver dados, de graça; o caminho testa com dados reais o que sobreviveu, e é caro.</p>
+<h4>Método de procura</h4>
+<p><code>M1  Enunciar o mandato como pergunta de decisão
+M2  Desenhar as árvores concorrentes e triar as estéreis
+M3  Por árvore sobrevivente, extrair o que tem de ser verdade — os pressupostos
+M4  Marcar os discriminantes: pressupostos cuja resposta elimina caminhos
+M5  Ordenar por (incerteza × custo de descobrir tarde) ÷ custo de testar
+M6  A primeira frente testa o discriminante do topo
+M7  Nenhum caminho é declarado escolhido antes de M6 devolver resultado</code></p>
+<p>As frentes derivam do caminho, não do mandato.</p>
+<h4><code>CAMINHO</code></h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Conteúdo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pergunta de decisão</td>
+<td>o mandato reformulado como pergunta</td>
+</tr>
+<tr>
+<td>Caminhos em aberto</td>
+<td>dois ou mais, com uma linha cada</td>
+</tr>
+<tr>
+<td>Caminho actual</td>
+<td>um, ou <code>não escolhido</code></td>
+</tr>
+<tr>
+<td>Pressupostos</td>
+<td>estado: <code>por testar</code>, <code>confirmado</code>, <code>invalidado</code>, <code>inconclusivo</code></td>
+</tr>
+<tr>
+<td>Ordem de ataque</td>
+<td>os pressupostos por ordem de M5</td>
+</tr>
+<tr>
+<td>Regras de paragem</td>
+<td>por pressuposto, escritas antes de a frente abrir</td>
+</tr>
+</tbody>
+</table></div>
+<p>Uma página. Muda mais que o mandato, menos que o estado.</p>
+<h4>Protocolo P2 — Caminho</h4>
+<ul>
+<li><strong>P2.1</strong> — O caminho <strong>deve</strong> declarar dois ou mais caminhos plausíveis.</li>
+<li><strong>P2.2</strong> — Cada frente <strong>deve</strong> declarar que pressuposto testa ou que caminho executa.</li>
+<li><strong>P2.3</strong> — Cada pressuposto <strong>deve</strong> ter regra de paragem escrita antes de a frente abrir.</li>
+<li><strong>P2.4</strong> — Um caminho <strong>não pode</strong> ser declarado escolhido com discriminante por testar.</li>
+<li><strong>P2.5</strong> — Um pressuposto invalidado <strong>deve</strong> disparar reavaliação antes de abrir frente nova.</li>
+<li><strong>P2.6</strong> — O caminho <strong>não pode</strong> exceder uma página.</li>
+<li><strong>P2.7</strong> — <code>[M12]</code> O caminho <strong>deve</strong> passar o teste de discriminação de frente.</li>
+<li><strong>P2.8</strong> — <code>[M13]</code> O número de frentes simultaneamente abertas <strong>não pode</strong> exceder o tecto declarado.</li>
+<li><strong>P2.9</strong> — <code>[M14]</code> Um pressuposto inconclusivo <strong>deve</strong> produzir redesenho da regra de paragem e <strong>não pode</strong> produzir repetição do mesmo teste.</li>
+</ul>
+<h4><code>[M12]</code> Critério de desbloqueio do caminho</h4>
+<p>Simétrico ao de P0. Três frentes plausíveis: duas que testam pressupostos declarados no caminho, uma que não testa nenhum mas é formulada em termos semelhantes. Três sessões limpas, cada uma com o caminho e nada mais. Classificação idêntica e correcta valida o caminho.</p>
+<p>Falha: o pressuposto ou a regra de paragem é reformulada. Não se acrescenta princípio.</p>
+<h4>Como se avalia</h4>
+<p>Um milestone não é um entregável: é um teste de pressuposto. A pergunta não é o que fica pronto, mas o que fica a saber-se.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Significado</th>
+<th>Consequência</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>confirmado</code></td>
+<td>o pressuposto aguenta</td>
+<td>avança para o seguinte na ordem</td>
+</tr>
+<tr>
+<td><code>invalidado</code></td>
+<td>o pressuposto cai</td>
+<td>reavaliação obrigatória</td>
+</tr>
+<tr>
+<td><code>inconclusivo</code></td>
+<td>o teste não decidiu</td>
+<td>redesenhar o teste, não repetir</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Como se reavalia</h4>
+<p>Três disparos: pressuposto invalidado, cadência fixa, ou vontade do humano.</p>
+<p>```
+reavaliação → quatro saídas, mutuamente exclusivas</p>
+<p>manter             nada mudou que altere a ordem
+  reordenar          mudou a ordem de ataque, não o caminho
+  trocar de caminho  o caminho actual cai; outro dos abertos assume
+  escalar            o mandato é que está errado → modo rumo
+```</p>
+<p>Mudar de caminho não é mudar de rumo. Só a quarta saída toca no mandato.</p>
+<hr />
+<h3>2.4 Desenvolvimento</h3>
+<h4>2.4.1 Hierarquia</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Artefacto</th>
+<th>Muda por</th>
+<th>Ritmo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L0 · Projecto</strong></td>
+<td><code>MANDATO</code></td>
+<td>emenda datada</td>
+<td>meses</td>
+</tr>
+<tr>
+<td><strong>L1 · Caminho</strong></td>
+<td><code>CAMINHO</code>, árvores</td>
+<td>reavaliação</td>
+<td>semanas</td>
+</tr>
+<tr>
+<td><strong>L2 · Estado</strong></td>
+<td><code>ESTADO</code>, <code>FRENTES</code></td>
+<td>triagem</td>
+<td>dias</td>
+</tr>
+<tr>
+<td><strong>L3 · Frente</strong></td>
+<td><code>estado.json</code>, projecção</td>
+<td>fecho de sessão</td>
+<td>sessões</td>
+</tr>
+<tr>
+<td><strong>L4 · Sessão</strong></td>
+<td>worktree, <code>INBOX</code></td>
+<td>trabalho</td>
+<td>horas</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Um nível nunca escreve no nível acima.</strong> O que sobe é um pedido, não uma alteração.</p>
+<h4>2.4.2 Escopo de contexto</h4>
+<p>Corolário directo da hierarquia: cada nível classifica o seu trabalho contra o nível imediatamente acima, nunca contra o topo.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Quem</th>
+<th>Classifica contra</th>
+<th>Não precisa de</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sessão</td>
+<td>o mandato da frente</td>
+<td>o caminho, o mandato</td>
+</tr>
+<tr>
+<td>Frente</td>
+<td>o pressuposto que testa e a regra de paragem</td>
+<td>o mandato</td>
+</tr>
+<tr>
+<td>Triagem</td>
+<td>os ramos que o alerta toca</td>
+<td>o projecto inteiro</td>
+</tr>
+<tr>
+<td>Caminho</td>
+<td>o mandato</td>
+<td>a intenção por trás</td>
+</tr>
+<tr>
+<td>Rumo</td>
+<td>a intenção do humano</td>
+<td>—</td>
+</tr>
+</tbody>
+</table></div>
+<p>Uma frente sem o mandato geral continua a detectar que derrapou, porque derrapar é sair do seu pressuposto.</p>
+<p>Consequência: a projecção de uma frente não se redige, deriva-se do caminho.</p>
+<p><strong>Uma excepção.</strong> Os objectivos são escopáveis; os não-objectivos não. Vão inteiros em qualquer sessão que classifique.</p>
+<h4>2.4.3 Actores</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Actor</th>
+<th>É agente</th>
+<th>Dispara por</th>
+<th>Escreve em</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Humano responsável</strong></td>
+<td>não</td>
+<td>vontade</td>
+<td>tudo</td>
+</tr>
+<tr>
+<td><strong>Arquitecto · triagem</strong></td>
+<td>sim</td>
+<td><strong><code>[M15]</code> invocação do watcher</strong></td>
+<td><code>ESTADO</code>, <code>FRENTES</code>, <code>REJEICOES</code></td>
+</tr>
+<tr>
+<td><strong>Arquitecto · rumo</strong></td>
+<td>sim</td>
+<td>só o humano</td>
+<td>emenda ao mandato, ou nada</td>
+</tr>
+<tr>
+<td><strong>Frente</strong></td>
+<td>sim</td>
+<td>trabalho</td>
+<td>a sua worktree, <code>INBOX</code></td>
+</tr>
+<tr>
+<td><strong>Auditor</strong></td>
+<td>sim</td>
+<td>cadência</td>
+<td>relatório</td>
+</tr>
+<tr>
+<td><strong>Watcher</strong></td>
+<td><strong>não</strong></td>
+<td>cada merge</td>
+<td><code>ALERTA</code>, <strong><code>[M15]</code> canal, invocação da triagem</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>O watcher não tem modelo. É um script. <code>[M15]</code> Emite para o canal declarado e invoca a triagem; não a espera.</p>
+<h4>2.4.4 Ferramentas</h4>
+<p><code>[M16]</code> Coluna de origem acrescentada. Separa o que se monta do que se escreve.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ferramenta</th>
+<th>Função</th>
+<th>Substitui</th>
+<th><code>[M16]</code> Origem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Árvore</strong></td>
+<td>partição do espaço, geração de cortes</td>
+<td>ataque por um ângulo só</td>
+<td>escrita própria</td>
+</tr>
+<tr>
+<td><strong><code>[M17]</code> Substrato de arestas</strong></td>
+<td>armazenamento das arestas fora das zonas; travessia transitiva</td>
+<td>arestas implícitas na leitura da árvore</td>
+<td>base relacional de ficheiro único</td>
+</tr>
+<tr>
+<td><strong>Worktree</strong></td>
+<td>isolamento, paralelismo, merge como verificação</td>
+<td>disciplina de não mexer na pasta alheia</td>
+<td>controlo de versões</td>
+</tr>
+<tr>
+<td><strong>Hook de caminho</strong></td>
+<td>confinamento de leitura e escrita por perfil</td>
+<td>regras escritas em prosa</td>
+<td>ganchos do runner</td>
+</tr>
+<tr>
+<td><strong>Índice de decisões</strong></td>
+<td>liga slugs a decisões</td>
+<td>memória de quem estava presente</td>
+<td>registo de decisões e inversão</td>
+</tr>
+<tr>
+<td><strong>Watcher</strong></td>
+<td>cruzar declarações e seguir dependências</td>
+<td>reuniões de coordenação</td>
+<td>ganchos de integração</td>
+</tr>
+<tr>
+<td><strong>Cold-read</strong></td>
+<td>verificar auto-suficiência de um output</td>
+<td>confiança</td>
+<td>chamada de modelo sem sessão</td>
+</tr>
+<tr>
+<td><strong>Proveniência selada</strong></td>
+<td>registo imutável, fora do índice de pesquisa</td>
+<td>memória</td>
+<td>anotações do controlo de versões</td>
+</tr>
+<tr>
+<td><strong>HALT</strong></td>
+<td>paragem imediata de todas as escritas</td>
+<td>—</td>
+<td>verificação de presença no hook</td>
+</tr>
+<tr>
+<td><strong><code>[M15]</code> Canal de alerta</strong></td>
+<td>entrega da detecção sem consulta</td>
+<td>ficheiro que alguém abre</td>
+<td>serviço de notificação</td>
+</tr>
+</tbody>
+</table></div>
+<h4>2.4.5 Ficheiros</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ficheiro</th>
+<th>O que é</th>
+<th>Escrita</th>
+<th>Quem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MANDATO</code></td>
+<td>a lei do projecto</td>
+<td>emenda datada</td>
+<td>agente redige, humano valida</td>
+</tr>
+<tr>
+<td><code>CAMINHO</code></td>
+<td>a hipótese de como se lá chega</td>
+<td>substituição</td>
+<td>humano com agente</td>
+</tr>
+<tr>
+<td><code>arvores/*</code></td>
+<td>partições do espaço, por propósito</td>
+<td>substituição</td>
+<td>humano com agente</td>
+</tr>
+<tr>
+<td><code>CASOS</code></td>
+<td>casos-fronteira decididos</td>
+<td>acrescento</td>
+<td>humano, triagem</td>
+</tr>
+<tr>
+<td><code>ESTADO</code></td>
+<td>o que é verdade agora</td>
+<td>substituição</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>FRENTES</code></td>
+<td>índice de frentes e ramos</td>
+<td>substituição</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>REJEICOES</code></td>
+<td>o que foi descartado e porquê</td>
+<td>acrescento</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>ALERTA</code></td>
+<td>o que o watcher detectou</td>
+<td>substituição</td>
+<td>watcher</td>
+</tr>
+<tr>
+<td><strong><code>[M18]</code> <code>arestas.db</code></strong></td>
+<td><strong>nós, arestas, níveis; fora de todas as zonas</strong></td>
+<td><strong>escrita por hook</strong></td>
+<td><strong>máquina</strong></td>
+</tr>
+<tr>
+<td><code>INBOX/*.json</code></td>
+<td>descobertas por processar</td>
+<td>acrescento</td>
+<td>frentes</td>
+</tr>
+<tr>
+<td><code>debates/*.json</code></td>
+<td>decisões, com alternativa rejeitada e o que afectam</td>
+<td>acrescento</td>
+<td>rumo</td>
+</tr>
+<tr>
+<td><code>indice-decisoes.json</code></td>
+<td>slug → decisão</td>
+<td>gerado</td>
+<td>script</td>
+</tr>
+<tr>
+<td><strong><code>[M24]</code> <code>mapa.mmd</code></strong></td>
+<td><strong>projecção legível, sem razões de fecho</strong></td>
+<td><strong>gerado</strong></td>
+<td><strong>script</strong></td>
+</tr>
+<tr>
+<td><code>estado.json</code></td>
+<td>estado da frente face ao seu pressuposto</td>
+<td>substituição</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>handoff.json</code></td>
+<td>como retomar</td>
+<td>substituição</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>research/</code></td>
+<td>exploração</td>
+<td>livre</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>entregue/</code></td>
+<td>o que sobe</td>
+<td>acrescento</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>Rascunhos</code></td>
+<td>travão intra-sessão</td>
+<td>termina vazio</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>sealed/</code></td>
+<td>pedido, output, referências</td>
+<td>write-once</td>
+<td>hook</td>
+</tr>
+<tr>
+<td><code>HALT</code></td>
+<td>interruptor</td>
+<td>presença</td>
+<td>humano</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Estado substitui-se, evidência acumula-se.</strong> Nunca no mesmo ficheiro.</li>
+<li><strong>O caos tem lugar próprio.</strong> <code>research/</code> e <code>Rascunhos</code> não se disciplinam.</li>
+<li><strong>Nada que uma ferramenta possa reconstruir entra em memória.</strong></li>
+<li><code>[M18]</code> <strong>As arestas não vivem em ficheiro de projecto.</strong> Um ficheiro na worktree é legível pelo agente que a ocupa; o substrato fica fora de todas as zonas.</li>
+</ul>
+<h4>2.4.6 O que é importante e o que não é</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Importante</th>
+<th>Não é importante</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O que cada frente declara <strong>tocar</strong> e de que <strong>depende</strong></td>
+<td>o que cada frente fez</td>
+</tr>
+<tr>
+<td>O que ficou <strong>fechado ou podado</strong> e porquê</td>
+<td>o que ficou aberto na conversa</td>
+</tr>
+<tr>
+<td>O <strong>próximo passo</strong> e o seu critério de conclusão</td>
+<td>a narrativa do percurso</td>
+</tr>
+<tr>
+<td>A <strong>alternativa rejeitada</strong> numa decisão</td>
+<td>a discussão que levou à decisão</td>
+</tr>
+<tr>
+<td>Que o alerta esteja <strong>vazio</strong></td>
+<td>quantos alertas já foram resolvidos</td>
+</tr>
+<tr>
+<td>Que o output seja <strong>auto-suficiente</strong></td>
+<td>que a sessão tenha sido produtiva</td>
+</tr>
+<tr>
+<td>Pressupostos <strong>declarados</strong></td>
+<td>pressupostos correctos</td>
+</tr>
+</tbody>
+</table></div>
+<p>A coluna da direita vive na proveniência selada, recuperável e não lida.</p>
+<h4>2.4.7 Fluxos, do geral ao átomo</h4>
+<p><strong>L0–L2 · Projecto</strong></p>
+<p>```
+MANDATO → ÁRVORES → CAMINHO → frentes → merges → watcher → ALERTA</p>
+<p>ALERTA vazio            → nada acontece
+ALERTA com item         → [M20] emite para o canal e invoca a triagem
+triagem toca no mandato → escala ao humano → rumo → emenda → MANDATO
+```</p>
+<p><strong>L3 · Frente</strong></p>
+<p><code>F1  Abre com projecção derivada do caminho
+F2  Sessões de trabalho, N ≥ 1
+F3  Fecho de cada sessão: gate
+F4  Pressuposto resolvido → frente fecha → resultado ao caminho
+F5  [M22] Fecho de ramo → travessia transitiva das arestas → cone afectado → alerta</code></p>
+<p><strong>L4 · Sessão — o átomo</strong></p>
+<p><code>S1  HALT presente?                    sim → recusa
+S2  Perfil declarado?                 não → recusa
+S3  Monta contexto por perfil e por escopo
+S4  Trabalha
+      escrita fora da zona            → bloqueia, devolve zona, continua
+      edição de slug com decisão      → bloqueia ou alerta, conforme o nível
+      [M21] pesquisa lançada          → confronta com ramos fechados e podados
+      dúvida                          → declara pressuposto, continua
+      tema fora do mandato da frente  → Rascunhos, volta ao tema
+S5  Fecho
+      toca fora do declarado          → não fecha
+      sem pressuposto nem caminho     → não fecha
+      Rascunhos não vazio             → não fecha
+      pressuposto novo                → fecha com carece_aprovacao
+      cold-read falha                 → fecha com carece_aprovacao
+      trabalho continua               → handoff.json, validado
+S6  Sela, faz merge, dispara watcher</code></p>
+<p>Não existe estado de espera.</p>
+<h4>2.4.8 Mecanismos</h4>
+<p><strong>Gate de fecho.</strong> Dois níveis. Divergência dura bloqueia o fecho; divergência branda deixa fechar com marca e sobe ao alerta.</p>
+<p><strong>Detecção, três passagens.</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Passagem</th>
+<th>Base</th>
+<th>Confiança</th>
+<th>Apanha</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Colisão</td>
+<td>campo <code>toca</code></td>
+<td>facto</td>
+<td>duas frentes na mesma coisa</td>
+</tr>
+<tr>
+<td><strong>Dependência</strong></td>
+<td><strong><code>[M22]</code> travessia transitiva das arestas</strong></td>
+<td>facto</td>
+<td><strong>o cone inteiro a jusante, não só o vizinho</strong></td>
+</tr>
+<tr>
+<td>Semântico</td>
+<td>chamada única de modelo</td>
+<td>sugestão</td>
+<td>o que ninguém declarou</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>[M22]</code> <strong>A passagem de dependência calcula o cone afectado.</strong> Quando um ramo fecha, é podado, ou uma decisão se altera, a travessia percorre as arestas transitivamente e produz um item de alerta por ramo alcançado. A versão que segue apenas as arestas directas deixa escapar a propagação de segunda ordem, que é onde vive a invalidação cara.</p>
+<p><code>[M23]</code> <strong>A passagem semântica ganha o confronto de pesquisa.</strong> Uma pesquisa lançada é comparada contra os ramos fechados e podados antes de ser executada. A correspondência produz sugestão, nunca bloqueio.</p>
+<p>O detector semântico é a rede de segurança. Quando apanha um conflito que a árvore não previa, falta uma aresta.</p>
+<p><strong>Alerta com estado.</strong> Cada alerta é <code>novo</code>, <code>visto</code> ou <code>descartado</code>, com hash do conteúdo. Um descartado não reaparece para o mesmo par no mesmo estado.</p>
+<p><code>[M19]</code> <strong>O alerta é empurrado.</strong> A escrita no ficheiro persiste como registo. A entrega faz-se para o canal declarado no mandato, e a triagem é invocada pelo watcher. Um alerta vazio não produz sessão.</p>
+<p><strong>Protecção do que foi decidido.</strong> Tudo tem slug. Os slugs são globais, nunca se reutilizam e nunca se renumeram. A decisão declara o que afecta; o índice é gerado por inversão.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Origem</th>
+<th>Comportamento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>livre</code></td>
+<td>sem decisão</td>
+<td>edita</td>
+</tr>
+<tr>
+<td><code>decidido</code></td>
+<td>decisão registada</td>
+<td>alerta, pede confirmação humana</td>
+</tr>
+<tr>
+<td><code>selado</code></td>
+<td>decisão com <code>selado</code></td>
+<td>bloqueia; só nova decisão desbloqueia</td>
+</tr>
+<tr>
+<td><code>morto</code></td>
+<td>slug retirado por decisão</td>
+<td>bloqueia a recriação</td>
+</tr>
+</tbody>
+</table></div>
+<p>O alerta devolve o identificador da decisão e o facto de existir. Nunca o conteúdo do debate, a alternativa rejeitada ou a razão.</p>
+<p><code>[M24]</code> <strong>A omissão estende-se à projecção legível.</strong> A vista do mapa não mostra por que razão um caminho foi anulado. Quem olha vê que está fechado e não recebe o material com que o reabriria.</p>
+<p><strong>Cold-read.</strong> Um agente sem histórico lê o output ou o handoff e responde a uma pergunta fechada sobre a acção seguinte.</p>
+<p><strong>Paragem.</strong> A presença de <code>HALT</code> faz o hook recusar arranque e qualquer escrita. Removido à mão.</p>
+<h4>2.4.9 Regra de saída</h4>
+<p><strong>A resposta primeiro.</strong> A conclusão encabeça o documento; abaixo, três ou quatro pilares MECE; na base, a evidência.</p>
+<p>A árvore é lógica de partição do problema; esta é lógica de comunicação do resultado.</p>
+<p><code>[M25]</code> <strong>Convertida em regra.</strong> O cold-read verifica-a mecanicamente, e uma regra verificável por mecanismo tem identificador e consequência de incumprimento, como as restantes.</p>
+<h4>2.4.10 Escolha de agente por papel</h4>
+<p>Os papéis são funções, não produtos.</p>
+<p><strong>Seis critérios</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Critério</th>
+<th>Pergunta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Duração</td>
+<td>o papel vive enquanto trabalha, ou tem de estar sempre ligado?</td>
+</tr>
+<tr>
+<td>Disparo</td>
+<td>quem o invoca: humano, evento, ou calendário?</td>
+</tr>
+<tr>
+<td>Filesystem</td>
+<td>precisa de worktree, git e ficheiros locais?</td>
+</tr>
+<tr>
+<td>Enforcement</td>
+<td>precisa de hooks que <strong>bloqueiem</strong> uma operação antes de executar?</td>
+</tr>
+<tr>
+<td>Escopo</td>
+<td>o contexto tem de ser montado por perfil e cortado?</td>
+</tr>
+<tr>
+<td>Julgamento</td>
+<td>o papel decide, ou só detecta?</td>
+</tr>
+</tbody>
+</table></div>
+<p>O critério de enforcement é eliminatório.</p>
+<p><strong>Requisitos por papel</strong></p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Papel</th>
+<th>Duração</th>
+<th>Disparo</th>
+<th>Precisa de</th>
+<th>Natural em</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Frente</strong></td>
+<td>efémera</td>
+<td>humano ou orquestrador</td>
+<td>filesystem, git, hooks bloqueantes</td>
+<td>runner de código local</td>
+</tr>
+<tr>
+<td><strong>Arquitecto · triagem</strong></td>
+<td>efémera, curta</td>
+<td>evento</td>
+<td>leitura ampla, escrita escopada, invocação por máquina</td>
+<td>runner invocável programaticamente</td>
+</tr>
+<tr>
+<td><strong>Arquitecto · rumo</strong></td>
+<td>efémera</td>
+<td>só o humano</td>
+<td>conversa, sem escrita automática</td>
+<td>interface de chat</td>
+</tr>
+<tr>
+<td><strong>Auditor</strong></td>
+<td>efémera</td>
+<td>calendário</td>
+<td>leitura total, sem escrita</td>
+<td>infraestrutura agendada</td>
+</tr>
+<tr>
+<td><strong>Watcher</strong></td>
+<td>persistente</td>
+<td>cada merge</td>
+<td>nenhum modelo; processo e disco</td>
+<td>infraestrutura sempre ligada</td>
+</tr>
+<tr>
+<td><strong>Detector semântico</strong></td>
+<td>por chamada</td>
+<td>dentro do watcher</td>
+<td>uma chamada sem estado</td>
+<td>API directa, sem agente</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong><code>[M26]</code> Quatro regras de alocação, com identificador</strong></p>
+<ul>
+<li><strong>P9.4</strong> — Um processo permanente <strong>não pode</strong> julgar.</li>
+<li><strong>P9.1</strong> — Um papel que escreve em zona protegida <strong>não pode</strong> correr em runner sem hooks bloqueantes, e os hooks <strong>devem</strong> residir no runner que executa a escrita.</li>
+<li><strong>P9.6</strong> — Uma mudança de runner <strong>deve</strong> ser precedida de decisão registada.</li>
+<li><strong>P9.3</strong> — Um hook indisponível <strong>deve</strong> produzir recusa.</li>
+</ul>
+<hr />
+<h3>2.5 Evolução</h3>
+<p>Um sistema que só impede movimento é uma jaula. Este distingue três formas de mudar. A maior parte da mudança é de ramo ou de caminho, e resolve-se sem tocar no mandato.</p>
+<h4>Por necessidade</h4>
+<p><code>frente marca challenges no INBOX
+  → watcher ou triagem detecta
+  → toca no mandato?
+      não  → triagem resolve: estado, frente nova, ou rejeição
+      sim  → escala. A triagem não resolve. Alerta fica novo.
+  → humano abre modo rumo
+  → emenda datada, ou nada</code></p>
+<p>A frente nunca pára à espera desta cadeia.</p>
+<h4>Por vontade</h4>
+<p>O humano decide reavaliar sem que nada tenha falhado. Produz emenda ou nada. Nunca escreve no estado.</p>
+<h4>Por falha do próprio sistema</h4>
+<p>Um mecanismo não funciona. Entra no inbox, é triado, e se alterar como o projecto se governa, é emenda.</p>
+<p><code>[M27]</code> <strong>Condição de adopção.</strong> Uma regra nova não pode ser adoptada sem incidente registado que a motive. A condição é regra, com identificador, e o auditor lista as regras que não a cumprem.</p>
+<h4>Deriva e inflexão</h4>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th></th>
+<th>Deriva</th>
+<th>Inflexão</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alteração do objectivo</td>
+<td>real</td>
+<td>real</td>
+</tr>
+<tr>
+<td>Declarada</td>
+<td>não</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>Datada</td>
+<td>não</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>Alternativa registada</td>
+<td>não</td>
+<td>sim</td>
+</tr>
+<tr>
+<td>Tratamento</td>
+<td>é o que o sistema existe para impedir</td>
+<td>é saudável</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Registo de debates</h4>
+<p>Cada decisão produz ficheiro com campos fechados: a decisão, a alternativa rejeitada, a razão, os slugs que afecta. Não a discussão.</p>
+<p><code>[M28]</code> <strong>Campos fechados exigem validador.</strong> A noção de campo fechado só é verificável se houver esquema validado no momento da escrita. Sem ele, é convenção.</p>
+<hr />
+<h2>3 · Garantias permanentes</h2>
+<h3>3.1 Tabela</h3>
+<p><code>[M29]</code> Coluna de via acrescentada.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Garantia</th>
+<th>Como se obtém</th>
+<th>Como se detecta a falha</th>
+<th><code>[M29]</code> Via</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Existe um mandato</strong></td>
+<td>P0, com os dois testes</td>
+<td>nenhuma frente declara pressuposto válido</td>
+<td>escrita própria</td>
+</tr>
+<tr>
+<td><strong>É interpretado igual</strong></td>
+<td>não-objectivos e casos decididos</td>
+<td>sondas de fronteira divergem</td>
+<td>escrita própria</td>
+</tr>
+<tr>
+<td><strong>Chega a quem precisa</strong></td>
+<td>injecção por escopo, não pesquisa</td>
+<td>sessão produz output sem pressuposto</td>
+<td>hook</td>
+</tr>
+<tr>
+<td><strong>O problema foi partido</strong></td>
+<td>árvores concorrentes, um eixo por nó</td>
+<td>árvore única, ou ramos sobrepostos</td>
+<td>método</td>
+</tr>
+<tr>
+<td><strong>As árvores morrem</strong></td>
+<td>condição de morte declarada ao nascer</td>
+<td>árvore aberta além da condição</td>
+<td>auditor</td>
+</tr>
+<tr>
+<td><strong>O caminho é explícito</strong></td>
+<td>método de procura, mínimo dois</td>
+<td>frente sem pressuposto declarado</td>
+<td>escrita própria</td>
+</tr>
+<tr>
+<td><strong><code>[M12]</code> O caminho discrimina</strong></td>
+<td>teste de discriminação de frente</td>
+<td>três sessões classificam diferente</td>
+<td>escrita própria</td>
+</tr>
+<tr>
+<td><strong>Ninguém sai da sua zona</strong></td>
+<td>worktree e hook de caminho</td>
+<td>tentativa bloqueada no log</td>
+<td>worktree e ganchos</td>
+</tr>
+<tr>
+<td><strong>O decidido não é mexido</strong></td>
+<td>slugs, índice gerado, quatro níveis</td>
+<td>regra alterada sem decisão</td>
+<td>registo de decisões</td>
+</tr>
+<tr>
+<td><strong>O estado não apodrece</strong></td>
+<td>substituição com orçamento</td>
+<td>contradições entre estado e frentes</td>
+<td>esquema e auditor</td>
+</tr>
+<tr>
+<td><strong>O lixo não entra</strong></td>
+<td>quota, campos fechados, árbitro em código</td>
+<td>inbox cresce mais do que se esvazia</td>
+<td>validador de esquema</td>
+</tr>
+<tr>
+<td><strong>Conflitos aparecem</strong></td>
+<td>três passagens do watcher</td>
+<td>colisão descoberta por acaso</td>
+<td>substrato de arestas</td>
+</tr>
+<tr>
+<td><strong><code>[M22]</code> A propagação é completa</strong></td>
+<td>travessia transitiva</td>
+<td>invalidação descoberta dois ramos adiante</td>
+<td>consulta recursiva</td>
+</tr>
+<tr>
+<td><strong>Decisões são aplicadas</strong></td>
+<td>verificação no fecho</td>
+<td>decisão sem item correspondente</td>
+<td>gate</td>
+</tr>
+<tr>
+<td><strong>Becos não reabrem</strong></td>
+<td>razão de fecho e de poda registadas</td>
+<td>frente repete trabalho já fechado</td>
+<td>índice de decisões</td>
+</tr>
+<tr>
+<td><strong><code>[M30]</code> A pesquisa não repete</strong></td>
+<td>confronto contra ramos fechados</td>
+<td>investigação duplicada meses depois</td>
+<td>pesquisa vectorial</td>
+</tr>
+<tr>
+<td><strong><code>[M31]</code> O alerta chega</strong></td>
+<td>emissão para canal declarado</td>
+<td>alerta correcto e não lido</td>
+<td>serviço de notificação</td>
+</tr>
+<tr>
+<td><strong>O rumo é rastreável</strong></td>
+<td>emenda datada com alternativa</td>
+<td>alteração sem entrada</td>
+<td>registo de debates</td>
+</tr>
+<tr>
+<td><strong>Cada papel corre onde deve</strong></td>
+<td>requisitos por papel</td>
+<td>papel que escreve sem hooks bloqueantes</td>
+<td>decisão registada</td>
+</tr>
+<tr>
+<td><strong>O governo não incha</strong></td>
+<td>toda a regra nova exige falha observada</td>
+<td>regras sem incidente</td>
+<td>auditor</td>
+</tr>
+<tr>
+<td><strong><code>[M05]</code> O sistema não consome sessões</strong></td>
+<td>vigilância executada, nunca convocada</td>
+<td>existe sessão cuja função é verificar alinhamento</td>
+<td>watcher e canal</td>
+</tr>
+</tbody>
+</table></div>
+<h3>3.2 Manutenção no tempo</h3>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Quando</th>
+<th>O quê</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A cada fecho de sessão</strong></td>
+<td>automático: gate, selagem, merge, watcher, regeneração do índice, <strong><code>[M22]</code> cálculo do cone</strong>, <strong><code>[M24]</code> regeneração do mapa</strong></td>
+</tr>
+<tr>
+<td><strong>A cada alerta</strong></td>
+<td>sessão fria de triagem, <strong><code>[M15]</code> invocada pelo watcher</strong>; não existe se o alerta estiver vazio</td>
+</tr>
+<tr>
+<td><strong>Por cadência fixa</strong></td>
+<td>auditoria</td>
+</tr>
+</tbody>
+</table></div>
+<p>A auditoria é o único mecanismo que olha para o próprio sistema. A correr mais do que uma vez por mês, o governo consome o projecto.</p>
+<p><code>[M32]</code> <strong>Listagem fixa do auditor.</strong> Ramos não-raiz sem aresta declarada; árvores que excederam a condição de morte; alertas descartados que reapareceram; regras sem incidente; contradições entre estado e frentes; decisões sem aplicação; conteúdos equivalentes sob slugs distintos.</p>
+<h3>3.3 A garantia que nenhum mecanismo dá</h3>
+<p>Confinamento impede uma frente de estragar outra. Não impede que faça a coisa errada com perfeição dentro da sua própria zona.</p>
+<p><code>[M12]</code> <strong>A garantia deixa de ser nula e passa a parcial.</strong> O teste de discriminação de frente verifica que o pressuposto e a regra de paragem são lidos de forma idêntica por sessões independentes. Não verifica que o pressuposto seja o pressuposto certo — isso permanece julgamento humano — mas elimina a categoria de falha em que a frente é bem executada contra um objectivo que ninguém lê da mesma maneira.</p>
+<p>O que resta sem mecanismo: a qualidade do caminho enquanto escolha. Um caminho bem formado, bem testado e bem executado pode ser o caminho errado.</p>
+<hr />
+<h2>4 · Tensões em aberto</h2>
+<p><strong>T1 · Custo de declarar arestas.</strong> Se declarar dependências não for barato no momento em que o ramo nasce, as arestas ficam vazias e o detector cala-se — pior do que não existir. <code>[M33]</code> <strong>Mitigação parcial:</strong> um planeador que gere briefs autónomos produz o mapa de dependências inicial, o que desloca o custo do momento do desenho para o momento da revisão.</p>
+<p><strong>T2 · Completude das dependências.</strong> Declara-se o que se vê; o conflito caro é o que não se viu. Sem mitigação.</p>
+<p><strong>T3 · Reintrodução por slug novo.</strong> <code>[M33]</code> <strong>Mitigação parcial:</strong> a passagem de equivalência por distância vectorial apanha conteúdo equivalente sob slug distinto. A ferramenta está em fase anterior à versão 1, o que torna a mitigação datada.</p>
+<p><strong>T4 · Dependência de runner.</strong> Um papel alocado a um runner específico pára quando esse runner está indisponível. Sem mitigação; a recusa é a escolha deliberada.</p>
+<p><strong>T5 · Inchaço por multiplicação de árvores.</strong> <code>[M33]</code> <strong>Mitigação:</strong> tecto numérico declarado no mandato e verificado pelo auditor. A condição de morte auto-declarada deixa de ser o único travão.</p>
+<p><strong><code>[M34]</code> T6 · O substrato de arestas é ponto único de verdade fora do controlo de versões.</strong> As arestas residem num ficheiro binário que não tem histórico, não tem diff e não tem merge. Uma corrupção é silenciosa e um conflito de escrita concorrente é resolvido por última escrita. A alternativa — arestas em ficheiros de texto versionados — recupera o histórico e perde a invisibilidade ao agente. Nenhuma das duas resolve as duas coisas.</p>
+<hr />
+<h2>5 · <code>[M35]</code> Índice de alterações</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Marca</th>
+<th>Secção</th>
+<th>Alteração</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M01</td>
+<td>1.2</td>
+<td>sintoma: alerta correcto e não lido</td>
+</tr>
+<tr>
+<td>M02</td>
+<td>1.2</td>
+<td>sintoma: investigação repetida</td>
+</tr>
+<tr>
+<td>M03</td>
+<td>1.3</td>
+<td>retirada a exclusão de projectos de frente única</td>
+</tr>
+<tr>
+<td>M04</td>
+<td>1.4</td>
+<td>critério: zero sessões de verificação</td>
+</tr>
+<tr>
+<td>M05</td>
+<td>1.4, 3.1</td>
+<td>critério e garantia: tectos numéricos</td>
+</tr>
+<tr>
+<td>M06</td>
+<td>2.1, P0.5, P0.6</td>
+<td>mandato declara tectos, canal e cadência</td>
+</tr>
+<tr>
+<td>M07</td>
+<td>P0.9, P0.10</td>
+<td>os dois testes separados em regras próprias</td>
+</tr>
+<tr>
+<td>M08</td>
+<td>P1.11, P1.12</td>
+<td>exaustividade por propósito como regra</td>
+</tr>
+<tr>
+<td>M09</td>
+<td>P1.13</td>
+<td>accionabilidade do corte como regra</td>
+</tr>
+<tr>
+<td>M10</td>
+<td>2.2, P1.9, P1.10</td>
+<td>tecto de árvores e árvore morta</td>
+</tr>
+<tr>
+<td>M11</td>
+<td>2.2, P1.7</td>
+<td>ramo fechado regista resultado e razão</td>
+</tr>
+<tr>
+<td>M12</td>
+<td>2.3, P2.7, 3.1, 3.3</td>
+<td>teste de discriminação de frente</td>
+</tr>
+<tr>
+<td>M13</td>
+<td>P2.8</td>
+<td>tecto de frentes</td>
+</tr>
+<tr>
+<td>M14</td>
+<td>P2.9</td>
+<td>inconclusivo redesenha, não repete</td>
+</tr>
+<tr>
+<td>M15</td>
+<td>2.4.3, 2.4.4, 3.2</td>
+<td>watcher emite e invoca a triagem</td>
+</tr>
+<tr>
+<td>M16</td>
+<td>2.4.4</td>
+<td>coluna de origem nas ferramentas</td>
+</tr>
+<tr>
+<td>M17</td>
+<td>2.2, 2.4.4</td>
+<td>substrato de arestas como ferramenta</td>
+</tr>
+<tr>
+<td>M18</td>
+<td>2.4.5</td>
+<td><code>arestas.db</code> fora de todas as zonas</td>
+</tr>
+<tr>
+<td>M19</td>
+<td>2.4.8</td>
+<td>alerta empurrado</td>
+</tr>
+<tr>
+<td>M20</td>
+<td>2.4.7</td>
+<td>fluxo com emissão e invocação</td>
+</tr>
+<tr>
+<td>M21</td>
+<td>2.4.7</td>
+<td>confronto de pesquisa em S4</td>
+</tr>
+<tr>
+<td>M22</td>
+<td>2.4.7, 2.4.8, 3.1, 3.2</td>
+<td>cone afectado por travessia transitiva</td>
+</tr>
+<tr>
+<td>M23</td>
+<td>2.4.8</td>
+<td>passagem semântica confronta pesquisa</td>
+</tr>
+<tr>
+<td>M24</td>
+<td>2.2, 2.4.5, 2.4.8</td>
+<td>projecção legível sem razões de fecho</td>
+</tr>
+<tr>
+<td>M25</td>
+<td>2.4.9</td>
+<td>regra de saída com identificador</td>
+</tr>
+<tr>
+<td>M26</td>
+<td>2.4.10</td>
+<td>regras de alocação com identificador</td>
+</tr>
+<tr>
+<td>M27</td>
+<td>2.5</td>
+<td>condição de adopção de regra nova</td>
+</tr>
+<tr>
+<td>M28</td>
+<td>2.5</td>
+<td>campos fechados exigem validador</td>
+</tr>
+<tr>
+<td>M29</td>
+<td>3.1</td>
+<td>coluna de via nas garantias</td>
+</tr>
+<tr>
+<td>M30</td>
+<td>3.1</td>
+<td>garantia: a pesquisa não repete</td>
+</tr>
+<tr>
+<td>M31</td>
+<td>3.1</td>
+<td>garantia: o alerta chega</td>
+</tr>
+<tr>
+<td>M32</td>
+<td>3.2</td>
+<td>listagem fixa do auditor</td>
+</tr>
+<tr>
+<td>M33</td>
+<td>4</td>
+<td>mitigações de T1, T3 e T5</td>
+</tr>
+<tr>
+<td>M34</td>
+<td>4</td>
+<td>tensão nova T6</td>
+</tr>
+<tr>
+<td>M35</td>
+<td>5</td>
+<td>este índice</td>
+</tr>
+</tbody>
+</table></div>
+<footer class="colo">Arquitectura proposta · 2026-09-19</footer>
+</div>
+<script>
+(function(){
+  var b=document.documentElement,k='pt-theme';
+  try{var s=localStorage.getItem(k); if(s) b.setAttribute('data-theme',s);}catch(e){}
+  document.getElementById('t').addEventListener('click',function(){
+    var cur=b.getAttribute('data-theme');
+    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+    var next=cur==='dark'?'light':'dark';
+    b.setAttribute('data-theme',next);
+    try{localStorage.setItem(k,next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

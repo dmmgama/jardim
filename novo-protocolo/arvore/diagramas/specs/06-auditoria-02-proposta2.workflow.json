@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Auditoria D2 · ARQUITECTURA-PROPOSTA2.md — 28 achados, TOP 5 por ordem",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "contradicao", "label": "A contradicao central", "focus": ["doc", "b1"], "note": "[M24] torna irrecuperavel exactamente a razao de fecho que [M11] acabou de mandar registar." },
+      { "id": "tectos", "label": "Tectos sem mecanismo", "focus": ["b4", "m35"], "note": "P0.5, P1.9, P1.10 e P2.8 criam tectos que nada conta, nada guarda e ninguem verifica." },
+      { "id": "numeracao", "label": "Alocacao e numeracao", "focus": ["b2", "b3", "m33"], "note": "O confronto de pesquisa esta num componente que so corre no merge; P9 sai fora de ordem." }
+    ]
+  },
+  "lanes": [
+    { "id": "top5", "label": "TOP 5 — ordem de execucao" },
+    { "id": "marcas", "label": "Integridade dos marcadores [Mnn]", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "contradicoes", "label": "Desfazer contradicoes", "fromCol": 0, "toCol": 2, "variant": "emphasis" },
+    { "id": "autonomia", "label": "Tornar autonomo", "fromCol": 3, "toCol": 3 },
+    { "id": "ordem", "label": "Alocar e numerar", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["doc", "b1", "b4", "a1", "b2", "b3"],
+  "semanticChecks": {
+    "allowedRoots": ["doc"],
+    "allowedTerminals": ["b3", "m35", "m33"]
+  },
+  "nodes": [
+    { "id": "doc", "lane": "top5", "col": 0, "type": "database", "label": "D2 · proposta 2", "sublabel": "654 l. · 28 achados", "tag": "7C · 15M · 6m", "width": 140 },
+    { "id": "b1", "lane": "top5", "col": 1, "type": "security", "label": "1 · Razao perdida", "sublabel": "[M24] contra [M11]", "tag": "mata os becos", "width": 140 },
+    { "id": "b4", "lane": "top5", "col": 2, "type": "security", "label": "2 · Tectos sem efeito", "sublabel": "B4 + E1f · 4 regras", "tag": "sem contador", "width": 140 },
+    { "id": "a1", "lane": "top5", "col": 3, "type": "security", "label": "3 · Narracao de diff", "sublabel": "A1 · 7 passagens", "tag": "dominante", "width": 140 },
+    { "id": "b2", "lane": "top5", "col": 4, "type": "security", "label": "4 · Ma alocacao", "sublabel": "B2 · so corre no merge", "width": 140 },
+    { "id": "b3", "lane": "top5", "col": 5, "type": "backend", "label": "5 · P9 fora de ordem", "sublabel": "P9.2 e P9.5 fantasma", "width": 140 },
+    { "id": "m35", "lane": "marcas", "col": 2, "type": "messagebus", "label": "Contagem nao bate", "sublabel": "34 no cabecalho, 35", "tag": "CRITICO", "width": 140 },
+    { "id": "m33", "lane": "marcas", "col": 4, "type": "messagebus", "label": "[M33] cobre tres", "sublabel": "T1, T3 e T5 num so id", "tag": "MENOR", "width": 140 }
+  ],
+  "edges": [
+    { "id": "e1", "from": "doc", "to": "b1", "label": "1.o", "variant": "emphasis" },
+    { "id": "e2", "from": "b1", "to": "b4", "label": "2.o", "variant": "emphasis" },
+    { "id": "e3", "from": "b4", "to": "a1", "label": "3.o", "variant": "emphasis" },
+    { "id": "e4", "from": "a1", "to": "b2", "label": "4.o", "variant": "emphasis" },
+    { "id": "e5", "from": "b2", "to": "b3", "label": "5.o", "variant": "emphasis" },
+    { "id": "e6", "from": "b4", "to": "m35", "label": "mesma familia", "variant": "dashed", "role": "branch" },
+    { "id": "e7", "from": "b2", "to": "m33", "label": "citacao impossivel", "variant": "dashed", "role": "branch" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Veredicto", "items": ["Como especificacao autonoma nao serve: seis alteracoes centrais sao redigidas como delta", "Como diff tambem nao serve: nao ha texto anterior em lado nenhum", "Falha nos dois papeis que tenta acumular"] },
+    { "dot": "amber", "title": "Deriva dentro do documento que a proibe", "items": ["[M09] alterou P1.13 e deixou intacta a versao em prosa da mesma obrigacao", "A prosa de §2.2 enuncia oito obrigacoes ja ditas no Protocolo P1", "Tres passagens nao marcadas continuam a codificar o comportamento revogado"] },
+    { "dot": "emerald", "title": "O que esta bem", "items": ["O vocabulario normativo e declarado antes de qualquer regra", "31 dos 35 marcadores batem certo entre corpo e indice", "[M34] acrescenta uma tensao desfavoravel a propria proposta"] }
+  ]
+}

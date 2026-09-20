@@ -1,0 +1,137 @@
+{
+  "id": "D-arquitectura-governo",
+  "data": "2026-09-19",
+  "sessao": "2026-09-19-arquitectura-governo",
+  "modo": "rumo",
+  "contexto": "Desenho de arquitectura de governo para projectos multi-frente conduzidos por agentes",
+
+  "decisoes": [
+    {
+      "id": "D1",
+      "o_que": "Gate de fecho em dois niveis: divergencia dura bloqueia, branda fecha com carece_aprovacao",
+      "em_vez_de": "Bloqueio total ate aprovacao humana",
+      "porque_nao": "reintroduz bloqueio sincrono; com varias frentes acumulam-se sessoes abertas",
+      "afecta": ["arquitectura-governo#mecanismos", "fluxo#F4"]
+    },
+    {
+      "id": "D2",
+      "o_que": "Worktrees para isolamento e merge-como-gate; hooks para confinamento de caminhos e HALT",
+      "em_vez_de": "Worktrees a seco, ou so hooks",
+      "porque_nao": "git isola o que versiona mas nao restringe leitura; so hooks perde paralelismo e merge como ponto de verificacao",
+      "afecta": ["arquitectura-governo#ferramentas"]
+    },
+    {
+      "id": "D3",
+      "o_que": "Watcher central unico; a frente declara, o watcher cruza",
+      "em_vez_de": "Subagente varredor por frente",
+      "porque_nao": "N varrimentos produzem N opinioes sem reconciliacao; contradiz o isolamento de worktrees",
+      "reabrir_se": "o watcher central falhar a detectar conflitos que so a frente veria",
+      "afecta": ["arquitectura-governo#actores"]
+    },
+    {
+      "id": "D4",
+      "o_que": "Arquitecto em dois modos segregados: triagem disparada por alerta, rumo aberto so pelo humano",
+      "em_vez_de": "Modo unico",
+      "porque_nao": "cada alerta reabriria a discussao de rumo; tarefas a gerar tarefas",
+      "invariante": "o modo rumo nunca escreve no estado",
+      "afecta": ["arquitectura-governo#actores", "fluxo#F6", "fluxo#F7"]
+    },
+    {
+      "id": "D5",
+      "o_que": "Protocolos entregues em dois ficheiros: a lei sem explicacoes, e um anexo de implementacao",
+      "em_vez_de": "Ficheiro unico com regras e justificacao",
+      "porque_nao": "justificacao dentro da norma abre espaco a opiniao em runtime",
+      "afecta": ["arquitectura-governo#regra-de-saida"]
+    },
+    {
+      "id": "D6",
+      "o_que": "Debates registados em JSON com campos fechados: decisao, alternativa rejeitada, razao, slugs afectados",
+      "em_vez_de": "Registo narrativo do debate",
+      "porque_nao": "narrativa nao e consultavel nem alimenta o indice de proteccao",
+      "afecta": ["arquitectura-governo#registo-de-debates"]
+    },
+    {
+      "id": "D7",
+      "o_que": "O mandato e redigido por agente, por reformulacao da intencao; o humano valida por teste de reformulacao",
+      "em_vez_de": "Mandato escrito a mao pelo humano, com o modelo proibido de o redigir",
+      "porque_nao": "a reformulacao e a unica prova de que a intencao foi transmitida; papaguear e detectavel por quatro sinais",
+      "limite": "o agente nao pode acrescentar objectivo ou nao-objectivo que o humano nao tenha enunciado",
+      "afecta": ["arquitectura-governo#nascimento-do-projecto"]
+    },
+    {
+      "id": "D8",
+      "o_que": "Camada de caminho entre mandato e frentes, com metodo de procura e reavaliacao",
+      "em_vez_de": "Frentes derivadas directamente do mandato",
+      "porque_nao": "sem camada de estrategia cada frente e uma aposta isolada que ninguem consegue avaliar",
+      "afecta": ["arquitectura-governo#o-caminho"]
+    },
+    {
+      "id": "D9",
+      "o_que": "Arvore como ferramenta transversal com quatro propositos: problema, caracterizacao, decisao, mandato",
+      "em_vez_de": "Arvore apenas como issue tree de resolucao de problemas",
+      "porque_nao": "exclui caracterizacao, decisao pessoal e formulacao de mandato, que sao os casos mais frequentes fora de consultoria",
+      "distincao": "ME aplica-se sempre; CE e estrito no problema e aspiracional na caracterizacao",
+      "afecta": ["arquitectura-governo#a-arvore"]
+    },
+    {
+      "id": "D10",
+      "o_que": "Escopo de contexto por nivel: cada nivel classifica contra o nivel imediatamente acima",
+      "em_vez_de": "Mandato global carregado em todas as sessoes",
+      "porque_nao": "aumenta variancia interpretativa e compete com a tarefa pela atencao",
+      "excepcao": "os nao-objectivos nao sao escopaveis e vao inteiros em qualquer sessao que classifique",
+      "afecta": ["arquitectura-governo#escopo-de-contexto"]
+    },
+    {
+      "id": "D11",
+      "o_que": "Slugs globais para tudo, indice de decisoes gerado por inversao, quatro niveis de proteccao",
+      "em_vez_de": "Referencia a decisao dentro do proprio protocolo",
+      "porque_nao": "uma referencia no protocolo faz o agente querer saber o que esta por tras e abre espaco a opiniao",
+      "regra": "slugs nunca sao reutilizados nem renumerados; regra retirada sai da vista e fica morta no arquivo",
+      "afecta": ["arquitectura-governo#mecanismos"]
+    },
+    {
+      "id": "D12",
+      "o_que": "Watcher com tres passagens: colisao, dependencia declarada, semantico",
+      "em_vez_de": "Duas passagens, colisao e semantico",
+      "porque_nao": "a colisao so apanha conflito com sobreposicao de ficheiros; a dependencia apanha conclusao que muda outro ramo sem partilhar nada",
+      "consequencia": "o detector semantico desce a rede de seguranca e passa a indicar arestas em falta",
+      "afecta": ["arquitectura-governo#mecanismos"]
+    },
+    {
+      "id": "D13",
+      "o_que": "Piramide de Minto como regra de saida transversal a todos os niveis",
+      "em_vez_de": "Minto como parte do instrumento de arvore",
+      "porque_nao": "particao do problema e comunicacao do resultado sao logicas distintas; confundi-las produz documentos que expoem a analise em vez de a concluir",
+      "afecta": ["arquitectura-governo#regra-de-saida"]
+    },
+    {
+      "id": "D14",
+      "o_que": "Escolha de agente por requisitos do papel, com enforcement como criterio eliminatorio",
+      "em_vez_de": "Alocacao por produto ou preferencia de ferramenta",
+      "porque_nao": "um papel que escreve em zona protegida so pode correr onde existam hooks bloqueantes",
+      "regra": "o enforcement vive no runner que executa, nao no que orquestra",
+      "afecta": ["arquitectura-governo#escolha-de-agente-por-papel"]
+    },
+    {
+      "id": "D15",
+      "o_que": "Falha de runner e recusa, nunca passagem",
+      "em_vez_de": "Degradacao permissiva quando o hook nao responde",
+      "porque_nao": "um sistema que deixa passar quando a proteccao falha e pior do que nao ter proteccao, porque parece estar a proteger",
+      "custo_assumido": "indisponibilidade de infraestrutura para trabalho",
+      "afecta": ["arquitectura-governo#escolha-de-agente-por-papel", "arquitectura-governo#tensoes"]
+    }
+  ],
+
+  "rejeitadas_sem_decisao": [
+    {
+      "o_que": "Blueprint como planeador de projecto",
+      "porque_nao": "decompoe de cima para baixo; em regime exploratorio reinstala a patologia de plano-de-tarefas",
+      "aproveitado": "formato de brief cold-start para a projeccao de frente"
+    },
+    {
+      "o_que": "Sessao de Arquitecto permanente com runtime a avaliar o estado geral",
+      "porque_nao": "sessao de longa duracao acumula contexto e deriva; seria o pior sitio do sistema para isso acontecer",
+      "aproveitado": "watcher persistente sem modelo, que arranca sessoes frias e curtas"
+    }
+  ]
+}

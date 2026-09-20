@@ -1,0 +1,52 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "O atomo — sessao S1 a S6 e o gate de fecho",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "arranque", "label": "Arranque e contexto", "focus": ["inicio", "halt", "contexto"], "note": "Com HALT presente o hook recusa arranque e qualquer escrita; o contexto monta-se por perfil e escopo." },
+      { "id": "trabalho", "label": "Trabalho e confinamento", "focus": ["contexto", "trabalha", "zona"], "note": "Escrita fora da zona bloqueia, devolve a zona e a sessao continua: nao existe estado de espera." },
+      { "id": "fecho", "label": "Gate e selagem", "focus": ["gate", "marca", "selagem"], "note": "Divergencia dura bloqueia o fecho; divergencia branda fecha com marca e sobe ao alerta." }
+    ]
+  },
+  "lanes": [
+    { "id": "sessao", "label": "Sessao — S1 a S6" },
+    { "id": "excepcao", "label": "Recusa, bloqueio e marca", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "abrir", "label": "Abrir", "fromCol": 0, "toCol": 1 },
+    { "id": "trabalhar", "label": "Trabalhar", "fromCol": 2, "toCol": 2, "variant": "emphasis" },
+    { "id": "fechar", "label": "Fechar", "fromCol": 3, "toCol": 4, "variant": "dashed" }
+  ],
+  "mainPath": ["inicio", "contexto", "trabalha", "gate", "selagem"],
+  "semanticChecks": {
+    "allowedRoots": ["inicio"],
+    "allowedTerminals": ["halt", "zona", "selagem"]
+  },
+  "nodes": [
+    { "id": "inicio", "lane": "sessao", "col": 0, "type": "external", "label": "Sessao abre", "sublabel": "S1–S2 · perfil", "tag": "HALT? perfil?", "width": 140 },
+    { "id": "contexto", "lane": "sessao", "col": 1, "type": "backend", "label": "Monta contexto", "sublabel": "S3 · por perfil", "tag": "P3.2 · P3.3", "width": 140 },
+    { "id": "trabalha", "lane": "sessao", "col": 2, "type": "backend", "label": "Trabalha", "sublabel": "S4 · na projeccao", "tag": "duvida: assume", "width": 140 },
+    { "id": "gate", "lane": "sessao", "col": 3, "type": "security", "label": "Gate de fecho", "sublabel": "S5 · dois patamares", "tag": "P3.16", "width": 140 },
+    { "id": "selagem", "lane": "sessao", "col": 4, "type": "database", "label": "Sela e faz merge", "sublabel": "S6 · dispara watcher", "tag": "P3.17", "width": 140 },
+    { "id": "halt", "lane": "excepcao", "col": 0, "type": "security", "label": "Recusa", "sublabel": "HALT presente", "tag": "P3.13", "width": 140 },
+    { "id": "zona", "lane": "excepcao", "col": 2, "type": "security", "label": "Fora da zona", "sublabel": "bloqueia e continua", "tag": "P3.1", "width": 140 },
+    { "id": "marca", "lane": "excepcao", "col": 3, "type": "messagebus", "label": "carece_aprovacao", "sublabel": "sobe ao ALERTA", "tag": "branda", "width": 140 }
+  ],
+  "edges": [
+    { "id": "halt-recusa", "from": "inicio", "to": "halt", "label": "HALT presente", "variant": "security", "role": "error" },
+    { "id": "arranca", "from": "inicio", "to": "contexto", "label": "perfil declarado", "variant": "emphasis" },
+    { "id": "monta", "from": "contexto", "to": "trabalha", "label": "escopo montado", "variant": "emphasis" },
+    { "id": "fora-zona", "from": "trabalha", "to": "zona", "label": "escrita indevida", "variant": "security", "role": "error" },
+    { "id": "fecha-sessao", "from": "trabalha", "to": "gate", "label": "fecho de sessao", "variant": "emphasis" },
+    { "id": "branda", "from": "gate", "to": "marca", "label": "divergencia branda", "variant": "security", "role": "branch" },
+    { "id": "passa", "from": "gate", "to": "selagem", "label": "passa", "variant": "emphasis" },
+    { "id": "marca-fecha", "from": "marca", "to": "selagem", "label": "fecha com marca", "variant": "dashed", "role": "return" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Divergencia dura bloqueia o fecho", "items": ["Tocou fora do que declarou em toca[]", "Nao serve pressuposto nenhum nem caminho escolhido", "Rascunhos nao ficou vazio"] },
+    { "dot": "amber", "title": "Divergencia branda fecha com marca", "items": ["Pressuposto novo declarado pela sessao", "cold_read = falha no output ou no handoff", "Edicao de slug com grau decidido"] },
+    { "dot": "emerald", "title": "Nao existe estado de espera (P3.12)", "items": ["Uma sessao nunca fica a espera de outro actor", "Declara o pressuposto que assumiu e prossegue", "Tema fora da projeccao vai para Rascunhos e volta-se ao tema", "O handoff e validado por cold-read antes de fechar"] }
+  ]
+}

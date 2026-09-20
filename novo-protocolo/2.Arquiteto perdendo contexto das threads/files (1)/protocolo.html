@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Protocolo de governo de projectos multi-frente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,900&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f2ede3; --ink:#17150f; --muted:#6b6355; --rule:#d6cdbc;
+  --accent:#7a2e28; --accent-soft:#a8564a; --panel:#eae3d5;
+  --display:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Newsreader',Georgia,'Times New Roman',serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14120e; --ink:#eee7d9; --muted:#9a917f; --rule:#332e25;
+    --accent:#c9705f; --accent-soft:#e0937f; --panel:#1d1a14;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14120e; --ink:#eee7d9; --muted:#9a917f; --rule:#332e25;
+  --accent:#c9705f; --accent-soft:#e0937f; --panel:#1d1a14;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--body); font-size:17px; line-height:1.62;
+  font-weight:300;
+  background-image:radial-gradient(circle at 12% 8%, rgba(122,46,40,.05), transparent 45%);
+}
+.wrap{max-width:46rem;margin:0 auto;padding:clamp(2rem,6vw,5rem) clamp(1.1rem,5vw,2.5rem) 8rem}
+header.mast{border-bottom:2px solid var(--ink);padding-bottom:1.4rem;margin-bottom:3rem}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin:0 0 .9rem}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(2rem,7vw,3.1rem);line-height:1.02;letter-spacing:-.02em;margin:0 0 .6rem}
+.sub{font-size:.95rem;color:var(--muted);margin:0;font-style:italic}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(1.3rem,4.4vw,1.75rem);line-height:1.15;letter-spacing:-.01em;
+   margin:3.4rem 0 1rem;padding-top:1rem;border-top:1px solid var(--rule)}
+h3{font-family:var(--display);font-weight:600;font-size:1.08rem;margin:2.2rem 0 .7rem;color:var(--accent)}
+h4{font-family:var(--mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:1.8rem 0 .5rem}
+p{margin:0 0 1.05rem}
+strong{font-weight:600}
+em{font-style:italic;color:var(--muted)}
+a{color:var(--accent)}
+hr{border:none;height:1px;background:var(--rule);margin:3rem 0}
+ul,ol{margin:0 0 1.2rem;padding-left:1.15rem}
+li{margin-bottom:.42rem}
+code{font-family:var(--mono);font-size:.84em;background:var(--panel);padding:.1em .35em;border-radius:2px}
+/* regras normativas */
+li>strong:first-child code,
+li code:first-child{background:none;padding:0}
+ul li strong:first-child{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--accent);letter-spacing:.02em}
+.tablewrap{overflow-x:auto;margin:0 0 1.6rem;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:22rem}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-align:left;
+   padding:.7rem .7rem;border-bottom:1px solid var(--rule);color:var(--muted);font-weight:600;white-space:nowrap}
+td{padding:.62rem .7rem;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--panel)}
+blockquote{margin:1.4rem 0;padding-left:1.1rem;border-left:3px solid var(--accent);color:var(--muted);font-style:italic}
+.toggle{position:fixed;top:calc(env(safe-area-inset-top,0px) + .7rem);right:.7rem;z-index:9;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--panel);color:var(--muted);border:1px solid var(--rule);
+  padding:.4rem .6rem;border-radius:2px;cursor:pointer}
+.toggle:hover{color:var(--accent);border-color:var(--accent)}
+footer.colo{margin-top:5rem;padding-top:1.2rem;border-top:2px solid var(--ink);
+  font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media print{.toggle{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<button class="toggle" id="t">tema</button>
+<div class="wrap">
+<header class="mast">
+<p class="eyebrow">Documento canónico · lei e anexo</p>
+<h1>Protocolo de governo de projectos multi-frente</h1>
+<p class="sub">Definições, onze conjuntos de regras com identificador, e as vias de implementação de cada função.</p>
+</header>
+<h2>0 · Aplicabilidade</h2>
+<p>Este documento governa projectos executados por múltiplas sessões de agentes sobre um corpo de trabalho comum, com ou sem paralelismo.</p>
+<p>Este documento contém apenas regras. A informação sobre como as aplicar consta do anexo de implementação.</p>
+<h2>1 · Vocabulário modal</h2>
+<p>As palavras que carregam obrigação neste documento são três, e só três:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Palavra</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>deve</strong></td>
+<td>obrigatório; a operação que o contrarie é inválida</td>
+</tr>
+<tr>
+<td><strong>não pode</strong></td>
+<td>proibido; a operação que o contrarie é recusada</td>
+</tr>
+<tr>
+<td><strong>pode</strong></td>
+<td>permitido; a ausência não constitui falha</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nenhuma outra forma verbal carrega obrigação. Secções marcadas como informativas não contêm obrigação.</p>
+<h2>2 · Definições</h2>
+<p>Os termos abaixo são definidos uma única vez e nesta ordem.</p>
+<p><strong>Projecto</strong> — corpo de trabalho sujeito a um mandato único.</p>
+<p><strong>Humano responsável</strong> — pessoa singular que detém a intenção de que o mandato é reformulação.</p>
+<p><strong>Agente</strong> — processo que executa trabalho por inferência de modelo.</p>
+<p><strong>Runner</strong> — ambiente de execução onde um agente ou um processo corre.</p>
+<p><strong>Hook</strong> — programa que intercepta uma operação antes da sua execução e a permite ou recusa.</p>
+<p><strong>Zona</strong> — conjunto de caminhos em que um actor está autorizado a escrever.</p>
+<p><strong>Slug</strong> — identificador textual estável, único no projecto, atribuído a um objecto do projecto.</p>
+<p><strong>Mandato</strong> — documento que declara os objectivos do projecto, os seus não-objectivos e o critério de fim.</p>
+<p><strong>Objectivo</strong> — resultado que o projecto persegue.</p>
+<p><strong>Não-objectivo</strong> — resultado que o projecto exclui.</p>
+<p><strong>Caso</strong> — tarefa concreta cuja classificação dentro ou fora do mandato foi decidida e registada.</p>
+<p><strong>Árvore</strong> — partição de um espaço em ramos, com um propósito declarado.</p>
+<p><strong>Propósito de árvore</strong> — um de quatro: problema, caracterização, decisão, mandato.</p>
+<p><strong>Ramo</strong> — nó de uma árvore.</p>
+<p><strong>Eixo de corte</strong> — critério segundo o qual um nó é partido em ramos.</p>
+<p><strong>Condição de morte</strong> — critério declarado ao nascer de uma árvore, cuja verificação a encerra.</p>
+<p><strong>Poda</strong> — encerramento de um ramo por decisão de não o aprofundar.</p>
+<p><strong>Triagem de ordem de grandeza</strong> — estimativa que determina se a variação extrema de um ramo alteraria a decisão final.</p>
+<p><strong>Aresta</strong> — dependência declarada entre dois ramos.</p>
+<p><strong>Substrato de arestas</strong> — armazenamento onde as arestas residem.</p>
+<p><strong>Cone afectado</strong> — conjunto dos ramos alcançáveis a jusante de um ramo por travessia transitiva das arestas.</p>
+<p><strong>Caminho</strong> — hipótese corrente sobre como se atinge o mandato, sustentada por pressupostos declarados.</p>
+<p><strong>Pressuposto</strong> — proposição que tem de ser verdadeira para que um caminho se sustente.</p>
+<p><strong>Discriminante</strong> — pressuposto cuja resolução elimina pelo menos um caminho.</p>
+<p><strong>Regra de paragem</strong> — critério verificável que determina quando um pressuposto se considera resolvido.</p>
+<p><strong>Estado de pressuposto</strong> — um de quatro: por testar, confirmado, invalidado, inconclusivo.</p>
+<p><strong>Reavaliação</strong> — procedimento desencadeado pela resolução de um pressuposto ou pela vontade do humano responsável.</p>
+<p><strong>Frente</strong> — unidade de trabalho que testa um pressuposto ou executa um caminho já escolhido.</p>
+<p><strong>Projecção de frente</strong> — objectivo da frente e fronteiras negativas, derivados do caminho.</p>
+<p><strong>Sessão</strong> — período contínuo de trabalho de um agente dentro de uma frente.</p>
+<p><strong>Perfil</strong> — papel declarado por uma sessão, do qual decorrem a sua zona e o seu escopo de contexto.</p>
+<p><strong>Escopo de contexto</strong> — conjunto de documentos carregados numa sessão.</p>
+<p><strong>Rascunhos</strong> — depósito intra-sessão de matéria fora da projecção da frente.</p>
+<p><strong>Inbox</strong> — depósito de matéria destinada a processamento fora da frente.</p>
+<p><strong>Gate de fecho</strong> — verificação executada no encerramento de uma sessão.</p>
+<p><strong>Cold-read</strong> — verificação em que um agente sem histórico lê um documento e responde a uma pergunta fechada sobre a acção seguinte.</p>
+<p><strong>Entrega</strong> — documento que uma frente devolve ao projecto.</p>
+<p><strong>Handoff</strong> — documento que permite a retoma de uma frente por sessão sem histórico.</p>
+<p><strong>Estado</strong> — conjunto das proposições verdadeiras no momento presente.</p>
+<p><strong>Evidência</strong> — registo de facto ocorrido.</p>
+<p><strong>Proveniência selada</strong> — registo imutável de pedido, resposta e referências, fora do índice de pesquisa.</p>
+<p><strong>Decisão</strong> — registo datado que fixa uma escolha, a alternativa rejeitada, a razão e os slugs afectados.</p>
+<p><strong>Índice de decisões</strong> — correspondência de slug para decisão.</p>
+<p><strong>Nível de protecção</strong> — um de quatro: livre, decidido, selado, morto.</p>
+<p><strong>Watcher</strong> — processo sem modelo que corre a cada integração de trabalho.</p>
+<p><strong>Alerta</strong> — conjunto dos itens detectados e por processar.</p>
+<p><strong>Triagem</strong> — sessão que classifica itens de alerta.</p>
+<p><strong>Auditor</strong> — sessão que verifica o funcionamento do próprio sistema.</p>
+<p><strong>Emenda</strong> — alteração datada ao mandato.</p>
+<p><strong>Deriva</strong> — alteração do objectivo não declarada.</p>
+<p><strong>Inflexão</strong> — alteração do objectivo declarada, datada e com alternativa registada.</p>
+<p><strong>HALT</strong> — estado do projecto em que toda a escrita é recusada.</p>
+<p><strong>Tecto</strong> — limite numérico declarado no mandato.</p>
+<hr />
+<h2>3 · P0 · Nascimento</h2>
+<ul>
+<li><strong>P0.1</strong> — O mandato deve declarar entre um e cinco objectivos, cada um com slug.</li>
+<li><strong>P0.2</strong> — O mandato deve declarar dois ou três não-objectivos por objectivo.</li>
+<li><strong>P0.3</strong> — O mandato não pode exceder uma página.</li>
+<li><strong>P0.4</strong> — O mandato deve declarar o critério de fim do projecto.</li>
+<li><strong>P0.5</strong> — O mandato deve declarar o tecto de árvores simultaneamente abertas.</li>
+<li><strong>P0.6</strong> — O mandato deve declarar o tecto de frentes simultaneamente abertas.</li>
+<li><strong>P0.7</strong> — O mandato deve ser redigido por agente, por reformulação da intenção do humano responsável.</li>
+<li><strong>P0.8</strong> — O agente não pode inscrever no mandato objectivo ou não-objectivo que o humano responsável não tenha enunciado.</li>
+<li><strong>P0.9</strong> — O mandato deve passar o teste de reformulação.</li>
+<li><strong>P0.10</strong> — O mandato deve passar o teste de discriminação de tarefa.</li>
+<li><strong>P0.11</strong> — Nenhuma frente pode ser aberta antes de P0.9 e P0.10 devolverem verdadeiro.</li>
+<li><strong>P0.12</strong> — Uma falha em P0.9 ou P0.10 deve produzir um não-objectivo novo ou um caso registado.</li>
+<li><strong>P0.13</strong> — Uma falha em P0.9 ou P0.10 não pode produzir um princípio novo.</li>
+</ul>
+<h3>Teste de reformulação</h3>
+<ul>
+<li><strong>P0.14</strong> — O agente deve derivar um não-objectivo que o humano responsável não tenha enunciado, e o humano responsável deve confirmá-lo.</li>
+<li><strong>P0.15</strong> — O agente deve classificar uma tarefa-fronteira construída no momento.</li>
+<li><strong>P0.16</strong> — O agente deve enunciar o que o mandato exclui.</li>
+<li><strong>P0.17</strong> — O agente deve nomear a tensão entre dois objectivos e indicar qual cede.</li>
+<li><strong>P0.18</strong> — O teste considera-se falhado se qualquer de P0.14 a P0.17 falhar.</li>
+</ul>
+<h3>Teste de discriminação de tarefa</h3>
+<ul>
+<li><strong>P0.19</strong> — Três tarefas devem ser construídas: duas dentro do mandato e uma fora, semelhante a uma das primeiras.</li>
+<li><strong>P0.20</strong> — Três sessões sem histórico devem classificar as três tarefas, cada uma com o mandato como único documento carregado.</li>
+<li><strong>P0.21</strong> — O teste considera-se passado se as três sessões classificarem de forma idêntica e correcta.</li>
+</ul>
+<hr />
+<h2>4 · P1 · Árvore</h2>
+<ul>
+<li><strong>P1.1</strong> — Cada árvore deve declarar, ao nascer, o seu propósito e a sua condição de morte.</li>
+<li><strong>P1.2</strong> — Um nó não pode aplicar mais de um eixo de corte.</li>
+<li><strong>P1.3</strong> — Ramos irmãos não podem sobrepor-se.</li>
+<li><strong>P1.4</strong> — Um ramo deve declarar as suas arestas no acto em que é desenhado.</li>
+<li><strong>P1.5</strong> — Um ramo não pode passar a frente sem ter passado a triagem de ordem de grandeza.</li>
+<li><strong>P1.6</strong> — Um ramo podado deve registar a razão da poda.</li>
+<li><strong>P1.7</strong> — Um ramo fechado deve registar o resultado e a razão do fecho.</li>
+<li><strong>P1.8</strong> — Árvores de propósito diferente não podem ser fundidas.</li>
+<li><strong>P1.9</strong> — O número de árvores simultaneamente abertas não pode exceder o tecto declarado em P0.5.</li>
+<li><strong>P1.10</strong> — Uma árvore cuja condição de morte se verificou não pode receber ramos novos.</li>
+<li><strong>P1.11</strong> — Numa árvore de propósito problema, os ramos irmãos devem cobrir integralmente o nó de origem no momento em que são desenhados.</li>
+<li><strong>P1.12</strong> — Numa árvore de propósito caracterização, a cobertura integral deve ser verificada no fecho da árvore.</li>
+<li><strong>P1.13</strong> — Um ramo só pode passar a frente se o seu eixo de corte recair sobre variável controlável ou influenciável.</li>
+</ul>
+<hr />
+<h2>5 · P2 · Caminho</h2>
+<ul>
+<li><strong>P2.1</strong> — O caminho deve declarar dois ou mais caminhos plausíveis.</li>
+<li><strong>P2.2</strong> — O caminho deve declarar os pressupostos de cada caminho plausível, com estado.</li>
+<li><strong>P2.3</strong> — O caminho deve declarar a ordem de ataque dos pressupostos.</li>
+<li><strong>P2.4</strong> — Cada pressuposto deve ter regra de paragem escrita antes de a frente que o testa abrir.</li>
+<li><strong>P2.5</strong> — Cada frente deve declarar o pressuposto que testa ou o caminho que executa.</li>
+<li><strong>P2.6</strong> — Um caminho não pode ser declarado escolhido com discriminante por testar.</li>
+<li><strong>P2.7</strong> — Um pressuposto invalidado deve disparar reavaliação antes de qualquer frente nova ser aberta.</li>
+<li><strong>P2.8</strong> — Uma reavaliação deve terminar em exactamente uma de quatro saídas: manter, reordenar, trocar de caminho, escalar.</li>
+<li><strong>P2.9</strong> — Uma reavaliação que termine em escalar deve ser remetida ao humano responsável.</li>
+<li><strong>P2.10</strong> — O caminho não pode exceder uma página.</li>
+<li><strong>P2.11</strong> — O caminho deve passar o teste de discriminação de frente.</li>
+<li><strong>P2.12</strong> — O número de frentes simultaneamente abertas não pode exceder o tecto declarado em P0.6.</li>
+<li><strong>P2.13</strong> — Um pressuposto com estado inconclusivo deve produzir redesenho da regra de paragem.</li>
+<li><strong>P2.14</strong> — Um pressuposto com estado inconclusivo não pode produzir repetição do mesmo teste.</li>
+</ul>
+<h3>Teste de discriminação de frente</h3>
+<ul>
+<li><strong>P2.15</strong> — Três frentes devem ser construídas: duas que testam pressupostos declarados no caminho e uma que não testa nenhum, formulada em termos semelhantes.</li>
+<li><strong>P2.16</strong> — Três sessões sem histórico devem classificar as três frentes, cada uma com o caminho como único documento carregado.</li>
+<li><strong>P2.17</strong> — O teste considera-se passado se as três sessões classificarem de forma idêntica e correcta.</li>
+<li><strong>P2.18</strong> — Uma falha em P2.11 deve produzir reformulação do pressuposto ou da regra de paragem.</li>
+</ul>
+<hr />
+<h2>6 · P3 · Frente</h2>
+<ul>
+<li><strong>P3.1</strong> — Uma frente deve abrir com projecção derivada do caminho.</li>
+<li><strong>P3.2</strong> — Uma frente não pode escrever fora da sua zona.</li>
+<li><strong>P3.3</strong> — Uma frente deve declarar o que toca.</li>
+<li><strong>P3.4</strong> — Uma frente deve declarar de que depende.</li>
+<li><strong>P3.5</strong> — Uma frente não pode escrever no mandato, no caminho ou nas árvores.</li>
+<li><strong>P3.6</strong> — Uma frente que encontre matéria fora da sua projecção deve registá-la no inbox.</li>
+<li><strong>P3.7</strong> — Uma frente não pode suspender trabalho à espera de outro actor.</li>
+<li><strong>P3.8</strong> — Uma frente perante dúvida não resolúvel deve declarar o pressuposto que assume e prosseguir.</li>
+<li><strong>P3.9</strong> — Uma frente cujo pressuposto se resolveu deve fechar.</li>
+<li><strong>P3.10</strong> — Uma frente que fecha deve devolver o resultado ao caminho.</li>
+</ul>
+<hr />
+<h2>7 · P4 · Sessão</h2>
+<ul>
+<li><strong>P4.1</strong> — Uma sessão não pode arrancar com HALT activo.</li>
+<li><strong>P4.2</strong> — Uma sessão não pode arrancar sem perfil declarado.</li>
+<li><strong>P4.3</strong> — O escopo de contexto de uma sessão deve ser montado por perfil.</li>
+<li><strong>P4.4</strong> — Uma sessão deve classificar o seu trabalho contra o nível imediatamente acima do seu.</li>
+<li><strong>P4.5</strong> — Uma sessão não pode carregar documentos acima do nível imediatamente acima do seu.</li>
+<li><strong>P4.6</strong> — Os não-objectivos devem ser carregados integralmente em qualquer sessão que classifique.</li>
+<li><strong>P4.7</strong> — Uma sessão que tente escrever fora da sua zona deve ser bloqueada e receber a sua zona.</li>
+<li><strong>P4.8</strong> — Uma sessão que encontre matéria fora da projecção da sua frente deve depositá-la nos rascunhos e retomar o tema.</li>
+<li><strong>P4.9</strong> — Uma sessão não pode fechar se tocou fora do que declarou.</li>
+<li><strong>P4.10</strong> — Uma sessão não pode fechar sem pressuposto ou caminho associado.</li>
+<li><strong>P4.11</strong> — Uma sessão não pode fechar com rascunhos não vazios.</li>
+<li><strong>P4.12</strong> — Uma sessão que introduziu pressuposto novo deve fechar marcada como carecendo de aprovação.</li>
+<li><strong>P4.13</strong> — Uma sessão cujo handoff falhe o cold-read deve fechar marcada como carecendo de aprovação.</li>
+<li><strong>P4.14</strong> — Uma sessão deve selar o pedido, a resposta e as referências antes da integração do trabalho.</li>
+<li><strong>P4.15</strong> — Uma sessão cujo trabalho continua deve produzir handoff.</li>
+</ul>
+<hr />
+<h2>8 · P5 · Arestas</h2>
+<ul>
+<li><strong>P5.1</strong> — Toda a aresta deve ser registada no substrato de arestas.</li>
+<li><strong>P5.2</strong> — O substrato de arestas deve residir fora de todas as zonas de escrita.</li>
+<li><strong>P5.3</strong> — Um agente não pode ler o substrato de arestas.</li>
+<li><strong>P5.4</strong> — O fecho de um ramo deve disparar o cálculo do cone afectado.</li>
+<li><strong>P5.5</strong> — A poda de um ramo deve disparar o cálculo do cone afectado.</li>
+<li><strong>P5.6</strong> — A alteração de uma decisão deve disparar o cálculo do cone afectado.</li>
+<li><strong>P5.7</strong> — O cone afectado deve ser calculado por travessia transitiva das arestas.</li>
+<li><strong>P5.8</strong> — Cada ramo do cone afectado deve produzir um item de alerta.</li>
+<li><strong>P5.9</strong> — Um ramo não-raiz sem aresta declarada deve ser listado pelo auditor.</li>
+<li><strong>P5.10</strong> — Uma aresta não pode ser removida sem decisão registada.</li>
+</ul>
+<hr />
+<h2>9 · P6 · Protecção do decidido</h2>
+<ul>
+<li><strong>P6.1</strong> — Todo o documento, regra, decisão, ramo e pressuposto deve ter slug.</li>
+<li><strong>P6.2</strong> — Um slug não pode ser reutilizado.</li>
+<li><strong>P6.3</strong> — Um slug não pode ser renumerado.</li>
+<li><strong>P6.4</strong> — Cada decisão deve registar a escolha, a alternativa rejeitada, a razão e os slugs que afecta.</li>
+<li><strong>P6.5</strong> — O índice de decisões deve ser gerado por inversão do registo de decisões.</li>
+<li><strong>P6.6</strong> — O índice de decisões não pode ser escrito manualmente.</li>
+<li><strong>P6.7</strong> — Uma escrita sobre slug de nível decidido deve ser suspensa até confirmação do humano responsável.</li>
+<li><strong>P6.8</strong> — Uma escrita sobre slug de nível selado deve ser recusada.</li>
+<li><strong>P6.9</strong> — Uma escrita que recrie slug de nível morto deve ser recusada.</li>
+<li><strong>P6.10</strong> — Uma recusa ou suspensão ao abrigo de P6.7, P6.8 ou P6.9 deve devolver o identificador da decisão.</li>
+<li><strong>P6.11</strong> — Uma recusa ou suspensão ao abrigo de P6.7, P6.8 ou P6.9 não pode devolver a razão, a alternativa rejeitada ou o conteúdo do debate.</li>
+<li><strong>P6.12</strong> — Um slug de nível selado só pode mudar de nível por decisão nova.</li>
+<li><strong>P6.13</strong> — Uma projecção da árvore destinada a leitura não pode conter a razão de fecho nem a razão de poda de um ramo.</li>
+<li><strong>P6.14</strong> — Uma pesquisa lançada deve ser confrontada com os ramos fechados e podados antes de ser executada.</li>
+<li><strong>P6.15</strong> — Um confronto ao abrigo de P6.14 que devolva correspondência deve produzir item de alerta.</li>
+<li><strong>P6.16</strong> — Um confronto ao abrigo de P6.14 não pode bloquear a pesquisa.</li>
+</ul>
+<hr />
+<h2>10 · P7 · Ingestão e alerta</h2>
+<ul>
+<li><strong>P7.1</strong> — A avaliação do impacto de uma entrega sobre o conjunto do projecto deve ser executada por máquina.</li>
+<li><strong>P7.2</strong> — A avaliação referida em P7.1 não pode depender de sessão convocada pelo humano responsável.</li>
+<li><strong>P7.3</strong> — O watcher deve correr a cada integração de trabalho.</li>
+<li><strong>P7.4</strong> — O watcher não pode conter modelo.</li>
+<li><strong>P7.5</strong> — A detecção deve correr em três passagens: colisão, dependência e equivalência.</li>
+<li><strong>P7.6</strong> — A passagem de colisão deve cruzar o que cada frente declarou tocar.</li>
+<li><strong>P7.7</strong> — A passagem de dependência deve percorrer as arestas registadas.</li>
+<li><strong>P7.8</strong> — A passagem de equivalência deve produzir sugestão.</li>
+<li><strong>P7.9</strong> — A passagem de equivalência não pode produzir bloqueio.</li>
+<li><strong>P7.10</strong> — Cada item de alerta deve ter estado e hash de conteúdo.</li>
+<li><strong>P7.11</strong> — Um item de alerta descartado não pode reaparecer para o mesmo par no mesmo estado.</li>
+<li><strong>P7.12</strong> — O alerta deve ser empurrado para o canal declarado no mandato.</li>
+<li><strong>P7.13</strong> — A triagem deve ser invocada por máquina.</li>
+<li><strong>P7.14</strong> — A triagem deve correr em sessão sem histórico.</li>
+<li><strong>P7.15</strong> — A triagem não pode escrever no mandato, no caminho ou nas árvores.</li>
+<li><strong>P7.16</strong> — A triagem deve escalar ao humano responsável qualquer item que toque no mandato.</li>
+<li><strong>P7.17</strong> — A triagem deve carregar apenas os ramos que o item de alerta toca.</li>
+<li><strong>P7.18</strong> — Um alerta vazio não pode produzir sessão de triagem.</li>
+</ul>
+<hr />
+<h2>11 · P8 · Saída, estado e evidência</h2>
+<ul>
+<li><strong>P8.1</strong> — Todo o documento de saída deve encabeçar com a conclusão.</li>
+<li><strong>P8.2</strong> — Todo o documento de saída deve apresentar entre três e quatro pilares de suporte mutuamente exclusivos.</li>
+<li><strong>P8.3</strong> — Todo o handoff deve passar o cold-read.</li>
+<li><strong>P8.4</strong> — O cold-read deve verificar se o leitor consegue enunciar o passo seguinte e o critério que o dá por concluído.</li>
+<li><strong>P8.5</strong> — O estado deve ser escrito por substituição.</li>
+<li><strong>P8.6</strong> — A evidência deve ser escrita por acrescento.</li>
+<li><strong>P8.7</strong> — O estado e a evidência não podem residir no mesmo ficheiro.</li>
+<li><strong>P8.8</strong> — A proveniência selada não pode conter matéria reconstruível por ferramenta.</li>
+<li><strong>P8.9</strong> — A proveniência selada não pode ser indexada para pesquisa.</li>
+</ul>
+<hr />
+<h2>12 · P9 · Runner e imposição</h2>
+<ul>
+<li><strong>P9.1</strong> — Um papel que escreve em zona protegida não pode correr em runner sem hooks bloqueantes.</li>
+<li><strong>P9.2</strong> — Os hooks devem residir no runner que executa a escrita.</li>
+<li><strong>P9.3</strong> — Um hook indisponível deve produzir recusa.</li>
+<li><strong>P9.4</strong> — Um processo permanente não pode julgar.</li>
+<li><strong>P9.5</strong> — Um papel que julga deve correr em sessão sem histórico.</li>
+<li><strong>P9.6</strong> — Uma mudança de runner deve ser precedida de decisão registada.</li>
+<li><strong>P9.7</strong> — O caminho dos hooks deve residir fora de todas as zonas de escrita.</li>
+<li><strong>P9.8</strong> — O índice de decisões deve residir fora de todas as zonas de escrita.</li>
+<li><strong>P9.9</strong> — HALT activo deve produzir recusa de arranque e de escrita.</li>
+<li><strong>P9.10</strong> — HALT só pode ser desactivado pelo humano responsável.</li>
+<li><strong>P9.11</strong> — A desactivação de HALT não pode ser automática.</li>
+</ul>
+<hr />
+<h2>13 · P10 · Governo do governo</h2>
+<ul>
+<li><strong>P10.1</strong> — Uma regra nova não pode ser adoptada sem incidente registado que a motive.</li>
+<li><strong>P10.2</strong> — O auditor deve correr com a cadência declarada no mandato.</li>
+<li><strong>P10.3</strong> — A cadência do auditor não pode ser mais frequente que mensal.</li>
+<li><strong>P10.4</strong> — O auditor não pode escrever fora do seu relatório.</li>
+<li><strong>P10.5</strong> — O auditor deve listar os ramos não-raiz sem aresta declarada.</li>
+<li><strong>P10.6</strong> — O auditor deve listar as árvores cuja condição de morte se verificou e que permanecem abertas.</li>
+<li><strong>P10.7</strong> — O auditor deve listar os itens de alerta descartados que reapareceram.</li>
+<li><strong>P10.8</strong> — O auditor deve listar as regras sem incidente registado.</li>
+<li><strong>P10.9</strong> — O auditor deve listar as contradições entre o estado e as frentes.</li>
+<li><strong>P10.10</strong> — O auditor deve listar as decisões sem aplicação verificada.</li>
+<li><strong>P10.11</strong> — O auditor deve listar os conteúdos equivalentes registados sob slugs distintos.</li>
+<li><strong>P10.12</strong> — Uma alteração a este documento deve ser registada como decisão.</li>
+</ul>
+<hr />
+<h2>14 · Conformidade</h2>
+<ul>
+<li><strong>C.1</strong> — Um projecto está em conformidade se nenhuma regra de P0 a P10 se encontra violada.</li>
+<li><strong>C.2</strong> — A verificação de conformidade deve ser executada pelo auditor.</li>
+<li><strong>C.3</strong> — Uma violação detectada deve produzir item de alerta.</li>
+<li><strong>C.4</strong> — Uma violação de P0.11, P6.8, P6.9, P9.1 ou P9.9 deve produzir HALT.</li>
+</ul>
+<hr />
+
+<p>Esta secção é informativa. Não contém obrigação.</p>
+<p>Cada função abaixo tem uma ou duas vias. Onde existem duas, ambas satisfazem a regra; diferem em custo, em alcance e no que deixam por cobrir. A escolha entre vias constitui decisão registável.</p>
+<hr />
+<h2>A1 · Substrato de arestas</h2>
+<p>Serve P5.1, P5.2, P5.3, P5.7.</p>
+<p><strong>Via 1 — ficheiros de declaração.</strong> Cada ramo declara as suas arestas num campo do seu próprio ficheiro de registo. Um script percorre os ficheiros e constrói o grafo em memória a cada execução.</p>
+<p>Exige: nada além do que já existe no repositório.
+Custo: a travessia transitiva é código próprio; o grafo é reconstruído a cada passagem; os ficheiros são legíveis pelo agente que os contém, o que não satisfaz P5.3 sem os deslocar para fora da worktree.</p>
+<p><strong>Via 2 — base relacional de ficheiro único.</strong> As arestas residem em SQLite, fora de todas as zonas de escrita. O cone afectado obtém-se por expressão de tabela comum recursiva numa única consulta.</p>
+<p>Exige: SQLite, presente na biblioteca padrão do Python.
+Custo: um esquema a manter; um ponto de escrita adicional no fluxo de fecho.
+Cobre P5.3 por construção: o ficheiro não está em nenhuma zona de leitura de agente.</p>
+<p><strong>Diferença decisiva.</strong> A Via 1 satisfaz a declaração das arestas; a Via 2 satisfaz também a sua invisibilidade e a travessia. Projectos sem exigência de P5.3 podem usar a Via 1.</p>
+<hr />
+<h2>A2 · Imposição por hook</h2>
+<p>Serve P3.2, P4.1, P4.2, P4.7, P6.7, P6.8, P6.9, P9.1, P9.2, P9.3, P9.9.</p>
+<p><strong>Via 1 — hooks do runner de agente.</strong> Ganchos de pré-execução que inspeccionam a operação e devolvem código de recusa. Residem na configuração do runner.</p>
+<p>Exige: runner com ganchos bloqueantes.
+Custo: a lógica vive em código imperativo; a correspondência entre regra e hook é convenção.</p>
+<p><strong>Via 2 — política declarativa.</strong> As regras exprimem-se como políticas avaliadas sobre a representação da operação em JSON, com identificador por política. Um avaliador corre no hook e na integração contínua.</p>
+<p>Exige: motor de políticas e a sua linguagem.
+Custo: linguagem adicional; sobrecarga desproporcionada para conjuntos de regras pequenos.
+Ganho: correspondência directa entre identificador de regra e identificador de política, verificável por teste.</p>
+<p><strong>Comum às duas vias.</strong> Os hooks devem viajar com o projecto. A configuração do repositório permite apontar o caminho dos ganchos para pasta versionada, em vez da pasta interna que existe por cópia local. Um arnês de gestão de hooks acrescenta versões fixas e execução sobre ficheiros preparados.</p>
+<hr />
+<h2>A3 · Contrato dos ficheiros de troca</h2>
+<p>Serve P4.9, P4.10, P4.11, P6.4, P7.10.</p>
+<p><strong>Via única — validação por esquema.</strong> Os ficheiros de inbox, de estado de frente, de handoff e de decisão são validados contra esquema JSON no momento da escrita. Um campo ausente ou fora do domínio produz recusa.</p>
+<p>Exige: validador de esquema no hook.
+Cobre a única condição que torna a noção de campo fechado verificável.</p>
+<hr />
+<h2>A4 · Isolamento e integração</h2>
+<p>Serve P3.2, P4.14, P7.3.</p>
+<p><strong>Via única — árvores de trabalho paralelas.</strong> Cada frente ocupa uma árvore de trabalho própria sobre o mesmo repositório. A integração é o momento de verificação, e o gancho de pós-integração dispara o watcher.</p>
+<p>Exige: controlo de versões distribuído.
+Nota: sem paralelismo, a árvore de trabalho continua a servir o confinamento de escrita.</p>
+<hr />
+<h2>A5 · Proveniência selada</h2>
+<p>Serve P4.14, P8.8, P8.9.</p>
+<p><strong>Via 1 — pasta de escrita única.</strong> Um directório fora das zonas de escrita recebe ficheiros que o hook cria e nunca reabre.</p>
+<p>Exige: hook que recuse reescrita.
+Custo: a pasta entra no índice de pesquisa salvo exclusão explícita, o que contraria P8.9.</p>
+<p><strong>Via 2 — anotações do controlo de versões.</strong> O registo fica em anotações associadas às revisões, fora da árvore de trabalho e fora do índice de conteúdo.</p>
+<p>Exige: controlo de versões com suporte de anotações.
+Custo: recuperação menos directa; exige comando próprio para leitura.
+Cobre P8.9 por construção.</p>
+<hr />
+<h2>A6 · Cold-read</h2>
+<p>Serve P4.13, P8.3, P8.4.</p>
+<p><strong>Via 1 — sessão dedicada.</strong> Uma sessão sem histórico recebe o documento e responde à pergunta fechada.</p>
+<p>Custo: é uma sessão; consome o orçamento que o protocolo procura poupar.</p>
+<p><strong>Via 2 — chamada sem sessão.</strong> O gancho de pós-integração emite uma chamada única ao modelo com o documento e a pergunta, e converte a resposta em código de saída.</p>
+<p>Exige: acesso programático a um modelo.
+Custo: uma chamada por fecho de sessão.
+Diferença: a Via 2 não produz conversa nem contexto persistente.</p>
+<hr />
+<h2>A7 · Equivalência de conteúdo</h2>
+<p>Serve P6.14, P6.15, P6.16, P7.8, P10.11.</p>
+<p><strong>Via 1 — correspondência por slug.</strong> O confronto compara identificadores. Conteúdo equivalente registado sob slug distinto não é detectado.</p>
+<p>Exige: o índice de decisões, que já existe.
+Custo: cobertura parcial declarada.</p>
+<p><strong>Via 2 — pesquisa vectorial no mesmo substrato.</strong> Cada pressuposto, ramo e pergunta é vectorizado ao nascer. Uma pesquisa lançada é comparada por distância contra os ramos fechados e podados.</p>
+<p>Exige: extensão de pesquisa vectorial sobre SQLite, escrita em C sem dependências, e uma fonte de vectorização.
+Custo: a extensão está em fase anterior à versão 1, com alterações incompatíveis previstas, e existe uma fork comunitária criada para integrar contribuições pendentes. A versão deve ser fixada.
+Cobre a lacuna que a Via 1 declara.</p>
+<hr />
+<h2>A8 · Entrega do alerta</h2>
+<p>Serve P7.12.</p>
+<p><strong>Via 1 — ficheiro consultado.</strong> O watcher escreve num ficheiro. O alerta é lido quando alguém o abre.</p>
+<p>Custo: um ficheiro vazio e um ficheiro não lido são indistinguíveis.</p>
+<p><strong>Via 2 — canal empurrado.</strong> O watcher emite para um canal que notifica sem intervenção, e a triagem é invocada do lado receptor.</p>
+<p>Exige: canal de notificação e invocação programática da triagem.
+Cobre P7.2 sem depender de hábito.</p>
+<hr />
+<h2>A9 · Auditoria por cadência</h2>
+<p>Serve P10.2, P10.3.</p>
+<p><strong>Via 1 — temporizador local.</strong> Agendador do sistema operativo no runner onde o projecto reside.
+Custo: depende de a máquina estar ligada.</p>
+<p><strong>Via 2 — agendamento remoto.</strong> Tarefa agendada na integração contínua do repositório.
+Custo: exige o repositório acessível remotamente.</p>
+<hr />
+<h2>A10 · Materialização do mapa</h2>
+<p>Serve P6.13 e a leitura humana.</p>
+<p><strong>Via 1 — ficheiro de grafo mantido.</strong> Um documento com a sintaxe de grafo é editado quando a árvore muda.
+Custo: segunda fonte de verdade; dessincroniza em silêncio.</p>
+<p><strong>Via 2 — projecção gerada.</strong> O grafo é produzido por consulta ao substrato de arestas e regravado no mesmo acto em que o estado é escrito. A omissão das razões de fecho é uma selecção de colunas.
+Exige: gerador de sintaxe de grafo a partir da consulta.
+Cobre P6.13 por construção.</p>
+<hr />
+<h2>A11 · Geração de mandatos de frente</h2>
+<p>Serve P3.1, P1.4.</p>
+<p><strong>Via 1 — derivação manual.</strong> A projecção deriva-se do caminho por escrita directa: o objectivo é o pressuposto e a regra de paragem; as fronteiras negativas são os pressupostos atribuídos às outras frentes.
+Custo: nenhum além do tempo de escrita.</p>
+<p><strong>Via 2 — planeador com briefs autónomos.</strong> Uma ferramenta de planeamento converte o objectivo em passos com contexto autónomo por passo, mapa de dependências e detecção de paralelismo.
+Exige: instalação da ferramenta e leitura das suas instruções.
+Custo: o plano é gerado de uma vez; a incorporação de resultado posterior faz-se por regeneração.
+Ganho: as arestas iniciais saem prontas, o que reduz o custo de P1.4.</p>
+<hr />
+<h2>A12 · Ficheiros</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ficheiro</th>
+<th>Conteúdo</th>
+<th>Modo de escrita</th>
+<th>Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MANDATO</code></td>
+<td>objectivos, não-objectivos, critério de fim, tectos, canal de alerta, cadência de auditoria</td>
+<td>emenda datada</td>
+<td>agente redige, humano valida</td>
+</tr>
+<tr>
+<td><code>CAMINHO</code></td>
+<td>caminhos plausíveis, pressupostos, ordem de ataque, regras de paragem</td>
+<td>substituição</td>
+<td>humano com agente</td>
+</tr>
+<tr>
+<td><code>arvores/</code></td>
+<td>ramos, propósito, condição de morte, estados</td>
+<td>substituição</td>
+<td>humano com agente</td>
+</tr>
+<tr>
+<td><code>CASOS</code></td>
+<td>tarefas-fronteira classificadas</td>
+<td>acrescento</td>
+<td>humano, triagem</td>
+</tr>
+<tr>
+<td><code>ESTADO</code></td>
+<td>proposições verdadeiras no presente</td>
+<td>substituição</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>FRENTES</code></td>
+<td>índice de frentes e ramos</td>
+<td>substituição</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>REJEICOES</code></td>
+<td>itens descartados e razão</td>
+<td>acrescento</td>
+<td>triagem</td>
+</tr>
+<tr>
+<td><code>decisoes/</code></td>
+<td>escolha, alternativa, razão, slugs afectados</td>
+<td>acrescento</td>
+<td>modo rumo</td>
+</tr>
+<tr>
+<td><code>INBOX/</code></td>
+<td>matéria por processar</td>
+<td>acrescento</td>
+<td>frentes</td>
+</tr>
+<tr>
+<td><code>arestas.db</code></td>
+<td>arestas, níveis, vectores</td>
+<td>escrita por hook</td>
+<td>máquina</td>
+</tr>
+<tr>
+<td><code>indice-decisoes</code></td>
+<td>slug para decisão</td>
+<td>gerado</td>
+<td>máquina</td>
+</tr>
+<tr>
+<td><code>&lt;frente&gt;/estado</code></td>
+<td>estado da frente face ao pressuposto</td>
+<td>substituição</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>&lt;frente&gt;/handoff</code></td>
+<td>retoma</td>
+<td>substituição</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>&lt;frente&gt;/research/</code></td>
+<td>exploração</td>
+<td>livre</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>&lt;frente&gt;/entregue/</code></td>
+<td>entrega</td>
+<td>acrescento</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>&lt;frente&gt;/rascunhos</code></td>
+<td>matéria fora da projecção</td>
+<td>termina vazio</td>
+<td>frente</td>
+</tr>
+<tr>
+<td><code>selado/</code></td>
+<td>pedido, resposta, referências</td>
+<td>escrita única</td>
+<td>hook</td>
+</tr>
+<tr>
+<td><code>HALT</code></td>
+<td>interruptor</td>
+<td>presença</td>
+<td>humano</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>A13 · Ordem de montagem</h2>
+<ol>
+<li>Árvores de trabalho e confinamento de escrita por zona.</li>
+<li>Validação de esquema nos ficheiros de troca.</li>
+<li>Substrato de arestas e cálculo do cone afectado.</li>
+<li>Slugs, registo de decisões e índice gerado.</li>
+<li>Gate de fecho.</li>
+<li>Watcher e passagens de colisão e de dependência.</li>
+<li>Entrega do alerta e invocação da triagem.</li>
+<li>Cold-read.</li>
+<li>Proveniência selada.</li>
+<li>Auditoria por cadência.</li>
+<li>Passagem de equivalência.</li>
+</ol>
+<p>Os passos 1 a 5 impõem. Os passos 6 a 8 detectam e encaminham. Os passos 9 a 11 verificam o sistema.</p>
+<hr />
+<h2>A14 · Correspondência entre regra e via</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Regra</th>
+<th>Função</th>
+<th>Vias</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P1.4, P5.1 a P5.10</td>
+<td>arestas e cone</td>
+<td>A1</td>
+</tr>
+<tr>
+<td>P3.2, P4.1, P4.2, P4.7, P6.7 a P6.9, P9.1 a P9.3, P9.9</td>
+<td>imposição</td>
+<td>A2</td>
+</tr>
+<tr>
+<td>P4.9 a P4.11, P6.4, P7.10</td>
+<td>contrato de ficheiros</td>
+<td>A3</td>
+</tr>
+<tr>
+<td>P3.2, P4.14, P7.3</td>
+<td>isolamento e integração</td>
+<td>A4</td>
+</tr>
+<tr>
+<td>P4.14, P8.8, P8.9</td>
+<td>proveniência</td>
+<td>A5</td>
+</tr>
+<tr>
+<td>P4.13, P8.3, P8.4</td>
+<td>cold-read</td>
+<td>A6</td>
+</tr>
+<tr>
+<td>P6.14 a P6.16, P7.8, P10.11</td>
+<td>equivalência</td>
+<td>A7</td>
+</tr>
+<tr>
+<td>P7.12</td>
+<td>entrega do alerta</td>
+<td>A8</td>
+</tr>
+<tr>
+<td>P10.2, P10.3</td>
+<td>auditoria</td>
+<td>A9</td>
+</tr>
+<tr>
+<td>P6.13</td>
+<td>mapa legível</td>
+<td>A10</td>
+</tr>
+<tr>
+<td>P1.4, P3.1</td>
+<td>mandatos de frente</td>
+<td>A11</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>A15 · Funções sem ferramenta</h2>
+<p>Duas funções do protocolo não correspondem a nenhuma ferramenta disponível e são inteiramente escrita própria:</p>
+<p><strong>A camada de caminho.</strong> P2.1 a P2.18. Nenhuma ferramenta examinada representa a hipótese corrente, os seus pressupostos, os discriminantes e as regras de paragem. As ferramentas de planeamento representam a ordem do trabalho, não a sua condição de validade.</p>
+<p><strong>O escopo por nível.</strong> P4.4 e P4.5. Nenhuma ferramenta examinada monta o contexto de uma sessão por corte hierárquico. A montagem é código no hook, a partir do perfil declarado.</p>
+<footer class="colo">Lei · Anexo de implementação · 2026-09-19</footer>
+</div>
+<script>
+(function(){
+  var b=document.documentElement,k='pt-theme';
+  try{var s=localStorage.getItem(k); if(s) b.setAttribute('data-theme',s);}catch(e){}
+  document.getElementById('t').addEventListener('click',function(){
+    var cur=b.getAttribute('data-theme');
+    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+    var next=cur==='dark'?'light':'dark';
+    b.setAttribute('data-theme',next);
+    try{localStorage.setItem(k,next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>

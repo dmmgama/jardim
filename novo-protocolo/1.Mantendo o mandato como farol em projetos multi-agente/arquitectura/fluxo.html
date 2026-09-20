@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fluxo de sessão — especificação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F6F7; --card:#FFFFFF; --ink:#1B2127; --dim:#5E6A75;
+  --rule:#D5DBE0; --rule-soft:#E6EAEE;
+  --pass:#3F6B46; --pass-bg:#EAF1EA;
+  --block:#96382F; --block-bg:#F7EAE8;
+  --human:#6B5230; --human-bg:#F6EFE3;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#14181C; --card:#1B2127; --ink:#DDE3E8; --dim:#93A0AC;
+    --rule:#333D46; --rule-soft:#252D34;
+    --pass:#8FBE94; --pass-bg:#1E2A20;
+    --block:#DE9A91; --block-bg:#2C1E1C;
+    --human:#D6B681; --human-bg:#2A2318;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#14181C; --card:#1B2127; --ink:#DDE3E8; --dim:#93A0AC;
+  --rule:#333D46; --rule-soft:#252D34;
+  --pass:#8FBE94; --pass-bg:#1E2A20;
+  --block:#DE9A91; --block-bg:#2C1E1C;
+  --human:#D6B681; --human-bg:#2A2318;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 96px}
+
+header{padding:72px 0 40px;border-bottom:1px solid var(--rule)}
+h1{font-size:30px;font-weight:600;letter-spacing:-.02em;margin:0 0 20px;line-height:1.2}
+.invariante{font-family:var(--mono);font-size:14px;line-height:1.75;border-left:3px solid var(--ink);padding:2px 0 2px 16px;margin:0 0 24px;border-radius:0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--mono);font-size:12.5px;color:var(--dim);margin:0}
+
+h2{font-size:21px;font-weight:600;letter-spacing:-.01em;margin:64px 0 8px;padding-top:28px;border-top:1px solid var(--rule)}
+h2 .n{font-family:var(--mono);font-size:14px;color:var(--dim);font-weight:400;margin-right:12px}
+h3{font-size:16px;font-weight:600;margin:36px 0 10px}
+p{margin:0 0 16px;max-width:68ch}
+.lede{color:var(--dim);margin-bottom:28px;max-width:68ch}
+
+.fase{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;margin:0 0 16px}
+.fase-h{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.fase-id{font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+.fase-t{font-weight:600;font-size:16px}
+.cond{font-family:var(--mono);font-size:14px;line-height:1.5;margin:0 0 12px;padding:10px 12px;background:var(--rule-soft);border-radius:6px}
+.saidas{display:grid;gap:8px}
+.s{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:start;font-size:14.5px;padding:10px 12px;border-radius:6px;line-height:1.5}
+.s .v{font-family:var(--mono);font-size:12.5px;font-weight:500;padding-top:1px}
+.s.sim{background:var(--pass-bg);color:var(--pass)}
+.s.nao{background:var(--block-bg);color:var(--block)}
+.s.h{background:var(--human-bg);color:var(--human)}
+.s b{font-weight:500}
+.s code{font-family:var(--mono);font-size:13px;background:transparent}
+
+.seq{display:flex;flex-wrap:wrap;gap:6px;font-family:var(--mono);font-size:12.5px;color:var(--dim);margin:0 0 28px}
+.seq span{padding:4px 9px;border:1px solid var(--rule);border-radius:4px;background:var(--card)}
+
+table{width:100%;border-collapse:collapse;margin:0 0 24px;font-size:14.5px}
+th{text-align:left;font-weight:500;font-size:12.5px;color:var(--dim);font-family:var(--mono);padding:0 12px 8px 0;border-bottom:1px solid var(--rule)}
+td{padding:11px 12px 11px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+td code{font-family:var(--mono);font-size:13px}
+
+pre{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.65;margin:0 0 24px}
+code{font-family:var(--mono)}
+p code,li code,td code{background:var(--rule-soft);padding:1px 5px;border-radius:3px;font-size:.92em}
+
+.nota{border-left:3px solid var(--human);background:var(--human-bg);color:var(--human);padding:14px 16px;border-radius:0;font-size:14.5px;margin:0 0 24px}
+.nota b{font-weight:600}
+ul{margin:0 0 20px;padding-left:20px;max-width:68ch}
+li{margin-bottom:8px}
+.svg-wrap{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:16px;margin:0 0 28px;overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.legenda{display:flex;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:12px;color:var(--dim);margin-top:12px;padding-top:12px;border-top:1px solid var(--rule-soft)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+footer{margin-top:72px;padding-top:24px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+@media(max-width:600px){
+  header{padding:48px 0 32px}
+  h1{font-size:25px}
+  .s{grid-template-columns:44px 1fr;gap:8px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+<h1>Fluxo de sessão</h1>
+<div class="invariante">Em qualquer ponto do fluxo existe exactamente uma saída.<br>Nenhuma condição admite julgamento do agente.<br>O que exige julgamento sai do fluxo e vai a humano.</div>
+<p class="meta"><span>7 fases</span><span>31 condições</span><span>2 pontos de saída para humano</span><span>0 pontos de decisão livre</span></p>
+</header>
+
+<h2><span class="n">01</span>Mapa</h2>
+<p class="lede">Os estados de uma sessão e as transições entre eles. Não há transições que não estejam aqui.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 800 420" role="img" aria-label="Mapa de estados de uma sessão">
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.4" stroke-linecap="round"/></marker></defs>
+
+<rect x="20" y="30" width="130" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="85" y="49" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Arranque</text>
+<text x="85" y="65" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">F1 · F2</text>
+
+<line x1="150" y1="53" x2="196" y2="53" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="202" y="30" width="130" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="267" y="49" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Trabalho</text>
+<text x="267" y="65" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">F3</text>
+
+<line x1="332" y1="53" x2="378" y2="53" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="384" y="30" width="130" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="449" y="49" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Fecho</text>
+<text x="449" y="65" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">F4</text>
+
+<path d="M449 76 L449 104 L267 104 L267 128" fill="none" stroke="var(--block)" stroke-width="1.2" marker-end="url(#a)"/>
+<text x="360" y="99" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--block)">deriva dura</text>
+
+<line x1="514" y1="53" x2="560" y2="53" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="566" y="30" width="130" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="631" y="49" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Merge</text>
+<text x="631" y="65" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">worktree</text>
+
+<path d="M631 76 L631 160 L696 160" fill="none" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="202" y="128" width="130" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="267" y="147" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Correcção</text>
+<text x="267" y="163" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">nao fecha</text>
+<path d="M332 151 L358 151 L358 76" fill="none" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="566" y="200" width="200" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="666" y="219" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Watcher</text>
+<text x="666" y="235" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">F5 · sem modelo</text>
+<path d="M696 160 L696 196" fill="none" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<path d="M566 223 L470 223 L470 268" fill="none" stroke="var(--dim)" stroke-width="1.2" marker-end="url(#a)"/>
+
+<rect x="370" y="272" width="200" height="46" rx="6" fill="var(--card)" stroke="var(--rule)"/>
+<text x="470" y="291" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--ink)">Arquitecto · triagem</text>
+<text x="470" y="307" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--dim)">F6 · so com alerta</text>
+
+<rect x="370" y="344" width="200" height="46" rx="6" fill="var(--human-bg)" stroke="var(--human)"/>
+<text x="470" y="363" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--human)">Arquitecto · rumo</text>
+<text x="470" y="379" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--human)">F7 · so o David abre</text>
+
+<rect x="20" y="272" width="200" height="46" rx="6" fill="var(--block-bg)" stroke="var(--block)"/>
+<text x="120" y="291" text-anchor="middle" font-family="var(--sans)" font-size="13" font-weight="500" fill="var(--block)">HALT</text>
+<text x="120" y="307" text-anchor="middle" font-family="var(--mono)" font-size="11" fill="var(--block)">tudo bloqueia</text>
+<path d="M370 295 L226 295" fill="none" stroke="var(--block)" stroke-width="1.2" marker-end="url(#a)"/>
+</svg>
+<div class="legenda">
+<span><i class="dot" style="background:var(--block)"></i>bloqueio</span>
+<span><i class="dot" style="background:var(--human)"></i>entrada humana obrigatória</span>
+<span><i class="dot" style="background:var(--dim)"></i>transição automática</span>
+</div>
+</div>
+
+<h2><span class="n">02</span>Fases</h2>
+<p class="lede">Cada fase é uma sequência de condições. A condição é avaliada por código sobre ficheiros. O agente não avalia nada.</p>
+
+<h3>F1 · Admissão</h3>
+<div class="seq"><span>F1.1</span><span>F1.2</span><span>F1.3</span></div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F1.1</span><span class="fase-t">Interruptor</span></div>
+<div class="cond">exists(HALT)</div>
+<div class="saidas">
+<div class="s nao"><span class="v">true</span><span>Recusa arranque. Fim. <b>Só o David remove o HALT, à mão.</b></span></div>
+<div class="s sim"><span class="v">false</span><span>F1.2</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F1.2</span><span class="fase-t">Perfil</span></div>
+<div class="cond">perfil ∈ {thread, arquitecto, auditor}</div>
+<div class="saidas">
+<div class="s nao"><span class="v">false</span><span>Recusa arranque. Fim. Não há perfil implícito.</span></div>
+<div class="s sim"><span class="v">true</span><span>F1.3</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F1.3</span><span class="fase-t">Worktree</span></div>
+<div class="cond">perfil == thread ∧ ¬exists(worktree)</div>
+<div class="saidas">
+<div class="s sim"><span class="v">true</span><span>Cria worktree e <code>estado.json</code> a partir do template. F2.</span></div>
+<div class="s nao"><span class="v">false</span><span>F2.</span></div>
+</div>
+</div>
+
+<h3>F2 · Montagem de contexto</h3>
+<p>Determinada pelo perfil. Nada é carregado por iniciativa do agente.</p>
+<table>
+<tr><th>Perfil</th><th>Lê</th><th>Escreve</th></tr>
+<tr><td><code>thread</code></td><td><code>thread.json</code>, <code>CASOS</code>, projecção do mandato</td><td>worktree, <code>INBOX/</code></td></tr>
+<tr><td><code>arquitecto</code></td><td>mandato, <code>estado.json</code> de todas, <code>ALERTA</code></td><td><code>00-ESTADO/</code></td></tr>
+<tr><td><code>auditor</code></td><td>tudo, incluindo <code>sealed/</code></td><td>relatório</td></tr>
+</table>
+
+<h3>F3 · Trabalho</h3>
+<div class="seq"><span>F3.1</span><span>F3.2</span><span>F3.3</span></div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F3.1</span><span class="fase-t">Escrita</span></div>
+<div class="cond">caminho ∈ zona(perfil)</div>
+<div class="saidas">
+<div class="s sim"><span class="v">true</span><span>Executa.</span></div>
+<div class="s nao"><span class="v">false</span><span>Bloqueia. Devolve zona permitida ao agente. A sessão continua.</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F3.2</span><span class="fase-t">Dúvida</span></div>
+<div class="cond">agente precisa de decisão que não tem</div>
+<div class="saidas">
+<div class="s sim"><span class="v">sempre</span><span>Acrescenta pressuposto a <code>estado.json</code> com <code>confianca</code> e continua. <b>Não existe estado de espera.</b></span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F3.3</span><span class="fase-t">Tema fora do mandato</span></div>
+<div class="cond">assunto ∉ mandato da thread</div>
+<div class="saidas">
+<div class="s sim"><span class="v">true</span><span>Uma linha em <code>Rascunhos.md</code>. Volta ao tema. Não é promovido nem selado.</span></div>
+<div class="s nao"><span class="v">false</span><span>Continua.</span></div>
+</div>
+</div>
+
+<h3>F4 · Fecho</h3>
+<div class="seq"><span>F4.1</span><span>F4.2</span><span>F4.3</span><span>F4.4</span><span>F4.5</span></div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F4.1</span><span class="fase-t">Deriva dura</span></div>
+<div class="cond">toca ⊄ toca_declarado ∨ serve == ∅</div>
+<div class="saidas">
+<div class="s nao"><span class="v">true</span><span>Não fecha. Corrige <code>estado.json</code> ou o David aprova a extensão. Reavalia F4.1.</span></div>
+<div class="s sim"><span class="v">false</span><span>F4.2</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F4.2</span><span class="fase-t">Deriva branda</span></div>
+<div class="cond">pressupostos_novos > 0 ∨ ¬cold_read_ok</div>
+<div class="saidas">
+<div class="s h"><span class="v">true</span><span>Marca <code>carece_aprovacao: true</code>. <b>Fecha na mesma.</b> Sobe ao <code>ALERTA</code>.</span></div>
+<div class="s sim"><span class="v">false</span><span>F4.3</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F4.3</span><span class="fase-t">Rascunhos</span></div>
+<div class="cond">size(Rascunhos.md) == 0</div>
+<div class="saidas">
+<div class="s nao"><span class="v">false</span><span>Não fecha. O David lê ou manda apagar.</span></div>
+<div class="s sim"><span class="v">true</span><span>F4.4</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F4.4</span><span class="fase-t">Continuidade</span></div>
+<div class="cond">trabalho_concluido</div>
+<div class="saidas">
+<div class="s sim"><span class="v">true</span><span>Fecha a thread. Estado <code>fechada</code>. F4.5.</span></div>
+<div class="s nao"><span class="v">false</span><span>Escreve <code>handoff.json</code>. Valida contra §04. Falha → não fecha. F4.5.</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F4.5</span><span class="fase-t">Selagem e merge</span></div>
+<div class="cond">sempre</div>
+<div class="saidas">
+<div class="s sim"><span class="v">—</span><span>Sela pedido, output e referências. Merge da worktree. Dispara F5.</span></div>
+</div>
+</div>
+
+<h3>F5 · Watcher</h3>
+<p>Corre sem modelo, após cada merge. Duas passagens independentes.</p>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F5.1</span><span class="fase-t">Colisão</span></div>
+<div class="cond">∃ T₁,T₂ : toca(T₁) ∩ toca(T₂) ≠ ∅</div>
+<div class="saidas">
+<div class="s nao"><span class="v">true</span><span>Escreve alerta <code>tipo: colisao</code>, <code>confianca: facto</code>.</span></div>
+<div class="s sim"><span class="v">false</span><span>F5.2</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F5.2</span><span class="fase-t">Conflito semântico</span></div>
+<div class="cond">chamada única de modelo sobre os estado.json + mandato</div>
+<div class="saidas">
+<div class="s h"><span class="v">conflito</span><span>Escreve alerta <code>tipo: semantico</code>, <code>confianca: sugestao</code>.</span></div>
+<div class="s sim"><span class="v">limpo</span><span><code>ALERTA</code> fica vazio. <b>É o caso normal.</b></span></div>
+</div>
+</div>
+
+<h3>F6 · Arquitecto, modo triagem</h3>
+<p>Sessão fria, curta, descartável. Só arranca com alerta por tratar.</p>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F6.1</span><span class="fase-t">Alerta</span></div>
+<div class="cond">alertas(estado == novo) > 0</div>
+<div class="saidas">
+<div class="s nao"><span class="v">false</span><span>Não arranca.</span></div>
+<div class="s sim"><span class="v">true</span><span>F6.2, por alerta.</span></div>
+</div>
+</div>
+
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F6.2</span><span class="fase-t">Resolução</span></div>
+<div class="cond">quatro saídas, mutuamente exclusivas</div>
+<div class="saidas">
+<div class="s sim"><span class="v">1</span><span>Escreve em <code>ESTADO.md</code>. Alerta → <code>visto</code>.</span></div>
+<div class="s sim"><span class="v">2</span><span>Abre thread. Alerta → <code>visto</code>.</span></div>
+<div class="s nao"><span class="v">3</span><span>Descarta com razão em <code>REJEICOES</code>. Alerta → <code>descartado</code> + hash.</span></div>
+<div class="s h"><span class="v">4</span><span>Toca no mandato → <b>não resolve</b>. Escala a F7. Alerta fica <code>novo</code>.</span></div>
+</div>
+</div>
+
+<h3>F7 · Arquitecto, modo rumo</h3>
+<div class="fase">
+<div class="fase-h"><span class="fase-id">F7.1</span><span class="fase-t">Abertura</span></div>
+<div class="cond">aberto == David</div>
+<div class="saidas">
+<div class="s h"><span class="v">true</span><span>Debate. Output: emenda datada ao mandato, <b>ou nada</b>.</span></div>
+<div class="s nao"><span class="v">false</span><span>Não arranca. Nenhum agente abre este modo.</span></div>
+</div>
+</div>
+<div class="nota"><b>Invariante.</b> O modo rumo nunca escreve em <code>ESTADO.md</code>. Se escrevesse, cada alerta reabriria a discussão de rumo e o projecto voltava a ser uma lista de tarefas que geram tarefas.</div>
+
+<h2><span class="n">03</span>Onde o binário acaba</h2>
+<p class="lede">Duas condições em trinta e uma não são decidíveis por código. Ficam isoladas, marcadas, e nenhuma delas fecha sozinha.</p>
+<table>
+<tr><th>Condição</th><th>Porquê</th><th>Quem decide</th></tr>
+<tr><td><code>F4.1</code> aprovação de extensão</td><td>Alargar <code>toca</code> pode ser deriva ou descoberta legítima</td><td>David</td></tr>
+<tr><td><code>F5.2</code> conflito semântico</td><td>Sem sobreposição de ficheiros, o conflito é de conteúdo</td><td>Modelo propõe · David confirma</td></tr>
+</table>
+<p>Todas as outras são <code>exists</code>, <code>size</code>, comparação de conjuntos ou diff. Nenhuma consulta o agente.</p>
+
+<h2><span class="n">04</span>Handoff</h2>
+<p class="lede">O handoff existe quando uma sessão termina e o trabalho continua. Não é um resumo: é o que permite a sessão seguinte arrancar sem ler nada do que passou.</p>
+
+<h3>Critério de validade</h3>
+<p>Um só teste, binário, executado por um agente sem contexto que lê apenas o <code>handoff.json</code>:</p>
+<div class="fase">
+<div class="fase-h"><span class="fase-id">H1</span><span class="fase-t">Cold-read</span></div>
+<div class="cond">O agente frio consegue enunciar o próximo passo concreto e o critério que o dá por feito?</div>
+<div class="saidas">
+<div class="s sim"><span class="v">true</span><span>Handoff válido. A sessão fecha.</span></div>
+<div class="s nao"><span class="v">false</span><span>Inválido. A sessão <b>não fecha</b>. Devolve o campo em falta.</span></div>
+</div>
+</div>
+<p>O teste é sobre o próximo passo, não sobre compreensão do tema. Um handoff em que o agente percebe tudo mas não sabe o que fazer a seguir é inválido.</p>
+
+<h3>Campos obrigatórios</h3>
+<table>
+<tr><th>Campo</th><th>Conteúdo</th><th>Falha se</th></tr>
+<tr><td><code>serve</code></td><td>IDs do mandato</td><td>vazio</td></tr>
+<tr><td><code>decidido</code></td><td>decisões fechadas, com a alternativa rejeitada</td><td>—</td></tr>
+<tr><td><code>por_decidir</code></td><td>o que está em aberto</td><td>—</td></tr>
+<tr><td><code>pressupostos</code></td><td>com <code>confianca</code> e <code>testado</code></td><td>—</td></tr>
+<tr><td><code>proximo_passo</code></td><td>uma acção concreta</td><td>vazio ou verbo vago</td></tr>
+<tr><td><code>feito_quando</code></td><td>critério verificável</td><td>vazio</td></tr>
+<tr><td><code>nao_reabrir</code></td><td>o que já foi decidido e não volta</td><td>—</td></tr>
+</table>
+<div class="nota"><b>Regra de redacção.</b> Um documento de versão nova não referencia versões anteriores. O histórico vive em <code>decidido</code> e <code>nao_reabrir</code>, que são dados, não narrativa.</div>
+
+<h2><span class="n">05</span>Handoff desta sessão</h2>
+<p class="lede">Aplicação do §04 ao caso real. Esta sessão não é uma thread — é modo rumo. O handoff segue o mesmo esquema.</p>
+
+<pre>{
+  "sessao": "2026-09-19-arquitectura",
+  "perfil": "arquitecto",
+  "modo": "rumo",
+  "serve": ["governo do projecto"],
+
+  "decidido": [
+    {"id": "I1", "o_que": "Gate de fecho em dois niveis: dura bloqueia, branda fecha com flag",
+     "em_vez_de": "Bloqueio total ate aprovacao", "porque_nao": "sincrono com N threads"},
+    {"id": "I2", "o_que": "Worktrees para isolamento e merge-como-gate; hooks para caminhos e HALT",
+     "em_vez_de": "Worktrees a seco", "porque_nao": "git nao restringe leitura"},
+    {"id": "I3", "o_que": "Watcher central unico",
+     "em_vez_de": "Subagente varredor por thread", "porque_nao": "N opinioes sem reconciliacao"},
+    {"id": "I4", "o_que": "Arquitecto em dois modos segregados",
+     "em_vez_de": "Modo unico", "porque_nao": "cada alerta reabriria o rumo"},
+    {"id": "I5", "o_que": "Protocolos em dois ficheiros: lei sem explicacoes + anexo de implementacao"},
+    {"id": "I6", "o_que": "Debates registados em JSON com campos fechados"}
+  ],
+
+  "por_decidir": [
+    {"ref": "INB-2026-09-19-01", "o_que": "Schema canonico do registo de debates",
+     "estado": "parqueado"}
+  ],
+
+  "pressupostos": [
+    {"id": "P1", "texto": "Threads escrevem em ficheiros disjuntos, logo merge sem conflito",
+     "confianca": "media", "testado": false},
+    {"id": "P2", "texto": "ALERTA vazio sera o caso normal apos calibracao",
+     "confianca": "baixa", "testado": false}
+  ],
+
+  "proximo_passo": "Escrever PROTOCOLO-FLUXO.md (lei) e ANEXO-FLUXO.md (implementacao) a partir das fases F1-F7 desta pagina",
+  "feito_quando": "Os dois ficheiros existem; a lei nao contem nenhuma frase que justifique uma regra; o anexo nao contem nenhuma regra nova",
+
+  "nao_reabrir": ["I1", "I2", "I3", "I4", "I5", "I6"]
+}</pre>
+
+<p>Validação pelo critério H1: um agente frio lê isto e sabe que tem de escrever dois ficheiros, a partir de que fonte, e como verificar que ficaram certos. <b>Passa.</b></p>
+<p>O que este handoff deliberadamente não contém: a sequência da conversa, as razões longas, as alternativas que não chegaram a ser propostas, e qualquer referência a versões anteriores do desenho. A alternativa rejeitada entra porque é dado — se amanhã I2 falhar, <code>em_vez_de</code> diz o que havia. A narrativa não entra porque abre espaço a opinião.</p>
+
+<h2><span class="n">06</span>Os dois ficheiros do protocolo</h2>
+<table>
+<tr><th></th><th>Lei</th><th>Anexo</th></tr>
+<tr><td>Conteúdo</td><td>Condições e saídas</td><td>Comandos, caminhos, schemas</td></tr>
+<tr><td>Contém razões</td><td>Não</td><td>Não</td></tr>
+<tr><td>Registo</td><td>Imperativo</td><td>Descritivo</td></tr>
+<tr><td>Quem lê</td><td>Todos os perfis</td><td>Quem implementa</td></tr>
+<tr><td>Teste</td><td>Nenhuma frase pode ser removida sem alterar comportamento</td><td>Nenhuma frase acrescenta regra</td></tr>
+</table>
+<p>Informar é dizer onde fica o ficheiro e que comando o gera. Explicar é dizer porque é que ficou ali — e isso convida à discussão em runtime, que é o que o fluxo existe para eliminar.</p>
+
+<footer>Especificação de fluxo · 7 fases · 31 condições · 2 saídas para humano</footer>
+
+</div>
+</body>
+</html>

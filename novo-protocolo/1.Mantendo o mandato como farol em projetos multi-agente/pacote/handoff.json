@@ -1,0 +1,88 @@
+{
+  "sessao": "2026-09-19-arquitectura-governo",
+  "perfil": "arquitecto",
+  "modo": "rumo",
+  "serve": ["governo de projectos multi-frente conduzidos por agentes"],
+
+  "pressupostos": [
+    {
+      "id": "P1",
+      "texto": "As decisoes apontam para seccoes do documento; slugs por regra entram na conversao para protocolo",
+      "confianca": "media",
+      "testado": false,
+      "razao": "atribuir slugs finos agora arrisca que mudem na conversao"
+    },
+    {
+      "id": "P2",
+      "texto": "O proximo passo e escrever os protocolos, nao aplicar a um projecto concreto",
+      "confianca": "media",
+      "testado": false
+    },
+    {
+      "id": "P3",
+      "texto": "Frentes escrevem em ficheiros disjuntos, logo o merge de worktrees nao gera conflito manual",
+      "confianca": "media",
+      "testado": false
+    },
+    {
+      "id": "P4",
+      "texto": "O ficheiro de alertas vazio sera o caso normal apos calibracao do detector",
+      "confianca": "baixa",
+      "testado": false
+    },
+    {
+      "id": "P5",
+      "texto": "Declarar dependencias no acto de desenhar o ramo e suficientemente barato para nao ser saltado",
+      "confianca": "baixa",
+      "testado": false,
+      "ver": "T1"
+    }
+  ],
+
+  "por_decidir": [
+    {
+      "ref": "INB-schema-debates",
+      "o_que": "Schema canonico do registo de debates",
+      "estado": "parqueado",
+      "bloqueia": false
+    },
+    {
+      "o_que": "Valores de calibracao: tecto de frentes, quota por sessao, cadencia de auditoria",
+      "estado": "por definir",
+      "bloqueia": false,
+      "nota": "so decidivel com uso real"
+    },
+    {
+      "o_que": "Que runner concreto ocupa cada papel da §2.4.10",
+      "estado": "por definir",
+      "bloqueia": false,
+      "falta": "capacidades de cada runner disponivel"
+    }
+  ],
+
+  "artefactos": [
+    {"ficheiro": "arquitectura-governo.md", "papel": "fonte", "estado": "entregue"},
+    {"ficheiro": "arquitectura-governo.html", "papel": "leitura navegavel", "estado": "publicado"},
+    {"ficheiro": "fluxo.html", "papel": "especificacao binaria das fases F1-F7", "estado": "publicado"},
+    {"ficheiro": "debates/D-arquitectura-governo.json", "papel": "decisoes", "estado": "entregue"},
+    {"ficheiro": "pacote/REPORT.md", "papel": "avaliacao e lacunas", "estado": "entregue"}
+  ],
+
+  "proximo_passo": "Escrever PROTOCOLO-GOVERNO.md e ANEXO-GOVERNO.md a partir de P0, P1 e P2 da arquitectura e das fases F1-F7 do fluxo",
+
+  "feito_quando": "Os dois ficheiros existem; a lei nao contem nenhuma frase que justifique uma regra; o anexo nao contem nenhuma regra nova; cada regra da lei tem slug",
+
+  "lacunas_conhecidas": [
+    "L1 nenhum mecanismo foi testado",
+    "L2 a arquitectura nao passou pelos seus proprios testes de discriminacao e reformulacao",
+    "L3 calibracao sem valores",
+    "L4 protocolos por escrever",
+    "L5 escopo, slugs, deteccao por dependencia e escolha de runner nunca exercitados",
+    "L6 custo de operacao nao estimado",
+    "L7 alocacao de runners por preencher"
+  ],
+
+  "nao_reabrir": [
+    "D1","D2","D3","D4","D5","D6","D7","D8","D9","D10","D11","D12","D13","D14","D15"
+  ]
+}

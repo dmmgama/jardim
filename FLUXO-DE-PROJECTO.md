@@ -50,7 +50,7 @@ Toda a sessão começa com uma pergunta: **Arquitecto ou Thread?**
     │  1. ESTADO.md         │   │ Lista activas      │
     │  2. THREADS.md        │   │ "Qual?"            │
     │  3. THREAD-MENSAGENS  │   └─────────┬──────────┘
-    │  4. Handoffs-Arq/tema │             │
+    │  4. HANDOFF.md        │             │
     └───────────┬───────────┘             ▼
                 │              ┌──────────────────────┐
                 ▼              │ 30-THREADS/T00X/     │
@@ -292,9 +292,7 @@ Nenhuma decisão nasce no Notion. Nenhum debate fica só no Notion. Foi exactame
 | `INBOX.md` | Ideias e pendências em bruto | Todos |
 | `THREADS.md` | Threads activas e fechadas | Arquitecto |
 | `THREAD-MENSAGENS.md` | Sinalizador global de pedidos | Todos |
-| `Handoffs-Arquiteto/` | Continuidade entre sessões de Arquitecto, por tema (substitui `HANDOFF.md`, 2026-09-18) | Arquitecto |
-| `Registos-Arquiteto/` | Registos de sessão a pedido do David; leitura on demand | Arquitecto |
-| `MANDATO-DA-BRANCH.md` | Só em branch: o que a branch faz e não faz | Arquitecto |
+| `HANDOFF.md` | Continuidade entre sessões de Arquitecto | Arquitecto |
 | `FLUXO-DE-PROJECTO.md` | Este documento | Arquitecto |
 | `Jardim.html` | Estado visual, refeito a cada decisão | Arquitecto |
 

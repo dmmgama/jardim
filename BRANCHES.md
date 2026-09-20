@@ -22,3 +22,4 @@ summary: |
 |---|---|---|---|---|---|
 | B0 | `Codex` | 2026-09-14 | 2026-09-14 | Sessão inicial de arranque do repositório (T001 etapa 1, T002 à espera). Sem mandato escrito; anterior a este índice. Já fundida em `master`. | `fechada` |
 | B1 | `Governo-correcao-v1` | 2026-09-18 | — | Corrigir a falta de governo e a falta de instrumentos de visão do estado geral: registos e handoffs do Arquitecto por tema, mandato de branch, arranque por comando, estruturação top-down do projecto com o skill wayfinder. Ver `MANDATO-DA-BRANCH.md` na branch. | `ativa` |
+| B2 | `Beads-Test` | 2026-09-19 | — | Avaliar se o Beads serve de mapa e fila de trabalho do Jardim (objectivo → peças → threads → lacunas), na sequência do diagnóstico «Arquitecto sem mapa» da B1. Veredicto binário no fecho: adoptar ou rejeitar. Worktree própria em `../Jardim-Beads-Test`. Ver `MANDATO-DA-BRANCH.md` na branch. | `ativa` |

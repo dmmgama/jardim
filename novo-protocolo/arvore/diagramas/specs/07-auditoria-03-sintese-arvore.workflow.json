@@ -1,0 +1,250 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Auditoria D3 · sintese do protocolo de arvore — 27 achados, TOP 5 por ordem",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "numeracao",
+        "label": "Dupla numeracao",
+        "focus": [
+          "doc",
+          "t1"
+        ],
+        "note": "Ha seccoes 0–4 externas e 0–6 internas: a instrucao de leitura aponta para as seccoes erradas."
+      },
+      {
+        "id": "isolamento",
+        "label": "Teste de isolamento",
+        "focus": [
+          "t2",
+          "iso"
+        ],
+        "note": "Os quatro cartoes prometem-se auto-suficientes e nenhum passa: faltam cinco conceitos-criterio."
+      },
+      {
+        "id": "cobertura",
+        "label": "Cobertura do roteamento",
+        "focus": [
+          "t4",
+          "t5",
+          "cob"
+        ],
+        "note": "Quinze combinacoes saem do roteamento e a tabela seguinte so tem cinco linhas."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "top5",
+      "label": "TOP 5 — ordem de execucao"
+    },
+    {
+      "id": "consequencia",
+      "label": "Consequencia medida",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "ancorar",
+      "label": "Ancorar e definir",
+      "fromCol": 0,
+      "toCol": 2,
+      "variant": "emphasis"
+    },
+    {
+      "id": "economizar",
+      "label": "Economia de contexto",
+      "fromCol": 3,
+      "toCol": 3
+    },
+    {
+      "id": "fechar",
+      "label": "Fechar regras e roteamento",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "doc",
+    "t1",
+    "t2",
+    "t3",
+    "t4",
+    "t5"
+  ],
+  "semanticChecks": {
+    "allowedRoots": [
+      "doc"
+    ],
+    "allowedTerminals": [
+      "t5",
+      "iso",
+      "cob"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "doc",
+      "lane": "top5",
+      "col": 0,
+      "type": "database",
+      "label": "D3 · sintese arvore",
+      "sublabel": "233 l. · 27 achados",
+      "tag": "5C · 13M · 9m",
+      "width": 140
+    },
+    {
+      "id": "t1",
+      "lane": "top5",
+      "col": 1,
+      "type": "security",
+      "label": "1 · Dupla numeracao",
+      "sublabel": "E2-2 · aponta errado",
+      "tag": "a l.48 e falsa",
+      "width": 140
+    },
+    {
+      "id": "t2",
+      "lane": "top5",
+      "col": 2,
+      "type": "security",
+      "label": "2 · Definicoes",
+      "sublabel": "E1-1..7 · driver, cone",
+      "tag": "e ME/CE",
+      "width": 140
+    },
+    {
+      "id": "t3",
+      "lane": "top5",
+      "col": 3,
+      "type": "backend",
+      "label": "3 · Como ler, no topo",
+      "sublabel": "E4-1/2 · 415 palavras",
+      "tag": "21% do texto",
+      "width": 140
+    },
+    {
+      "id": "t4",
+      "lane": "top5",
+      "col": 4,
+      "type": "security",
+      "label": "4 · R1 vs CARTAO B",
+      "sublabel": "E2-1 · B e D ilegais",
+      "width": 140
+    },
+    {
+      "id": "t5",
+      "lane": "top5",
+      "col": 5,
+      "type": "backend",
+      "label": "5 · Linhas em falta",
+      "sublabel": "E2-3 · so B, A+C",
+      "tag": "e A+B+C",
+      "width": 140
+    },
+    {
+      "id": "iso",
+      "lane": "consequencia",
+      "col": 2,
+      "type": "messagebus",
+      "label": "0 de 4 isolados",
+      "sublabel": "A, B e D falham",
+      "tag": "C quase",
+      "width": 140
+    },
+    {
+      "id": "cob",
+      "lane": "consequencia",
+      "col": 5,
+      "type": "messagebus",
+      "label": "5 de 15 sem linha",
+      "sublabel": "e seis parciais",
+      "tag": "casos frequentes",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "from": "doc",
+      "to": "t1",
+      "label": "1.o",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e2",
+      "from": "t1",
+      "to": "t2",
+      "label": "2.o",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e3",
+      "from": "t2",
+      "to": "t3",
+      "label": "3.o",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e4",
+      "from": "t3",
+      "to": "t4",
+      "label": "4.o",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e5",
+      "from": "t4",
+      "to": "t5",
+      "label": "5.o",
+      "variant": "emphasis"
+    },
+    {
+      "id": "e6",
+      "from": "t2",
+      "to": "iso",
+      "variant": "dashed",
+      "role": "branch"
+    },
+    {
+      "id": "e7",
+      "from": "t5",
+      "to": "cob",
+      "variant": "dashed",
+      "role": "branch"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "Veredicto",
+      "items": [
+        "O esqueleto de roteamento existe e e bom, mas o documento nao serve o proposito declarado",
+        "Nenhum dos quatro cartoes passa o teste de isolamento",
+        "Economia de contexto real: cerca de 30%, nao a que a forma sugere"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Conceitos-criterio em falta",
+      "items": [
+        "driver: quatro usos, zero definicoes — e o primeiro criterio de desempate",
+        "ME/CE: seis usos, nunca expandido no corpo",
+        "cone e suspenso: indefinidos, e suspenso tem dois sentidos incompativeis"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "O que esta bem",
+      "items": [
+        "A porta de entrada e a melhor peca: cinco sinais, cada um com destino e consequencia",
+        "A assimetria concorrencia-sim em A/C e concorrencia-nao em B/D e uma distincao real",
+        "Os dois registos de CARTAO B e a obtencao de eixos por contraste estao certos"
+      ]
+    }
+  ]
+}

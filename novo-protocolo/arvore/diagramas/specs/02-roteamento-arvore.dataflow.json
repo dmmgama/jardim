@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "A arvore — porta, roteamento e os quatro modos",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1068,
+      460
+    ]
+  },
+  "stages": [
+    {
+      "label": "Porta de entrada"
+    },
+    {
+      "label": "Roteamento"
+    },
+    {
+      "label": "Modo de arvore"
+    },
+    {
+      "label": "Crivo e ordem"
+    },
+    {
+      "label": "Entrega"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "porta",
+      "type": "security",
+      "label": "Porta de entrada",
+      "sublabel": "cinco sinais",
+      "stage": 0,
+      "row": 1,
+      "tag": "abre-se arvore?"
+    },
+    {
+      "id": "q",
+      "type": "backend",
+      "label": "Q1 · Q2 · Q3 · Q4",
+      "sublabel": "podem sair varias",
+      "stage": 1,
+      "row": 1,
+      "tag": "quantas arvores"
+    },
+    {
+      "id": "sem_arvore",
+      "type": "security",
+      "label": "Sem arvore",
+      "sublabel": "mandato ou rumo",
+      "stage": 1,
+      "row": 2,
+      "tag": "P1.8 bloqueia",
+      "yOffset": -30
+    },
+    {
+      "id": "modo_carac",
+      "type": "cloud",
+      "label": "CARACTERIZACAO",
+      "sublabel": "Q3 · que objecto",
+      "stage": 2,
+      "row": 0,
+      "tag": "saturacao"
+    },
+    {
+      "id": "modo_mandato",
+      "type": "cloud",
+      "label": "MANDATO",
+      "sublabel": "Q2 · o que quero",
+      "stage": 2,
+      "row": 1,
+      "tag": "nao reabre"
+    },
+    {
+      "id": "modo_problema",
+      "type": "cloud",
+      "label": "PROBLEMA",
+      "sublabel": "Q1 · porque",
+      "stage": 2,
+      "row": 2,
+      "tag": "≥2 concorrentes",
+      "yOffset": -30
+    },
+    {
+      "id": "crivo",
+      "type": "security",
+      "label": "Crivo de grandeza",
+      "sublabel": "dez vezes, muda?",
+      "stage": 3,
+      "row": 1,
+      "tag": "P1.5"
+    },
+    {
+      "id": "modo_decisao",
+      "type": "cloud",
+      "label": "DECISAO",
+      "sublabel": "Q4 · qual destas",
+      "stage": 3,
+      "row": 2,
+      "tag": "≥2 concorrentes",
+      "yOffset": -30
+    },
+    {
+      "id": "caminho",
+      "type": "database",
+      "label": "CAMINHO",
+      "sublabel": "pressuposto/opcao",
+      "stage": 4,
+      "row": 1,
+      "tag": "origem das frentes"
+    }
+  ],
+  "flows": [
+    {
+      "id": "porta-abre",
+      "from": "porta",
+      "to": "q",
+      "label": "nenhum sinal",
+      "classification": "abre",
+      "variant": "emphasis",
+      "route": "straight",
+      "labelAt": [
+        207.5,
+        245
+      ]
+    },
+    {
+      "id": "porta-fecha",
+      "from": "porta",
+      "to": "sem_arvore",
+      "label": "sinal verdadeiro",
+      "classification": "bloqueia",
+      "variant": "security",
+      "labelAt": [
+        207.5,
+        320
+      ]
+    },
+    {
+      "id": "q3",
+      "from": "q",
+      "to": "modo_carac",
+      "label": "Q3",
+      "classification": "aberta",
+      "variant": "emphasis",
+      "labelAt": [
+        396,
+        205
+      ]
+    },
+    {
+      "id": "q2",
+      "from": "q",
+      "to": "modo_mandato",
+      "label": "Q2",
+      "classification": "generativa",
+      "variant": "dashed",
+      "route": "straight",
+      "labelAt": [
+        495,
+        225
+      ]
+    },
+    {
+      "id": "q1",
+      "from": "q",
+      "to": "modo_problema",
+      "label": "Q1",
+      "classification": "fechada",
+      "variant": "emphasis",
+      "labelAt": [
+        396,
+        320
+      ]
+    },
+    {
+      "id": "crivo-problema",
+      "from": "modo_problema",
+      "to": "crivo",
+      "label": "muda a causa?",
+      "classification": "pre-dados",
+      "variant": "security",
+      "labelAt": [
+        637.5,
+        240
+      ]
+    },
+    {
+      "id": "ordem-decisao",
+      "from": "modo_problema",
+      "to": "modo_decisao",
+      "label": "apos a causa",
+      "classification": "ordem",
+      "variant": "emphasis",
+      "route": "straight",
+      "labelAt": [
+        637.5,
+        375
+      ]
+    },
+    {
+      "id": "entrega-crivo",
+      "from": "crivo",
+      "to": "caminho",
+      "label": "causa testavel",
+      "classification": "sobreviveu",
+      "variant": "emphasis",
+      "route": "straight",
+      "labelAt": [
+        852.5,
+        240
+      ]
+    },
+    {
+      "id": "entrega-decisao",
+      "from": "modo_decisao",
+      "to": "caminho",
+      "label": "opcao escolhida",
+      "classification": "com alternativa",
+      "variant": "emphasis",
+      "labelAt": [
+        852.5,
+        320
+      ]
+    },
+    {
+      "id": "entrega-carac",
+      "from": "modo_carac",
+      "to": "caminho",
+      "label": "so significado",
+      "classification": "sem decisao",
+      "variant": "dashed",
+      "labelAt": [
+        745,
+        100
+      ],
+      "route": "top-channel",
+      "channelY": 112
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Porta de entrada (P1.8)",
+      "items": [
+        "A definicao do problema muda a cada interlocutor: ainda e mandato ou rumo",
+        "Nao se consegue escrever a condicao de morte, ou o que interessa so existe no todo"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Ordem e acoplamento",
+      "items": [
+        "Mandato morre primeiro, produz o MANDATO e devolve ao roteamento; nao acopla",
+        "Caracterizacao primeiro quando a causa depende de terreno desconhecido"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Condicao de morte (P1.1)",
+      "items": [
+        "Problema: causa confirmada, ou cone prioritario esgotado",
+        "Decisao: opcao escolhida, com alternativa rejeitada; o crivo aplica-se a ambas"
+      ]
+    }
+  ]
+}

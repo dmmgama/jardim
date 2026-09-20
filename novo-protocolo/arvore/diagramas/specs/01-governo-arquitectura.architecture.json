@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Arquitectura de governo — actores e enforcement",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1380,
+      470
+    ],
+    "views": [
+      {
+        "id": "linha-principal",
+        "label": "Do mandato ao alerta",
+        "focus": [
+          "humano",
+          "mandato",
+          "caminho",
+          "frente",
+          "hook",
+          "watcher",
+          "alerta"
+        ],
+        "note": "A linha que leva a intencao do humano ate ao alerta produzido em cada merge."
+      },
+      {
+        "id": "evolucao",
+        "label": "Evolucao do rumo",
+        "focus": [
+          "alerta",
+          "triagem",
+          "rumo",
+          "mandato",
+          "debates"
+        ],
+        "note": "Como um alerta escala ao humano e produz emenda datada com alternativa rejeitada."
+      },
+      {
+        "id": "proteccao",
+        "label": "Proteccao e auditoria",
+        "focus": [
+          "hook",
+          "debates",
+          "auditor",
+          "humano"
+        ],
+        "note": "O hook fora de todas as zonas, o indice de decisoes e a auditoria mensal."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "humano",
+      "type": "external",
+      "label": "Humano responsavel",
+      "sublabel": "fonte de intencao",
+      "pos": [
+        10,
+        40
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "mandato",
+      "type": "database",
+      "label": "MANDATO",
+      "sublabel": "L0 · objectivos e nao-obj.",
+      "tag": "1 pagina",
+      "pos": [
+        298,
+        40
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "caminho",
+      "type": "database",
+      "label": "CAMINHO + arvores/*",
+      "sublabel": "L1 · hipotese e cortes",
+      "tag": "≥2 caminhos",
+      "pos": [
+        586,
+        40
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "frente",
+      "type": "backend",
+      "label": "Frente",
+      "sublabel": "L3 · worktree isolada",
+      "tag": "projeccao + zona",
+      "pos": [
+        874,
+        40
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "inbox",
+      "type": "messagebus",
+      "label": "INBOX/*.json",
+      "sublabel": "descobertas e incidentes",
+      "tag": "acrescento",
+      "pos": [
+        1162,
+        40
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "auditor",
+      "type": "backend",
+      "label": "Auditor",
+      "sublabel": "le tudo, so relatorio",
+      "tag": "P7.4",
+      "pos": [
+        10,
+        200
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "rumo",
+      "type": "backend",
+      "label": "Arquitecto · rumo",
+      "sublabel": "so o humano o abre",
+      "tag": "P5.1",
+      "pos": [
+        298,
+        200
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "debates",
+      "type": "database",
+      "label": "debates/ + indice",
+      "sublabel": "decisao e alternativa",
+      "tag": "gerado por inversao",
+      "pos": [
+        586,
+        200
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "hook",
+      "type": "security",
+      "label": "Hook de trajecto + HALT",
+      "sublabel": "fora de todas as zonas",
+      "tag": "P3.14",
+      "pos": [
+        874,
+        200
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "watcher",
+      "type": "messagebus",
+      "label": "Watcher",
+      "sublabel": "script, a cada merge",
+      "tag": "3 passagens",
+      "pos": [
+        1162,
+        200
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "triagem",
+      "type": "backend",
+      "label": "Arquitecto · triagem",
+      "sublabel": "ESTADO · FRENTES",
+      "tag": "sessao fria",
+      "pos": [
+        298,
+        360
+      ],
+      "size": [
+        170,
+        68
+      ]
+    },
+    {
+      "id": "alerta",
+      "type": "database",
+      "label": "ALERTA + ESTADO",
+      "sublabel": "L2 · estado por hash",
+      "tag": "vazio e o normal",
+      "pos": [
+        586,
+        360
+      ],
+      "size": [
+        170,
+        68
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "L0–L1 · lei e hipotese",
+      "wraps": [
+        "mandato",
+        "caminho"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "L3–L4 · frente e sessao",
+      "wraps": [
+        "frente",
+        "inbox"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "reformulacao",
+      "from": "humano",
+      "to": "mandato",
+      "label": "reformulacao (P0.5)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pergunta-decisao",
+      "from": "mandato",
+      "to": "caminho",
+      "label": "pergunta de decisao",
+      "variant": "emphasis"
+    },
+    {
+      "id": "projeccao",
+      "from": "caminho",
+      "to": "frente",
+      "label": "projeccao + paragem",
+      "variant": "emphasis"
+    },
+    {
+      "id": "itens-frente",
+      "from": "frente",
+      "to": "inbox",
+      "label": "pressuposto caido"
+    },
+    {
+      "id": "escrita-confinada",
+      "from": "frente",
+      "to": "hook",
+      "label": "toda a escrita passa pelo gate",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 58
+    },
+    {
+      "id": "sela-merge",
+      "from": "hook",
+      "to": "watcher",
+      "label": "sela, merge, dispara",
+      "variant": "emphasis"
+    },
+    {
+      "id": "itens-por-processar",
+      "from": "inbox",
+      "to": "watcher",
+      "label": "itens por processar",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 58
+    },
+    {
+      "id": "tres-passagens",
+      "from": "watcher",
+      "to": "alerta",
+      "label": "colisao · dependencia · semantico",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "right",
+      "labelAt": [
+        990,
+        385
+      ]
+    },
+    {
+      "id": "item-novo",
+      "from": "alerta",
+      "to": "triagem",
+      "label": "item novo",
+      "variant": "emphasis"
+    },
+    {
+      "id": "escala",
+      "from": "triagem",
+      "to": "rumo",
+      "label": "toca no mandato: escala (P3.15)",
+      "variant": "security",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -58
+    },
+    {
+      "id": "emenda",
+      "from": "rumo",
+      "to": "mandato",
+      "label": "emenda datada (P5.3)",
+      "variant": "security",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -58
+    },
+    {
+      "id": "registo-decisao",
+      "from": "rumo",
+      "to": "debates",
+      "label": "alternativa rejeitada",
+      "variant": "dashed"
+    },
+    {
+      "id": "consulta-indice",
+      "from": "debates",
+      "to": "hook",
+      "label": "indice de decisoes",
+      "variant": "dashed"
+    },
+    {
+      "id": "relatorio",
+      "from": "auditor",
+      "to": "humano",
+      "label": "relatorio mensal (P7.1)",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -58
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Hierarquia L0–L4",
+      "items": [
+        "L0 MANDATO muda por emenda datada, em meses",
+        "L1 CAMINHO e arvores mudam por reavaliacao, em semanas",
+        "L2 ESTADO e FRENTES mudam por triagem, em dias"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Enforcement",
+      "items": [
+        "Hooks, indice de decisoes e HALT residem fora de todas as zonas (P3.14)",
+        "Grau de proteccao por slug: livre, decidido, selado, morto",
+        "O alerta devolve o identificador da decisao, nunca a razao (P3.9)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "O que o sistema garante",
+      "items": [
+        "Alinhamento e rastreabilidade, nao qualidade do trabalho",
+        "Nao impede uma frente de errar dentro da sua propria zona",
+        "ALERTA vazio e o caso normal, nao a exceccao"
+      ]
+    }
+  ]
+}

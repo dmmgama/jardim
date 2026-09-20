@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Auditoria D1 · arquitectura-governo.md — 33 achados, TOP 5 por ordem",
+    "quality_profile": "showcase",
+    "views": [
+      { "id": "superficie", "label": "Superficie vinculativa", "focus": ["doc", "t1", "t2"], "note": "21 regras marcadas, ~20 obrigacoes em prosa, 4 detectores e zero consequencias declaradas." },
+      { "id": "estrutura", "label": "Estrutura e navegacao", "focus": ["t3", "nav"], "note": "A seccao Evolucao nao tem cabecalho e o documento so funciona em leitura integral." },
+      { "id": "vocabulario", "label": "Vocabulario", "focus": ["t4", "t5"], "note": "caminho e triagem nomeiam dois conceitos cada; nao existe seccao de definicoes." }
+    ]
+  },
+  "lanes": [
+    { "id": "top5", "label": "TOP 5 — ordem de execucao" },
+    { "id": "lado", "label": "Outros achados maiores", "variant": "exception" }
+  ],
+  "phases": [
+    { "id": "vincular", "label": "Tornar vinculativo", "fromCol": 0, "toCol": 2, "variant": "emphasis" },
+    { "id": "estruturar", "label": "Estruturar", "fromCol": 3, "toCol": 3 },
+    { "id": "nomear", "label": "Fixar o vocabulario", "fromCol": 4, "toCol": 5, "variant": "dashed" }
+  ],
+  "mainPath": ["doc", "t1", "t2", "t3", "t4", "t5"],
+  "semanticChecks": {
+    "allowedRoots": ["doc"],
+    "allowedTerminals": ["t5", "alerta", "nav"]
+  },
+  "nodes": [
+    { "id": "doc", "lane": "top5", "col": 0, "type": "database", "label": "D1 · governo", "sublabel": "590 l. · 33 achados", "tag": "7C · 17M · 9m", "width": 140 },
+    { "id": "t1", "lane": "top5", "col": 1, "type": "security", "label": "1 · Marcar tudo", "sublabel": "E2-02 · ~20 em prosa", "tag": "dominante", "width": 140 },
+    { "id": "t2", "lane": "top5", "col": 2, "type": "security", "label": "2 · Detector e efeito", "sublabel": "E5-01/02 · 21 regras", "tag": "0 consequencias", "width": 140 },
+    { "id": "t3", "lane": "top5", "col": 3, "type": "backend", "label": "3 · Inserir §2.5", "sublabel": "E2-01 · 5 H4 orfaos", "width": 140 },
+    { "id": "t4", "lane": "top5", "col": 4, "type": "security", "label": "4 · Homonimos", "sublabel": "E3-01/02 · caminho", "tag": "e triagem", "width": 140 },
+    { "id": "t5", "lane": "top5", "col": 5, "type": "security", "label": "5 · §0 Definicoes", "sublabel": "E1-01 · zona, slug", "width": 140 },
+    { "id": "alerta", "lane": "lado", "col": 2, "type": "messagebus", "label": "ALERTA sem escritor", "sublabel": "E2-06 · substituicao", "tag": "MAIOR", "width": 140 },
+    { "id": "nav", "lane": "lado", "col": 3, "type": "backend", "label": "Sem navegacao", "sublabel": "E4-03 · leitura integral", "tag": "MAIOR", "width": 140 }
+  ],
+  "edges": [
+    { "id": "e1", "from": "doc", "to": "t1", "label": "1.o", "variant": "emphasis" },
+    { "id": "e2", "from": "t1", "to": "t2", "label": "2.o", "variant": "emphasis" },
+    { "id": "e3", "from": "t2", "to": "t3", "label": "3.o", "variant": "emphasis" },
+    { "id": "e4", "from": "t3", "to": "t4", "label": "4.o", "variant": "emphasis" },
+    { "id": "e5", "from": "t4", "to": "t5", "label": "5.o", "variant": "emphasis" },
+    { "id": "e6", "from": "t2", "to": "alerta", "label": "expoe", "variant": "dashed", "role": "branch" },
+    { "id": "e7", "from": "t3", "to": "nav", "label": "mesma raiz", "variant": "dashed", "role": "branch" }
+  ],
+  "cards": [
+    { "dot": "rose", "title": "Veredicto", "items": ["Pensa bem e prescreve mal: a arquitectura e solida, a superficie vinculativa nao e identificavel", "Serve para leitura humana integral; nao serve como canon operavel por sessao fria", "21 regras marcadas, 4 com detector, nenhuma com consequencia"] },
+    { "dot": "amber", "title": "Regras fantasma (E2-04, E1-02)", "items": ["tecto declarado: criterio de sucesso sem regra que o institua", "sondas de fronteira, quota do INBOX, arbitro em codigo, orcamento", "Garantias que dependem de mecanismos que o documento nunca enuncia"] },
+    { "dot": "emerald", "title": "O que esta bem", "items": ["As 21 alineas P0–P2 passam limpas em zero hedging, um actor, uma obrigacao", "O §4 de tensoes separa risco residual, resolucao adoptada e custo assumido", "§2.4.2 e um corolario derivado, e a excepcao dos nao-objectivos e argumentada"] }
+  ]
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arquitectura de governo de projectos com agentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F6F7; --card:#FFFFFF; --ink:#1B2127; --dim:#5E6A75;
+  --rule:#D5DBE0; --rule-soft:#E6EAEE;
+  --pass:#3F6B46; --pass-bg:#EAF1EA;
+  --block:#96382F; --block-bg:#F7EAE8;
+  --human:#6B5230; --human-bg:#F6EFE3;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#14181C; --card:#1B2127; --ink:#DDE3E8; --dim:#93A0AC;
+  --rule:#333D46; --rule-soft:#252D34;
+  --pass:#8FBE94; --pass-bg:#1E2A20;
+  --block:#DE9A91; --block-bg:#2C1E1C;
+  --human:#D6B681; --human-bg:#2A2318;
+}}
+:root[data-theme="dark"]{
+  --paper:#14181C; --card:#1B2127; --ink:#DDE3E8; --dim:#93A0AC;
+  --rule:#333D46; --rule-soft:#252D34;
+  --pass:#8FBE94; --pass-bg:#1E2A20;
+  --block:#DE9A91; --block-bg:#2C1E1C;
+  --human:#D6B681; --human-bg:#2A2318;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(24px + env(safe-area-inset-top,0px))}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+.shell{max-width:1100px;margin:0 auto;padding:0 24px 100px;display:grid;grid-template-columns:200px 1fr;gap:56px}
+nav{position:sticky;top:calc(28px + env(safe-area-inset-top,0px));align-self:start;padding-top:96px;font-family:var(--mono);font-size:12.5px;line-height:1.5}
+nav a{display:block;color:var(--dim);text-decoration:none;padding:5px 0;border-left:2px solid transparent;padding-left:10px;margin-left:-12px}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-left-color:var(--ink)}
+nav .grp{color:var(--ink);font-weight:500;margin-top:16px;padding-left:10px;margin-left:-12px}
+nav .grp:first-child{margin-top:0}
+main{min-width:0;max-width:74ch}
+
+header{padding:88px 0 44px}
+.kicker{font-family:var(--mono);font-size:12.5px;color:var(--dim);margin:0 0 20px}
+h1{font-size:33px;font-weight:600;letter-spacing:-.022em;line-height:1.18;margin:0 0 24px}
+.abre{font-size:18px;line-height:1.6;color:var(--ink);margin:0;border-left:3px solid var(--ink);padding-left:18px}
+
+h2{font-size:23px;font-weight:600;letter-spacing:-.015em;margin:72px 0 6px;padding-top:32px;border-top:1px solid var(--rule)}
+h2 .n{font-family:var(--mono);font-size:14px;color:var(--dim);font-weight:400;display:block;margin-bottom:6px}
+h3{font-size:17px;font-weight:600;margin:40px 0 12px}
+h4{font-size:15px;font-weight:600;margin:28px 0 8px;color:var(--dim)}
+p{margin:0 0 18px}
+.lede{color:var(--dim);font-size:17px;margin-bottom:28px}
+
+table{width:100%;border-collapse:collapse;margin:8px 0 28px;font-size:14.5px;line-height:1.5}
+th{text-align:left;font-weight:500;font-size:12px;color:var(--dim);font-family:var(--mono);padding:0 14px 9px 0;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:12px 14px 12px 0;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+td:last-child,th:last-child{padding-right:0}
+td strong{font-weight:600}
+code{font-family:var(--mono);font-size:.9em;background:var(--rule-soft);padding:1px 5px;border-radius:3px}
+pre{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:18px 20px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.7;margin:0 0 26px}
+pre code{background:transparent;padding:0;font-size:inherit}
+
+ul{margin:0 0 20px;padding-left:20px}
+li{margin-bottom:10px}
+
+.lei{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:20px 22px;margin:0 0 26px}
+.lei .voc{font-family:var(--mono);font-size:12px;color:var(--dim);margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+.lei dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 14px;font-size:14.5px;line-height:1.5}
+.lei dt{font-family:var(--mono);font-size:12.5px;color:var(--dim);padding-top:2px}
+.lei dd{margin:0}
+
+.nota{border-left:3px solid var(--human);background:var(--human-bg);color:var(--human);padding:15px 18px;font-size:15px;margin:0 0 26px;border-radius:0}
+.nota strong{font-weight:600}
+.chave{border-left:3px solid var(--ink);padding-left:18px;margin:0 0 26px;font-size:16.5px}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--rule);margin-bottom:28px}
+.cols>div{padding:16px 18px 16px 0;font-size:14.5px}
+.cols>div:nth-child(2n){padding-left:18px;border-left:1px solid var(--rule-soft)}
+.cols .hd{font-family:var(--mono);font-size:12px;color:var(--dim);padding-bottom:8px;border-bottom:1px solid var(--rule-soft);margin-bottom:12px}
+.cols ul{margin:0;padding-left:18px}
+.cols li{margin-bottom:9px}
+
+footer{margin-top:80px;padding-top:26px;border-top:1px solid var(--rule);font-family:var(--mono);font-size:12.5px;color:var(--dim)}
+
+@media(max-width:860px){
+  .shell{grid-template-columns:1fr;gap:0;padding:0 20px 80px}
+  nav{position:static;padding:28px 0 0;display:flex;flex-wrap:wrap;gap:4px 16px;border-bottom:1px solid var(--rule);padding-bottom:20px}
+  nav a{border-left:none;padding-left:0;margin-left:0;padding:3px 0}
+  nav a:hover{border-left:none}
+  nav .grp{display:none}
+  header{padding:40px 0 32px}
+  h1{font-size:27px}
+  .abre{font-size:16.5px}
+  .cols{grid-template-columns:1fr}
+  .cols>div:nth-child(2n){padding-left:0;border-left:none;border-top:1px solid var(--rule-soft)}
+  table{font-size:14px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<nav aria-label="Secções">
+<a href="#1-mandato-deste-documento" class="grp">Mandato deste documento</a>
+<a href="#1-1-porque-existe">Porque existe</a>
+<a href="#1-2-sintomas-que-resolve">Sintomas que resolve</a>
+<a href="#1-3-o-que-este-sistema-n-o-faz">O que este sistema não faz</a>
+<a href="#1-4-crit-rios-de-sucesso">Critérios de sucesso</a>
+<a href="#2-arquitectura" class="grp">Arquitectura</a>
+<a href="#2-1-nascimento-do-projecto">Nascimento do projecto</a>
+<a href="#2-2-a-rvore">A árvore</a>
+<a href="#2-3-o-caminho">O caminho</a>
+<a href="#2-4-desenvolvimento">Desenvolvimento</a>
+<a href="#3-garantias-permanentes" class="grp">Garantias permanentes</a>
+<a href="#3-1-tabela">Tabela</a>
+<a href="#3-2-manuten-o-no-tempo">Manutenção no tempo</a>
+<a href="#3-3-a-garantia-que-nenhum-mecanismo-d">A garantia que nenhum mecanismo dá</a>
+<a href="#4-tens-es-em-aberto" class="grp">Tensões em aberto</a>
+</nav>
+<main>
+<header>
+<p class="kicker">Arquitectura · projectos multi-frente conduzidos por agentes</p>
+<h1>Governo de projectos com agentes</h1>
+<p class="abre">Um projecto conduzido por várias sessões de agentes perde o objectivo sem que ninguém decida perdê-lo. Não há um momento de falha: há acumulação.</p>
+</header>
+<h2 id="1-mandato-deste-documento"><span class="n">1</span>Mandato deste documento</h2>
+<h3 id="1-1-porque-existe">Porque existe</h3>
+<p>Um projecto conduzido por várias sessões de agentes perde o objectivo sem que ninguém decida perdê-lo. Não há um momento de falha: há acumulação. Ao fim de algumas semanas o projecto é uma lista de tarefas que geram tarefas, e ninguém sabe dizer para que serve nenhuma delas.</p>
+<p>Este documento descreve o sistema que impede isso.</p>
+<h3 id="1-2-sintomas-que-resolve">Sintomas que resolve</h3>
+<table>
+<tr><th>Sintoma</th><th>Mecanismo subjacente</th></tr>
+<tr><td>Tarefas geram tarefas sem se saber para que servem</td><td>o objectivo não chega à sessão, ou chega e é reinterpretado</td></tr>
+<tr><td>Não se sabe porque se escolheu este caminho e não outro</td><td>as frentes derivam do mandato sem camada de estratégia</td></tr>
+<tr><td>O problema foi atacado por um ângulo só</td><td>não se geraram alternativas antes de decidir</td></tr>
+<tr><td>Sessões contradizem-se sobre factos do projecto</td><td>o estado acumula em vez de ser substituído</td></tr>
+<tr><td>Ficheiros de registo que ninguém lê</td><td>escrever é grátis e não há árbitro</td></tr>
+<tr><td>Duas frentes a mexer na mesma coisa sem saberem</td><td>nada cruza o que cada uma declara tocar</td></tr>
+<tr><td>Uma frente conclui algo que invalida outra, e ninguém liga</td><td>as dependências entre ramos não estão declaradas</td></tr>
+<tr><td>Decisões tomadas e nunca aplicadas</td><td>o fecho não verifica aplicação</td></tr>
+<tr><td>Becos sem saída reabertos meses depois</td><td>o fecho de uma frente não regista a razão</td></tr>
+<tr><td>Regras de governo alteradas sem se saber que foram debatidas</td><td>nada liga documentos a decisões</td></tr>
+<tr><td>Governo que cresce mais depressa que o projecto</td><td>procedimentos sem teste de utilidade</td></tr>
+</table>
+<h3 id="1-3-o-que-este-sistema-n-o-faz">O que este sistema não faz</h3>
+<ul><li>Não impede uma frente de fazer a coisa errada dentro da sua própria zona.</li><li>Não substitui julgamento humano sobre o rumo.</li><li>Não se aplica a projectos de frente única — sem paralelismo, a maior parte dos mecanismos não tem o que detectar.</li><li>Não garante qualidade do trabalho. Garante alinhamento e rastreabilidade.</li></ul>
+<h3 id="1-4-crit-rios-de-sucesso">Critérios de sucesso</h3>
+<table>
+<tr><th>Critério</th><th>Medição</th></tr>
+<tr><td>Retoma a frio</td><td>uma sessão sem histórico retoma qualquer frente a partir do handoff</td></tr>
+<tr><td>Alerta silencioso</td><td>o ficheiro de alertas vazio é o caso normal, não a excepção</td></tr>
+<tr><td>Zero decisões órfãs</td><td>nenhuma sessão fecha com decisão registada e não aplicada</td></tr>
+<tr><td>Frentes sob tecto</td><td>frentes abertas nunca excedem o tecto declarado</td></tr>
+<tr><td>Caminho vivo</td><td>todo o pressuposto invalidado produziu reavaliação registada</td></tr>
+<tr><td>Árvores mortais</td><td>nenhuma árvore aberta sem condição de morte declarada</td></tr>
+<tr><td>Rumo rastreável</td><td>toda a alteração ao mandato tem data e alternativa rejeitada registada</td></tr>
+<tr><td>Detecção rápida</td><td>conflito entre frentes sinalizado no fecho seguinte</td></tr>
+<tr><td>Governo estável</td><td>o corpo de regras não cresce sem um modo de falha observado</td></tr>
+</table>
+<p>Se ao fim de três meses o alerta dispara sempre, o detector está mal calibrado. Se nunca dispara e há colisões reais, as declarações estão mal preenchidas. Ambos são falhas do sistema, não do projecto.</p>
+<h2 id="2-arquitectura"><span class="n">2</span>Arquitectura</h2>
+<h3 id="2-1-nascimento-do-projecto">Nascimento do projecto</h3>
+<p>Nada arranca antes desta fase estar fechada. Um projecto sem mandato produz trabalho, mas não produz alinhamento — e o custo só aparece semanas depois.</p>
+<h4 id="o-que-preciso-estabelecer">O que é preciso estabelecer</h4>
+<table>
+<tr><th>Artefacto</th><th>Conteúdo</th><th>Quem escreve</th></tr>
+<tr><td><code>MANDATO</code></td><td>objectivos, não-objectivos, critério de fim</td><td>agente, por reformulação; autoria do humano</td></tr>
+<tr><td><code>CASOS</code></td><td>vazio no arranque</td><td>preenchido por divergência</td></tr>
+<tr><td>Perfis e zonas</td><td>que perfis existem e onde cada um escreve</td><td>o humano responsável</td></tr>
+<tr><td><code>HALT</code></td><td>ausente; o caminho existe</td><td>—</td></tr>
+</table>
+<p>Se o humano não conseguir enunciar o que quer, o mandato não se força: desenha-se uma árvore de mandato (§2.2) e o mandato sai dela.</p>
+<h4 id="protocolo-p0-nascimento">Protocolo P0 — Nascimento</h4>
+<p><em>Vocabulário: <strong>deve</strong> = obrigatório; <strong>não pode</strong> = proibido; <strong>pode</strong> = permitido.</em></p>
+<ul><li><strong>P0.1</strong> — O mandato <strong>deve</strong> declarar entre um e cinco objectivos, cada um com slug.</li><li><strong>P0.2</strong> — O mandato <strong>deve</strong> declarar duas a três não-objectivos por objectivo.</li><li><strong>P0.3</strong> — O mandato <strong>não pode</strong> exceder uma página.</li><li><strong>P0.4</strong> — O mandato <strong>deve</strong> declarar o critério pelo qual o projecto se considera terminado.</li><li><strong>P0.5</strong> — O mandato <strong>deve</strong> ser redigido por agente, por reformulação da intenção do humano responsável.</li><li><strong>P0.6</strong> — O agente <strong>não pode</strong> acrescentar objectivo ou não-objectivo que o humano não tenha enunciado.</li><li><strong>P0.7</strong> — O mandato <strong>deve</strong> passar o teste de reformulação e o teste de discriminação.</li><li><strong>P0.8</strong> — Nenhuma frente <strong>pode</strong> ser aberta antes de P0.7 devolver verdadeiro.</li></ul>
+<h4 id="crit-rio-de-desbloqueio-da-fase">Critério de desbloqueio da fase</h4>
+<p>Dois testes. O primeiro verifica compreensão; o segundo verifica precisão. Ambos têm de passar.</p>
+<p><strong>Teste de reformulação.</strong> O agente enuncia o mandato por palavras próprias e o humano confirma ou rejeita. Reformulação não é paráfrase: um agente que devolve as mesmas palavras por outra ordem não demonstrou nada. Compreendeu se consegue:</p>
+<ul><li>derivar não-objectivos que o humano não enunciou, e acertar;</li><li>classificar um caso-fronteira inventado na hora;</li><li>dizer o que o mandato <strong>exclui</strong>, não apenas o que persegue;</li><li>nomear a tensão entre dois objectivos e dizer qual cede.</li></ul>
+<p>O último é o mais difícil de fingir: qual objectivo cede numa colisão não está no texto, está na intenção.</p>
+<p>Falha em qualquer um → o mandato volta a ser discutido, não reescrito. O que falhou foi a transmissão da intenção, não a redacção.</p>
+<p><strong>Teste de discriminação.</strong> Três tarefas plausíveis: duas dentro do mandato, uma fora mas superficialmente parecida. Três sessões limpas, cada uma com o mandato e nada mais. As três classificam igual e correctamente → fase desbloqueada. Qualquer divergência → o mandato falha.</p>
+<p><strong>Correcção em caso de falha:</strong> acrescentar não-objectivos e registar em <code>CASOS</code> a tarefa que gerou a divergência, com a classificação correcta. Nunca acrescentar princípios — um princípio novo aumenta o espaço interpretativo em vez de o reduzir.</p>
+<h3 id="2-2-a-rvore">A árvore</h3>
+<p>A árvore é o instrumento de partição. Não é um nível da hierarquia nem uma fase: é uma ferramenta que se usa sempre que há um espaço a dividir, e serve quatro propósitos distintos. É ela que produz os cortes que o caminho depois testa.</p>
+<h4 id="quatro-prop-sitos">Quatro propósitos</h4>
+<table>
+<tr><th>Propósito</th><th>Pergunta que responde</th><th>Exaustividade</th><th>Forma</th></tr>
+<tr><td><strong>Problema</strong></td><td>porque é que isto acontece</td><td>estrita, desde o início</td><td>fechada</td></tr>
+<tr><td><strong>Caracterização</strong></td><td>o que é este objecto</td><td>aspiracional, verificada no fim</td><td><strong>aberta</strong> — ramos nascem da investigação</td></tr>
+<tr><td><strong>Decisão</strong></td><td>o que é que eu quero</td><td>sobre o espaço de opções</td><td>profundidade deliberadamente desigual</td></tr>
+<tr><td><strong>Mandato</strong></td><td>o que é que eu quero, afinal</td><td>emergente</td><td>morre ao produzir o mandato</td></tr>
+</table>
+<h4 id="mece-com-uma-distin-o">MECE, com uma distinção</h4>
+<p><strong>Mutuamente exclusivo aplica-se sempre.</strong> Sobreposição entre ramos é erro em qualquer árvore: produz dupla contagem e duplica esforço.</p>
+<p><strong>Colectivamente exaustivo varia com o propósito.</strong> Numa árvore de problema é estrito desde o início — a soma das partes é o problema todo, e uma lacuna esconde a causa. Numa árvore de caracterização é aspiracional: exigir exaustividade antes de investigar bloqueia a árvore no primeiro nó, porque implica conhecer o espaço total antes de o conhecer. Verifica-se ao fechar, não ao abrir.</p>
+<p><strong>Um eixo por nó.</strong> Num nó só se aplica um eixo de corte. Partir facturação por geografia <em>ou</em> por tipo de cliente, nunca ambos no mesmo nível. Iterar níveis é permitido e é como se compõem eixos: nível 1 por geografia, nível 2 cada geografia por tipo de cliente. Misturar eixos no mesmo nível é a violação de MECE mais frequente na prática.</p>
+<p><strong>Profundidade desigual não é defeito.</strong> Numa árvore de decisão, aprofundar um ramo e deixar outro em esboço é alocação de esforço. O defeito seria o ramo raso desaparecer sem ficar registado que se decidiu não o aprofundar.</p>
+<h4 id="crit-rio-de-corte">Critério de corte</h4>
+<p>Um corte vale se passar dois filtros, ambos aplicáveis antes de haver dados.</p>
+<p><strong>Assimetria.</strong> O melhor corte é o que cria maior diferença entre ramos e isola o problema numa área. Se a produtividade caiu 10% em todo o lado, cortar por geografia não serve. Serve se revelar que uma região caiu 40% e o resto está estável.</p>
+<p><strong>Acionabilidade.</strong> O corte tem de recair sobre variável que se consiga controlar ou influenciar. Um corte perfeito sobre algo inalterável não produz decisão.</p>
+<h4 id="triagem-antes-de-dados">Triagem antes de dados</h4>
+<p>Antes de recolher evidência, estimativa de ordem de grandeza e cenário extremo: <em>se este ramo variasse dez vezes, mudava a decisão final?</em> Se não, descarta-se o ramo sem o testar empiricamente.</p>
+<p>Esta triagem é gratuita e é o que impede a árvore de gerar frentes a mais. Sem ela, todos os ramos viram trabalho.</p>
+<h4 id="rvores-m-ltiplas-e-rvores-acopladas">Árvores múltiplas e árvores acopladas</h4>
+<p>No arranque desenham-se árvores concorrentes com eixos conceptuais distintos sobre o mesmo problema. Vivem em simultâneo até a triagem preliminar matar as estéreis. Uma árvore só é o mesmo erro que um caminho só: não é escolha, é inércia.</p>
+<p>Árvores de propósito diferente sobre o mesmo objecto <strong>não se fundem</strong>. Uma árvore de caracterização cresce com evidência; uma de decisão fecha com escolha. Fundidas, a decisão nunca fecha, porque há sempre mais para caracterizar.</p>
+<p>Acoplam-se por dependência declarada: um ramo de decisão declara que depende de um ramo de caracterização. Quando o segundo devolve resultado, o primeiro reavalia, com duas saídas apenas — aprofundar ou podar.</p>
+<p>O caso típico: a árvore de estudo devolve o que as opções significam naquele contexto concreto; a árvore de decisão aprofunda dois ramos e poda os restantes. A evidência não decidiu — mudou o significado das opções, que é o que a torna útil.</p>
+<h4 id="estado-de-ramo">Estado de ramo</h4>
+<p><code>por abrir</code> · <code>em desenvolvimento</code> · <code>fechado</code> · <code>podado</code> · <code>suspenso: &lt;dependência&gt;</code></p>
+<p><strong>Podado não é rejeitado.</strong> É &quot;decidiu-se não aprofundar&quot;, e a razão fica registada. Sem isso o ramo volta dentro de dois meses com outro nome.</p>
+<h4 id="protocolo-p1-rvore">Protocolo P1 — Árvore</h4>
+<ul><li><strong>P1.1</strong> — Cada árvore <strong>deve</strong> declarar, ao nascer, o seu propósito e a condição em que morre.</li><li><strong>P1.2</strong> — Num nó <strong>não pode</strong> ser aplicado mais de um eixo de corte.</li><li><strong>P1.3</strong> — Ramos irmãos <strong>não podem</strong> sobrepor-se.</li><li><strong>P1.4</strong> — Um ramo <strong>deve</strong> declarar as suas dependências no momento em que é desenhado.</li><li><strong>P1.5</strong> — Um ramo <strong>não pode</strong> passar a trabalho sem ter passado a triagem de ordem de grandeza.</li><li><strong>P1.6</strong> — Um ramo podado <strong>deve</strong> registar a razão.</li><li><strong>P1.7</strong> — Árvores de propósito diferente <strong>não podem</strong> ser fundidas.</li></ul>
+<p>Uma árvore sem condição de morte é uma árvore eterna, e uma árvore eterna transforma-se na lista de tarefas que geram tarefas — com melhor genealogia, o que a torna mais difícil de matar.</p>
+<h3 id="2-3-o-caminho">O caminho</h3>
+<p>Entre o mandato e as frentes há uma camada que decide <strong>por onde</strong>. Sem ela, cada frente deriva directamente do mandato e é uma aposta isolada que ninguém consegue avaliar.</p>
+<p><strong>Caminho</strong> é a hipótese, hoje, sobre como se chega ao mandato. Não é um plano: é uma aposta entre apostas possíveis, com os pressupostos que a sustentam declarados e testáveis.</p>
+<p>A árvore e o caminho dividem o trabalho: <strong>a árvore gera os cortes, o caminho testa-os.</strong> E testam em momentos diferentes — a triagem de ordem de grandeza mata ramos antes de haver dados, de graça; o caminho testa com dados reais o que sobreviveu, e é caro. Juntar os dois testes faz desaparecer a triagem e transforma todos os cortes em frentes.</p>
+<h4 id="m-todo-de-procura">Método de procura</h4>
+<p>O caminho não se escolhe no início. Escolhe-se depois do primeiro teste que elimina alternativas.</p>
+<pre><code>M1  Enunciar o mandato como pergunta de decisão
+M2  Desenhar as árvores concorrentes e triar as estéreis
+M3  Por árvore sobrevivente, extrair o que tem de ser verdade — os pressupostos
+M4  Marcar os discriminantes: pressupostos cuja resposta elimina caminhos
+M5  Ordenar por (incerteza × custo de descobrir tarde) ÷ custo de testar
+M6  A primeira frente testa o discriminante do topo
+M7  Nenhum caminho é declarado escolhido antes de M6 devolver resultado</code></pre>
+<p>O discriminante de M4 é o corte de maior assimetria da árvore que sobreviveu. As frentes derivam do caminho, não do mandato: uma frente que não testa um pressuposto nem executa um caminho já escolhido não tem razão para existir.</p>
+<h4 id="caminho"><code>CAMINHO</code></h4>
+<table>
+<tr><th>Campo</th><th>Conteúdo</th></tr>
+<tr><td>Pergunta de decisão</td><td>o mandato reformulado como pergunta</td></tr>
+<tr><td>Caminhos em aberto</td><td>dois ou mais, com uma linha cada</td></tr>
+<tr><td>Caminho actual</td><td>um, ou <code>não escolhido</code></td></tr>
+<tr><td>Pressupostos</td><td>estado: <code>por testar</code>, <code>confirmado</code>, <code>invalidado</code>, <code>inconclusivo</code></td></tr>
+<tr><td>Ordem de ataque</td><td>os pressupostos por ordem de M5</td></tr>
+<tr><td>Regras de paragem</td><td>por pressuposto, escritas antes de a frente abrir</td></tr>
+</table>
+<p>Uma página. Muda mais que o mandato, menos que o estado.</p>
+<h4 id="protocolo-p2-caminho">Protocolo P2 — Caminho</h4>
+<ul><li><strong>P2.1</strong> — O caminho <strong>deve</strong> declarar dois ou mais caminhos plausíveis.</li><li><strong>P2.2</strong> — Cada frente <strong>deve</strong> declarar que pressuposto testa ou que caminho executa.</li><li><strong>P2.3</strong> — Cada pressuposto <strong>deve</strong> ter regra de paragem escrita antes de a frente abrir.</li><li><strong>P2.4</strong> — Um caminho <strong>não pode</strong> ser declarado escolhido com discriminante por testar.</li><li><strong>P2.5</strong> — Um pressuposto invalidado <strong>deve</strong> disparar reavaliação antes de abrir frente nova.</li><li><strong>P2.6</strong> — O caminho <strong>não pode</strong> exceder uma página.</li></ul>
+<h4 id="como-se-avalia">Como se avalia</h4>
+<p>Um milestone não é um entregável: é um teste de pressuposto. A pergunta não é <em>o que fica pronto</em> mas <em>o que fica a saber-se</em>.</p>
+<table>
+<tr><th>Resultado</th><th>Significado</th><th>Consequência</th></tr>
+<tr><td><code>confirmado</code></td><td>o pressuposto aguenta</td><td>avança para o seguinte na ordem</td></tr>
+<tr><td><code>invalidado</code></td><td>o pressuposto cai</td><td>reavaliação obrigatória</td></tr>
+<tr><td><code>inconclusivo</code></td><td>o teste não decidiu</td><td>redesenhar o teste, não repetir</td></tr>
+</table>
+<p><code>inconclusivo</code> diz algo sobre o sistema, não sobre o projecto: a regra de paragem foi escrita sem critério verificável.</p>
+<h4 id="como-se-reavalia">Como se reavalia</h4>
+<p>Três disparos: pressuposto invalidado, cadência fixa, ou vontade do humano.</p>
+<pre><code>reavaliação → quatro saídas, mutuamente exclusivas
+
+  manter             nada mudou que altere a ordem
+  reordenar          mudou a ordem de ataque, não o caminho
+  trocar de caminho  o caminho actual cai; outro dos abertos assume
+  escalar            o mandato é que está errado → modo rumo</code></pre>
+<p class="chave"><strong>Mudar de caminho não é mudar de rumo.</strong> É o que evita que cada surpresa técnica se transforme numa discussão existencial. Só a quarta saída toca no mandato.</p>
+<h3 id="2-4-desenvolvimento">Desenvolvimento</h3>
+<h4 id="2-4-1-hierarquia">Hierarquia</h4>
+<table>
+<tr><th>Nível</th><th>Artefacto</th><th>Muda por</th><th>Ritmo</th></tr>
+<tr><td><strong>L0 · Projecto</strong></td><td><code>MANDATO</code></td><td>emenda datada</td><td>meses</td></tr>
+<tr><td><strong>L1 · Caminho</strong></td><td><code>CAMINHO</code>, árvores</td><td>reavaliação</td><td>semanas</td></tr>
+<tr><td><strong>L2 · Estado</strong></td><td><code>ESTADO</code>, <code>FRENTES</code></td><td>triagem</td><td>dias</td></tr>
+<tr><td><strong>L3 · Frente</strong></td><td><code>estado.json</code>, projecção</td><td>fecho de sessão</td><td>sessões</td></tr>
+<tr><td><strong>L4 · Sessão</strong></td><td>worktree, <code>INBOX</code></td><td>trabalho</td><td>horas</td></tr>
+</table>
+<p class="chave"><strong>Um nível nunca escreve no nível acima.</strong> Uma sessão não altera o estado; uma frente não altera o caminho. O que sobe é um pedido, não uma alteração.</p>
+<h4 id="2-4-2-escopo-de-contexto">Escopo de contexto</h4>
+<p>Corolário directo da hierarquia: <strong>cada nível classifica o seu trabalho contra o nível imediatamente acima, nunca contra o topo.</strong></p>
+<table>
+<tr><th>Quem</th><th>Classifica contra</th><th>Não precisa de</th></tr>
+<tr><td>Sessão</td><td>o mandato da frente</td><td>o caminho, o mandato</td></tr>
+<tr><td>Frente</td><td>o pressuposto que testa e a regra de paragem</td><td>o mandato</td></tr>
+<tr><td>Triagem</td><td>os ramos que o alerta toca</td><td>o projecto inteiro</td></tr>
+<tr><td>Caminho</td><td>o mandato</td><td>a intenção por trás</td></tr>
+<tr><td>Rumo</td><td>a intenção do humano</td><td>—</td></tr>
+</table>
+<p>Uma frente sem o mandato geral continua a detectar que derrapou, porque derrapar é sair do <strong>seu pressuposto</strong>. O <code>challenges</code> que emite significa &quot;o meu pressuposto caiu&quot;, não &quot;o projecto está errado&quot; — a tradução para eventual emenda é feita por quem tem o mandato.</p>
+<p>Consequência: a projecção de uma frente não se redige, <strong>deriva-se</strong> do caminho. Objectivo = o pressuposto mais a regra de paragem. Fronteiras negativas = os pressupostos atribuídos às outras frentes.</p>
+<p><strong>Uma excepção.</strong> Os objectivos são escopáveis; os não-objectivos não são. Uma fronteira que não está carregada não bloqueia nada, e o erro provável não é cair fora de um objectivo específico — é cair fora do mandato todo. Os não-objectivos são baratos e vão inteiros em qualquer sessão que classifique seja o que for.</p>
+<h4 id="2-4-3-actores">Actores</h4>
+<table>
+<tr><th>Actor</th><th>É agente</th><th>Dispara por</th><th>Escreve em</th></tr>
+<tr><td><strong>Humano responsável</strong></td><td>não</td><td>vontade</td><td>tudo</td></tr>
+<tr><td><strong>Arquitecto · triagem</strong></td><td>sim</td><td>alerta</td><td><code>ESTADO</code>, <code>FRENTES</code>, <code>REJEICOES</code></td></tr>
+<tr><td><strong>Arquitecto · rumo</strong></td><td>sim</td><td>só o humano</td><td>emenda ao mandato, ou nada</td></tr>
+<tr><td><strong>Frente</strong></td><td>sim</td><td>trabalho</td><td>a sua worktree, <code>INBOX</code></td></tr>
+<tr><td><strong>Auditor</strong></td><td>sim</td><td>cadência</td><td>relatório</td></tr>
+<tr><td><strong>Watcher</strong></td><td><strong>não</strong></td><td>cada merge</td><td><code>ALERTA</code></td></tr>
+</table>
+<p>O watcher não tem modelo. É um script. O processo que vigia está sempre ligado; o que julga é sempre uma sessão fria e curta. Um agente permanente acumula contexto e deriva — e seria o pior sítio do sistema para isso acontecer.</p>
+<h4 id="2-4-4-ferramentas">Ferramentas</h4>
+<table>
+<tr><th>Ferramenta</th><th>Função</th><th>Substitui</th></tr>
+<tr><td><strong>Árvore</strong></td><td>partição do espaço, geração de cortes</td><td>ataque por um ângulo só</td></tr>
+<tr><td><strong>Worktree</strong></td><td>isolamento, paralelismo, merge como verificação</td><td>disciplina de não mexer na pasta alheia</td></tr>
+<tr><td><strong>Hook de caminho</strong></td><td>confinamento de leitura e escrita por perfil</td><td>regras escritas em prosa</td></tr>
+<tr><td><strong>Índice de decisões</strong></td><td>liga slugs a decisões; protege o que foi debatido</td><td>memória de quem estava presente</td></tr>
+<tr><td><strong>Watcher</strong></td><td>cruzar declarações e seguir dependências</td><td>reuniões de coordenação</td></tr>
+<tr><td><strong>Cold-read</strong></td><td>verificar auto-suficiência de um output</td><td>confiança</td></tr>
+<tr><td><strong>Proveniência selada</strong></td><td>registo imutável, fora do índice de pesquisa</td><td>memória</td></tr>
+<tr><td><strong>HALT</strong></td><td>paragem imediata de todas as escritas</td><td>—</td></tr>
+</table>
+<h4 id="2-4-5-ficheiros">Ficheiros</h4>
+<table>
+<tr><th>Ficheiro</th><th>O que é</th><th>Escrita</th><th>Quem</th></tr>
+<tr><td><code>MANDATO</code></td><td>a lei do projecto</td><td>emenda datada</td><td>agente redige, humano valida</td></tr>
+<tr><td><code>CAMINHO</code></td><td>a hipótese de como se lá chega</td><td>substituição</td><td>humano com agente</td></tr>
+<tr><td><code>arvores/*</code></td><td>partições do espaço, por propósito</td><td>substituição</td><td>humano com agente</td></tr>
+<tr><td><code>CASOS</code></td><td>casos-fronteira decididos</td><td>acrescento</td><td>humano, triagem</td></tr>
+<tr><td><code>ESTADO</code></td><td>o que é verdade agora</td><td><strong>substituição</strong></td><td>triagem</td></tr>
+<tr><td><code>FRENTES</code></td><td>índice de frentes e ramos</td><td>substituição</td><td>triagem</td></tr>
+<tr><td><code>REJEICOES</code></td><td>o que foi descartado e porquê</td><td>acrescento</td><td>triagem</td></tr>
+<tr><td><code>ALERTA</code></td><td>o que o watcher detectou</td><td>substituição</td><td>watcher</td></tr>
+<tr><td><code>INBOX/*.json</code></td><td>descobertas por processar</td><td>acrescento</td><td>frentes</td></tr>
+<tr><td><code>debates/*.json</code></td><td>decisões, com alternativa rejeitada e o que afectam</td><td>acrescento</td><td>rumo</td></tr>
+<tr><td><code>indice-decisoes.json</code></td><td>slug → decisão</td><td><strong>gerado</strong></td><td>script</td></tr>
+<tr><td><code>estado.json</code></td><td>estado da frente face ao seu pressuposto</td><td>substituição</td><td>frente</td></tr>
+<tr><td><code>handoff.json</code></td><td>como retomar</td><td>substituição</td><td>frente</td></tr>
+<tr><td><code>research/</code></td><td>exploração</td><td>livre</td><td>frente</td></tr>
+<tr><td><code>entregue/</code></td><td>o que sobe</td><td>acrescento</td><td>frente</td></tr>
+<tr><td><code>Rascunhos</code></td><td>travão intra-sessão</td><td>termina vazio</td><td>frente</td></tr>
+<tr><td><code>sealed/</code></td><td>pedido, output, referências</td><td>write-once</td><td>hook</td></tr>
+<tr><td><code>HALT</code></td><td>interruptor</td><td>presença</td><td>humano</td></tr>
+</table>
+<ul><li><strong>Estado substitui-se, evidência acumula-se.</strong> Nunca no mesmo ficheiro.</li><li><strong>O caos tem lugar próprio.</strong> <code>research/</code> e <code>Rascunhos</code> existem para a exploração não contaminar o estado. Não se disciplinam.</li><li><strong>Nada que uma ferramenta possa reconstruir entra em memória.</strong> A proveniência guarda referências, não conteúdo.</li></ul>
+<h4 id="2-4-6-o-que-importante-e-o-que-n-o">O que é importante e o que não é</h4>
+<table>
+<tr><th>Importante</th><th>Não é importante</th></tr>
+<tr><td>O que cada frente declara <strong>tocar</strong> e de que <strong>depende</strong></td><td>o que cada frente fez</td></tr>
+<tr><td>O que ficou <strong>fechado ou podado</strong> e porquê</td><td>o que ficou aberto na conversa</td></tr>
+<tr><td>O <strong>próximo passo</strong> e o seu critério de conclusão</td><td>a narrativa do percurso</td></tr>
+<tr><td>A <strong>alternativa rejeitada</strong> numa decisão</td><td>a discussão que levou à decisão</td></tr>
+<tr><td>Que o alerta esteja <strong>vazio</strong></td><td>quantos alertas já foram resolvidos</td></tr>
+<tr><td>Que o output seja <strong>auto-suficiente</strong></td><td>que a sessão tenha sido produtiva</td></tr>
+<tr><td>Pressupostos <strong>declarados</strong></td><td>pressupostos correctos</td></tr>
+</table>
+<p>A coluna da direita não é proibida. É o que não entra no estado curado — vive na proveniência selada, recuperável e não lida.</p>
+<h4 id="2-4-7-fluxos-do-geral-ao-tomo">Fluxos, do geral ao átomo</h4>
+<p><strong>L0–L2 · Projecto</strong></p>
+<pre><code>MANDATO → ÁRVORES → CAMINHO → frentes → merges → watcher → ALERTA
+
+ALERTA vazio            → nada acontece
+ALERTA com item         → triagem
+triagem toca no mandato → escala ao humano → rumo → emenda → MANDATO</code></pre>
+<p><strong>L3 · Frente</strong></p>
+<pre><code>F1  Abre com projecção derivada do caminho
+F2  Sessões de trabalho, N ≥ 1
+F3  Fecho de cada sessão: gate
+F4  Pressuposto resolvido → frente fecha → resultado ao caminho</code></pre>
+<p><strong>L4 · Sessão — o átomo</strong></p>
+<pre><code>S1  HALT presente?                    sim → recusa
+S2  Perfil declarado?                 não → recusa
+S3  Monta contexto por perfil e por escopo
+S4  Trabalha
+      escrita fora da zona            → bloqueia, devolve zona, continua
+      edição de slug com decisão      → bloqueia ou alerta, conforme o nível
+      dúvida                          → declara pressuposto, continua
+      tema fora do mandato da frente  → Rascunhos, volta ao tema
+S5  Fecho
+      toca fora do declarado          → não fecha
+      sem pressuposto nem caminho     → não fecha
+      Rascunhos não vazio             → não fecha
+      pressuposto novo                → fecha com carece_aprovacao
+      cold-read falha                 → fecha com carece_aprovacao
+      trabalho continua               → handoff.json, validado
+S6  Sela, faz merge, dispara watcher</code></pre>
+<p>Não existe estado de espera. Uma sessão nunca fica bloqueada à espera de outro actor: declara o pressuposto que assumiu e prossegue.</p>
+<h4 id="2-4-8-mecanismos">Mecanismos</h4>
+<p><strong>Gate de fecho.</strong> Dois níveis. Divergência dura — o que a frente tocou saiu do que declarou, ou o que produziu não serve pressuposto nenhum — bloqueia o fecho. Divergência branda — pressuposto novo, cold-read fraco — deixa fechar com marca e sobe ao alerta. O primeiro protege o projecto; o segundo protege o ritmo.</p>
+<p><strong>Detecção, três passagens.</strong></p>
+<table>
+<tr><th>Passagem</th><th>Base</th><th>Confiança</th><th>Apanha</th></tr>
+<tr><td>Colisão</td><td>campo <code>toca</code></td><td>facto</td><td>duas frentes na mesma coisa</td></tr>
+<tr><td><strong>Dependência</strong></td><td>arestas da árvore</td><td><strong>facto</strong></td><td>conclusão que muda outro ramo</td></tr>
+<tr><td>Semântico</td><td>chamada única de modelo</td><td>sugestão</td><td>o que ninguém declarou</td></tr>
+</table>
+<p>A passagem de dependência é a mais valiosa e a mais barata: quando uma frente fecha um ramo, o script segue as arestas já declaradas e vê quem ficava à espera daquilo. Apanha o conflito sem colisão de ficheiros — duas frentes em pastas separadas onde a conclusão de uma altera o significado do trabalho da outra.</p>
+<p>O detector semântico desce a rede de segurança, que é o lugar certo para uma detecção probabilística. E ganha uma função nova: <strong>quando apanha um conflito que a árvore não previa, falta uma aresta.</strong></p>
+<p><strong>Alerta com estado.</strong> Cada alerta é <code>novo</code>, <code>visto</code> ou <code>descartado</code>, com hash do conteúdo. Um descartado não reaparece para o mesmo par no mesmo estado. Sem isto o ficheiro dispara sempre e deixa de ser lido em duas semanas.</p>
+<p><strong>Protecção do que foi decidido.</strong> Tudo tem slug — documentos, regras, decisões, ramos, pressupostos. Os slugs são globais, nunca se reutilizam e nunca se renumeram. A decisão declara o que afecta; o índice é gerado por inversão e nunca é escrito à mão.</p>
+<p>Ao editar, o hook extrai o slug e consulta o índice:</p>
+<table>
+<tr><th>Nível</th><th>Origem</th><th>Comportamento</th></tr>
+<tr><td><code>livre</code></td><td>sem decisão</td><td>edita</td></tr>
+<tr><td><code>decidido</code></td><td>decisão registada</td><td>alerta, pede confirmação humana</td></tr>
+<tr><td><code>selado</code></td><td>decisão com <code>selado</code></td><td>bloqueia; só nova decisão desbloqueia</td></tr>
+<tr><td><code>morto</code></td><td>slug retirado por decisão</td><td>bloqueia a recriação</td></tr>
+</table>
+<p>O alerta devolve o identificador da decisão e o facto de existir. <strong>Nunca o conteúdo do debate, a alternativa rejeitada ou a razão.</strong> O agente recebe material para parar, não para formar opinião. Assim o protocolo não contém uma única referência a decisões e continua protegido.</p>
+<p>Uma regra retirada sai da vista do agente e vive no arquivo, dada como morta. O quarto nível impede ressurreição silenciosa — o mesmo mecanismo que impede reabrir becos sem saída, aplicado ao governo. Limite: só apanha reintrodução pelo mesmo slug; conteúdo equivalente com slug novo é trabalho do auditor.</p>
+<p><strong>Cold-read.</strong> Um agente sem histórico lê o output ou o handoff e responde a uma pergunta fechada. Para um handoff: <em>consegues enunciar o próximo passo e o critério que o dá por feito?</em> Se não consegue, é inválido. O teste é sobre a acção seguinte, não sobre compreensão do tema.</p>
+<p><strong>Paragem.</strong> A presença do ficheiro <code>HALT</code> faz o hook recusar arranque e qualquer escrita. As sessões vivas ficam inertes na operação seguinte. Não se terminam processos: matar a meio deixa ficheiros parciais. O <code>HALT</code> é removido à mão, e o caminho dos hooks e o índice de decisões estão fora de todas as zonas de escrita.</p>
+<h4 id="2-4-9-regra-de-sa-da">Regra de saída</h4>
+<p>Transversal a todos os níveis: handoff, entregue, alerta, relatório.</p>
+<p><strong>A resposta primeiro.</strong> A recomendação ou conclusão encabeça o documento. Abaixo, três ou quatro pilares de suporte, MECE entre si. Na base, a evidência que sustenta cada pilar.</p>
+<p>A árvore é lógica de partição do problema; esta é lógica de comunicação do resultado. Confundi-las produz documentos que expõem a análise em vez de a concluir. O cold-read é a verificação mecânica desta regra: um output que não é decifrável de cima, sem contexto, não a cumpre.</p>
+<h4 id="2-4-10-escolha-de-agente-por-papel">Escolha de agente por papel</h4>
+<p>Os papéis da §2.4.3 são funções, não produtos. Cada um tem requisitos que derivam da arquitectura, e é por eles que se escolhe onde corre — não pela preferência de ferramenta.</p>
+<p><strong>Seis critérios</strong></p>
+<table>
+<tr><th>Critério</th><th>Pergunta</th></tr>
+<tr><td>Duração</td><td>o papel vive enquanto trabalha, ou tem de estar sempre ligado?</td></tr>
+<tr><td>Disparo</td><td>quem o invoca: humano, evento, ou calendário?</td></tr>
+<tr><td>Filesystem</td><td>precisa de worktree, git e ficheiros locais?</td></tr>
+<tr><td>Enforcement</td><td>precisa de hooks que <strong>bloqueiem</strong> uma operação antes de executar?</td></tr>
+<tr><td>Escopo</td><td>o contexto tem de ser montado por perfil e cortado?</td></tr>
+<tr><td>Julgamento</td><td>o papel decide, ou só detecta?</td></tr>
+</table>
+<p>O critério de enforcement é eliminatório. Um papel que escreve em zonas protegidas só pode correr onde existam hooks bloqueantes. Sem isso, as regras voltam a ser prosa.</p>
+<p><strong>Requisitos por papel</strong></p>
+<table>
+<tr><th>Papel</th><th>Duração</th><th>Disparo</th><th>Precisa de</th><th>Natural em</th></tr>
+<tr><td><strong>Frente</strong></td><td>efémera</td><td>humano ou orquestrador</td><td>filesystem, git, hooks bloqueantes</td><td>runner de código local</td></tr>
+<tr><td><strong>Arquitecto · triagem</strong></td><td>efémera, curta</td><td>evento (alerta)</td><td>leitura ampla, escrita escopada, invocação por máquina</td><td>runner invocável programaticamente</td></tr>
+<tr><td><strong>Arquitecto · rumo</strong></td><td>efémera</td><td>só o humano</td><td>conversa, sem escrita automática</td><td>interface de chat</td></tr>
+<tr><td><strong>Auditor</strong></td><td>efémera</td><td>calendário</td><td>leitura total, sem escrita</td><td>infraestrutura agendada</td></tr>
+<tr><td><strong>Watcher</strong></td><td><strong>persistente</strong></td><td>cada merge</td><td>nenhum modelo; processo e disco</td><td>infraestrutura sempre ligada</td></tr>
+<tr><td><strong>Detector semântico</strong></td><td>por chamada</td><td>dentro do watcher</td><td>uma chamada sem estado</td><td>API directa, sem agente</td></tr>
+</table>
+<p><strong>Três regras de alocação</strong></p>
+<p class="chave"><strong>O que está sempre ligado não julga.</strong> Infraestrutura persistente serve para vigiar, disparar e agendar. Todo o papel que decide corre numa sessão fria e curta, arrancada por ela. Um agente permanente a julgar acumula contexto e deriva — e seria o pior sítio do sistema para isso acontecer.</p>
+<p><strong>O enforcement vive no runner que executa, não no que orquestra.</strong> Se uma infraestrutura persistente dispara uma sessão de trabalho noutro runner, os hooks têm de estar do lado do runner que escreve. Um orquestrador que valida caminhos mas delega a escrita a um processo sem hooks não protege nada.</p>
+<p><strong>Um papel pode mudar de runner; o contrato não muda.</strong> O que define a frente é a projecção, a zona e o gate de fecho — não onde corre. Mudar de ferramenta é substituição de implementação, e como tal passa por decisão registada.</p>
+<p class="chave"><strong>Falha de runner é recusa, não passagem.</strong> Se o runner de um papel está indisponível, o comportamento é bloquear, nunca deixar passar. Um hook que não responde equivale a <code>HALT</code> para as operações que dependiam dele.</p>
+<p>Um sistema que só impede movimento é uma jaula. Este distingue três formas de mudar.</p>
+<p>Antes das três: a maior parte da mudança num projecto saudável é de <strong>ramo ou de caminho</strong>, não de rumo, e resolve-se nas camadas §2.2 e §2.3 sem tocar no mandato. Só chega aqui o que elas não conseguem absorver.</p>
+<h4 id="por-necessidade">Por necessidade</h4>
+<pre><code>frente marca challenges no INBOX
+  → watcher ou triagem detecta
+  → toca no mandato?
+      não  → triagem resolve: estado, frente nova, ou rejeição
+      sim  → escala. A triagem não resolve. Alerta fica novo.
+  → humano abre modo rumo
+  → emenda datada, ou nada</code></pre>
+<p>A frente nunca pára à espera desta cadeia. Continua com o pressuposto declarado.</p>
+<h4 id="por-vontade">Por vontade</h4>
+<p>O humano decide reavaliar sem que nada tenha falhado. Abre o modo rumo, o único modo que nenhum agente pode abrir. Produz uma emenda <strong>ou nada</strong> — e &quot;nada&quot; é resultado frequente e legítimo. <strong>Nunca escreve no estado:</strong> se escrevesse, cada alerta reabriria a discussão de rumo.</p>
+<h4 id="por-falha-do-pr-prio-sistema">Por falha do próprio sistema</h4>
+<p>Um mecanismo não funciona. Entra no inbox, é triado, e se alterar como o projecto se governa, é emenda.</p>
+<h4 id="deriva-e-inflex-o">Deriva e inflexão</h4>
+<table>
+<tr><th></th><th>Deriva</th><th>Inflexão</th></tr>
+<tr><td>Alteração do objectivo</td><td>real</td><td>real</td></tr>
+<tr><td>Declarada</td><td>não</td><td>sim</td></tr>
+<tr><td>Datada</td><td>não</td><td>sim</td></tr>
+<tr><td>Alternativa registada</td><td>não</td><td>sim</td></tr>
+<tr><td>Tratamento</td><td>é o que o sistema existe para impedir</td><td>é saudável</td></tr>
+</table>
+<p>Abrir frentes novas não é patologia. O que mata o projecto é a frente que altera o mandato sem o dizer. O sistema não impede movimento: torna impossível alterar o mandato sem emendar o mandato.</p>
+<h4 id="registo-de-debates">Registo de debates</h4>
+<p>Cada decisão produz um ficheiro com campos fechados: a decisão, a alternativa rejeitada, a razão, e os slugs que afecta. Não a discussão.</p>
+<p>Serve duas funções: quando um mecanismo falhar daqui a meses, diz o que havia em alternativa e porque foi posto de lado; e alimenta o índice que protege o que foi decidido. É rastreabilidade, não história.</p>
+<h2 id="3-garantias-permanentes"><span class="n">3</span>Garantias permanentes</h2>
+<h3 id="3-1-tabela">Tabela</h3>
+<table>
+<tr><th>Garantia</th><th>Como se obtém</th><th>Como se mantém</th><th>Como se detecta a falha</th></tr>
+<tr><td><strong>Existe um mandato</strong></td><td>P0, com os dois testes</td><td>tecto de uma página bloqueia emendas que inchem</td><td>nenhuma frente declara pressuposto válido</td></tr>
+<tr><td><strong>É interpretado igual</strong></td><td>não-objectivos e casos decididos</td><td>cada divergência vira caso</td><td>sondas de fronteira divergem entre sessões</td></tr>
+<tr><td><strong>Chega a quem precisa</strong></td><td>injecção por escopo, não pesquisa</td><td>hook monta o contexto por perfil</td><td>sessão produz output sem pressuposto</td></tr>
+<tr><td><strong>O problema foi partido</strong></td><td>árvores concorrentes, um eixo por nó</td><td>triagem mata as estéreis</td><td>árvore única, ou ramos sobrepostos</td></tr>
+<tr><td><strong>As árvores morrem</strong></td><td>condição de morte declarada ao nascer</td><td>auditor lista as que a excederam</td><td>árvore aberta há mais tempo que a sua condição</td></tr>
+<tr><td><strong>O caminho é explícito</strong></td><td>método de procura, mínimo dois</td><td>reavaliação a cada pressuposto invalidado</td><td>frente sem pressuposto declarado</td></tr>
+<tr><td><strong>Ninguém sai da sua zona</strong></td><td>worktree e hook de caminho</td><td>hooks fora de todas as zonas</td><td>tentativa bloqueada no log</td></tr>
+<tr><td><strong>O decidido não é mexido</strong></td><td>slugs, índice gerado, quatro níveis</td><td>slugs nunca reutilizados</td><td>regra alterada sem decisão correspondente</td></tr>
+<tr><td><strong>O estado não apodrece</strong></td><td>substituição com orçamento</td><td>auditor com cadência fixa</td><td>contradições entre estado e frentes</td></tr>
+<tr><td><strong>O lixo não entra</strong></td><td>quota, campos fechados, árbitro em código</td><td><code>0</code> é resultado legítimo e frequente</td><td>inbox cresce mais do que se esvazia</td></tr>
+<tr><td><strong>Conflitos aparecem</strong></td><td>três passagens do watcher</td><td>arestas declaradas ao desenhar o ramo</td><td>colisão descoberta por acaso</td></tr>
+<tr><td><strong>Decisões são aplicadas</strong></td><td>verificação no fecho</td><td>—</td><td>decisão sem item correspondente</td></tr>
+<tr><td><strong>Becos não reabrem</strong></td><td>razão de fecho e de poda registadas</td><td>slug morto bloqueia recriação</td><td>frente repete trabalho já fechado</td></tr>
+<tr><td><strong>O rumo é rastreável</strong></td><td>emenda datada com alternativa</td><td>registo de debates</td><td>alteração no mandato sem entrada</td></tr>
+<tr><td><strong>Cada papel corre onde deve</strong></td><td>requisitos por papel, enforcement eliminatório</td><td>mudança de runner passa por decisão</td><td>papel que escreve a correr sem hooks bloqueantes</td></tr>
+<tr><td><strong>O governo não incha</strong></td><td>toda a regra nova exige falha observada</td><td>revisão por cadência</td><td>regras sem incidente que as justifique</td></tr>
+</table>
+<h3 id="3-2-manuten-o-no-tempo">Manutenção no tempo</h3>
+<table>
+<tr><th>Quando</th><th>O quê</th></tr>
+<tr><td><strong>A cada fecho de sessão</strong></td><td>automático: gate, selagem, merge, watcher, regeneração do índice</td></tr>
+<tr><td><strong>A cada alerta</strong></td><td>sessão fria de triagem; não existe se o alerta estiver vazio</td></tr>
+<tr><td><strong>Por cadência fixa</strong></td><td>auditoria</td></tr>
+</table>
+<p>A auditoria é o único mecanismo que olha para o próprio sistema. Verifica: sondas de fronteira, contradições entre estado e frentes, alertas descartados que voltaram, árvores que excederam a condição de morte, ramos abertos sem dependências declaradas, regras alteradas sem decisão, e regras sem incidente que as justifique.</p>
+<p>Sem ela, o governo cresce e ninguém nota; a correr mais do que uma vez por mês, o governo consome o projecto.</p>
+<h3 id="3-3-a-garantia-que-nenhum-mecanismo-d">A garantia que nenhum mecanismo dá</h3>
+<p>Confinamento impede uma frente de estragar outra. Não impede que faça a coisa errada com perfeição dentro da sua própria zona.</p>
+<p>Por isso a projecção — o pressuposto que testa e a regra de paragem — não é burocracia: é o único sítio onde fica escrito para que existe aquela frente. E deriva-se do caminho, pelo que não custa nada escrever.</p>
+<p>Um sistema sem ela continua a funcionar, continua a bloquear escritas indevidas, continua a detectar colisões — e produz, com total ordem e rastreabilidade, trabalho que não serve para nada.</p>
+<h2 id="4-tens-es-em-aberto"><span class="n">4</span>Tensões em aberto</h2>
+<p><strong>T1 · Custo de declarar arestas.</strong> Se declarar dependências não for barato no momento em que o ramo nasce, as arestas ficam vazias e o detector cala-se — pior do que não existir, porque parece estar a vigiar. <em>Resolução adoptada:</em> tarefa no protocolo, no acto de desenhar o ramo (P1.4). Deixa de ser preenchimento posterior. <em>Por verificar na prática.</em> Sinal gratuito: ramos abertos sem nenhuma aresta e que não são raiz. O auditor lista; a frequência responde sem ninguém ter de julgar.</p>
+<p><strong>T2 · Completude das dependências.</strong> A tarefa resolve o custo, não a completude. Declara-se o que se vê; o conflito caro é o que não se viu. <em>Mitigação:</em> o detector semântico fica como rede de segurança e indica arestas em falta.</p>
+<p><strong>T3 · Reintrodução por slug novo.</strong> A protecção do decidido só apanha recriação pelo mesmo slug. Conteúdo equivalente com slug diferente escapa ao hook. <em>Mitigação:</em> detecção semântica no auditor, não no momento da escrita.</p>
+<p><strong>T4 · Dependência de runner.</strong> Um papel alocado a um runner específico pára quando esse runner está indisponível. <em>Resolução adoptada:</em> falha é recusa, nunca passagem — um hook que não responde equivale a <code>HALT</code> para as operações que dependiam dele. <em>Custo assumido:</em> indisponibilidade de infraestrutura pára trabalho em vez de o deixar correr sem protecção. É a troca correcta.</p>
+<p><strong>T5 · Inchaço por multiplicação de árvores.</strong> Quatro propósitos e árvores múltiplas por projecto é o ponto onde o sistema pode crescer sem limite. <em>Travão único:</em> P1.1 — condição de morte declarada ao nascer, verificada pelo auditor.</p>
+<footer>5 níveis · 6 papéis · 4 propósitos de árvore · 16 garantias · 5 tensões</footer>
+</main>
+</div>
+</body>
+</html>

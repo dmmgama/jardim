@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "Ciclo de vida de um ramo e do seu pressuposto",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1030,
+      566
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Ciclo do ramo"
+    },
+    {
+      "id": "terminal",
+      "label": "Pausa, poda e queda do pressuposto"
+    }
+  ],
+  "states": [
+    {
+      "id": "desenhado",
+      "type": "start",
+      "label": "Ramo desenhado",
+      "sublabel": "eixo e dependencias",
+      "lane": "main",
+      "col": 0,
+      "step": "01",
+      "tag": "P1.4"
+    },
+    {
+      "id": "por_abrir",
+      "type": "neutral",
+      "label": "Por abrir",
+      "sublabel": "aguarda frente",
+      "lane": "main",
+      "col": 1,
+      "step": "02",
+      "tag": "sem custo"
+    },
+    {
+      "id": "crivo",
+      "type": "decision",
+      "label": "Crivo de grandeza",
+      "sublabel": "dez vezes, muda?",
+      "lane": "main",
+      "col": 2,
+      "step": "03",
+      "tag": "P1.5"
+    },
+    {
+      "id": "desenvolvimento",
+      "type": "active",
+      "label": "Em desenvolvimento",
+      "sublabel": "frente testa o pressuposto",
+      "lane": "main",
+      "col": 3,
+      "step": "04",
+      "tag": "custa dados"
+    },
+    {
+      "id": "fechado",
+      "type": "success",
+      "label": "Fechado",
+      "sublabel": "resultado ao caminho",
+      "lane": "main",
+      "col": 4,
+      "step": "05",
+      "tag": "com razao"
+    },
+    {
+      "id": "suspenso",
+      "type": "waiting",
+      "label": "suspenso: <ramo>",
+      "sublabel": "dependencia declarada",
+      "lane": "terminal",
+      "col": 1,
+      "tag": "tem referente",
+      "yOffset": -130
+    },
+    {
+      "id": "podado",
+      "type": "failure",
+      "label": "Podado",
+      "sublabel": "razao registada",
+      "lane": "terminal",
+      "col": 0,
+      "tag": "terminal (P1.6)",
+      "yOffset": -130
+    },
+    {
+      "id": "invalidado",
+      "type": "failure",
+      "label": "Invalidado",
+      "sublabel": "reavaliacao obrigatoria",
+      "lane": "terminal",
+      "col": 2,
+      "tag": "P2.5",
+      "yOffset": -130
+    }
+  ],
+  "transitions": [
+    {
+      "id": "desenha-abre",
+      "from": "desenhado",
+      "to": "por_abrir",
+      "label": "dependencias declaradas",
+      "labelDy": -25
+    },
+    {
+      "id": "abre-crivo",
+      "from": "por_abrir",
+      "to": "crivo",
+      "label": "antes de passar a frente",
+      "labelDy": 55
+    },
+    {
+      "id": "passa-crivo",
+      "from": "crivo",
+      "to": "desenvolvimento",
+      "label": "sobrevive ao crivo",
+      "variant": "emphasis",
+      "labelDy": -25
+    },
+    {
+      "id": "crivo-poda",
+      "from": "crivo",
+      "to": "podado",
+      "label": "descartado pre-dados",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 60
+    },
+    {
+      "id": "suspende",
+      "from": "desenvolvimento",
+      "to": "suspenso",
+      "label": "espera o referente",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 60
+    },
+    {
+      "id": "retoma",
+      "from": "suspenso",
+      "to": "desenvolvimento",
+      "label": "referente devolveu",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "left",
+      "route": "left-channel",
+      "channelX": 479,
+      "labelAt": [
+        498,
+        300
+      ]
+    },
+    {
+      "id": "fecha",
+      "from": "desenvolvimento",
+      "to": "fechado",
+      "label": "regra de paragem atingida",
+      "variant": "emphasis",
+      "labelDy": 55
+    },
+    {
+      "id": "cai",
+      "from": "fechado",
+      "to": "invalidado",
+      "label": "o pressuposto cai",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 60
+    },
+    {
+      "id": "reavalia",
+      "from": "invalidado",
+      "to": "desenvolvimento",
+      "label": "reavaliacao (P2.5)",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          830,
+          349
+        ],
+        [
+          830,
+          96
+        ],
+        [
+          556,
+          96
+        ]
+      ]
+    }
+  ]
+}
