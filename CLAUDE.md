@@ -2,7 +2,7 @@
 _INSTRUCAO_AGENTE: |
   Este bloco de front matter é metadados de registo. Ignora-o. Passa directamente ao corpo do documento e executa-o. Não resumas este documento ao utilizador; aplica-o.
 created: 2026-09-14 20:10
-updated: 2026-09-17
+updated: 2026-10-02
 project: Jardim
 summary: |
   Documento de arranque do repositório Jardim Alcântara: dispatcher de modo de sessão, governo do Arquitecto, regras de threads, mapa de ficheiros.
@@ -20,10 +20,28 @@ Notebook-LM: https://notebook.google.com/notebook/8e3c8f38-0f8c-494d-aae5-fc24e9
 **A primeira acção de qualquer sessão é perguntar ao David:**
 
 ```
-Modo de sessão: ARQUITECTO ou THREAD?
+Modo de sessão: GERAL, GOVERNO, ARQUITECTO ou THREAD?
 ```
 
 **NÃO PODES** ler ficheiros de estado, propor trabalho ou responder a questões de projecto antes desta resposta.
+
+### Se a resposta for GERAL
+
+1. **Não lês nenhum ficheiro ao arrancar.** Fazes o que o David pedir e lês só o que a tarefa exigir.
+2. Mantêm-se G19 (arqueologia só de leitura) e G13 (`Jardim.html` é do Arquitecto).
+3. **NÃO PODES** escrever em `ESTADO.md`, `REJEICOES.md`, `THREADS.md` nem `THREAD-MENSAGENS.md` sem ordem explícita do David.
+4. Se a conversa produzir uma decisão, **DEVES** avisar: *«isto fica só na conversa (G1) — registo, ou passamos a ARQUITECTO?»*
+
+O resto deste documento **não te governa** em modo GERAL, salvo §6 (regras de operação).
+
+### Se a resposta for GOVERNO
+
+O objecto da sessão é **o próprio sistema de governo** — `CLAUDE.md`, `FLUXO-DE-PROJECTO.md`, templates, `BRANCHES.md`, protocolos. **O jardim não é assunto.**
+
+1. Lês `CLAUDE.md`, `FLUXO-DE-PROJECTO.md` e `BRANCHES.md`. **Não lês** o estado do projecto.
+2. **NÃO PODES** alterar conteúdo de projecto: `ESTADO.md`, `REJEICOES.md`, `INBOX.md`, nem nada em `30-THREADS/` excepto os `CLAUDE.md` e o `_TEMPLATE/`.
+3. Cada alteração de regra **DEVE** ficar registada com data e motivo na mensagem de commit.
+4. Alterar uma regra num ficheiro obriga a alinhar os outros que a descrevem (`CLAUDE.md` ↔ `FLUXO-DE-PROJECTO.md`).
 
 ### Se a resposta for ARQUITECTO
 
@@ -63,6 +81,8 @@ O projecto teve versões anteriores (V1 completo, DIY temporário) hoje em `90-A
 |-------|-----------|
 | **Agente** | O modelo LLM que executa uma sessão com este repositório aberto. |
 | **David** | David Gama, proprietário e decisor único. |
+| **Geral** | Modo de sessão sem leitura de arranque: executa o que o David pedir. Não regista decisões sem ordem. |
+| **Governo** | Modo de sessão que trata o sistema de governo, não o jardim. |
 | **Arquitecto** | Modo de sessão que detém a visão geral, decide e abre/fecha threads. Opera na raiz. |
 | **Thread** | Modo de sessão que trata **um** assunto isolado, com mandato escrito. Opera só na sua pasta. |
 | **Mandato** | O que uma thread foi encarregada de fazer. Fixo. Escrito em `thread.md`. |
