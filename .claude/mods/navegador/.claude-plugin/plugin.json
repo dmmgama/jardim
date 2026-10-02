@@ -1,0 +1,6 @@
+{
+  "name": "navegador",
+  "version": "0.1.0",
+  "description": "Navegação por árvore de problemas (MAPA.md): nó activo, perímetro de ficheiros por nó e PANORAMA.",
+  "types": "./types/index.d.ts"
+}
