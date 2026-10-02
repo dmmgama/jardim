@@ -26,9 +26,18 @@ Este governo resolve três coisas:
 
 ---
 
-## 2. Os dois modos de sessão
+## 2. Os modos de sessão
 
-Toda a sessão começa com uma pergunta: **Arquitecto ou Thread?**
+Toda a sessão começa com uma pergunta: **Geral, Governo, Arquitecto ou Thread?**
+
+| Modo | Lê ao arrancar | Para quê |
+|---|---|---|
+| **Geral** | Nada | Fazer o que o David pedir, sem protocolo. Não regista decisões sem ordem — avisa quando uma decisão fica só na conversa. |
+| **Governo** | `CLAUDE.md`, `FLUXO-DE-PROJECTO.md`, `BRANCHES.md` | Mexer no sistema de governo. Não toca no conteúdo de projecto. |
+| **Arquitecto** | Ver diagrama | Visão geral do projecto, decisões, threads. |
+| **Thread** | Ver diagrama | Um assunto isolado, com mandato. |
+
+O diagrama mostra os dois modos de projecto (Arquitecto e Thread).
 
 ```
                     ┌─────────────────────┐
@@ -286,7 +295,7 @@ Nenhuma decisão nasce no Notion. Nenhum debate fica só no Notion. Foi exactame
 
 | Ficheiro | Função | Quem escreve |
 |---|---|---|
-| `CLAUDE.md` | Dispatcher de modo + governo do Arquitecto | — |
+| `CLAUDE.md` | Dispatcher de modo (Geral · Governo · Arquitecto · Thread) + governo do Arquitecto | — |
 | `ESTADO.md` | O que está decidido, por tema | Arquitecto |
 | `REJEICOES.md` | Espelho: o que foi rejeitado e porquê | Arquitecto |
 | `INBOX.md` | Ideias e pendências em bruto | Todos |
